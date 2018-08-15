@@ -9,6 +9,8 @@ namespace Story_Crafter {
 
         public override string Name { get { return "Replace"; } }
 
+        Pen cursor = new Pen(Color.Orchid);
+
         public override void Paint(TileLayer layer, TileSelection selection, Point paintLocation, int brushSizeX, int brushSizeY, int tileset) {
             Tile target = layer.Tiles[Program.ScreenPointToIndex(paintLocation)].Clone();
             Tile replacement = new Tile(tileset, Program.TilesetPointToIndex(selection.MinX, selection.MinY));
@@ -19,6 +21,10 @@ namespace Story_Crafter {
             Tile target = layer.Tiles[Program.ScreenPointToIndex(paintLocation)].Clone();
             Tile replacement = new Tile(bank, idx);
             Replace(layer, target, replacement);
+        }
+
+        public override void DrawCursor(Graphics g, Point position, Selection selection, int brushSizeX, int brushSizeY, int layer) {
+            g.DrawRectangle(cursor, position.X * 24, position.Y * 24, 23, 23);
         }
 
         private void Replace(Layer layer, Tile target, Tile replacement) {

@@ -94,52 +94,6 @@ namespace Story_Crafter {
             Program.ActiveProfile = p;
             GC.Collect();
         }
-        /* private static List<Tuple<int, Bitmap>> LoadBank(string path, string indices) {
-           List<int> bounds = new List<int>();
-           string[] unparsed = indices.Split(new char[] { ' ', '-' });
-           foreach(string s in unparsed) {
-             bounds.Add(int.Parse(s));
-           }
-           List<Tuple<int, Bitmap>> objects = new List<Tuple<int, Bitmap>>();
-           for(int r = 0; r < bounds.Count; r += 2) {
-             for(int i = bounds[r]; i <= bounds[r + 1]; i++) {
-               Bitmap b = Program.LoadBitmap(path + @"\Object" + i + ".png");
-               b.MakeTransparent(Color.Magenta);
-               objects.Add(Tuple.Create<int, Bitmap>(i, b));
-             }
-           }
-           return objects;
-         }
-         private static void LoadProfile(string id) {
-           foreach(XmlElement el in Program.Data.GetElementsByTagName("profile")) {
-             if(el.Attributes["id"].Value != id) continue;
-             LoadProfile(el);
-             break;
-           }
-         }
-         private static void LoadProfile(XmlElement el) {
-           foreach(XmlElement bank in el["banks"].GetElementsByTagName("bank")) {
-             int index = int.Parse(bank.Attributes["index"].Value);
-             if(banksLoaded.Contains(index)) continue;
-             banksLoaded.Add(index);
-             List<Tuple<int, Bitmap>> objects;
-             if(bank.HasChildNodes) {
-               objects = new List<Tuple<int, Bitmap>>();
-               foreach(XmlElement src in bank.GetElementsByTagName("src")) {
-                 objects.AddRange(LoadBank(src.Attributes["path"].Value.Replace("%ks%", Program.Path), src.Attributes["objects"].Value));
-               }
-             }
-             else {
-               objects = LoadBank(Program.Path + @"\Data\Objects\Bank" + index, bank.Attributes["objects"].Value);
-             }
-             Program.Banks.Add(new ObjectBank(index, bank.Attributes["name"].Value, objects));
-           }
-           if(el.Attributes["base"] != null) {
-             foreach(string b in ((string)el.Attributes["base"].Value).Split(' ')) {
-               LoadProfile(b);
-             }
-           }
-         }*/
 
         private static bool LoadGlobalData() {
             Program.Data.Load("data.xml");

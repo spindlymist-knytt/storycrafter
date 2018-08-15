@@ -276,10 +276,10 @@ namespace Story_Crafter {
 
                 // Now begin reading actual tile data.
                 for(int i = 0; i < 4; i++) { // Tile layers.
-                    s.Layers[i] = new TileLayer(data.Read(250));
+                    s.Layers[i] = new TileLayer(i, data.Read(250));
                 }
                 for(int i = 4; i < 8; i++) { // Object layers.
-                    s.Layers[i] = new ObjectLayer(data.Read(500));
+                    s.Layers[i] = new ObjectLayer(i, data.Read(500));
                 }
 
                 // Read which assets the screen uses.

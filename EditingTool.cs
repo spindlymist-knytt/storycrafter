@@ -11,6 +11,7 @@ namespace Story_Crafter {
 
         abstract public void Paint(TileLayer layer, TileSelection selection, Point paintLocation, int brushSizeX, int brushSizeY, int tileset);
         abstract public void Paint(ObjectLayer layer, Point paintLocation, int brushSizeX, int brushSizeY, int bank, int idx);
+        abstract public void DrawCursor(Graphics g, Point position, Selection selection, int brushSizeX, int brushSizeY, int layer);
 
     }
 }
