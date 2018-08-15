@@ -30,7 +30,7 @@ namespace Story_Crafter {
         bool active = false;
 
         public TilesetViewPanel() {
-            selection = new TileSelection(24, 24, Program.TilesetWidth, Program.TilesetHeight, tileCursor);
+            selection = new TileSelection(24, 24, 0, 0, Program.TilesetWidth, Program.TilesetHeight, tileCursor);
             selection.Add(new Rectangle(0, 0, 1, 1));
         }
 

@@ -9,18 +9,34 @@ namespace Story_Crafter {
     class Selection {
         public class SelectionNode {
             public SelectionNode North, East, South, West;
-            public int X, Y, TileIndex;
+            public int X {
+                get { return x; }
+                set {
+                    x = value;
+                    TileIndex = Program.TilesetPointToIndex(x, y);
+                }
+            }
+            public int Y {
+                get { return y; }
+                set {
+                    y = value;
+                    TileIndex = Program.TilesetPointToIndex(x, y);
+                }
+            }
+            public int TileIndex;
 
-            public SelectionNode(int x, int y) {
+            int x, y;
+
+            public SelectionNode(int _x, int _y) {
                 North = East = South = West = null;
-                this.X = x;
-                this.Y = y;
+                x = _x;
+                y = _y;
                 TileIndex = Program.TilesetPointToIndex(x, y);
             }
         }
 
         public List<SelectionNode> nodes = new List<SelectionNode>();
-        public int MinX = -1, MinY = -1, MaxX = 0, MaxY = 0;
+        public int MinX = 0, MinY = 0, MaxX = 0, MaxY = 0;
         public int Width {
             get { return MaxX - MinX + 1; }
         }
@@ -30,46 +46,73 @@ namespace Story_Crafter {
         public Image Borders;
         public Pen Cursor = new Pen(Color.Black);
 
-        int CellWidth, CellHeight, ContainerMaxX, ContainerMaxY;
+        int CellWidth, CellHeight, ContainerMinX, ContainerMinY, ContainerMaxX, ContainerMaxY;
+        bool InfiniteContainer;
 
-        public Selection(int cellWidth, int cellHeight, int containerMaxX, int containerMaxY, Pen cursor) {
+        public Selection(int cellWidth, int cellHeight, int containerMinX, int containerMinY, int containerMaxX, int containerMaxY, Pen cursor) {
             CellWidth = cellWidth;
             CellHeight = cellHeight;
+            ContainerMinX = containerMinX;
+            ContainerMinY = containerMinY;
             ContainerMaxX = containerMaxX;
             ContainerMaxY = containerMaxY;
             Cursor = cursor;
-            FindNeighbors();
-            DrawBorders();
+            InfiniteContainer = false;
         }
+
+        public Selection(int cellWidth, int cellHeight, Pen cursor) {
+            CellWidth = cellWidth;
+            CellHeight = cellHeight;
+            Cursor = cursor;
+            InfiniteContainer = true;
+        }
+
         public void Clear() {
             nodes.Clear();
-            MinX = MinY = -1;
+            MinX = MinY = 0;
             MaxX = MaxY = 0;
         }
         public void Add(Rectangle r) {
+            bool first = false;
+            if(nodes.Count == 0) first = true;
             for(int x = r.X; x < r.Right; x++) {
                 for(int y = r.Y; y < r.Bottom; y++) {
-                    if(x < 0 || (ContainerMaxX != -1 && x >= ContainerMaxX) || y < 0 || (ContainerMaxY != -1 && y >= ContainerMaxY)) continue;
+                    if(!InfiniteContainer && (x < ContainerMinX || x >= ContainerMaxX || y < ContainerMinY || y >= ContainerMaxY)) continue;
                     if(FindNode(x, y) == null) nodes.Add(new SelectionNode(x, y));
                 }
             }
-            if(r.X < MinX || MinX == -1) MinX = r.X;
-            if(r.Y < MinY || MinY == -1) MinY = r.Y;
-            if(r.Right - 1 > MaxX) MaxX = r.Right - 1;
-            if(r.Bottom - 1 > MaxY) MaxY = r.Bottom - 1;
+            if(nodes.Count() == 0) return;
+            if(first) {
+                MinX = r.X;
+                MinY = r.Y;
+                MaxX = r.Right - 1;
+                MaxY = r.Bottom - 1;
+            }
+            else {
+                if(r.X < MinX) MinX = r.X;
+                if(r.Y < MinY) MinY = r.Y;
+                if(r.Right - 1 > MaxX) MaxX = r.Right - 1;
+                if(r.Bottom - 1 > MaxY) MaxY = r.Bottom - 1;
+            }
             FindNeighbors();
             DrawBorders();
         }
         public void Remove(Rectangle r) {
-            MinX = MinY = -1;
-            MaxX = MaxY = 0;
+            bool first = true;
             List<SelectionNode> toRemove = new List<SelectionNode>();
             foreach(SelectionNode n in nodes) {
                 if(n.X >= r.X && n.X < r.Right && n.Y >= r.Y && n.Y < r.Bottom) toRemove.Add(n);
+                else if(first) {
+                    MinX = n.X;
+                    MinY = n.Y;
+                    MaxX = n.X;
+                    MaxY = n.Y;
+                    first = false;
+                }
                 else {
-                    if(n.X < MinX || MinX == -1) MinX = n.X;
+                    if(n.X < MinX) MinX = n.X;
                     if(n.X > MaxX) MaxX = n.X;
-                    if(n.Y < MinY || MinY == -1) MinY = n.Y;
+                    if(n.Y < MinY) MinY = n.Y;
                     if(n.Y > MaxY) MaxY = n.Y;
                 }
             }
@@ -86,6 +129,7 @@ namespace Story_Crafter {
             return nodes[Program.Rand.Next(0, nodes.Count)].TileIndex;
         }
         protected void FindNeighbors() {
+            // TODO optimize
             foreach(SelectionNode n in nodes) {
                 n.North = n.East = n.South = n.West = null;
             }
@@ -139,6 +183,19 @@ namespace Story_Crafter {
         public void ChangeCellSize(int cellWidth, int cellHeight) {
             CellWidth = cellWidth;
             CellHeight = cellHeight;
+            DrawBorders();
+        }
+        public void Translate(int dx, int dy) {
+            if(MinX + dx < ContainerMinX || MinY + dy < ContainerMinY || MaxX + dx >= ContainerMaxX || MaxY + dy >= ContainerMaxY)
+                return;
+            foreach(SelectionNode n in nodes) {
+                n.X += dx;
+                n.Y += dy;
+            }
+            MinX += dx;
+            MinY += dy;
+            MaxX += dx;
+            MaxY += dy;
             DrawBorders();
         }
     }
