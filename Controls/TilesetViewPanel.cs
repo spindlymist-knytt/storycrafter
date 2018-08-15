@@ -15,25 +15,30 @@ namespace Story_Crafter {
         Rectangle lastSelection;
         Point selectionStart = new Point();
         bool selectionInProgress = false;
+        bool firstSelection = false;
 
         static Pen tileCursor = new Pen(Color.Orange);
         static Pen newSelectionCursor = new Pen(Color.AntiqueWhite);
 
         public bool Active {
-            set { active = value; }
+            set {
+                active = value;
+                Refresh();
+            }
             get { return active; }
         }
         bool active = false;
 
         public TilesetViewPanel() {
-            selection = new TileSelection(24, 24, Program.TilesetWidth, Program.TilesetHeight);
-            selection.cursor = tileCursor;
+            selection = new TileSelection(24, 24, Program.TilesetWidth, Program.TilesetHeight, tileCursor);
+            selection.Add(new Rectangle(0, 0, 1, 1));
         }
 
         protected override void OnMouseDown(MouseEventArgs e) {
             base.OnMouseDown(e);
 
             if(e.Button == MouseButtons.Left) {
+                if(!active) firstSelection = true;
                 active = true;
                 selectionInProgress = true;
                 selectionStart.X = (int)(e.X / 24f);
@@ -62,6 +67,7 @@ namespace Story_Crafter {
             base.OnMouseUp(e);
 
             if(active && e.Button == MouseButtons.Left) {
+                firstSelection = false;
                 if(ModifierKeys == Keys.Control) {
                     selection.Remove(lastSelection);
                 }
@@ -77,11 +83,13 @@ namespace Story_Crafter {
             base.OnPaint(e);
 
             if(active) {
-                e.Graphics.DrawImage(selection.Borders,
+                if(!firstSelection)
+                    e.Graphics.DrawImage(selection.Borders,
                            new Rectangle(selection.MinX * 24, selection.MinY * 24, selection.Borders.Width, selection.Borders.Height),
                            new Rectangle(0, 0, selection.Borders.Width, selection.Borders.Height),
                            GraphicsUnit.Pixel);
-                if(selectionInProgress) e.Graphics.DrawRectangle(newSelectionCursor, lastSelection.X * 24, lastSelection.Y * 24, lastSelection.Width * 24 - 1, lastSelection.Height * 24 - 1);
+                if(selectionInProgress)
+                    e.Graphics.DrawRectangle(newSelectionCursor, lastSelection.X * 24, lastSelection.Y * 24, lastSelection.Width * 24 - 1, lastSelection.Height * 24 - 1);
             }
         }
 

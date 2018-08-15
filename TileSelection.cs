@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 
 namespace Story_Crafter {
     class TileSelection: Selection {
 
-        public TileSelection(int cellWidth, int cellHeight, int containerMaxX, int containerMaxY) : base(cellWidth, cellHeight, containerMaxX, containerMaxY) { }
+        public TileSelection(int cellWidth, int cellHeight, int containerMaxX, int containerMaxY, Pen cursor) : base(cellWidth, cellHeight, containerMaxX, containerMaxY, cursor) { }
 
         public void Paint(Layer l, int tileset, int paintX, int paintY) {
             paintX -= MinX;

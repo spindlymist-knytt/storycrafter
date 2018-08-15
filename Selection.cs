@@ -28,15 +28,18 @@ namespace Story_Crafter {
             get { return MaxY - MinY + 1; }
         }
         public Image Borders;
-        public Pen cursor = new Pen(Color.Black);
+        public Pen Cursor = new Pen(Color.Black);
 
         int CellWidth, CellHeight, ContainerMaxX, ContainerMaxY;
 
-        public Selection(int cellWidth, int cellHeight, int containerMaxX, int containerMaxY) {
+        public Selection(int cellWidth, int cellHeight, int containerMaxX, int containerMaxY, Pen cursor) {
             CellWidth = cellWidth;
             CellHeight = cellHeight;
             ContainerMaxX = containerMaxX;
             ContainerMaxY = containerMaxY;
+            Cursor = cursor;
+            FindNeighbors();
+            DrawBorders();
         }
         public void Clear() {
             nodes.Clear();
@@ -113,20 +116,21 @@ namespace Story_Crafter {
                 int x = (n.X - MinX) * CellWidth;
                 int y = (n.Y - MinY) * CellHeight;
                 if(n.North == null) {
-                    g.DrawLine(cursor, x, y, x + (CellWidth - 1), y);
+                    g.DrawLine(Cursor, x, y, x + (CellWidth - 1), y);
                 }
                 if(n.East == null) {
-                    g.DrawLine(cursor, x + (CellWidth - 1), y, x + (CellWidth - 1), y + (CellHeight - 1));
+                    g.DrawLine(Cursor, x + (CellWidth - 1), y, x + (CellWidth - 1), y + (CellHeight - 1));
                 }
                 if(n.South == null) {
-                    g.DrawLine(cursor, x + (CellWidth - 1), y + (CellHeight - 1), x, y + (CellHeight - 1));
+                    g.DrawLine(Cursor, x + (CellWidth - 1), y + (CellHeight - 1), x, y + (CellHeight - 1));
                 }
                 if(n.West == null) {
-                    g.DrawLine(cursor, x, y + (CellHeight - 1), x, y);
+                    g.DrawLine(Cursor, x, y + (CellHeight - 1), x, y);
                 }
             }
         }
         protected SelectionNode FindNode(int x, int y) {
+            // TODO: optimize
             foreach(SelectionNode n in nodes) {
                 if(n.X == x && n.Y == y) return n;
             }
