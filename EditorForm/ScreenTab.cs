@@ -145,46 +145,24 @@ namespace Story_Crafter {
                     form.tabControl1.Focus();
                 };
                 form.tabControl1.KeyUp += delegate (object sender, KeyEventArgs e) {
-                    int x, y;
                     switch(e.KeyCode) {
-                        // TODO move selection translation to TilesetViewPanel
                         case Keys.W:
-                            x = selection.MinX;
-                            y = selection.MinY;
-                            if(y > 0) {
-                                selection.Clear();
-                                selection.Add(new Rectangle(x, y - 1, 1, 1));
-                            }
+                            selection.Translate(0, -1);
                             form.screen_tilesetViewA.Refresh();
                             form.screen_tilesetViewB.Refresh();
                             break;
                         case Keys.A:
-                            x = selection.MinX;
-                            y = selection.MinY;
-                            if(x > 0) {
-                                selection.Clear();
-                                selection.Add(new Rectangle(x - 1, y, 1, 1));
-                            }
+                            selection.Translate(-1, 0);
                             form.screen_tilesetViewA.Refresh();
                             form.screen_tilesetViewB.Refresh();
                             break;
                         case Keys.S:
-                            x = selection.MinX;
-                            y = selection.MinY;
-                            if(y < Program.TilesetHeight - 1) {
-                                selection.Clear();
-                                selection.Add(new Rectangle(x, y + 1, 1, 1));
-                            }
+                            selection.Translate(0, 1);
                             form.screen_tilesetViewA.Refresh();
                             form.screen_tilesetViewB.Refresh();
                             break;
                         case Keys.D:
-                            x = selection.MinX;
-                            y = selection.MinY;
-                            if(x < Program.TilesetWidth - 1) {
-                                selection.Clear();
-                                selection.Add(new Rectangle(x + 1, y, 1, 1));
-                            }
+                            selection.Translate(1, 0);
                             form.screen_tilesetViewA.Refresh();
                             form.screen_tilesetViewB.Refresh();
                             break;
@@ -390,11 +368,20 @@ namespace Story_Crafter {
                     int y = (int)(e.Y / 24f);
                     Tile t = Program.OpenStory.ActiveScreen.Layers[layer].Tiles[y * Program.ScreenWidth + x];
                     if(layer < 4) {
-                        // TODO fix this nonsense
+                        activeTileset = t.Tileset;
+                        if(activeTileset == 0) {
+                            form.screen_tilesetViewA.Active = true;
+                            form.screen_tilesetViewB.Active = false;
+                            selection = form.screen_tilesetViewA.Selection;
+                        }
+                        else {
+                            form.screen_tilesetViewA.Active = false;
+                            form.screen_tilesetViewB.Active = true;
+                            selection = form.screen_tilesetViewB.Selection;
+                        }
                         selection.Clear();
                         Point p = Program.TilesetIndexToPoint(t.Index);
                         selection.Add(new Rectangle(p.X, p.Y, 1, 1));
-                        activeTileset = t.Tileset;
                         form.screen_tilesetViewA.Refresh();
                         form.screen_tilesetViewB.Refresh();
                     }
