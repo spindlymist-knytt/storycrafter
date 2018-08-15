@@ -9,6 +9,8 @@ namespace Story_Crafter {
 
         public override string Name { get { return "Paint"; } }
 
+        Pen objectCursor = new Pen(Color.Gold);
+
         public override void Paint(TileLayer layer, TileSelection selection, Point paintLocation, int brushSizeX, int brushSizeY, int tileset) {
             for(int brushX = 0; brushX < brushSizeX; brushX++) {
                 for(int brushY = 0; brushY < brushSizeY; brushY++) {
@@ -16,6 +18,7 @@ namespace Story_Crafter {
                 }
             }
         }
+
         public override void Paint(ObjectLayer layer, Point paintLocation, int brushSizeX, int brushSizeY, int bank, int idx) {
             for(int brushX = 0; brushX < brushSizeX; brushX++) {
                 for(int brushY = 0; brushY < brushSizeY; brushY++) {
@@ -27,6 +30,20 @@ namespace Story_Crafter {
                     layer.Tiles[i].Index = idx;
                 }
             }
+        }
+
+        public override void DrawCursor(Graphics g, Point position, Selection selection, int brushSizeX, int brushSizeY, int layer) {
+            if(layer < 4) {
+                for(int x = position.X; x < position.X + brushSizeX * selection.Width; x += selection.Width) {
+                    for(int y = position.Y; y < position.Y + brushSizeY * selection.Height; y += selection.Height) {
+                        g.DrawImage(selection.Borders,
+                            new Rectangle(x * 24, y * 24, selection.Borders.Width, selection.Borders.Height),
+                            new Rectangle(0, 0, selection.Borders.Width, selection.Borders.Height),
+                            GraphicsUnit.Pixel);
+                    }
+                }
+            }
+            else g.DrawRectangle(objectCursor, position.X * 24, position.Y * 24, 24 * brushSizeX - 1, 24 * brushSizeY - 1);
         }
 
     }

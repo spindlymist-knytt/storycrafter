@@ -44,8 +44,10 @@ namespace Story_Crafter {
         public Size Size;
         public Tile[] Tiles;
         public bool Active;
+        public int Index;
 
-        public Layer(bool active = true, int width = Program.ScreenWidth, int height = Program.ScreenHeight) {
+        public Layer(int index, bool active = true, int width = Program.ScreenWidth, int height = Program.ScreenHeight) {
+            this.Index = index;
             this.Active = active;
             this.Size = new Size(width, height);
             Tiles = new Tile[this.Size.Width * this.Size.Height];
@@ -57,7 +59,7 @@ namespace Story_Crafter {
     }
     [Serializable]
     class TileLayer: Layer {
-        public TileLayer(byte[] data) : base() {
+        public TileLayer(int index, byte[] data) : base(index) {
             for(int i = 0; i < 250; i++) {
                 this.Tiles[i] = new Tile();
                 if(data[i] < 128) {
@@ -94,7 +96,7 @@ namespace Story_Crafter {
     class ObjectLayer: Layer {
         private static HatchBrush missingObjectBrush = new HatchBrush(HatchStyle.WideUpwardDiagonal, Color.Red, Color.Transparent);
 
-        public ObjectLayer(byte[] data) : base() {
+        public ObjectLayer(int index, byte[] data) : base(index) {
             for(int i = 0; i < 250; i++) {
                 this.Tiles[i] = new Tile();
                 this.Tiles[i].Index = data[i];

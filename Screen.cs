@@ -30,10 +30,10 @@ namespace Story_Crafter {
             this.AmbianceB = 0;
             this.Music = 0;
             for(int i = 0; i < 4; i++) {
-                this.Layers[i] = new TileLayer(blankData);
+                this.Layers[i] = new TileLayer(i, blankData);
             }
             for(int i = 4; i < 8; i++) {
-                this.Layers[i] = new ObjectLayer(blankData);
+                this.Layers[i] = new ObjectLayer(i, blankData);
             }
         }
         public void Draw(Graphics g) {

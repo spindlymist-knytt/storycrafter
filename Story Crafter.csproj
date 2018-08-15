@@ -72,6 +72,9 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\CanvasPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="EditorForm\AmbianceTab.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,7 +110,6 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Utility\IniFile.cs" />
-    <Compile Include="Utility\IniLexer.cs" />
     <Compile Include="Layer.cs" />
     <Compile Include="Utility\ListViewItemComparer.cs" />
     <Compile Include="EditorForm\MapTab.cs">

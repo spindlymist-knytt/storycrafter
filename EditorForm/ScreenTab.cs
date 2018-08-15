@@ -35,13 +35,6 @@ namespace Story_Crafter {
             bool changingScreen = false;
             bool screenEdited = false;
 
-            bool hover = false;
-            Point hoverPosition = new Point();
-            Pen tileCursor = new Pen(Color.Orange);
-            Pen newSelectionCursor = new Pen(Color.AntiqueWhite);
-            Pen objectCursor = new Pen(Color.Gold);
-            Pen specialCursor = new Pen(Color.Orchid);
-
             int brushSizeX {
                 get { return (int)form.screen_brushX.Value; }
             }
@@ -51,11 +44,6 @@ namespace Story_Crafter {
 
             TileSelection selection;
             int activeTileset; // 0 = A, 1 = B
-
-            Point lastPaintLocation = new Point();
-            bool painting = false;
-            bool waitingToDraw = false;
-            DateTime lastDrawn;
 
             List<EditingTool> tools;
             EditingTool currentTool;
@@ -107,12 +95,63 @@ namespace Story_Crafter {
                     form.screen_bankList.Items.Add(b.Index + ". " + b.Name);
                 }
 
-                form.screen_mainView.MouseEnter += delegate { hover = true; };
-                form.screen_mainView.MouseDown += mainView_MouseDown;
-                form.screen_mainView.MouseMove += mainView_MouseMove;
-                form.screen_mainView.MouseUp += mainView_MouseUp;
-                form.screen_mainView.MouseLeave += delegate { hover = false; form.screen_mainView.Refresh(); };
-                form.screen_mainView.Paint += mainView_Paint;
+
+                form.screen_mainView.GetLayer += delegate () {
+                    return Program.ActiveScreen.Layers[GetActiveLayer()];
+                };
+                form.screen_mainView.GetTool += delegate () {
+                    return currentTool;
+                };
+                form.screen_mainView.GetSelection += delegate () {
+                    return selection;
+                };
+                form.screen_mainView.GetBrushSize += delegate () {
+                    return new Size(this.brushSizeX, this.brushSizeY);
+                };
+                form.screen_mainView.GetTileset += delegate () {
+                    return activeTileset;
+                };
+                form.screen_mainView.GetObject += delegate () {
+                    return new Tuple<int, int>(Program.Banks.ByAbsoluteIndex(form.screen_bankList.SelectedIndex).Index, form.screen_objectList.SelectedIndices[0]);
+                };
+                // TODO move to function
+                form.screen_mainView.MouseUp += delegate (Object sender, MouseEventArgs e) {
+                    if(e.Button == MouseButtons.Right) {
+                        int layer = GetActiveLayer();
+                        int x = (int)(e.X / 24f);
+                        int y = (int)(e.Y / 24f);
+                        Tile t = Program.OpenStory.ActiveScreen.Layers[layer].Tiles[y * Program.ScreenWidth + x];
+                        if(layer < 4) {
+                            activeTileset = t.Tileset;
+                            if(activeTileset == 0) {
+                                form.screen_tilesetViewA.Active = true;
+                                form.screen_tilesetViewB.Active = false;
+                                selection = form.screen_tilesetViewA.Selection;
+                            }
+                            else {
+                                form.screen_tilesetViewA.Active = false;
+                                form.screen_tilesetViewB.Active = true;
+                                selection = form.screen_tilesetViewB.Selection;
+                            }
+                            selection.Clear();
+                            Point p = Program.TilesetIndexToPoint(t.Index);
+                            selection.Add(new Rectangle(p.X, p.Y, 1, 1));
+                            form.screen_tilesetViewA.Refresh();
+                            form.screen_tilesetViewB.Refresh();
+                        }
+                        else {
+                            ObjectBank bank = Program.Banks[t.Bank];
+                            int idx = bank.AbsoluteIndex;
+                            int obj = bank.AbsoluteIndexOf(t.Index);
+                            if(idx < form.screen_bankList.Items.Count && obj >= 0 && obj < bank.Count) {
+                                form.screen_bankList.SelectedIndex = idx;
+                                form.screen_objectList.SelectedIndices.Clear();
+                                form.screen_objectList.SelectedIndices.Add(obj);
+                                form.screen_objectList.EnsureVisible(form.screen_objectList.SelectedIndices[0]);
+                            }
+                        }
+                    }
+                };
 
                 form.screen_layer0.MouseUp += layer0_MouseUp;
                 form.screen_layer1.MouseUp += layer1_MouseUp;
@@ -320,116 +359,6 @@ namespace Story_Crafter {
                 }
                 form.screen_objectList.SelectedIndices.Clear();
                 form.screen_objectList.SelectedIndices.Add(0);
-            }
-
-            private void mainView_MouseDown(object sender, MouseEventArgs e) {
-                int x = (int)(e.X / 24f);
-                int y = (int)(e.Y / 24f);
-                if(e.Button == MouseButtons.Left) {
-                    lastPaintLocation.X = x;
-                    lastPaintLocation.Y = y;
-                    painting = true;
-                    PaintTiles();
-                    Draw();
-                    lastDrawn = DateTime.Now;
-                    waitingToDraw = false;
-                }
-            }
-            private void mainView_MouseMove(object sender, MouseEventArgs e) {
-                hoverPosition.X = (int)(e.X / 24f);
-                hoverPosition.Y = (int)(e.Y / 24f);
-                if(painting && !hoverPosition.Equals(lastPaintLocation)) {
-                    lastPaintLocation.X = hoverPosition.X;
-                    lastPaintLocation.Y = hoverPosition.Y;
-                    PaintTiles();
-                    if((DateTime.Now - lastDrawn).TotalMilliseconds > 45) {
-                        Draw();
-                        lastDrawn = DateTime.Now;
-                        waitingToDraw = false;
-                    }
-                    else {
-                        waitingToDraw = true;
-                    }
-                }
-                else {
-                    form.screen_mainView.Refresh();
-                }
-            }
-            private void mainView_MouseUp(object sender, MouseEventArgs e) {
-                if(e.Button == MouseButtons.Left) {
-                    if(waitingToDraw) {
-                        Draw();
-                    }
-                    painting = false;
-                }
-                else if(e.Button == MouseButtons.Right) {
-                    int layer = GetActiveLayer();
-                    int x = (int)(e.X / 24f);
-                    int y = (int)(e.Y / 24f);
-                    Tile t = Program.OpenStory.ActiveScreen.Layers[layer].Tiles[y * Program.ScreenWidth + x];
-                    if(layer < 4) {
-                        activeTileset = t.Tileset;
-                        if(activeTileset == 0) {
-                            form.screen_tilesetViewA.Active = true;
-                            form.screen_tilesetViewB.Active = false;
-                            selection = form.screen_tilesetViewA.Selection;
-                        }
-                        else {
-                            form.screen_tilesetViewA.Active = false;
-                            form.screen_tilesetViewB.Active = true;
-                            selection = form.screen_tilesetViewB.Selection;
-                        }
-                        selection.Clear();
-                        Point p = Program.TilesetIndexToPoint(t.Index);
-                        selection.Add(new Rectangle(p.X, p.Y, 1, 1));
-                        form.screen_tilesetViewA.Refresh();
-                        form.screen_tilesetViewB.Refresh();
-                    }
-                    else {
-                        ObjectBank bank = Program.Banks[t.Bank];
-                        int idx = bank.AbsoluteIndex;
-                        int obj = bank.AbsoluteIndexOf(t.Index);
-                        if(idx < form.screen_bankList.Items.Count && obj >= 0 && obj < bank.Count) {
-                            form.screen_bankList.SelectedIndex = idx;
-                            form.screen_objectList.SelectedIndices.Clear();
-                            form.screen_objectList.SelectedIndices.Add(obj);
-                            form.screen_objectList.EnsureVisible(form.screen_objectList.SelectedIndices[0]);
-                        }
-                    }
-                }
-            }
-            private void mainView_Paint(object sender, PaintEventArgs e) {
-                if(hover) {
-                    // TODO: maybe generalize this so tools draw their own cursor?
-                    if(currentToolIdx == 0) { // Edit tool
-                        if(GetActiveLayer() < 4) {
-                            for(int x = hoverPosition.X; x < hoverPosition.X + brushSizeX * selection.Width; x += selection.Width) {
-                                for(int y = hoverPosition.Y; y < hoverPosition.Y + brushSizeY * selection.Height; y += selection.Height) {
-                                    e.Graphics.DrawImage(selection.Borders,
-                                               new Rectangle(x * 24, y * 24, selection.Borders.Width, selection.Borders.Height),
-                                               new Rectangle(0, 0, selection.Borders.Width, selection.Borders.Height),
-                                               GraphicsUnit.Pixel);
-                                }
-                            }
-                        }
-                        else e.Graphics.DrawRectangle(objectCursor, hoverPosition.X * 24, hoverPosition.Y * 24, 24 * brushSizeX - 1, 24 * brushSizeY - 1);
-                    }
-                    else if(currentToolIdx == 3) { // Randomize tool
-                        e.Graphics.DrawRectangle(specialCursor, hoverPosition.X * 24, hoverPosition.Y * 24, 24 * brushSizeX - 1, 24 * brushSizeY - 1);
-                    }
-                    else {
-                        e.Graphics.DrawRectangle(specialCursor, hoverPosition.X * 24, hoverPosition.Y * 24, 23, 23);
-                    }
-                }
-            }
-            private void PaintTiles() {
-                int layer = GetActiveLayer();
-                if(layer < 4) {
-                    currentTool.Paint((TileLayer) Program.Layers[layer], selection, hoverPosition, brushSizeX, brushSizeY, activeTileset);
-                }
-                else {
-                    currentTool.Paint((ObjectLayer) Program.Layers[layer], hoverPosition, brushSizeX, brushSizeY, Program.Banks.ByAbsoluteIndex(form.screen_bankList.SelectedIndex).Index, form.screen_objectList.SelectedIndices[0]);
-                }
             }
 
             private void layer0_MouseUp(object sender, MouseEventArgs e) {

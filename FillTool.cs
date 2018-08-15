@@ -9,6 +9,8 @@ namespace Story_Crafter {
 
         public override string Name { get { return "Fill"; } }
 
+        Pen cursor = new Pen(Color.Orchid);
+
         public override void Paint(TileLayer layer, TileSelection selection, Point paintLocation, int brushSizeX, int brushSizeY, int tileset) {
             Tile target = layer.Tiles[Program.ScreenPointToIndex(paintLocation)].Clone();
             Tile replacement = new Tile();
@@ -23,6 +25,10 @@ namespace Story_Crafter {
             replacement.Bank = bank;
             replacement.Index = idx;
             Fill(layer, target, replacement, paintLocation);
+        }
+
+        public override void DrawCursor(Graphics g, Point position, Selection selection, int brushSizeX, int brushSizeY, int layer) {
+            g.DrawRectangle(cursor, position.X * 24, position.Y * 24, 23, 23);
         }
 
         private void Fill(Layer layer, Tile target, Tile replacement, Point start) {

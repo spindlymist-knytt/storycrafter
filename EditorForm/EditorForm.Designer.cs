@@ -61,8 +61,6 @@
             this.overview_clothesLabel = new System.Windows.Forms.Label();
             this.overview_skinLabel = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.screen_tilesetViewB = new Story_Crafter.TilesetViewPanel();
-            this.screen_tilesetViewA = new Story_Crafter.TilesetViewPanel();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -100,12 +98,10 @@
             this.screen_layer0 = new System.Windows.Forms.RadioButton();
             this.screen_objectList = new System.Windows.Forms.ListView();
             this.screen_bankList = new System.Windows.Forms.ComboBox();
-            this.screen_mainView = new System.Windows.Forms.PictureBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.button9 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
-            this.map_mainView = new Story_Crafter.MapViewPanel();
             this.map_showThumbs = new System.Windows.Forms.CheckBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.objectListView2 = new BrightIdeasSoftware.ObjectListView();
@@ -205,10 +201,14 @@
             this.menuItem6 = new System.Windows.Forms.MenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.screen_tilesetViewB = new Story_Crafter.TilesetViewPanel();
+            this.screen_tilesetViewA = new Story_Crafter.TilesetViewPanel();
+            this.map_mainView = new Story_Crafter.MapViewPanel();
             this.translucentPanel1 = new Story_Crafter.TranslucentPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.progressBarLabel = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.screen_mainView = new Story_Crafter.Controls.CanvasPanel();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.overview_juni)).BeginInit();
@@ -218,8 +218,6 @@
             this.overview_cardBackground.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.overview_icon)).BeginInit();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.screen_tilesetViewB)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.screen_tilesetViewA)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.screen_ambiA)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.screen_ambiB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.screen_music)).BeginInit();
@@ -228,9 +226,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.screen_gradient)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.screen_tilesetB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.screen_tilesetA)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.screen_mainView)).BeginInit();
             this.tabPage3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.map_mainView)).BeginInit();
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.objectListView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectListView1)).BeginInit();
@@ -249,8 +245,12 @@
             this.contextMenuStrip2.SuspendLayout();
             this.contextMenu1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.screen_tilesetViewB)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.screen_tilesetViewA)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.map_mainView)).BeginInit();
             this.translucentPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.screen_mainView)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -617,6 +617,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.screen_mainView);
             this.tabPage2.Controls.Add(this.screen_tilesetViewB);
             this.tabPage2.Controls.Add(this.screen_tilesetViewA);
             this.tabPage2.Controls.Add(this.button4);
@@ -656,7 +657,6 @@
             this.tabPage2.Controls.Add(this.screen_layer0);
             this.tabPage2.Controls.Add(this.screen_objectList);
             this.tabPage2.Controls.Add(this.screen_bankList);
-            this.tabPage2.Controls.Add(this.screen_mainView);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -664,28 +664,6 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Screen";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // screen_tilesetViewB
-            // 
-            this.screen_tilesetViewB.Active = false;
-            this.screen_tilesetViewB.BackgroundImage = global::Story_Crafter.Properties.Resources.checkers;
-            this.screen_tilesetViewB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.screen_tilesetViewB.Location = new System.Drawing.Point(402, 292);
-            this.screen_tilesetViewB.Name = "screen_tilesetViewB";
-            this.screen_tilesetViewB.Size = new System.Drawing.Size(386, 204);
-            this.screen_tilesetViewB.TabIndex = 41;
-            this.screen_tilesetViewB.TabStop = false;
-            // 
-            // screen_tilesetViewA
-            // 
-            this.screen_tilesetViewA.Active = false;
-            this.screen_tilesetViewA.BackgroundImage = global::Story_Crafter.Properties.Resources.checkers;
-            this.screen_tilesetViewA.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.screen_tilesetViewA.Location = new System.Drawing.Point(0, 292);
-            this.screen_tilesetViewA.Name = "screen_tilesetViewA";
-            this.screen_tilesetViewA.Size = new System.Drawing.Size(386, 204);
-            this.screen_tilesetViewA.TabIndex = 40;
-            this.screen_tilesetViewA.TabStop = false;
             // 
             // button4
             // 
@@ -1063,22 +1041,13 @@
             this.screen_bankList.Size = new System.Drawing.Size(178, 21);
             this.screen_bankList.TabIndex = 1;
             // 
-            // screen_mainView
-            // 
-            this.screen_mainView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.screen_mainView.Location = new System.Drawing.Point(0, 2);
-            this.screen_mainView.Name = "screen_mainView";
-            this.screen_mainView.Size = new System.Drawing.Size(602, 242);
-            this.screen_mainView.TabIndex = 0;
-            this.screen_mainView.TabStop = false;
-            // 
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.button9);
             this.tabPage3.Controls.Add(this.button8);
             this.tabPage3.Controls.Add(this.button7);
-            this.tabPage3.Controls.Add(this.map_mainView);
             this.tabPage3.Controls.Add(this.map_showThumbs);
+            this.tabPage3.Controls.Add(this.map_mainView);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Size = new System.Drawing.Size(790, 501);
@@ -1114,22 +1083,6 @@
             this.button7.TabIndex = 6;
             this.button7.Text = "Import Screens";
             this.button7.UseVisualStyleBackColor = true;
-            // 
-            // map_mainView
-            // 
-            this.map_mainView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.map_mainView.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("map_mainView.BackgroundImage")));
-            this.map_mainView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.map_mainView.Image = ((System.Drawing.Image)(resources.GetObject("map_mainView.Image")));
-            this.map_mainView.Location = new System.Drawing.Point(0, 10);
-            this.map_mainView.Name = "map_mainView";
-            this.map_mainView.ShowThumbs = false;
-            this.map_mainView.Size = new System.Drawing.Size(602, 482);
-            this.map_mainView.TabIndex = 5;
-            this.map_mainView.TabStop = false;
-            this.map_mainView.TheStory = null;
-            this.map_mainView.UpdateScreen = null;
-            this.map_mainView.UpdateStatus = null;
             // 
             // map_showThumbs
             // 
@@ -1933,6 +1886,44 @@
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
             // 
+            // screen_tilesetViewB
+            // 
+            this.screen_tilesetViewB.Active = false;
+            this.screen_tilesetViewB.BackgroundImage = global::Story_Crafter.Properties.Resources.checkers;
+            this.screen_tilesetViewB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.screen_tilesetViewB.Location = new System.Drawing.Point(402, 292);
+            this.screen_tilesetViewB.Name = "screen_tilesetViewB";
+            this.screen_tilesetViewB.Size = new System.Drawing.Size(386, 204);
+            this.screen_tilesetViewB.TabIndex = 41;
+            this.screen_tilesetViewB.TabStop = false;
+            // 
+            // screen_tilesetViewA
+            // 
+            this.screen_tilesetViewA.Active = false;
+            this.screen_tilesetViewA.BackgroundImage = global::Story_Crafter.Properties.Resources.checkers;
+            this.screen_tilesetViewA.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.screen_tilesetViewA.Location = new System.Drawing.Point(0, 292);
+            this.screen_tilesetViewA.Name = "screen_tilesetViewA";
+            this.screen_tilesetViewA.Size = new System.Drawing.Size(386, 204);
+            this.screen_tilesetViewA.TabIndex = 40;
+            this.screen_tilesetViewA.TabStop = false;
+            // 
+            // map_mainView
+            // 
+            this.map_mainView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.map_mainView.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("map_mainView.BackgroundImage")));
+            this.map_mainView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.map_mainView.Image = ((System.Drawing.Image)(resources.GetObject("map_mainView.Image")));
+            this.map_mainView.Location = new System.Drawing.Point(0, 10);
+            this.map_mainView.Name = "map_mainView";
+            this.map_mainView.ShowThumbs = false;
+            this.map_mainView.Size = new System.Drawing.Size(602, 482);
+            this.map_mainView.TabIndex = 5;
+            this.map_mainView.TabStop = false;
+            this.map_mainView.TheStory = null;
+            this.map_mainView.UpdateScreen = null;
+            this.map_mainView.UpdateStatus = null;
+            // 
             // translucentPanel1
             // 
             this.translucentPanel1.BackColor = System.Drawing.Color.White;
@@ -1971,6 +1962,21 @@
             this.progressBar1.Size = new System.Drawing.Size(386, 23);
             this.progressBar1.TabIndex = 0;
             // 
+            // screen_mainView
+            // 
+            this.screen_mainView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.screen_mainView.GetBrushSize = null;
+            this.screen_mainView.GetLayer = null;
+            this.screen_mainView.GetObject = null;
+            this.screen_mainView.GetSelection = null;
+            this.screen_mainView.GetTileset = null;
+            this.screen_mainView.GetTool = null;
+            this.screen_mainView.Location = new System.Drawing.Point(0, 2);
+            this.screen_mainView.Name = "screen_mainView";
+            this.screen_mainView.Size = new System.Drawing.Size(602, 242);
+            this.screen_mainView.TabIndex = 42;
+            this.screen_mainView.TabStop = false;
+            // 
             // EditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1998,8 +2004,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.overview_icon)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.screen_tilesetViewB)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.screen_tilesetViewA)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.screen_ambiA)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.screen_ambiB)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.screen_music)).EndInit();
@@ -2008,10 +2012,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.screen_gradient)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.screen_tilesetB)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.screen_tilesetA)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.screen_mainView)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.map_mainView)).EndInit();
             this.tabPage4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.objectListView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectListView1)).EndInit();
@@ -2033,9 +2035,13 @@
             this.contextMenu1.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.screen_tilesetViewB)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.screen_tilesetViewA)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.map_mainView)).EndInit();
             this.translucentPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.screen_mainView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2056,7 +2062,6 @@
         private System.Windows.Forms.TabPage tabPage10;
         private System.Windows.Forms.ListView screen_objectList;
         private System.Windows.Forms.ComboBox screen_bankList;
-        private System.Windows.Forms.PictureBox screen_mainView;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label13;
@@ -2227,5 +2232,6 @@
         private System.Windows.Forms.Button button8;
         private TilesetViewPanel screen_tilesetViewB;
         private TilesetViewPanel screen_tilesetViewA;
+        private Controls.CanvasPanel screen_mainView;
     }
 }
