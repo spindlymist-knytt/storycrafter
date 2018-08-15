@@ -49,11 +49,8 @@ namespace Story_Crafter {
                 get { return (int)form.screen_brushY.Value; }
             }
 
-            TileSelection selection = new TileSelection(24, 24, Program.TilesetWidth, Program.TilesetHeight);
+            TileSelection selection;
             int activeTileset; // 0 = A, 1 = B
-            Rectangle lastSelection;
-            Point selectionStart = new Point();
-            bool selectionInProgress = false;
 
             Point lastPaintLocation = new Point();
             bool painting = false;
@@ -91,6 +88,16 @@ namespace Story_Crafter {
                 form.screen_tilesetB.ValueChanged += tilesetB_ValueChanged;
                 form.screen_gradient.ValueChanged += gradient_ValueChanged;
 
+                form.screen_tilesetViewA.MouseUp += delegate (Object sender, MouseEventArgs e) {
+                    this.activeTileset = 0;
+                    this.selection = form.screen_tilesetViewA.Selection;
+                    form.screen_tilesetViewB.Active = false;
+                };
+                form.screen_tilesetViewB.MouseUp += delegate (Object sender, MouseEventArgs e) {
+                    this.activeTileset = 1;
+                    this.selection = form.screen_tilesetViewB.Selection;
+                    form.screen_tilesetViewA.Active = false;
+                };
                 form.screen_objectList.LargeImageList = new ImageList();
                 form.screen_objectList.LargeImageList.ImageSize = new Size(24, 24);
                 Program.SendMessage(form.screen_objectList.Handle, 0x1000 + 53, IntPtr.Zero, (IntPtr)(((ushort)(30)) | (uint)((50) << 16))); // Sets margins and spacing.
@@ -140,6 +147,7 @@ namespace Story_Crafter {
                 form.tabControl1.KeyUp += delegate (object sender, KeyEventArgs e) {
                     int x, y;
                     switch(e.KeyCode) {
+                        // TODO move selection translation to TilesetViewPanel
                         case Keys.W:
                             x = selection.MinX;
                             y = selection.MinY;
@@ -206,7 +214,9 @@ namespace Story_Crafter {
                             break;
                     }
                 };
-                selection.cursor = tileCursor;
+
+                this.selection = form.screen_tilesetViewA.Selection;
+                form.screen_tilesetViewA.Active = true;
 
                 tools = new List<EditingTool>(4);
                 tools.Add(new PaintTool());
@@ -380,6 +390,7 @@ namespace Story_Crafter {
                     int y = (int)(e.Y / 24f);
                     Tile t = Program.OpenStory.ActiveScreen.Layers[layer].Tiles[y * Program.ScreenWidth + x];
                     if(layer < 4) {
+                        // TODO fix this nonsense
                         selection.Clear();
                         Point p = Program.TilesetIndexToPoint(t.Index);
                         selection.Add(new Rectangle(p.X, p.Y, 1, 1));
@@ -407,8 +418,7 @@ namespace Story_Crafter {
                         if(GetActiveLayer() < 4) {
                             for(int x = hoverPosition.X; x < hoverPosition.X + brushSizeX * selection.Width; x += selection.Width) {
                                 for(int y = hoverPosition.Y; y < hoverPosition.Y + brushSizeY * selection.Height; y += selection.Height) {
-                                    // TODO figure out which tileset is active
-                                    e.Graphics.DrawImage(form.screen_tilesetViewA.Selection.Borders,
+                                    e.Graphics.DrawImage(selection.Borders,
                                                new Rectangle(x * 24, y * 24, selection.Borders.Width, selection.Borders.Height),
                                                new Rectangle(0, 0, selection.Borders.Width, selection.Borders.Height),
                                                GraphicsUnit.Pixel);
@@ -427,101 +437,13 @@ namespace Story_Crafter {
             }
             private void PaintTiles() {
                 int layer = GetActiveLayer();
-                // TODO figure out which tileset is active
                 if(layer < 4) {
-                    currentTool.Paint((TileLayer) Program.Layers[layer], form.screen_tilesetViewA.Selection, hoverPosition, brushSizeX, brushSizeY, activeTileset);
+                    currentTool.Paint((TileLayer) Program.Layers[layer], selection, hoverPosition, brushSizeX, brushSizeY, activeTileset);
                 }
                 else {
                     currentTool.Paint((ObjectLayer) Program.Layers[layer], hoverPosition, brushSizeX, brushSizeY, Program.Banks.ByAbsoluteIndex(form.screen_bankList.SelectedIndex).Index, form.screen_objectList.SelectedIndices[0]);
                 }
             }
-            /*private void EditTool() {
-                int layer = GetActiveLayer();
-                if(layer < 4) {
-                    Layer l = Program.Layers[layer];
-                    for(int brushX = 0; brushX < brushSizeX; brushX++) {
-                        for(int brushY = 0; brushY < brushSizeY; brushY++) {
-                            selection.Paint(l, Program.Editor.screen.activeTileset, lastPaintLocation.X + brushX * selection.Width, lastPaintLocation.Y + brushY * selection.Height);
-                        }
-                    }
-                }
-                else {
-                    for(int brushX = 0; brushX < brushSizeX; brushX++) {
-                        for(int brushY = 0; brushY < brushSizeY; brushY++) {
-                            int x = lastPaintLocation.X + brushX;
-                            int y = lastPaintLocation.Y + brushY;
-                            if(x < 0 || x >= Program.ScreenWidth || y < 0 || y >= Program.ScreenHeight) continue;
-                            int i = Program.ScreenPointToIndex(x, y);
-                            Program.OpenStory.ActiveScreen.Layers[layer].Tiles[i].Bank = Program.Banks.ByAbsoluteIndex(form.screen_bankList.SelectedIndex).Index;
-                            Program.OpenStory.ActiveScreen.Layers[layer].Tiles[i].Index = form.screen_objectList.SelectedIndices[0];
-                        }
-                    }
-                }
-            }
-            private void FillTool() {
-                int layer = GetActiveLayer();
-                Point start = new Point(hoverPosition.X, hoverPosition.Y);
-                Tile target = Program.Layers[layer].Tiles[Program.ScreenPointToIndex(start)].Clone();
-                Tile replacement = new Tile();
-                if(layer < 4) {
-                    replacement.Tileset = activeTileset;
-                    replacement.Index = Program.TilesetPointToIndex(selection.MinX, selection.MinY);
-                }
-                else {
-                    replacement.Bank = Program.Banks.ByAbsoluteIndex(form.screen_bankList.SelectedIndex).Index;
-                    replacement.Index = Program.Banks.ByAbsoluteIndex(form.screen_bankList.SelectedIndex).ByAbsoluteIndex(form.screen_objectList.SelectedIndices[0]).Item1;
-                }
-                if(target.Equals(replacement)) return;
-                Stack<Point> nodes = new Stack<Point>();
-                nodes.Push(start);
-                while(nodes.Count > 0) {
-                    Point p = nodes.Pop();
-                    Tile t = Program.Layers[layer].Tiles[Program.ScreenPointToIndex(p)];
-                    if(t.Equals(target)) {
-                        t.Set(replacement);
-                        if(p.X > 0) nodes.Push(new Point(p.X - 1, p.Y));
-                        if(p.X < Program.ScreenWidth - 1) nodes.Push(new Point(p.X + 1, p.Y));
-                        if(p.Y > 0) nodes.Push(new Point(p.X, p.Y - 1));
-                        if(p.Y < Program.ScreenHeight - 1) nodes.Push(new Point(p.X, p.Y + 1));
-                    }
-                }
-            }
-            private void ReplaceTool() {
-                int layer = GetActiveLayer();
-                Point start = new Point(hoverPosition.X, hoverPosition.Y);
-                Tile target = Program.Layers[layer].Tiles[Program.ScreenPointToIndex(start)].Clone();
-                Tile replacement;
-                if(layer < 4) {
-                    replacement = new Tile(activeTileset, Program.TilesetPointToIndex(selection.MinX, selection.MinY));
-                }
-                else {
-                    replacement = new Tile(Program.Banks.ByAbsoluteIndex(form.screen_bankList.SelectedIndex).Index,
-                                           Program.Banks.ByAbsoluteIndex(form.screen_bankList.SelectedIndex).ByAbsoluteIndex(form.screen_objectList.SelectedIndices[0]).Item1);
-                }
-                if(target.Equals(replacement)) return;
-                for(int i = 0; i < Program.ScreenWidth * Program.ScreenHeight; i++) {
-                    Tile t = Program.Layers[layer].Tiles[i];
-                    if(t.Equals(target)) {
-                        t.Set(replacement);
-                    }
-                }
-            }
-            private void RandomizeTool() {
-                int layer = GetActiveLayer();
-                if(layer >= 4) {
-                    EditTool();
-                    return;
-                }
-                for(int brushX = 0; brushX < brushSizeX; brushX++) {
-                    for(int brushY = 0; brushY < brushSizeY; brushY++) {
-                        int x = lastPaintLocation.X + brushX;
-                        int y = lastPaintLocation.Y + brushY;
-                        if(x < 0 || x >= Program.ScreenWidth || y < 0 || y >= Program.ScreenHeight) continue;
-                        int i = y * Program.ScreenWidth + x;
-                        Program.Layers[layer].Tiles[i].Set(activeTileset, selection.RandomNode());
-                    }
-                }
-            }*/
 
             private void layer0_MouseUp(object sender, MouseEventArgs e) {
                 if(e.Button == MouseButtons.Right) {

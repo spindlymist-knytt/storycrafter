@@ -59,8 +59,7 @@ namespace Story_Crafter {
         UpdateStatusEvent updateStatus;
 
         public MapViewPanel() {
-            selection = new Selection(screenWidth, screenHeight, -1, -1);
-            selection.cursor = selectionCursor;
+            selection = new Selection(screenWidth, screenHeight, -1, -1, selectionCursor);
             this.BackColor = Color.FromArgb(0, 0, 0, 0);
             this.ResetSelection(startX, startY);
 
