@@ -18,6 +18,8 @@ namespace Story_Crafter {
         }
 
         public Tile() {
+            Collection = 0;
+            Index = 0;
         }
         public Tile(int collection, int i) {
             this.Collection = collection;
@@ -46,19 +48,37 @@ namespace Story_Crafter {
         public bool Active;
         public int Index;
 
-        public Layer(int index, bool active = true, int width = Program.ScreenWidth, int height = Program.ScreenHeight) {
+        public Layer(int index, bool active = true) {
             this.Index = index;
             this.Active = active;
-            this.Size = new Size(width, height);
+            this.Size = new Size(Program.ScreenWidth, Program.ScreenHeight);
             Tiles = new Tile[this.Size.Width * this.Size.Height];
+            for(int i = 0; i < this.Size.Width * this.Size.Height; i++) {
+                this.Tiles[i] = new Tile();
+            }
         }
         virtual public void Draw(Graphics g) { }
         virtual public void Draw(Graphics g, Tileset tilesetA, Tileset tilesetB) {
             this.Draw(g);
         }
+        public void CopyTo(Layer target, Rectangle src, Point dest, bool overwrite) {
+            for(int x = 0; x < src.Width; x++) {
+                for(int y = 0; y < src.Height; y++) {
+                    int destX = dest.X + x;
+                    int destY = dest.Y + y;
+                    if(destX < 0 || destX >= Program.ScreenWidth || destY < 0 || destY >= Program.ScreenHeight) continue;
+                    int targetIdx = Program.ScreenPointToIndex(destX, destY);
+                    int sourceIdx = Program.ScreenPointToIndex(src.X + x, src.Y + y);
+                    if(Tiles[sourceIdx].Index == 0 && !overwrite) continue;
+                    target.Tiles[targetIdx] = Tiles[sourceIdx].Clone();
+                }
+            }
+            GC.Collect();
+        }
     }
     [Serializable]
     class TileLayer: Layer {
+        public TileLayer(int index, bool active = true) : base(index, active) { }
         public TileLayer(int index, byte[] data) : base(index) {
             for(int i = 0; i < 250; i++) {
                 this.Tiles[i] = new Tile();
@@ -96,6 +116,7 @@ namespace Story_Crafter {
     class ObjectLayer: Layer {
         private static HatchBrush missingObjectBrush = new HatchBrush(HatchStyle.WideUpwardDiagonal, Color.Red, Color.Transparent);
 
+        public ObjectLayer(int index, bool active = true) : base(index, active) { }
         public ObjectLayer(int index, byte[] data) : base(index) {
             for(int i = 0; i < 250; i++) {
                 this.Tiles[i] = new Tile();

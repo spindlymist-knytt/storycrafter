@@ -15,52 +15,6 @@ namespace Story_Crafter {
         class MapTab {
             EditorForm form;
 
-            /*int startX = 998, startY = 998, mapWidth = 5, mapHeight = 8, screenWidth = 200, screenHeight = 80;
-            int origStartX, origStartY, mouseDownX, mouseDownY;
-            Pen p = new Pen(Color.FromArgb(25, 0, 0, 0));
-            Pen p2 = new Pen(Color.FromArgb(25, 255, 255, 255));
-            Pen activeScreenOutline = new Pen(Color.Orchid);
-            Brush screenFill = new SolidBrush(Color.FromArgb(58, 102, 135));
-            Brush activeScreenFill = new SolidBrush(Color.FromArgb(171, 199, 243));
-            bool panning = false;
-
-            bool selectionInProgress = false;
-            Point selectionStart;
-            Rectangle selection;*/
-
-            /*private void DrawGridLines() {
-              form.map_mainView.Image = new Bitmap(600, 480);
-              Graphics g = Graphics.FromImage(form.map_mainView.Image);
-              for(int x = 1; x < mapWidth; x++) {
-                g.DrawLine(p2, x * screenWidth - 1, 0, x * screenWidth - 1, this.form.map_mainView.Height);
-                g.DrawLine(p, x * screenWidth, 0, x * screenWidth, this.form.map_mainView.Height);
-              }
-              for(int y = 1; y < mapHeight; y++) {
-                g.DrawLine(p2, 0, y * screenHeight - 1, this.form.map_mainView.Width, y * screenHeight - 1);
-                g.DrawLine(p, 0, y * screenHeight, this.form.map_mainView.Width, y * screenHeight);
-              }
-              form.map_mainView.Refresh();
-            }
-            private void DrawMap() {
-              form.map_mainView.BackgroundImage = new Bitmap(600, 480);
-              Graphics g = Graphics.FromImage(form.map_mainView.BackgroundImage);
-              Rectangle src = new Rectangle(0, 0, 200, 80);
-              foreach(Screen s in Program.OpenStory.Screens) {
-                int offX = s.X - startX;
-                int offY = s.Y - startY;
-                if(offX >= 0 && offX < mapWidth && offY >= 0 && offY < mapHeight) {
-                  Rectangle area = new Rectangle(offX * screenWidth, offY * screenHeight, screenWidth, screenHeight);
-                  if(this.form.map_showThumbs.Checked) {
-                    g.DrawImage(s.Thumbnail, area, src, GraphicsUnit.Pixel);
-                  }
-                  else {
-                    g.FillRectangle(s == Program.OpenStory.ActiveScreen ? activeScreenFill : screenFill, area);
-                  }
-                }
-              }
-              form.map_mainView.Refresh();
-            }*/
-
             int overwrite;
 
             public MapTab(EditorForm parent) {
@@ -103,7 +57,7 @@ namespace Story_Crafter {
             }
             public void StoryChanged() {
                 form.map_mainView.TheStory = Program.OpenStory;
-                form.map_mainView.ResetSelection(Program.OpenStory.ActiveScreen.X, Program.OpenStory.ActiveScreen.Y);
+                form.map_mainView.ResetSelection(Program.ActiveScreen.X, Program.ActiveScreen.Y);
             }
             public void TabOpened() {
                 form.map_mainView.DrawMap();

@@ -72,6 +72,7 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pattern.cs" />
     <Compile Include="Controls\CanvasPanel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -82,6 +83,8 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FillTool.cs" />
+    <Compile Include="PatternTool.cs" />
+    <Compile Include="ICanvas.cs" />
     <Compile Include="PaintTool.cs" />
     <Compile Include="RandomizeTool.cs" />
     <Compile Include="ReplaceTool.cs" />

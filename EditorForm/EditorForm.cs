@@ -57,7 +57,7 @@ namespace Story_Crafter {
         }
 
         private void EditorForm_Load(object sender, EventArgs e) {
-            //Program.Debug.Show();
+            Program.Debug.Show();
             if(Program.Start.ShowDialog(this) != DialogResult.OK) {
                 this.Close();
                 return;

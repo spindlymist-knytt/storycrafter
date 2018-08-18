@@ -10,6 +10,7 @@ namespace Story_Crafter {
         // TODO: compress
         // TODO: upload to knyttlevels.com
         // TODO: populate dropdowns
+        // TODO: use ks+ info.png
         class OverviewTab {
             EditorForm form;
             Image overlay;

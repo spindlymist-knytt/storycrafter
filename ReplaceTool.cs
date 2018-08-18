@@ -11,13 +11,13 @@ namespace Story_Crafter {
 
         Pen cursor = new Pen(Color.Orchid);
 
-        public override void Paint(TileLayer layer, TileSelection selection, Point paintLocation, int brushSizeX, int brushSizeY, int tileset) {
+        public override void Paint(ICanvas canvas, TileLayer layer, TileSelection selection, Point paintLocation, int brushSizeX, int brushSizeY, int tileset) {
             Tile target = layer.Tiles[Program.ScreenPointToIndex(paintLocation)].Clone();
             Tile replacement = new Tile(tileset, Program.TilesetPointToIndex(selection.MinX, selection.MinY));
             Replace(layer, target, replacement);
         }
 
-        public override void Paint(ObjectLayer layer, Point paintLocation, int brushSizeX, int brushSizeY, int bank, int idx) {
+        public override void Paint(ICanvas canvas, ObjectLayer layer, Point paintLocation, int brushSizeX, int brushSizeY, int bank, int idx) {
             Tile target = layer.Tiles[Program.ScreenPointToIndex(paintLocation)].Clone();
             Tile replacement = new Tile(bank, idx);
             Replace(layer, target, replacement);

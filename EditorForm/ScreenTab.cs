@@ -14,7 +14,6 @@ namespace Story_Crafter {
         }
         // TODO: show custom objects
         // TODO: tile to custom object
-        // TODO: brushes
         // TODO: follow warps/shifts
         // TODO: go to x1000y1000, start screen, last save, coordinates
         // TODO: undo/redo
@@ -22,7 +21,6 @@ namespace Story_Crafter {
         // TODO: test level
         // TODO: functional view menu
         // TODO: ground tool
-        // TODO: make tools more flexible
         // TODO: ambiance/music preview
         // TODO: show neighboring screens
         // TODO: new screens
@@ -30,7 +28,7 @@ namespace Story_Crafter {
         class ScreenTab {
 
             EditorForm form;
-            System.Timers.Timer TimerA, TimerB, TimerGrad, TimerDraw;
+            System.Timers.Timer TimerA, TimerB, TimerGrad;
 
             bool changingScreen = false;
             bool screenEdited = false;
@@ -42,12 +40,19 @@ namespace Story_Crafter {
                 get { return (int)form.screen_brushY.Value; }
             }
 
+            Tileset TilesetA, TilesetB;
+            Bitmap Gradient;
             TileSelection selection;
             int activeTileset; // 0 = A, 1 = B
 
             List<EditingTool> tools;
             EditingTool currentTool;
             int currentToolIdx = 0;
+
+            Pattern editingPattern = null;
+            bool newPattern = false;
+
+            Tuple<RadioButton,Label>[] layerSelectors;
 
             public int CurrentToolIndex {
                 get { return currentToolIdx; }
@@ -69,8 +74,6 @@ namespace Story_Crafter {
                 this.TimerB.Elapsed += ChangeTilesetB;
                 this.TimerGrad = new System.Timers.Timer() { AutoReset = false, Interval = 75 };
                 this.TimerGrad.Elapsed += ChangeGradient;
-
-                this.TimerDraw = new System.Timers.Timer();
 
                 form.screen_tilesetA.ValueChanged += tilesetA_ValueChanged;
                 form.screen_tilesetB.ValueChanged += tilesetB_ValueChanged;
@@ -95,9 +98,11 @@ namespace Story_Crafter {
                     form.screen_bankList.Items.Add(b.Index + ". " + b.Name);
                 }
 
-
+                form.screen_mainView.GetCanvas += delegate () {
+                    return editingPattern == null ? (ICanvas)Program.ActiveScreen : (ICanvas)editingPattern;
+                };
                 form.screen_mainView.GetLayer += delegate () {
-                    return Program.ActiveScreen.Layers[GetActiveLayer()];
+                    return editingPattern == null ? Program.ActiveScreen.Layers[GetActiveLayer()] : editingPattern.Layers[GetActiveLayer()];
                 };
                 form.screen_mainView.GetTool += delegate () {
                     return currentTool;
@@ -108,11 +113,21 @@ namespace Story_Crafter {
                 form.screen_mainView.GetBrushSize += delegate () {
                     return new Size(this.brushSizeX, this.brushSizeY);
                 };
-                form.screen_mainView.GetTileset += delegate () {
+                form.screen_mainView.GetTilesetIndex += delegate () {
                     return activeTileset;
                 };
                 form.screen_mainView.GetObject += delegate () {
-                    return new Tuple<int, int>(Program.Banks.ByAbsoluteIndex(form.screen_bankList.SelectedIndex).Index, form.screen_objectList.SelectedIndices[0]);
+                    return new Tuple<int, int>(Program.Banks.ByAbsoluteIndex(form.screen_bankList.SelectedIndex).Index,
+                        form.screen_objectList.SelectedIndices.Count > 0 ? form.screen_objectList.SelectedIndices[0] : 0); // TODO make more robust?
+                };
+                form.screen_mainView.GetTilesetA += delegate () {
+                    return TilesetA;
+                };
+                form.screen_mainView.GetTilesetB += delegate () {
+                    return TilesetB;
+                };
+                form.screen_mainView.GetGradient += delegate () {
+                    return Gradient;
                 };
                 // TODO move to function
                 form.screen_mainView.MouseUp += delegate (Object sender, MouseEventArgs e) {
@@ -120,7 +135,8 @@ namespace Story_Crafter {
                         int layer = GetActiveLayer();
                         int x = (int)(e.X / 24f);
                         int y = (int)(e.Y / 24f);
-                        Tile t = Program.OpenStory.ActiveScreen.Layers[layer].Tiles[y * Program.ScreenWidth + x];
+                        Tile t = editingPattern == null ? Program.ActiveScreen.Layers[layer].Tiles[y * Program.ScreenWidth + x] :
+                                                                editingPattern.Layers[layer].Tiles[y * Program.ScreenWidth + x];
                         if(layer < 4) {
                             activeTileset = t.Tileset;
                             if(activeTileset == 0) {
@@ -153,31 +169,16 @@ namespace Story_Crafter {
                     }
                 };
 
-                form.screen_layer0.MouseUp += layer0_MouseUp;
-                form.screen_layer1.MouseUp += layer1_MouseUp;
-                form.screen_layer2.MouseUp += layer2_MouseUp;
-                form.screen_layer3.MouseUp += layer3_MouseUp;
-                form.screen_layer4.MouseUp += layer4_MouseUp;
-                form.screen_layer5.MouseUp += layer5_MouseUp;
-                form.screen_layer6.MouseUp += layer6_MouseUp;
-                form.screen_layer7.MouseUp += layer7_MouseUp;
-
-                form.button1.Click += delegate {
-                    this.ChangeScreen(Program.OpenStory.ActiveScreen.X - 1, Program.OpenStory.ActiveScreen.Y);
-                    this.ScreenChanged();
-                };
-                form.button2.Click += delegate {
-                    this.ChangeScreen(Program.OpenStory.ActiveScreen.X + 1, Program.OpenStory.ActiveScreen.Y);
-                    this.ScreenChanged();
-                };
-                form.button3.Click += delegate {
-                    this.ChangeScreen(Program.OpenStory.ActiveScreen.X, Program.OpenStory.ActiveScreen.Y - 1);
-                    this.ScreenChanged();
-                };
-                form.button4.Click += delegate {
-                    this.ChangeScreen(Program.OpenStory.ActiveScreen.X, Program.OpenStory.ActiveScreen.Y + 1);
-                    this.ScreenChanged();
-                };
+                TabPage pg = form.tabControl1.TabPages["tabPageScreen"];
+                layerSelectors = new Tuple<RadioButton, Label>[8];
+                for(int i = 0; i < 8; i++) {
+                    layerSelectors[i] = new Tuple<RadioButton, Label>(
+                        (RadioButton)pg.Controls["screen_layer" + i],
+                        (Label)pg.Controls["screen_layer" + i + "Label"]
+                    );
+                    layerSelectors[i].Item1.Tag = i;
+                    layerSelectors[i].Item1.MouseUp += layerSelector_MouseUp;
+                }
 
                 // TODO fix hotkeys
                 form.screen_mainView.Click += delegate {
@@ -186,24 +187,44 @@ namespace Story_Crafter {
                 form.tabControl1.KeyUp += delegate (object sender, KeyEventArgs e) {
                     switch(e.KeyCode) {
                         case Keys.W:
-                            selection.Translate(0, -1);
-                            form.screen_tilesetViewA.Refresh();
-                            form.screen_tilesetViewB.Refresh();
+                            if(editingPattern == null && e.Shift) {
+                                this.ChangeScreen(Program.ActiveScreen.X, Program.ActiveScreen.Y - 1);
+                            }
+                            else {
+                                selection.Translate(0, -1);
+                                form.screen_tilesetViewA.Refresh();
+                                form.screen_tilesetViewB.Refresh();
+                            }
                             break;
                         case Keys.A:
-                            selection.Translate(-1, 0);
-                            form.screen_tilesetViewA.Refresh();
-                            form.screen_tilesetViewB.Refresh();
+                            if(editingPattern == null && e.Shift) {
+                                this.ChangeScreen(Program.ActiveScreen.X - 1, Program.ActiveScreen.Y);
+                            }
+                            else {
+                                selection.Translate(-1, 0);
+                                form.screen_tilesetViewA.Refresh();
+                                form.screen_tilesetViewB.Refresh();
+                            }
                             break;
                         case Keys.S:
-                            selection.Translate(0, 1);
-                            form.screen_tilesetViewA.Refresh();
-                            form.screen_tilesetViewB.Refresh();
+                            if(editingPattern == null && e.Shift) {
+                                this.ChangeScreen(Program.ActiveScreen.X, Program.ActiveScreen.Y + 1);
+                            }
+                            else {
+                                selection.Translate(0, 1);
+                                form.screen_tilesetViewA.Refresh();
+                                form.screen_tilesetViewB.Refresh();
+                            }
                             break;
                         case Keys.D:
-                            selection.Translate(1, 0);
-                            form.screen_tilesetViewA.Refresh();
-                            form.screen_tilesetViewB.Refresh();
+                            if(editingPattern == null && e.Shift) {
+                                this.ChangeScreen(Program.ActiveScreen.X + 1, Program.ActiveScreen.Y);
+                            }
+                            else {
+                                selection.Translate(1, 0);
+                                form.screen_tilesetViewA.Refresh();
+                                form.screen_tilesetViewB.Refresh();
+                            }
                             break;
                         case Keys.D0:
                             form.screen_layer0.Checked = true;
@@ -232,18 +253,111 @@ namespace Story_Crafter {
                     }
                 };
 
+                form.screen_comboPatterns.Items.Add("");
+                form.screen_comboPatterns.SelectedIndex = 0;
+                // TODO move to function
+                form.screen_buttonEditPattern.Click += delegate {
+                    if(editingPattern == null) {
+                        form.screen_tilesetA.Enabled = false;
+                        form.screen_tilesetB.Enabled = false;
+                        form.screen_gradient.Enabled = false;
+                        form.screen_music.Enabled = false;
+                        form.screen_ambiA.Enabled = false;
+                        form.screen_ambiB.Enabled = false;
+                        form.screen_comboPatterns.DropDownStyle = ComboBoxStyle.Simple;
+                        form.screen_buttonEditPattern.Text = "Save";
+                        form.screen_mainView.Resizable = true;
+                        if(form.screen_comboPatterns.SelectedIndex <= 0) {
+                            editingPattern = new Pattern(GetActiveLayer());
+                            newPattern = true;
+                            for(int i = 0; i < 8; i++) {
+                                layerSelectors[i].Item2.Enabled = layerSelectors[i].Item1.Checked;
+                            }
+                        }
+                        else {
+                            editingPattern = Program.OpenStory.Patterns[form.screen_comboPatterns.SelectedIndex - 1];
+                            form.screen_mainView.Size = new Size(editingPattern.Width * 24 + 2, editingPattern.Height * 24 + 2);
+                            for(int i = 0; i < 8; i++) {
+                                layerSelectors[i].Item2.Enabled = editingPattern.Layers[i].Active;
+                            }
+                        }
+                        form.screen_checkBoxOverwrite.Visible = true;
+                        form.screen_checkBoxOverwrite.Checked = editingPattern.Overwrite;
+                        form.screen_mainView.Draw();
+                    }
+                    else {
+                        if(form.screen_comboPatterns.Text == "" &&
+                           MessageBox.Show("Please enter a name for your pattern, or press Cancel to discard.", "Enter Pattern Name", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK) {
+                            return;
+                        }
+                        if(form.screen_comboPatterns.Text != "") {
+                            editingPattern.Name = form.screen_comboPatterns.Text;
+                            if(newPattern) {
+                                Program.OpenStory.Patterns.Add(editingPattern);
+                                form.screen_comboPatterns.Items.Add(editingPattern.Name);
+                                form.screen_comboPatterns.SelectedIndex = form.screen_comboPatterns.Items.Count - 1;
+                            }
+                            else {
+                                form.screen_comboPatterns.Items[Program.OpenStory.Patterns.IndexOf(editingPattern) + 1] = editingPattern.Name;
+                                form.screen_buttonEditPattern.Text = "Edit";
+                            }
+                            ((PatternTool)tools[4]).Source = editingPattern;
+                        }
+                        else {
+                            form.screen_comboPatterns.SelectedIndex = 0;
+                        }
+                        newPattern = false;
+                        form.screen_tilesetA.Enabled = true;
+                        form.screen_tilesetB.Enabled = true;
+                        form.screen_gradient.Enabled = true;
+                        form.screen_music.Enabled = true;
+                        form.screen_ambiA.Enabled = true;
+                        form.screen_ambiB.Enabled = true;
+                        form.screen_comboPatterns.DropDownStyle = ComboBoxStyle.DropDown;
+                        form.screen_mainView.Resizable = false;
+                        form.screen_mainView.Size = new Size(Program.PxScreenWidth + 2, Program.PxScreenHeight + 2);
+                        for(int i = 0; i < 8; i++) {
+                            layerSelectors[i].Item2.Enabled = Program.ActiveScreen.Layers[i].Active;
+                        }
+                        form.screen_checkBoxOverwrite.Visible = false;
+                        editingPattern = null;
+                        form.screen_mainView.Draw();
+                    }
+                };
+                form.screen_comboPatterns.SelectedIndexChanged += delegate {
+                    if(form.screen_comboPatterns.SelectedIndex == 0) {
+                        form.screen_buttonEditPattern.Text = "New";
+                        ((PatternTool)tools[4]).Source = null;
+                    }
+                    else if(editingPattern == null) {
+                        form.screen_buttonEditPattern.Text = "Edit";
+                        ((PatternTool)tools[4]).Source = Program.OpenStory.Patterns[form.screen_comboPatterns.SelectedIndex - 1];
+                    }
+                };
+                form.screen_checkBoxOverwrite.CheckedChanged += delegate {
+                    editingPattern.Overwrite = form.screen_checkBoxOverwrite.Checked;
+                };
+
                 this.selection = form.screen_tilesetViewA.Selection;
                 form.screen_tilesetViewA.Active = true;
 
-                tools = new List<EditingTool>(4);
+                tools = new List<EditingTool>(5);
                 tools.Add(new PaintTool());
                 tools.Add(new FillTool());
                 tools.Add(new ReplaceTool());
                 tools.Add(new RandomizeTool());
+                tools.Add(new PatternTool());
                 currentTool = tools[0];
             }
             public void StoryChanged() {
                 form.screen_bankList.SelectedIndex = 0;
+                form.screen_comboPatterns.Items.Clear();
+                form.screen_comboPatterns.Items.Add("");
+                form.screen_comboPatterns.SelectedIndex = 0;
+                // TODO exit pattern mode
+                foreach(Pattern p in Program.OpenStory.Patterns) {
+                    form.screen_comboPatterns.Items.Add(p.Name);
+                }
 
                 this.ScreenChanged();
             }
@@ -263,17 +377,20 @@ namespace Story_Crafter {
             }
             public void ScreenChanged() {
                 this.changingScreen = true;
-                form.screen_tilesetA.Value = Program.OpenStory.ActiveScreen.TilesetA;
-                form.screen_tilesetB.Value = Program.OpenStory.ActiveScreen.TilesetB;
-                form.screen_gradient.Value = Program.OpenStory.ActiveScreen.Gradient;
-                form.screen_ambiA.Value = Program.OpenStory.ActiveScreen.AmbianceA;
-                form.screen_ambiB.Value = Program.OpenStory.ActiveScreen.AmbianceB;
-                form.screen_music.Value = Program.OpenStory.ActiveScreen.Music;
+                form.screen_tilesetA.Value = Program.ActiveScreen.TilesetA;
+                form.screen_tilesetB.Value = Program.ActiveScreen.TilesetB;
+                form.screen_gradient.Value = Program.ActiveScreen.Gradient;
+                form.screen_ambiA.Value = Program.ActiveScreen.AmbianceA;
+                form.screen_ambiB.Value = Program.ActiveScreen.AmbianceB;
+                form.screen_music.Value = Program.ActiveScreen.Music;
 
-                form.screen_tilesetViewA.Image = (Image)Program.OpenStory.TilesetACache.Full.Clone();
-                form.screen_tilesetViewB.Image = (Image)Program.OpenStory.TilesetBCache.Full.Clone();
+                TilesetA = Program.OpenStory.CreateTileset(Program.ActiveScreen.TilesetA);
+                TilesetB = Program.OpenStory.CreateTileset(Program.ActiveScreen.TilesetB);
+                Gradient = Program.LoadBitmap(Program.OpenStory.Gradient(Program.ActiveScreen.Gradient));
+                form.screen_tilesetViewA.Image = (Image)TilesetA.Full.Clone();
+                form.screen_tilesetViewB.Image = (Image)TilesetB.Full.Clone();
 
-                Draw();
+                form.screen_mainView.Draw();
                 this.screenEdited = false;
                 this.changingScreen = false;
             }
@@ -289,23 +406,12 @@ namespace Story_Crafter {
                 }
                 form.screen_bankList.SelectedIndex = 0;
 
-                this.Draw();
+                form.screen_mainView.Draw();
             }
 
-            private void Draw() {
-                Image updatedScreen = new Bitmap(Program.PxScreenWidth, Program.PxScreenHeight);
-                Program.OpenStory.ActiveScreen.Draw(Graphics.FromImage(updatedScreen));
-                form.screen_mainView.Image = updatedScreen;
-            }
             private int GetActiveLayer() {
-                if(form.screen_layer0.Checked) return 0;
-                if(form.screen_layer1.Checked) return 1;
-                if(form.screen_layer2.Checked) return 2;
-                if(form.screen_layer3.Checked) return 3;
-                if(form.screen_layer4.Checked) return 4;
-                if(form.screen_layer5.Checked) return 5;
-                if(form.screen_layer6.Checked) return 6;
-                if(form.screen_layer7.Checked) return 7;
+                for(int i = 0; i < 8; i++)
+                    if(layerSelectors[i].Item1.Checked) return i;
                 return -1;
             }
 
@@ -316,9 +422,9 @@ namespace Story_Crafter {
             }
             private void ChangeTilesetA(object sender, System.Timers.ElapsedEventArgs e) {
                 Program.ActiveScreen.TilesetA = (int)form.screen_tilesetA.Value;
-                Program.OpenStory.TilesetACache = Program.OpenStory.CreateTileset((int)form.screen_tilesetA.Value);
-                form.screen_tilesetViewA.Image = (Image)Program.OpenStory.TilesetACache.Full.Clone();
-                this.Draw();
+                TilesetA = Program.OpenStory.CreateTileset((int)form.screen_tilesetA.Value);
+                form.screen_tilesetViewA.Image = (Image)TilesetA.Full.Clone();
+                form.screen_mainView.Draw();
             }
 
             private void tilesetB_ValueChanged(object sender, EventArgs e) {
@@ -328,9 +434,9 @@ namespace Story_Crafter {
             }
             private void ChangeTilesetB(object sender, System.Timers.ElapsedEventArgs e) {
                 Program.ActiveScreen.TilesetB = (int)form.screen_tilesetB.Value;
-                Program.OpenStory.TilesetBCache = Program.OpenStory.CreateTileset((int)form.screen_tilesetB.Value);
-                form.screen_tilesetViewB.Image = (Image)Program.OpenStory.TilesetBCache.Full.Clone();
-                this.Draw();
+                TilesetB = Program.OpenStory.CreateTileset((int)form.screen_tilesetB.Value);
+                form.screen_tilesetViewB.Image = (Image)TilesetB.Full.Clone();
+                form.screen_mainView.Draw();
             }
 
             private void gradient_ValueChanged(object sender, EventArgs e) {
@@ -340,8 +446,8 @@ namespace Story_Crafter {
             }
             private void ChangeGradient(object sender, System.Timers.ElapsedEventArgs e) {
                 Program.ActiveScreen.Gradient = (int)form.screen_gradient.Value;
-                Program.OpenStory.GradientCache = Program.LoadBitmap(Program.OpenStory.Gradient((int)form.screen_gradient.Value));
-                this.Draw();
+                Gradient = Program.LoadBitmap(Program.OpenStory.Gradient((int)form.screen_gradient.Value));
+                form.screen_mainView.Draw();
             }
 
             private void bankList_SelectedIndexChanged(object sender, EventArgs e) {
@@ -361,62 +467,20 @@ namespace Story_Crafter {
                 form.screen_objectList.SelectedIndices.Add(0);
             }
 
-            private void layer0_MouseUp(object sender, MouseEventArgs e) {
+            private void layerSelector_MouseUp(object sender, MouseEventArgs e) {
                 if(e.Button == MouseButtons.Right) {
-                    Program.OpenStory.ActiveScreen.Layers[0].Active = !Program.OpenStory.ActiveScreen.Layers[0].Active;
-                    form.screen_layer0Label.Enabled = Program.OpenStory.ActiveScreen.Layers[0].Active;
-                    Draw();
+                    int i = (int)((RadioButton)sender).Tag;
+                    layerSelectors[i].Item2.Enabled = !layerSelectors[i].Item2.Enabled;
+                    if(editingPattern == null) {
+                        Program.ActiveScreen.Layers[i].Active = layerSelectors[i].Item2.Enabled;
+                    }
+                    else {
+                        editingPattern.Layers[i].Active = layerSelectors[i].Item2.Enabled;
+                    }
+                    form.screen_mainView.Draw();
                 }
             }
-            private void layer1_MouseUp(object sender, MouseEventArgs e) {
-                if(e.Button == MouseButtons.Right) {
-                    Program.OpenStory.ActiveScreen.Layers[1].Active = !Program.OpenStory.ActiveScreen.Layers[1].Active;
-                    form.screen_layer1Label.Enabled = Program.OpenStory.ActiveScreen.Layers[1].Active;
-                    Draw();
-                }
-            }
-            private void layer2_MouseUp(object sender, MouseEventArgs e) {
-                if(e.Button == MouseButtons.Right) {
-                    Program.OpenStory.ActiveScreen.Layers[2].Active = !Program.OpenStory.ActiveScreen.Layers[2].Active;
-                    form.screen_layer2Label.Enabled = Program.OpenStory.ActiveScreen.Layers[2].Active;
-                    Draw();
-                }
-            }
-            private void layer3_MouseUp(object sender, MouseEventArgs e) {
-                if(e.Button == MouseButtons.Right) {
-                    Program.OpenStory.ActiveScreen.Layers[3].Active = !Program.OpenStory.ActiveScreen.Layers[3].Active;
-                    form.screen_layer3Label.Enabled = Program.OpenStory.ActiveScreen.Layers[3].Active;
-                    Draw();
-                }
-            }
-            private void layer4_MouseUp(object sender, MouseEventArgs e) {
-                if(e.Button == MouseButtons.Right) {
-                    Program.OpenStory.ActiveScreen.Layers[4].Active = !Program.OpenStory.ActiveScreen.Layers[4].Active;
-                    form.screen_layer4Label.Enabled = Program.OpenStory.ActiveScreen.Layers[4].Active;
-                    Draw();
-                }
-            }
-            private void layer5_MouseUp(object sender, MouseEventArgs e) {
-                if(e.Button == MouseButtons.Right) {
-                    Program.OpenStory.ActiveScreen.Layers[5].Active = !Program.OpenStory.ActiveScreen.Layers[5].Active;
-                    form.screen_layer5Label.Enabled = Program.OpenStory.ActiveScreen.Layers[5].Active;
-                    Draw();
-                }
-            }
-            private void layer6_MouseUp(object sender, MouseEventArgs e) {
-                if(e.Button == MouseButtons.Right) {
-                    Program.OpenStory.ActiveScreen.Layers[6].Active = !Program.OpenStory.ActiveScreen.Layers[6].Active;
-                    form.screen_layer6Label.Enabled = Program.OpenStory.ActiveScreen.Layers[6].Active;
-                    Draw();
-                }
-            }
-            private void layer7_MouseUp(object sender, MouseEventArgs e) {
-                if(e.Button == MouseButtons.Right) {
-                    Program.OpenStory.ActiveScreen.Layers[7].Active = !Program.OpenStory.ActiveScreen.Layers[7].Active;
-                    form.screen_layer7Label.Enabled = Program.OpenStory.ActiveScreen.Layers[7].Active;
-                    Draw();
-                }
-            }
+            
         }
     }
 }
