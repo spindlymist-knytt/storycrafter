@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Story_Crafter {
     [Serializable]
-    class Screen {
+    class Screen: ICanvas {
         public int X, Y;
         public int TilesetA, TilesetB, Gradient, Music, AmbianceA, AmbianceB;
         public Layer[] Layers;
@@ -16,6 +16,7 @@ namespace Story_Crafter {
         public Screen() {
             this.Layers = new Layer[8];
         }
+
         public Screen(int x, int y) {
             this.Layers = new Layer[8];
             Byte[] blankData = new Byte[500];
@@ -36,19 +37,26 @@ namespace Story_Crafter {
                 this.Layers[i] = new ObjectLayer(i, blankData);
             }
         }
-        public void Draw(Graphics g) {
-            this.Draw(g, Program.OpenStory.TilesetACache, Program.OpenStory.TilesetBCache, Program.OpenStory.GradientCache);
-        }
+
         public void Draw(Graphics g, Tileset a, Tileset b, Bitmap gradient) {
             this.DrawGradient(g, gradient);
             foreach(Layer l in this.Layers) {
                 if(l.Active) l.Draw(g, a, b);
             }
         }
+
         private void DrawGradient(Graphics g, Bitmap gradient) {
             for(int x = 0; x < Program.PxScreenWidth; x += gradient.Width) {
                 g.DrawImage(gradient, x, 0, gradient.Width, gradient.Height);
             }
         }
+
+        public void Resize(int width, int height) {
+        }
+
+        public Layer GetLayer(int idx) {
+            return Layers[idx];
+        }
+
     }
 }

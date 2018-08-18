@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Drawing;
 using System.IO;
@@ -56,9 +56,9 @@ namespace Story_Crafter {
         public List<Screen> Screens;
         public IniFile WorldIni;
 
-        public Tileset TilesetACache, TilesetBCache;
-        public Bitmap GradientCache;
         public Screen ActiveScreen;
+
+        public List<Pattern> Patterns;
 
         public Boolean ThumbnailsCached = false;
         #endregion
@@ -96,9 +96,7 @@ namespace Story_Crafter {
             this.Screens.Add(start);
             this.ActiveScreen = start;
 
-            this.TilesetACache = this.CreateTileset(this.ActiveScreen.TilesetA);
-            this.TilesetBCache = this.CreateTileset(this.ActiveScreen.TilesetB);
-            this.GradientCache = Program.LoadBitmap(this.Gradient(this.ActiveScreen.Gradient));
+            this.Patterns = new List<Pattern>();
 
             this.Save();
         }
@@ -178,13 +176,22 @@ namespace Story_Crafter {
             else {
                 this.ActiveScreen = GetScreen(this.DefaultSave.MapX, this.DefaultSave.MapY); // Try the screen given as Juni's starting position.
                 if(this.ActiveScreen == null) {
-                    this.ActiveScreen = this.GetScreen(1000, 1000);                            // If that screen doesn't exist, try x1000y1000.
-                    if(this.ActiveScreen == null) this.ActiveScreen = this.Screens[0];         // If that doesn't exist either, use whatever the first screen in Map.bin is.
+                    this.ActiveScreen = this.GetScreen(1000, 1000);                          // If that screen doesn't exist, try x1000y1000.
+                    if(this.ActiveScreen == null) this.ActiveScreen = this.Screens[0];       // If that doesn't exist either, use whatever the first screen in Map.bin is.
                 }
             }
-            this.TilesetACache = this.CreateTileset(this.ActiveScreen.TilesetA);
-            this.TilesetBCache = this.CreateTileset(this.ActiveScreen.TilesetB);
-            this.GradientCache = Program.LoadBitmap(this.Gradient(this.ActiveScreen.Gradient));
+
+            // Load patterns
+            this.Patterns = new List<Pattern>();
+            try {
+                using(FileStream patternsFile = new FileStream(this.Path + @"\.story_crafter_patterns", FileMode.Open, FileAccess.Read)) {
+                    BinaryFormatter formatter = new BinaryFormatter();
+                    Patterns = (List<Pattern>)formatter.Deserialize(patternsFile);
+                }
+            }
+            catch {
+                // TODO error message
+            }
         }
         public string Tileset(int index) {
             string guess = this.Path + @"\Tilesets\Tileset" + index + ".png";
@@ -319,9 +326,6 @@ namespace Story_Crafter {
             if(this.ActiveScreen == null) {
                 this.ActiveScreen = new Screen(x, y);
             }
-            this.TilesetACache = this.CreateTileset(this.ActiveScreen.TilesetA);
-            this.TilesetBCache = this.CreateTileset(this.ActiveScreen.TilesetB);
-            this.GradientCache = Program.LoadBitmap(this.Gradient(this.ActiveScreen.Gradient));
         }
         public void Save(string worldIniText = "") {
             // Write screen data to memory.
@@ -397,6 +401,19 @@ namespace Story_Crafter {
                 Directory.Move(this.Path, newPath);
                 this.Path = newPath;
             }
+
+            // Save patterns
+
+            try {
+                using(FileStream patternsFile = new FileStream(this.Path + @"\.story_crafter_patterns", FileMode.Create, FileAccess.Write)) {
+                    BinaryFormatter formatter = new BinaryFormatter();
+                    formatter.Serialize(patternsFile, Patterns);
+                }
+            }
+            catch {
+                // TODO error message
+            }
+
         }
     }
 }

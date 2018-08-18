@@ -11,7 +11,7 @@ namespace Story_Crafter {
 
         Pen cursor = new Pen(Color.Orchid);
 
-        public override void Paint(TileLayer layer, TileSelection selection, Point paintLocation, int brushSizeX, int brushSizeY, int tileset) {
+        public override void Paint(ICanvas canvas, TileLayer layer, TileSelection selection, Point paintLocation, int brushSizeX, int brushSizeY, int tileset) {
             for(int brushX = 0; brushX < brushSizeX; brushX++) {
                 for(int brushY = 0; brushY < brushSizeY; brushY++) {
                     int x = paintLocation.X + brushX;
@@ -23,7 +23,7 @@ namespace Story_Crafter {
             }
         }
 
-        public override void Paint(ObjectLayer layer, Point paintLocation, int brushSizeX, int brushSizeY, int bank, int idx) {
+        public override void Paint(ICanvas canvas, ObjectLayer layer, Point paintLocation, int brushSizeX, int brushSizeY, int bank, int idx) {
             // Duplicates PaintTool.Paint(ObjectLayer...) behavior
             for(int brushX = 0; brushX < brushSizeX; brushX++) {
                 for(int brushY = 0; brushY < brushSizeY; brushY++) {
