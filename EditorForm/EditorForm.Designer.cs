@@ -27,40 +27,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditorForm));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageOverview = new System.Windows.Forms.TabPage();
-            this.overview_screenCount = new System.Windows.Forms.Label();
-            this.overview_overlayCheck = new System.Windows.Forms.CheckBox();
-            this.overview_clothesPreview = new System.Windows.Forms.Panel();
-            this.overview_skinPreview = new System.Windows.Forms.Panel();
-            this.overview_juni = new System.Windows.Forms.PictureBox();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.overview_publish = new System.Windows.Forms.Button();
-            this.overview_size = new System.Windows.Forms.ComboBox();
-            this.overview_diffC = new System.Windows.Forms.ComboBox();
-            this.overview_diffB = new System.Windows.Forms.ComboBox();
-            this.overview_diffA = new System.Windows.Forms.ComboBox();
-            this.overview_catB = new System.Windows.Forms.ComboBox();
-            this.overview_catA = new System.Windows.Forms.ComboBox();
-            this.overview_info = new System.Windows.Forms.PictureBox();
-            this.contextMenu2 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.replaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.editWithGIMPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editWithPaintToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editWithPaintNETToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editWithPhotoshopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.overview_cardBorder = new System.Windows.Forms.Panel();
-            this.overview_cardBackground = new System.Windows.Forms.Panel();
-            this.overview_description = new System.Windows.Forms.TextBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.overview_author = new System.Windows.Forms.TextBox();
-            this.overview_title = new System.Windows.Forms.TextBox();
-            this.overview_icon = new System.Windows.Forms.PictureBox();
-            this.overview_clothesLabel = new System.Windows.Forms.Label();
-            this.overview_skinLabel = new System.Windows.Forms.Label();
             this.tabPageScreen = new System.Windows.Forms.TabPage();
+            this.screen_checkBoxOverwrite = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.screen_buttonEditPattern = new System.Windows.Forms.Button();
             this.screen_comboPatterns = new System.Windows.Forms.ComboBox();
@@ -95,9 +63,6 @@
             this.screen_layer2 = new System.Windows.Forms.RadioButton();
             this.screen_layer1 = new System.Windows.Forms.RadioButton();
             this.screen_layer0 = new System.Windows.Forms.RadioButton();
-            this.screen_mainView = new Story_Crafter.Controls.CanvasPanel();
-            this.screen_tilesetViewB = new Story_Crafter.TilesetViewPanel();
-            this.screen_tilesetViewA = new Story_Crafter.TilesetViewPanel();
             this.screen_objectList = new System.Windows.Forms.ListView();
             this.screen_bankList = new System.Windows.Forms.ComboBox();
             this.tabPageMap = new System.Windows.Forms.TabPage();
@@ -105,7 +70,6 @@
             this.button8 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.map_showThumbs = new System.Windows.Forms.CheckBox();
-            this.map_mainView = new Story_Crafter.MapViewPanel();
             this.tabPageCutscenes = new System.Windows.Forms.TabPage();
             this.objectListView2 = new BrightIdeasSoftware.ObjectListView();
             this.objectListView1 = new BrightIdeasSoftware.ObjectListView();
@@ -120,6 +84,13 @@
             this.tileset_rename = new System.Windows.Forms.Button();
             this.tileset_new = new System.Windows.Forms.Button();
             this.tileset_view = new System.Windows.Forms.PictureBox();
+            this.contextMenu2 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.replaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.editWithGIMPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editWithPaintToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editWithPaintNETToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editWithPhotoshopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tileset_list = new System.Windows.Forms.ListView();
             this.tabPageGradients = new System.Windows.Forms.TabPage();
             this.gradient_tileCheck = new System.Windows.Forms.CheckBox();
@@ -164,10 +135,6 @@
             this.addSceneToTheLeftToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.editWithGIMPToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.overview_colorDialog = new System.Windows.Forms.ColorDialog();
-            this.contextMenu1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.compressToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.compressAndUploadToKnyttlevelscomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenu1 = new System.Windows.Forms.MainMenu(this.components);
             this.menuItem1 = new System.Windows.Forms.MenuItem();
             this.menuItem5 = new System.Windows.Forms.MenuItem();
@@ -205,19 +172,17 @@
             this.menuItem6 = new System.Windows.Forms.MenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.overviewTab1 = new Story_Crafter.OverviewTab();
+            this.screen_mainView = new Story_Crafter.Controls.CanvasPanel();
+            this.screen_tilesetViewB = new Story_Crafter.TilesetViewPanel();
+            this.screen_tilesetViewA = new Story_Crafter.TilesetViewPanel();
+            this.map_mainView = new Story_Crafter.MapViewPanel();
             this.translucentPanel1 = new Story_Crafter.TranslucentPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.progressBarLabel = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.screen_checkBoxOverwrite = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPageOverview.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.overview_juni)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.overview_info)).BeginInit();
-            this.contextMenu2.SuspendLayout();
-            this.overview_cardBorder.SuspendLayout();
-            this.overview_cardBackground.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.overview_icon)).BeginInit();
             this.tabPageScreen.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.screen_ambiA)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.screen_ambiB)).BeginInit();
@@ -227,17 +192,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.screen_gradient)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.screen_tilesetB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.screen_tilesetA)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.screen_mainView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.screen_tilesetViewB)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.screen_tilesetViewA)).BeginInit();
             this.tabPageMap.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.map_mainView)).BeginInit();
             this.tabPageCutscenes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.objectListView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectListView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.tabPageTilesets.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tileset_view)).BeginInit();
+            this.contextMenu2.SuspendLayout();
             this.tabPageGradients.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gradient_view)).BeginInit();
             this.tabPageWorldINI.SuspendLayout();
@@ -248,8 +210,11 @@
             this.contextMenuStrip4.SuspendLayout();
             this.contextMenuStrip3.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
-            this.contextMenu1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.screen_mainView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.screen_tilesetViewB)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.screen_tilesetViewA)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.map_mainView)).BeginInit();
             this.translucentPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -266,355 +231,26 @@
             this.tabControl1.Controls.Add(this.tabPageAmbiance);
             this.tabControl1.Controls.Add(this.tabPageObjects);
             this.tabControl1.Controls.Add(this.tabPageWorldINI);
-            this.tabControl1.Location = new System.Drawing.Point(-1, 0);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(0);
             this.tabControl1.Multiline = true;
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(798, 527);
+            this.tabControl1.Size = new System.Drawing.Size(784, 556);
             this.tabControl1.TabIndex = 0;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // tabPageOverview
             // 
-            this.tabPageOverview.Controls.Add(this.overview_screenCount);
-            this.tabPageOverview.Controls.Add(this.overview_overlayCheck);
-            this.tabPageOverview.Controls.Add(this.overview_clothesPreview);
-            this.tabPageOverview.Controls.Add(this.overview_skinPreview);
-            this.tabPageOverview.Controls.Add(this.overview_juni);
-            this.tabPageOverview.Controls.Add(this.label20);
-            this.tabPageOverview.Controls.Add(this.label19);
-            this.tabPageOverview.Controls.Add(this.label18);
-            this.tabPageOverview.Controls.Add(this.overview_publish);
-            this.tabPageOverview.Controls.Add(this.overview_size);
-            this.tabPageOverview.Controls.Add(this.overview_diffC);
-            this.tabPageOverview.Controls.Add(this.overview_diffB);
-            this.tabPageOverview.Controls.Add(this.overview_diffA);
-            this.tabPageOverview.Controls.Add(this.overview_catB);
-            this.tabPageOverview.Controls.Add(this.overview_catA);
-            this.tabPageOverview.Controls.Add(this.overview_info);
-            this.tabPageOverview.Controls.Add(this.overview_cardBorder);
-            this.tabPageOverview.Controls.Add(this.overview_clothesLabel);
-            this.tabPageOverview.Controls.Add(this.overview_skinLabel);
+            this.tabPageOverview.Controls.Add(this.overviewTab1);
             this.tabPageOverview.Location = new System.Drawing.Point(4, 22);
             this.tabPageOverview.Name = "tabPageOverview";
             this.tabPageOverview.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageOverview.Size = new System.Drawing.Size(790, 501);
+            this.tabPageOverview.Size = new System.Drawing.Size(776, 530);
             this.tabPageOverview.TabIndex = 0;
             this.tabPageOverview.Text = "Overview";
             this.tabPageOverview.UseVisualStyleBackColor = true;
-            // 
-            // overview_screenCount
-            // 
-            this.overview_screenCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.overview_screenCount.ForeColor = System.Drawing.Color.Gray;
-            this.overview_screenCount.Location = new System.Drawing.Point(436, 301);
-            this.overview_screenCount.Name = "overview_screenCount";
-            this.overview_screenCount.Size = new System.Drawing.Size(91, 13);
-            this.overview_screenCount.TabIndex = 19;
-            this.overview_screenCount.Text = "Screens:";
-            this.overview_screenCount.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // overview_overlayCheck
-            // 
-            this.overview_overlayCheck.AutoSize = true;
-            this.overview_overlayCheck.Checked = true;
-            this.overview_overlayCheck.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.overview_overlayCheck.Location = new System.Drawing.Point(625, 23);
-            this.overview_overlayCheck.Name = "overview_overlayCheck";
-            this.overview_overlayCheck.Size = new System.Drawing.Size(62, 17);
-            this.overview_overlayCheck.TabIndex = 18;
-            this.overview_overlayCheck.Text = "Overlay";
-            this.overview_overlayCheck.UseVisualStyleBackColor = true;
-            // 
-            // overview_clothesPreview
-            // 
-            this.overview_clothesPreview.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
-            this.overview_clothesPreview.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.overview_clothesPreview.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.overview_clothesPreview.Location = new System.Drawing.Point(440, 432);
-            this.overview_clothesPreview.Name = "overview_clothesPreview";
-            this.overview_clothesPreview.Size = new System.Drawing.Size(15, 15);
-            this.overview_clothesPreview.TabIndex = 15;
-            // 
-            // overview_skinPreview
-            // 
-            this.overview_skinPreview.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(192)))), ((int)(((byte)(166)))));
-            this.overview_skinPreview.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.overview_skinPreview.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.overview_skinPreview.Location = new System.Drawing.Point(440, 411);
-            this.overview_skinPreview.Name = "overview_skinPreview";
-            this.overview_skinPreview.Size = new System.Drawing.Size(15, 15);
-            this.overview_skinPreview.TabIndex = 14;
-            // 
-            // overview_juni
-            // 
-            this.overview_juni.Image = ((System.Drawing.Image)(resources.GetObject("overview_juni.Image")));
-            this.overview_juni.Location = new System.Drawing.Point(450, 369);
-            this.overview_juni.Name = "overview_juni";
-            this.overview_juni.Size = new System.Drawing.Size(30, 30);
-            this.overview_juni.TabIndex = 13;
-            this.overview_juni.TabStop = false;
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(563, 380);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(55, 13);
-            this.label20.TabIndex = 12;
-            this.label20.Text = "Difficulties";
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(563, 301);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(57, 13);
-            this.label19.TabIndex = 11;
-            this.label19.Text = "Categories";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(403, 301);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(27, 13);
-            this.label18.TabIndex = 10;
-            this.label18.Text = "Size";
-            // 
-            // overview_publish
-            // 
-            this.overview_publish.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.overview_publish.Location = new System.Drawing.Point(84, 361);
-            this.overview_publish.Name = "overview_publish";
-            this.overview_publish.Size = new System.Drawing.Size(279, 91);
-            this.overview_publish.TabIndex = 9;
-            this.overview_publish.Text = "Publish";
-            this.overview_publish.UseVisualStyleBackColor = true;
-            // 
-            // overview_size
-            // 
-            this.overview_size.FormattingEnabled = true;
-            this.overview_size.Location = new System.Drawing.Point(406, 317);
-            this.overview_size.Name = "overview_size";
-            this.overview_size.Size = new System.Drawing.Size(121, 21);
-            this.overview_size.TabIndex = 8;
-            // 
-            // overview_diffC
-            // 
-            this.overview_diffC.FormattingEnabled = true;
-            this.overview_diffC.Location = new System.Drawing.Point(566, 450);
-            this.overview_diffC.Name = "overview_diffC";
-            this.overview_diffC.Size = new System.Drawing.Size(121, 21);
-            this.overview_diffC.TabIndex = 7;
-            // 
-            // overview_diffB
-            // 
-            this.overview_diffB.FormattingEnabled = true;
-            this.overview_diffB.Location = new System.Drawing.Point(566, 423);
-            this.overview_diffB.Name = "overview_diffB";
-            this.overview_diffB.Size = new System.Drawing.Size(121, 21);
-            this.overview_diffB.TabIndex = 6;
-            // 
-            // overview_diffA
-            // 
-            this.overview_diffA.FormattingEnabled = true;
-            this.overview_diffA.Location = new System.Drawing.Point(566, 396);
-            this.overview_diffA.Name = "overview_diffA";
-            this.overview_diffA.Size = new System.Drawing.Size(121, 21);
-            this.overview_diffA.TabIndex = 5;
-            // 
-            // overview_catB
-            // 
-            this.overview_catB.FormattingEnabled = true;
-            this.overview_catB.Location = new System.Drawing.Point(566, 344);
-            this.overview_catB.Name = "overview_catB";
-            this.overview_catB.Size = new System.Drawing.Size(121, 21);
-            this.overview_catB.TabIndex = 4;
-            // 
-            // overview_catA
-            // 
-            this.overview_catA.FormattingEnabled = true;
-            this.overview_catA.Location = new System.Drawing.Point(566, 317);
-            this.overview_catA.Name = "overview_catA";
-            this.overview_catA.Size = new System.Drawing.Size(121, 21);
-            this.overview_catA.TabIndex = 3;
-            // 
-            // overview_info
-            // 
-            this.overview_info.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.overview_info.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.overview_info.ContextMenuStrip = this.contextMenu2;
-            this.overview_info.Image = ((System.Drawing.Image)(resources.GetObject("overview_info.Image")));
-            this.overview_info.Location = new System.Drawing.Point(85, 46);
-            this.overview_info.Name = "overview_info";
-            this.overview_info.Size = new System.Drawing.Size(602, 242);
-            this.overview_info.TabIndex = 0;
-            this.overview_info.TabStop = false;
-            // 
-            // contextMenu2
-            // 
-            this.contextMenu2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.replaceToolStripMenuItem,
-            this.toolStripSeparator1,
-            this.editWithGIMPToolStripMenuItem,
-            this.editWithPaintToolStripMenuItem,
-            this.editWithPaintNETToolStripMenuItem,
-            this.editWithPhotoshopToolStripMenuItem});
-            this.contextMenu2.Name = "contextMenuStrip1";
-            this.contextMenu2.Size = new System.Drawing.Size(182, 120);
-            // 
-            // replaceToolStripMenuItem
-            // 
-            this.replaceToolStripMenuItem.Name = "replaceToolStripMenuItem";
-            this.replaceToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
-            this.replaceToolStripMenuItem.Text = "Replace...";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(178, 6);
-            // 
-            // editWithGIMPToolStripMenuItem
-            // 
-            this.editWithGIMPToolStripMenuItem.Image = global::Story_Crafter.Properties.Resources.gimp;
-            this.editWithGIMPToolStripMenuItem.Name = "editWithGIMPToolStripMenuItem";
-            this.editWithGIMPToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
-            this.editWithGIMPToolStripMenuItem.Text = "Edit with GIMP";
-            this.editWithGIMPToolStripMenuItem.Click += new System.EventHandler(this.editWithGIMPToolStripMenuItem_Click);
-            // 
-            // editWithPaintToolStripMenuItem
-            // 
-            this.editWithPaintToolStripMenuItem.Image = global::Story_Crafter.Properties.Resources.paint;
-            this.editWithPaintToolStripMenuItem.Name = "editWithPaintToolStripMenuItem";
-            this.editWithPaintToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
-            this.editWithPaintToolStripMenuItem.Text = "Edit with Paint";
-            // 
-            // editWithPaintNETToolStripMenuItem
-            // 
-            this.editWithPaintNETToolStripMenuItem.Image = global::Story_Crafter.Properties.Resources.paint_net;
-            this.editWithPaintNETToolStripMenuItem.Name = "editWithPaintNETToolStripMenuItem";
-            this.editWithPaintNETToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
-            this.editWithPaintNETToolStripMenuItem.Text = "Edit with Paint.NET";
-            // 
-            // editWithPhotoshopToolStripMenuItem
-            // 
-            this.editWithPhotoshopToolStripMenuItem.Image = global::Story_Crafter.Properties.Resources.photoshop;
-            this.editWithPhotoshopToolStripMenuItem.Name = "editWithPhotoshopToolStripMenuItem";
-            this.editWithPhotoshopToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
-            this.editWithPhotoshopToolStripMenuItem.Text = "Edit with Photoshop";
-            // 
-            // overview_cardBorder
-            // 
-            this.overview_cardBorder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(151)))), ((int)(((byte)(151)))));
-            this.overview_cardBorder.Controls.Add(this.overview_cardBackground);
-            this.overview_cardBorder.Location = new System.Drawing.Point(85, 323);
-            this.overview_cardBorder.Name = "overview_cardBorder";
-            this.overview_cardBorder.Size = new System.Drawing.Size(278, 34);
-            this.overview_cardBorder.TabIndex = 2;
-            // 
-            // overview_cardBackground
-            // 
-            this.overview_cardBackground.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
-            this.overview_cardBackground.Controls.Add(this.overview_description);
-            this.overview_cardBackground.Controls.Add(this.label17);
-            this.overview_cardBackground.Controls.Add(this.label16);
-            this.overview_cardBackground.Controls.Add(this.overview_author);
-            this.overview_cardBackground.Controls.Add(this.overview_title);
-            this.overview_cardBackground.Controls.Add(this.overview_icon);
-            this.overview_cardBackground.Location = new System.Drawing.Point(1, 1);
-            this.overview_cardBackground.Name = "overview_cardBackground";
-            this.overview_cardBackground.Size = new System.Drawing.Size(276, 32);
-            this.overview_cardBackground.TabIndex = 1;
-            // 
-            // overview_description
-            // 
-            this.overview_description.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
-            this.overview_description.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.overview_description.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.overview_description.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(75)))), ((int)(((byte)(75)))));
-            this.overview_description.Location = new System.Drawing.Point(35, 16);
-            this.overview_description.Name = "overview_description";
-            this.overview_description.Size = new System.Drawing.Size(238, 11);
-            this.overview_description.TabIndex = 7;
-            this.overview_description.Text = "Description";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.BackColor = System.Drawing.Color.Transparent;
-            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.ForeColor = System.Drawing.Color.Black;
-            this.label17.Location = new System.Drawing.Point(159, 2);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(10, 13);
-            this.label17.TabIndex = 6;
-            this.label17.Text = "(";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.BackColor = System.Drawing.Color.Transparent;
-            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.ForeColor = System.Drawing.Color.Black;
-            this.label16.Location = new System.Drawing.Point(267, 2);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(10, 13);
-            this.label16.TabIndex = 5;
-            this.label16.Text = ")";
-            // 
-            // overview_author
-            // 
-            this.overview_author.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
-            this.overview_author.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.overview_author.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.overview_author.ForeColor = System.Drawing.Color.Black;
-            this.overview_author.Location = new System.Drawing.Point(169, 3);
-            this.overview_author.Name = "overview_author";
-            this.overview_author.Size = new System.Drawing.Size(97, 11);
-            this.overview_author.TabIndex = 4;
-            this.overview_author.Text = "Author";
-            // 
-            // overview_title
-            // 
-            this.overview_title.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
-            this.overview_title.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.overview_title.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.overview_title.ForeColor = System.Drawing.Color.Black;
-            this.overview_title.Location = new System.Drawing.Point(35, 3);
-            this.overview_title.Name = "overview_title";
-            this.overview_title.Size = new System.Drawing.Size(125, 11);
-            this.overview_title.TabIndex = 3;
-            this.overview_title.Text = "Title";
-            // 
-            // overview_icon
-            // 
-            this.overview_icon.ContextMenuStrip = this.contextMenu2;
-            this.overview_icon.Location = new System.Drawing.Point(1, 1);
-            this.overview_icon.Name = "overview_icon";
-            this.overview_icon.Size = new System.Drawing.Size(30, 30);
-            this.overview_icon.TabIndex = 0;
-            this.overview_icon.TabStop = false;
-            // 
-            // overview_clothesLabel
-            // 
-            this.overview_clothesLabel.AutoSize = true;
-            this.overview_clothesLabel.Cursor = System.Windows.Forms.Cursors.Default;
-            this.overview_clothesLabel.Location = new System.Drawing.Point(460, 433);
-            this.overview_clothesLabel.Name = "overview_clothesLabel";
-            this.overview_clothesLabel.Size = new System.Drawing.Size(45, 13);
-            this.overview_clothesLabel.TabIndex = 17;
-            this.overview_clothesLabel.Text = "Clothing";
-            // 
-            // overview_skinLabel
-            // 
-            this.overview_skinLabel.AutoSize = true;
-            this.overview_skinLabel.Cursor = System.Windows.Forms.Cursors.Default;
-            this.overview_skinLabel.Location = new System.Drawing.Point(460, 412);
-            this.overview_skinLabel.Name = "overview_skinLabel";
-            this.overview_skinLabel.Size = new System.Drawing.Size(28, 13);
-            this.overview_skinLabel.TabIndex = 16;
-            this.overview_skinLabel.Text = "Skin";
             // 
             // tabPageScreen
             // 
@@ -661,10 +297,21 @@
             this.tabPageScreen.Location = new System.Drawing.Point(4, 22);
             this.tabPageScreen.Name = "tabPageScreen";
             this.tabPageScreen.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageScreen.Size = new System.Drawing.Size(790, 501);
+            this.tabPageScreen.Size = new System.Drawing.Size(776, 530);
             this.tabPageScreen.TabIndex = 1;
             this.tabPageScreen.Text = "Screen";
             this.tabPageScreen.UseVisualStyleBackColor = true;
+            // 
+            // screen_checkBoxOverwrite
+            // 
+            this.screen_checkBoxOverwrite.AutoSize = true;
+            this.screen_checkBoxOverwrite.Location = new System.Drawing.Point(480, 246);
+            this.screen_checkBoxOverwrite.Name = "screen_checkBoxOverwrite";
+            this.screen_checkBoxOverwrite.Size = new System.Drawing.Size(122, 17);
+            this.screen_checkBoxOverwrite.TabIndex = 46;
+            this.screen_checkBoxOverwrite.Text = "Empty tiles overwrite";
+            this.screen_checkBoxOverwrite.UseVisualStyleBackColor = true;
+            this.screen_checkBoxOverwrite.Visible = false;
             // 
             // label1
             // 
@@ -1025,48 +672,6 @@
             this.screen_layer0.Tag = "";
             this.screen_layer0.UseVisualStyleBackColor = true;
             // 
-            // screen_mainView
-            // 
-            this.screen_mainView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.screen_mainView.GetBrushSize = null;
-            this.screen_mainView.GetCanvas = null;
-            this.screen_mainView.GetGradient = null;
-            this.screen_mainView.GetLayer = null;
-            this.screen_mainView.GetObject = null;
-            this.screen_mainView.GetSelection = null;
-            this.screen_mainView.GetTilesetA = null;
-            this.screen_mainView.GetTilesetB = null;
-            this.screen_mainView.GetTilesetIndex = null;
-            this.screen_mainView.GetTool = null;
-            this.screen_mainView.Location = new System.Drawing.Point(0, 2);
-            this.screen_mainView.Name = "screen_mainView";
-            this.screen_mainView.Resizable = false;
-            this.screen_mainView.Size = new System.Drawing.Size(602, 242);
-            this.screen_mainView.TabIndex = 42;
-            this.screen_mainView.TabStop = false;
-            // 
-            // screen_tilesetViewB
-            // 
-            this.screen_tilesetViewB.Active = false;
-            this.screen_tilesetViewB.BackgroundImage = global::Story_Crafter.Properties.Resources.checkers;
-            this.screen_tilesetViewB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.screen_tilesetViewB.Location = new System.Drawing.Point(402, 292);
-            this.screen_tilesetViewB.Name = "screen_tilesetViewB";
-            this.screen_tilesetViewB.Size = new System.Drawing.Size(386, 204);
-            this.screen_tilesetViewB.TabIndex = 41;
-            this.screen_tilesetViewB.TabStop = false;
-            // 
-            // screen_tilesetViewA
-            // 
-            this.screen_tilesetViewA.Active = false;
-            this.screen_tilesetViewA.BackgroundImage = global::Story_Crafter.Properties.Resources.checkers;
-            this.screen_tilesetViewA.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.screen_tilesetViewA.Location = new System.Drawing.Point(0, 292);
-            this.screen_tilesetViewA.Name = "screen_tilesetViewA";
-            this.screen_tilesetViewA.Size = new System.Drawing.Size(386, 204);
-            this.screen_tilesetViewA.TabIndex = 40;
-            this.screen_tilesetViewA.TabStop = false;
-            // 
             // screen_objectList
             // 
             this.screen_objectList.HideSelection = false;
@@ -1095,7 +700,7 @@
             this.tabPageMap.Controls.Add(this.map_mainView);
             this.tabPageMap.Location = new System.Drawing.Point(4, 22);
             this.tabPageMap.Name = "tabPageMap";
-            this.tabPageMap.Size = new System.Drawing.Size(790, 501);
+            this.tabPageMap.Size = new System.Drawing.Size(776, 530);
             this.tabPageMap.TabIndex = 2;
             this.tabPageMap.Text = "Map";
             this.tabPageMap.UseVisualStyleBackColor = true;
@@ -1140,22 +745,6 @@
             this.map_showThumbs.Text = "Show Thumbnails";
             this.map_showThumbs.UseVisualStyleBackColor = false;
             // 
-            // map_mainView
-            // 
-            this.map_mainView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.map_mainView.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("map_mainView.BackgroundImage")));
-            this.map_mainView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.map_mainView.Image = ((System.Drawing.Image)(resources.GetObject("map_mainView.Image")));
-            this.map_mainView.Location = new System.Drawing.Point(0, 10);
-            this.map_mainView.Name = "map_mainView";
-            this.map_mainView.ShowThumbs = false;
-            this.map_mainView.Size = new System.Drawing.Size(602, 482);
-            this.map_mainView.TabIndex = 5;
-            this.map_mainView.TabStop = false;
-            this.map_mainView.TheStory = null;
-            this.map_mainView.UpdateScreen = null;
-            this.map_mainView.UpdateStatus = null;
-            // 
             // tabPageCutscenes
             // 
             this.tabPageCutscenes.Controls.Add(this.objectListView2);
@@ -1166,7 +755,7 @@
             this.tabPageCutscenes.Controls.Add(this.pictureBox2);
             this.tabPageCutscenes.Location = new System.Drawing.Point(4, 22);
             this.tabPageCutscenes.Name = "tabPageCutscenes";
-            this.tabPageCutscenes.Size = new System.Drawing.Size(790, 501);
+            this.tabPageCutscenes.Size = new System.Drawing.Size(776, 530);
             this.tabPageCutscenes.TabIndex = 3;
             this.tabPageCutscenes.Text = "Cutscenes";
             this.tabPageCutscenes.UseVisualStyleBackColor = true;
@@ -1175,6 +764,7 @@
             // 
             this.objectListView2.CellEditUseWholeCell = false;
             this.objectListView2.Cursor = System.Windows.Forms.Cursors.Default;
+            this.objectListView2.HideSelection = false;
             this.objectListView2.Location = new System.Drawing.Point(94, 421);
             this.objectListView2.Name = "objectListView2";
             this.objectListView2.Size = new System.Drawing.Size(602, 47);
@@ -1191,6 +781,7 @@
             this.olvColumn1});
             this.objectListView1.Cursor = System.Windows.Forms.Cursors.Default;
             this.objectListView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.objectListView1.HideSelection = false;
             this.objectListView1.Location = new System.Drawing.Point(94, 290);
             this.objectListView1.Name = "objectListView1";
             this.objectListView1.ShowGroups = false;
@@ -1251,7 +842,7 @@
             this.tabPageTilesets.Controls.Add(this.tileset_list);
             this.tabPageTilesets.Location = new System.Drawing.Point(4, 22);
             this.tabPageTilesets.Name = "tabPageTilesets";
-            this.tabPageTilesets.Size = new System.Drawing.Size(790, 501);
+            this.tabPageTilesets.Size = new System.Drawing.Size(776, 530);
             this.tabPageTilesets.TabIndex = 4;
             this.tabPageTilesets.Text = "Tilesets";
             this.tabPageTilesets.UseVisualStyleBackColor = true;
@@ -1303,6 +894,58 @@
             this.tileset_view.TabIndex = 1;
             this.tileset_view.TabStop = false;
             // 
+            // contextMenu2
+            // 
+            this.contextMenu2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.replaceToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.editWithGIMPToolStripMenuItem,
+            this.editWithPaintToolStripMenuItem,
+            this.editWithPaintNETToolStripMenuItem,
+            this.editWithPhotoshopToolStripMenuItem});
+            this.contextMenu2.Name = "contextMenuStrip1";
+            this.contextMenu2.Size = new System.Drawing.Size(182, 120);
+            // 
+            // replaceToolStripMenuItem
+            // 
+            this.replaceToolStripMenuItem.Name = "replaceToolStripMenuItem";
+            this.replaceToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.replaceToolStripMenuItem.Text = "Replace...";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(178, 6);
+            // 
+            // editWithGIMPToolStripMenuItem
+            // 
+            this.editWithGIMPToolStripMenuItem.Image = global::Story_Crafter.Properties.Resources.gimp;
+            this.editWithGIMPToolStripMenuItem.Name = "editWithGIMPToolStripMenuItem";
+            this.editWithGIMPToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.editWithGIMPToolStripMenuItem.Text = "Edit with GIMP";
+            this.editWithGIMPToolStripMenuItem.Click += new System.EventHandler(this.editWithGIMPToolStripMenuItem_Click);
+            // 
+            // editWithPaintToolStripMenuItem
+            // 
+            this.editWithPaintToolStripMenuItem.Image = global::Story_Crafter.Properties.Resources.paint;
+            this.editWithPaintToolStripMenuItem.Name = "editWithPaintToolStripMenuItem";
+            this.editWithPaintToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.editWithPaintToolStripMenuItem.Text = "Edit with Paint";
+            // 
+            // editWithPaintNETToolStripMenuItem
+            // 
+            this.editWithPaintNETToolStripMenuItem.Image = global::Story_Crafter.Properties.Resources.paint_net;
+            this.editWithPaintNETToolStripMenuItem.Name = "editWithPaintNETToolStripMenuItem";
+            this.editWithPaintNETToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.editWithPaintNETToolStripMenuItem.Text = "Edit with Paint.NET";
+            // 
+            // editWithPhotoshopToolStripMenuItem
+            // 
+            this.editWithPhotoshopToolStripMenuItem.Image = global::Story_Crafter.Properties.Resources.photoshop;
+            this.editWithPhotoshopToolStripMenuItem.Name = "editWithPhotoshopToolStripMenuItem";
+            this.editWithPhotoshopToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.editWithPhotoshopToolStripMenuItem.Text = "Edit with Photoshop";
+            // 
             // tileset_list
             // 
             this.tileset_list.HideSelection = false;
@@ -1324,7 +967,7 @@
             this.tabPageGradients.Controls.Add(this.gradient_view);
             this.tabPageGradients.Location = new System.Drawing.Point(4, 22);
             this.tabPageGradients.Name = "tabPageGradients";
-            this.tabPageGradients.Size = new System.Drawing.Size(790, 501);
+            this.tabPageGradients.Size = new System.Drawing.Size(776, 530);
             this.tabPageGradients.TabIndex = 5;
             this.tabPageGradients.Text = "Gradients";
             this.tabPageGradients.UseVisualStyleBackColor = true;
@@ -1401,7 +1044,7 @@
             // 
             this.tabPageMusic.Location = new System.Drawing.Point(4, 22);
             this.tabPageMusic.Name = "tabPageMusic";
-            this.tabPageMusic.Size = new System.Drawing.Size(790, 501);
+            this.tabPageMusic.Size = new System.Drawing.Size(776, 530);
             this.tabPageMusic.TabIndex = 6;
             this.tabPageMusic.Text = "Music";
             this.tabPageMusic.UseVisualStyleBackColor = true;
@@ -1410,7 +1053,7 @@
             // 
             this.tabPageAmbiance.Location = new System.Drawing.Point(4, 22);
             this.tabPageAmbiance.Name = "tabPageAmbiance";
-            this.tabPageAmbiance.Size = new System.Drawing.Size(790, 501);
+            this.tabPageAmbiance.Size = new System.Drawing.Size(776, 530);
             this.tabPageAmbiance.TabIndex = 7;
             this.tabPageAmbiance.Text = "Ambiance";
             this.tabPageAmbiance.UseVisualStyleBackColor = true;
@@ -1419,7 +1062,7 @@
             // 
             this.tabPageObjects.Location = new System.Drawing.Point(4, 22);
             this.tabPageObjects.Name = "tabPageObjects";
-            this.tabPageObjects.Size = new System.Drawing.Size(790, 501);
+            this.tabPageObjects.Size = new System.Drawing.Size(776, 530);
             this.tabPageObjects.TabIndex = 8;
             this.tabPageObjects.Text = "Objects";
             this.tabPageObjects.UseVisualStyleBackColor = true;
@@ -1437,7 +1080,7 @@
             this.tabPageWorldINI.Controls.Add(this.worldIni_screenX);
             this.tabPageWorldINI.Location = new System.Drawing.Point(4, 22);
             this.tabPageWorldINI.Name = "tabPageWorldINI";
-            this.tabPageWorldINI.Size = new System.Drawing.Size(790, 501);
+            this.tabPageWorldINI.Size = new System.Drawing.Size(776, 530);
             this.tabPageWorldINI.TabIndex = 9;
             this.tabPageWorldINI.Text = "World.ini";
             this.tabPageWorldINI.UseVisualStyleBackColor = true;
@@ -1689,26 +1332,6 @@
             this.editWithGIMPToolStripMenuItem1.Size = new System.Drawing.Size(168, 22);
             this.editWithGIMPToolStripMenuItem1.Text = "Edit with GIMP";
             // 
-            // contextMenu1
-            // 
-            this.contextMenu1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.compressToolStripMenuItem,
-            this.compressAndUploadToKnyttlevelscomToolStripMenuItem});
-            this.contextMenu1.Name = "contextMenuStrip1";
-            this.contextMenu1.Size = new System.Drawing.Size(291, 48);
-            // 
-            // compressToolStripMenuItem
-            // 
-            this.compressToolStripMenuItem.Name = "compressToolStripMenuItem";
-            this.compressToolStripMenuItem.Size = new System.Drawing.Size(290, 22);
-            this.compressToolStripMenuItem.Text = "Compress";
-            // 
-            // compressAndUploadToKnyttlevelscomToolStripMenuItem
-            // 
-            this.compressAndUploadToKnyttlevelscomToolStripMenuItem.Name = "compressAndUploadToKnyttlevelscomToolStripMenuItem";
-            this.compressAndUploadToKnyttlevelscomToolStripMenuItem.Size = new System.Drawing.Size(290, 22);
-            this.compressAndUploadToKnyttlevelscomToolStripMenuItem.Text = "Compress and upload to knyttlevels.com";
-            // 
             // mainMenu1
             // 
             this.mainMenu1.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
@@ -1942,7 +1565,7 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 513);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 534);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(784, 22);
             this.statusStrip1.SizingGrip = false;
@@ -1954,6 +1577,73 @@
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
             // 
+            // overviewTab1
+            // 
+            this.overviewTab1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.overviewTab1.Location = new System.Drawing.Point(3, 3);
+            this.overviewTab1.Margin = new System.Windows.Forms.Padding(0);
+            this.overviewTab1.Name = "overviewTab1";
+            this.overviewTab1.Size = new System.Drawing.Size(770, 524);
+            this.overviewTab1.TabIndex = 0;
+            // 
+            // screen_mainView
+            // 
+            this.screen_mainView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.screen_mainView.GetBrushSize = null;
+            this.screen_mainView.GetCanvas = null;
+            this.screen_mainView.GetGradient = null;
+            this.screen_mainView.GetLayer = null;
+            this.screen_mainView.GetObject = null;
+            this.screen_mainView.GetSelection = null;
+            this.screen_mainView.GetTilesetA = null;
+            this.screen_mainView.GetTilesetB = null;
+            this.screen_mainView.GetTilesetIndex = null;
+            this.screen_mainView.GetTool = null;
+            this.screen_mainView.Location = new System.Drawing.Point(0, 2);
+            this.screen_mainView.Name = "screen_mainView";
+            this.screen_mainView.Resizable = false;
+            this.screen_mainView.Size = new System.Drawing.Size(602, 242);
+            this.screen_mainView.TabIndex = 42;
+            this.screen_mainView.TabStop = false;
+            // 
+            // screen_tilesetViewB
+            // 
+            this.screen_tilesetViewB.Active = false;
+            this.screen_tilesetViewB.BackgroundImage = global::Story_Crafter.Properties.Resources.checkers;
+            this.screen_tilesetViewB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.screen_tilesetViewB.Location = new System.Drawing.Point(402, 292);
+            this.screen_tilesetViewB.Name = "screen_tilesetViewB";
+            this.screen_tilesetViewB.Size = new System.Drawing.Size(386, 204);
+            this.screen_tilesetViewB.TabIndex = 41;
+            this.screen_tilesetViewB.TabStop = false;
+            // 
+            // screen_tilesetViewA
+            // 
+            this.screen_tilesetViewA.Active = false;
+            this.screen_tilesetViewA.BackgroundImage = global::Story_Crafter.Properties.Resources.checkers;
+            this.screen_tilesetViewA.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.screen_tilesetViewA.Location = new System.Drawing.Point(0, 292);
+            this.screen_tilesetViewA.Name = "screen_tilesetViewA";
+            this.screen_tilesetViewA.Size = new System.Drawing.Size(386, 204);
+            this.screen_tilesetViewA.TabIndex = 40;
+            this.screen_tilesetViewA.TabStop = false;
+            // 
+            // map_mainView
+            // 
+            this.map_mainView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.map_mainView.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("map_mainView.BackgroundImage")));
+            this.map_mainView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.map_mainView.Image = ((System.Drawing.Image)(resources.GetObject("map_mainView.Image")));
+            this.map_mainView.Location = new System.Drawing.Point(0, 10);
+            this.map_mainView.Name = "map_mainView";
+            this.map_mainView.ShowThumbs = false;
+            this.map_mainView.Size = new System.Drawing.Size(602, 482);
+            this.map_mainView.TabIndex = 5;
+            this.map_mainView.TabStop = false;
+            this.map_mainView.TheStory = null;
+            this.map_mainView.UpdateScreen = null;
+            this.map_mainView.UpdateStatus = null;
+            // 
             // translucentPanel1
             // 
             this.translucentPanel1.BackColor = System.Drawing.Color.White;
@@ -1961,7 +1651,7 @@
             this.translucentPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.translucentPanel1.Location = new System.Drawing.Point(0, 0);
             this.translucentPanel1.Name = "translucentPanel1";
-            this.translucentPanel1.Size = new System.Drawing.Size(784, 535);
+            this.translucentPanel1.Size = new System.Drawing.Size(784, 556);
             this.translucentPanel1.TabIndex = 10;
             this.translucentPanel1.Visible = false;
             // 
@@ -1992,27 +1682,15 @@
             this.progressBar1.Size = new System.Drawing.Size(386, 23);
             this.progressBar1.TabIndex = 0;
             // 
-            // screen_checkBoxOverwrite
-            // 
-            this.screen_checkBoxOverwrite.AutoSize = true;
-            this.screen_checkBoxOverwrite.Location = new System.Drawing.Point(480, 246);
-            this.screen_checkBoxOverwrite.Name = "screen_checkBoxOverwrite";
-            this.screen_checkBoxOverwrite.Size = new System.Drawing.Size(122, 17);
-            this.screen_checkBoxOverwrite.TabIndex = 46;
-            this.screen_checkBoxOverwrite.Text = "Empty tiles overwrite";
-            this.screen_checkBoxOverwrite.UseVisualStyleBackColor = true;
-            this.screen_checkBoxOverwrite.Visible = false;
-            // 
             // EditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 535);
+            this.ClientSize = new System.Drawing.Size(784, 556);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.translucentPanel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MaximumSize = new System.Drawing.Size(800, 595);
+            this.MaximumSize = new System.Drawing.Size(9999, 9999);
             this.Menu = this.mainMenu1;
             this.MinimumSize = new System.Drawing.Size(800, 595);
             this.Name = "EditorForm";
@@ -2020,14 +1698,6 @@
             this.Load += new System.EventHandler(this.EditorForm_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPageOverview.ResumeLayout(false);
-            this.tabPageOverview.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.overview_juni)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.overview_info)).EndInit();
-            this.contextMenu2.ResumeLayout(false);
-            this.overview_cardBorder.ResumeLayout(false);
-            this.overview_cardBackground.ResumeLayout(false);
-            this.overview_cardBackground.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.overview_icon)).EndInit();
             this.tabPageScreen.ResumeLayout(false);
             this.tabPageScreen.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.screen_ambiA)).EndInit();
@@ -2038,18 +1708,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.screen_gradient)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.screen_tilesetB)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.screen_tilesetA)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.screen_mainView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.screen_tilesetViewB)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.screen_tilesetViewA)).EndInit();
             this.tabPageMap.ResumeLayout(false);
             this.tabPageMap.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.map_mainView)).EndInit();
             this.tabPageCutscenes.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.objectListView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectListView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.tabPageTilesets.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tileset_view)).EndInit();
+            this.contextMenu2.ResumeLayout(false);
             this.tabPageGradients.ResumeLayout(false);
             this.tabPageGradients.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gradient_view)).EndInit();
@@ -2062,9 +1729,12 @@
             this.contextMenuStrip4.ResumeLayout(false);
             this.contextMenuStrip3.ResumeLayout(false);
             this.contextMenuStrip2.ResumeLayout(false);
-            this.contextMenu1.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.screen_mainView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.screen_tilesetViewB)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.screen_tilesetViewA)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.map_mainView)).EndInit();
             this.translucentPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -2119,33 +1789,6 @@
         private System.Windows.Forms.RadioButton screen_layer2;
         private System.Windows.Forms.RadioButton screen_layer1;
         private System.Windows.Forms.RadioButton screen_layer0;
-        private System.Windows.Forms.PictureBox overview_info;
-        private System.Windows.Forms.Panel overview_cardBackground;
-        private System.Windows.Forms.Panel overview_cardBorder;
-        private System.Windows.Forms.TextBox overview_description;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TextBox overview_author;
-        private System.Windows.Forms.TextBox overview_title;
-        private System.Windows.Forms.PictureBox overview_icon;
-        private System.Windows.Forms.PictureBox overview_juni;
-        private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Button overview_publish;
-        private System.Windows.Forms.ComboBox overview_size;
-        private System.Windows.Forms.ComboBox overview_diffC;
-        private System.Windows.Forms.ComboBox overview_diffB;
-        private System.Windows.Forms.ComboBox overview_diffA;
-        private System.Windows.Forms.ComboBox overview_catB;
-        private System.Windows.Forms.ComboBox overview_catA;
-        private System.Windows.Forms.ColorDialog overview_colorDialog;
-        private System.Windows.Forms.Panel overview_clothesPreview;
-        private System.Windows.Forms.Panel overview_skinPreview;
-        private System.Windows.Forms.Label overview_clothesLabel;
-        private System.Windows.Forms.Label overview_skinLabel;
-        private System.Windows.Forms.CheckBox overview_overlayCheck;
-        private System.Windows.Forms.Label overview_screenCount;
         private System.Windows.Forms.NumericUpDown worldIni_customObject;
         private System.Windows.Forms.NumericUpDown worldIni_screenY;
         private System.Windows.Forms.NumericUpDown worldIni_screenX;
@@ -2158,9 +1801,6 @@
         private System.Windows.Forms.ToolStripMenuItem editWithPaintToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editWithPaintNETToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editWithPhotoshopToolStripMenuItem;
-        private System.Windows.Forms.ContextMenuStrip contextMenu1;
-        private System.Windows.Forms.ToolStripMenuItem compressToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem compressAndUploadToKnyttlevelscomToolStripMenuItem;
         private System.Windows.Forms.Button tileset_delete;
         private System.Windows.Forms.Button tileset_rename;
         private System.Windows.Forms.Button tileset_new;
@@ -2260,5 +1900,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.MenuItem menuItem29;
         private System.Windows.Forms.CheckBox screen_checkBoxOverwrite;
+        private OverviewTab overviewTab1;
     }
 }

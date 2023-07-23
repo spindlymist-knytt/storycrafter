@@ -16,7 +16,7 @@ namespace Story_Crafter {
     public partial class EditorForm: Form {
         private ICSharpCode.AvalonEdit.TextEditor worldIni_avEdit;
 
-        OverviewTab overview;
+        //OverviewTab overview;
         ScreenTab screen;
         MapTab map;
         CutscenesTab cutscenes;
@@ -27,8 +27,14 @@ namespace Story_Crafter {
         ObjectsTab objects;
         WorldIniTab worldIni;
 
+        List<IEditorTab> tabs;
+
         public EditorForm() {
             InitializeComponent();
+
+            tabs = new List<IEditorTab>() {
+                this.overviewTab1,
+            };
 
             this.translucentPanel1.BackColor = Color.FromArgb(192, 255, 255, 255);
 
@@ -41,7 +47,10 @@ namespace Story_Crafter {
             Program.ChangingStory = true;
             this.Text = Program.OpenStory.Title + " - Story Crafter";
 
-            this.overview.StoryChanged();
+            foreach (IEditorTab tab in tabs) {
+                tab.StoryChanged();
+            }
+
             this.screen.StoryChanged();
             this.map.StoryChanged();
             this.cutscenes.StoryChanged();
@@ -63,7 +72,6 @@ namespace Story_Crafter {
                 return;
             }
 
-            this.overview = new OverviewTab(this);
             this.screen = new ScreenTab(this);
             this.map = new MapTab(this);
             this.cutscenes = new CutscenesTab(this);
@@ -95,8 +103,11 @@ namespace Story_Crafter {
         }
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e) {
+            if (tabControl1.SelectedIndex < tabs.Count) {
+                tabs[tabControl1.SelectedIndex].TabOpened();
+            }
+
             switch(tabControl1.SelectedIndex) {
-                case 0: this.overview.TabOpened(); break;
                 case 1: this.screen.TabOpened(); break;
                 case 2: this.map.TabOpened(); break;
                 case 3: this.cutscenes.TabOpened(); break;
@@ -111,7 +122,7 @@ namespace Story_Crafter {
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData) {
             switch(tabControl1.SelectedIndex) {
-                case 0: this.overview.ProcessCmdKey(ref msg, keyData); break;
+                //case 0: this.overview.ProcessCmdKey(ref msg, keyData); break;
                 case 1: this.screen.ProcessCmdKey(ref msg, keyData); break;
                 case 2: this.map.ProcessCmdKey(ref msg, keyData); break;
                 case 3: this.cutscenes.ProcessCmdKey(ref msg, keyData); break;
