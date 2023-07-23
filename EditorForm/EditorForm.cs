@@ -19,12 +19,8 @@ namespace Story_Crafter {
         //OverviewTab overview;
         ScreenTab screen;
         MapTab map;
-        CutscenesTab cutscenes;
         TilesetsTab tilesets;
         GradientsTab gradients;
-        MusicTab music;
-        AmbianceTab ambiance;
-        ObjectsTab objects;
         WorldIniTab worldIni;
 
         List<IEditorTab> tabs;
@@ -53,12 +49,8 @@ namespace Story_Crafter {
 
             this.screen.StoryChanged();
             this.map.StoryChanged();
-            this.cutscenes.StoryChanged();
             this.tilesets.StoryChanged();
             this.gradients.StoryChanged();
-            this.music.StoryChanged();
-            this.ambiance.StoryChanged();
-            this.objects.StoryChanged();
             this.worldIni.StoryChanged();
 
             GC.Collect();
@@ -74,12 +66,8 @@ namespace Story_Crafter {
 
             this.screen = new ScreenTab(this);
             this.map = new MapTab(this);
-            this.cutscenes = new CutscenesTab(this);
             this.tilesets = new TilesetsTab(this);
             this.gradients = new GradientsTab(this);
-            this.music = new MusicTab(this);
-            this.ambiance = new AmbianceTab(this);
-            this.objects = new ObjectsTab(this);
             this.worldIni = new WorldIniTab(this);
 
             StoryChanged();
@@ -110,13 +98,9 @@ namespace Story_Crafter {
             switch(tabControl1.SelectedIndex) {
                 case 1: this.screen.TabOpened(); break;
                 case 2: this.map.TabOpened(); break;
-                case 3: this.cutscenes.TabOpened(); break;
-                case 4: this.tilesets.TabOpened(); break;
-                case 5: this.gradients.TabOpened(); break;
-                case 6: this.music.TabOpened(); break;
-                case 7: this.ambiance.TabOpened(); break;
-                case 8: this.objects.TabOpened(); break;
-                case 9: this.worldIni.TabOpened(); break;
+                case 3: this.tilesets.TabOpened(); break;
+                case 4: this.gradients.TabOpened(); break;
+                case 5: this.worldIni.TabOpened(); break;
             }
         }
 
@@ -125,13 +109,9 @@ namespace Story_Crafter {
                 //case 0: this.overview.ProcessCmdKey(ref msg, keyData); break;
                 case 1: this.screen.ProcessCmdKey(ref msg, keyData); break;
                 case 2: this.map.ProcessCmdKey(ref msg, keyData); break;
-                case 3: this.cutscenes.ProcessCmdKey(ref msg, keyData); break;
-                case 4: this.tilesets.ProcessCmdKey(ref msg, keyData); break;
-                case 5: this.gradients.ProcessCmdKey(ref msg, keyData); break;
-                case 6: this.music.ProcessCmdKey(ref msg, keyData); break;
-                case 7: this.ambiance.ProcessCmdKey(ref msg, keyData); break;
-                case 8: this.objects.ProcessCmdKey(ref msg, keyData); break;
-                case 9: this.worldIni.ProcessCmdKey(ref msg, keyData); break;
+                case 3: this.tilesets.ProcessCmdKey(ref msg, keyData); break;
+                case 4: this.gradients.ProcessCmdKey(ref msg, keyData); break;
+                case 5: this.worldIni.ProcessCmdKey(ref msg, keyData); break;
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
