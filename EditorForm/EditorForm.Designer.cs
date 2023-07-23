@@ -91,10 +91,6 @@
             this.menuItem6 = new System.Windows.Forms.MenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.translucentPanel1 = new Story_Crafter.TranslucentPanel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.progressBarLabel = new System.Windows.Forms.Label();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.tabPageWorldINI = new System.Windows.Forms.TabPage();
             this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
             this.label22 = new System.Windows.Forms.Label();
@@ -125,59 +121,22 @@
             this.button8 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.map_showThumbs = new System.Windows.Forms.CheckBox();
-            this.map_mainView = new Story_Crafter.MapViewPanel();
             this.tabPageScreen = new System.Windows.Forms.TabPage();
-            this.screen_checkBoxOverwrite = new System.Windows.Forms.CheckBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.screen_buttonEditPattern = new System.Windows.Forms.Button();
-            this.screen_comboPatterns = new System.Windows.Forms.ComboBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.screen_ambiA = new System.Windows.Forms.NumericUpDown();
-            this.screen_ambiB = new System.Windows.Forms.NumericUpDown();
-            this.screen_music = new System.Windows.Forms.NumericUpDown();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.screen_brushY = new System.Windows.Forms.NumericUpDown();
-            this.screen_brushX = new System.Windows.Forms.NumericUpDown();
-            this.screen_gradient = new System.Windows.Forms.NumericUpDown();
-            this.screen_tilesetB = new System.Windows.Forms.NumericUpDown();
-            this.screen_tilesetA = new System.Windows.Forms.NumericUpDown();
-            this.screen_layer7Label = new System.Windows.Forms.Label();
-            this.screen_layer6Label = new System.Windows.Forms.Label();
-            this.screen_layer5Label = new System.Windows.Forms.Label();
-            this.screen_layer4Label = new System.Windows.Forms.Label();
-            this.screen_layer3Label = new System.Windows.Forms.Label();
-            this.screen_layer2Label = new System.Windows.Forms.Label();
-            this.screen_layer1Label = new System.Windows.Forms.Label();
-            this.screen_layer0Label = new System.Windows.Forms.Label();
-            this.screen_layer7 = new System.Windows.Forms.RadioButton();
-            this.screen_layer6 = new System.Windows.Forms.RadioButton();
-            this.screen_layer5 = new System.Windows.Forms.RadioButton();
-            this.screen_layer4 = new System.Windows.Forms.RadioButton();
-            this.screen_layer3 = new System.Windows.Forms.RadioButton();
-            this.screen_layer2 = new System.Windows.Forms.RadioButton();
-            this.screen_layer1 = new System.Windows.Forms.RadioButton();
-            this.screen_layer0 = new System.Windows.Forms.RadioButton();
-            this.screen_mainView = new Story_Crafter.Controls.CanvasPanel();
-            this.screen_tilesetViewB = new Story_Crafter.TilesetViewPanel();
-            this.screen_tilesetViewA = new Story_Crafter.TilesetViewPanel();
-            this.screen_objectList = new System.Windows.Forms.ListView();
-            this.screen_bankList = new System.Windows.Forms.ComboBox();
             this.tabPageOverview = new System.Windows.Forms.TabPage();
-            this.overviewTab1 = new Story_Crafter.OverviewTab();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.overviewTab1 = new Story_Crafter.OverviewTab();
+            this.map_mainView = new Story_Crafter.MapViewPanel();
+            this.translucentPanel1 = new Story_Crafter.TranslucentPanel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.progressBarLabel = new System.Windows.Forms.Label();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.screenTab1 = new Story_Crafter.ScreenTab();
             this.contextMenu2.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStrip4.SuspendLayout();
             this.contextMenuStrip3.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
-            this.translucentPanel1.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.tabPageWorldINI.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.worldIni_customObject)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.worldIni_screenY)).BeginInit();
@@ -187,21 +146,12 @@
             this.tabPageTilesets.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tileset_view)).BeginInit();
             this.tabPageMap.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.map_mainView)).BeginInit();
             this.tabPageScreen.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.screen_ambiA)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.screen_ambiB)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.screen_music)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.screen_brushY)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.screen_brushX)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.screen_gradient)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.screen_tilesetB)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.screen_tilesetA)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.screen_mainView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.screen_tilesetViewB)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.screen_tilesetViewA)).BeginInit();
             this.tabPageOverview.SuspendLayout();
             this.tabControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.map_mainView)).BeginInit();
+            this.translucentPanel1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // contextMenu2
@@ -648,44 +598,6 @@
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
             // 
-            // translucentPanel1
-            // 
-            this.translucentPanel1.BackColor = System.Drawing.Color.White;
-            this.translucentPanel1.Controls.Add(this.panel1);
-            this.translucentPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.translucentPanel1.Location = new System.Drawing.Point(0, 0);
-            this.translucentPanel1.Name = "translucentPanel1";
-            this.translucentPanel1.Size = new System.Drawing.Size(784, 556);
-            this.translucentPanel1.TabIndex = 10;
-            this.translucentPanel1.Visible = false;
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.progressBarLabel);
-            this.panel1.Controls.Add(this.progressBar1);
-            this.panel1.Location = new System.Drawing.Point(176, 204);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(433, 105);
-            this.panel1.TabIndex = 0;
-            // 
-            // progressBarLabel
-            // 
-            this.progressBarLabel.AutoSize = true;
-            this.progressBarLabel.Location = new System.Drawing.Point(22, 64);
-            this.progressBarLabel.Name = "progressBarLabel";
-            this.progressBarLabel.Size = new System.Drawing.Size(35, 13);
-            this.progressBarLabel.TabIndex = 1;
-            this.progressBarLabel.Text = "label1";
-            // 
-            // progressBar1
-            // 
-            this.progressBar1.Location = new System.Drawing.Point(22, 34);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(386, 23);
-            this.progressBar1.TabIndex = 0;
-            // 
             // tabPageWorldINI
             // 
             this.tabPageWorldINI.Controls.Add(this.elementHost1);
@@ -1014,502 +926,16 @@
             this.map_showThumbs.Text = "Show Thumbnails";
             this.map_showThumbs.UseVisualStyleBackColor = false;
             // 
-            // map_mainView
-            // 
-            this.map_mainView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.map_mainView.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("map_mainView.BackgroundImage")));
-            this.map_mainView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.map_mainView.Image = ((System.Drawing.Image)(resources.GetObject("map_mainView.Image")));
-            this.map_mainView.Location = new System.Drawing.Point(0, 10);
-            this.map_mainView.Name = "map_mainView";
-            this.map_mainView.ShowThumbs = false;
-            this.map_mainView.Size = new System.Drawing.Size(602, 482);
-            this.map_mainView.TabIndex = 5;
-            this.map_mainView.TabStop = false;
-            this.map_mainView.TheStory = null;
-            this.map_mainView.UpdateScreen = null;
-            this.map_mainView.UpdateStatus = null;
-            // 
             // tabPageScreen
             // 
-            this.tabPageScreen.Controls.Add(this.screen_checkBoxOverwrite);
-            this.tabPageScreen.Controls.Add(this.label1);
-            this.tabPageScreen.Controls.Add(this.screen_buttonEditPattern);
-            this.tabPageScreen.Controls.Add(this.screen_comboPatterns);
-            this.tabPageScreen.Controls.Add(this.label15);
-            this.tabPageScreen.Controls.Add(this.label14);
-            this.tabPageScreen.Controls.Add(this.label13);
-            this.tabPageScreen.Controls.Add(this.screen_ambiA);
-            this.tabPageScreen.Controls.Add(this.screen_ambiB);
-            this.tabPageScreen.Controls.Add(this.screen_music);
-            this.tabPageScreen.Controls.Add(this.label12);
-            this.tabPageScreen.Controls.Add(this.label11);
-            this.tabPageScreen.Controls.Add(this.label10);
-            this.tabPageScreen.Controls.Add(this.label9);
-            this.tabPageScreen.Controls.Add(this.screen_brushY);
-            this.tabPageScreen.Controls.Add(this.screen_brushX);
-            this.tabPageScreen.Controls.Add(this.screen_gradient);
-            this.tabPageScreen.Controls.Add(this.screen_tilesetB);
-            this.tabPageScreen.Controls.Add(this.screen_tilesetA);
-            this.tabPageScreen.Controls.Add(this.screen_layer7Label);
-            this.tabPageScreen.Controls.Add(this.screen_layer6Label);
-            this.tabPageScreen.Controls.Add(this.screen_layer5Label);
-            this.tabPageScreen.Controls.Add(this.screen_layer4Label);
-            this.tabPageScreen.Controls.Add(this.screen_layer3Label);
-            this.tabPageScreen.Controls.Add(this.screen_layer2Label);
-            this.tabPageScreen.Controls.Add(this.screen_layer1Label);
-            this.tabPageScreen.Controls.Add(this.screen_layer0Label);
-            this.tabPageScreen.Controls.Add(this.screen_layer7);
-            this.tabPageScreen.Controls.Add(this.screen_layer6);
-            this.tabPageScreen.Controls.Add(this.screen_layer5);
-            this.tabPageScreen.Controls.Add(this.screen_layer4);
-            this.tabPageScreen.Controls.Add(this.screen_layer3);
-            this.tabPageScreen.Controls.Add(this.screen_layer2);
-            this.tabPageScreen.Controls.Add(this.screen_layer1);
-            this.tabPageScreen.Controls.Add(this.screen_layer0);
-            this.tabPageScreen.Controls.Add(this.screen_mainView);
-            this.tabPageScreen.Controls.Add(this.screen_tilesetViewB);
-            this.tabPageScreen.Controls.Add(this.screen_tilesetViewA);
-            this.tabPageScreen.Controls.Add(this.screen_objectList);
-            this.tabPageScreen.Controls.Add(this.screen_bankList);
+            this.tabPageScreen.Controls.Add(this.screenTab1);
             this.tabPageScreen.Location = new System.Drawing.Point(4, 22);
+            this.tabPageScreen.Margin = new System.Windows.Forms.Padding(0);
             this.tabPageScreen.Name = "tabPageScreen";
-            this.tabPageScreen.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageScreen.Size = new System.Drawing.Size(776, 530);
             this.tabPageScreen.TabIndex = 1;
             this.tabPageScreen.Text = "Screen";
             this.tabPageScreen.UseVisualStyleBackColor = true;
-            // 
-            // screen_checkBoxOverwrite
-            // 
-            this.screen_checkBoxOverwrite.AutoSize = true;
-            this.screen_checkBoxOverwrite.Location = new System.Drawing.Point(480, 246);
-            this.screen_checkBoxOverwrite.Name = "screen_checkBoxOverwrite";
-            this.screen_checkBoxOverwrite.Size = new System.Drawing.Size(122, 17);
-            this.screen_checkBoxOverwrite.TabIndex = 46;
-            this.screen_checkBoxOverwrite.Text = "Empty tiles overwrite";
-            this.screen_checkBoxOverwrite.UseVisualStyleBackColor = true;
-            this.screen_checkBoxOverwrite.Visible = false;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(414, 247);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 13);
-            this.label1.TabIndex = 45;
-            this.label1.Text = "Patterns";
-            // 
-            // screen_buttonEditPattern
-            // 
-            this.screen_buttonEditPattern.Location = new System.Drawing.Point(566, 265);
-            this.screen_buttonEditPattern.Name = "screen_buttonEditPattern";
-            this.screen_buttonEditPattern.Size = new System.Drawing.Size(40, 23);
-            this.screen_buttonEditPattern.TabIndex = 44;
-            this.screen_buttonEditPattern.Text = "New";
-            this.screen_buttonEditPattern.UseVisualStyleBackColor = true;
-            // 
-            // screen_comboPatterns
-            // 
-            this.screen_comboPatterns.FormattingEnabled = true;
-            this.screen_comboPatterns.Location = new System.Drawing.Point(416, 266);
-            this.screen_comboPatterns.Name = "screen_comboPatterns";
-            this.screen_comboPatterns.Size = new System.Drawing.Size(144, 21);
-            this.screen_comboPatterns.TabIndex = 43;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(745, 247);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(35, 13);
-            this.label15.TabIndex = 35;
-            this.label15.Text = "Music";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(677, 247);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(64, 13);
-            this.label14.TabIndex = 34;
-            this.label14.Text = "Ambiance B";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(608, 247);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(64, 13);
-            this.label13.TabIndex = 33;
-            this.label13.Text = "Ambiance A";
-            // 
-            // screen_ambiA
-            // 
-            this.screen_ambiA.Location = new System.Drawing.Point(612, 266);
-            this.screen_ambiA.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.screen_ambiA.Name = "screen_ambiA";
-            this.screen_ambiA.Size = new System.Drawing.Size(56, 20);
-            this.screen_ambiA.TabIndex = 32;
-            // 
-            // screen_ambiB
-            // 
-            this.screen_ambiB.Location = new System.Drawing.Point(680, 266);
-            this.screen_ambiB.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.screen_ambiB.Name = "screen_ambiB";
-            this.screen_ambiB.Size = new System.Drawing.Size(56, 20);
-            this.screen_ambiB.TabIndex = 31;
-            // 
-            // screen_music
-            // 
-            this.screen_music.Location = new System.Drawing.Point(748, 266);
-            this.screen_music.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.screen_music.Name = "screen_music";
-            this.screen_music.Size = new System.Drawing.Size(40, 20);
-            this.screen_music.TabIndex = 30;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(321, 247);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(55, 13);
-            this.label12.TabIndex = 29;
-            this.label12.Text = "Brush size";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(270, 247);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(47, 13);
-            this.label11.TabIndex = 28;
-            this.label11.Text = "Gradient";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(216, 247);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(48, 13);
-            this.label10.TabIndex = 27;
-            this.label10.Text = "Tileset B";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(163, 247);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(48, 13);
-            this.label9.TabIndex = 26;
-            this.label9.Text = "Tileset A";
-            // 
-            // screen_brushY
-            // 
-            this.screen_brushY.Location = new System.Drawing.Point(370, 266);
-            this.screen_brushY.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.screen_brushY.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.screen_brushY.Name = "screen_brushY";
-            this.screen_brushY.Size = new System.Drawing.Size(40, 20);
-            this.screen_brushY.TabIndex = 25;
-            this.screen_brushY.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // screen_brushX
-            // 
-            this.screen_brushX.Location = new System.Drawing.Point(324, 266);
-            this.screen_brushX.Maximum = new decimal(new int[] {
-            25,
-            0,
-            0,
-            0});
-            this.screen_brushX.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.screen_brushX.Name = "screen_brushX";
-            this.screen_brushX.Size = new System.Drawing.Size(40, 20);
-            this.screen_brushX.TabIndex = 24;
-            this.screen_brushX.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // screen_gradient
-            // 
-            this.screen_gradient.Location = new System.Drawing.Point(272, 266);
-            this.screen_gradient.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.screen_gradient.Name = "screen_gradient";
-            this.screen_gradient.Size = new System.Drawing.Size(40, 20);
-            this.screen_gradient.TabIndex = 23;
-            // 
-            // screen_tilesetB
-            // 
-            this.screen_tilesetB.Location = new System.Drawing.Point(220, 266);
-            this.screen_tilesetB.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.screen_tilesetB.Name = "screen_tilesetB";
-            this.screen_tilesetB.Size = new System.Drawing.Size(40, 20);
-            this.screen_tilesetB.TabIndex = 22;
-            // 
-            // screen_tilesetA
-            // 
-            this.screen_tilesetA.Location = new System.Drawing.Point(168, 266);
-            this.screen_tilesetA.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.screen_tilesetA.Name = "screen_tilesetA";
-            this.screen_tilesetA.Size = new System.Drawing.Size(40, 20);
-            this.screen_tilesetA.TabIndex = 21;
-            // 
-            // screen_layer7Label
-            // 
-            this.screen_layer7Label.AutoSize = true;
-            this.screen_layer7Label.Location = new System.Drawing.Point(140, 269);
-            this.screen_layer7Label.Name = "screen_layer7Label";
-            this.screen_layer7Label.Size = new System.Drawing.Size(13, 13);
-            this.screen_layer7Label.TabIndex = 20;
-            this.screen_layer7Label.Text = "7";
-            // 
-            // screen_layer6Label
-            // 
-            this.screen_layer6Label.AutoSize = true;
-            this.screen_layer6Label.Location = new System.Drawing.Point(120, 269);
-            this.screen_layer6Label.Name = "screen_layer6Label";
-            this.screen_layer6Label.Size = new System.Drawing.Size(13, 13);
-            this.screen_layer6Label.TabIndex = 19;
-            this.screen_layer6Label.Text = "6";
-            // 
-            // screen_layer5Label
-            // 
-            this.screen_layer5Label.AutoSize = true;
-            this.screen_layer5Label.Location = new System.Drawing.Point(100, 269);
-            this.screen_layer5Label.Name = "screen_layer5Label";
-            this.screen_layer5Label.Size = new System.Drawing.Size(13, 13);
-            this.screen_layer5Label.TabIndex = 18;
-            this.screen_layer5Label.Text = "5";
-            // 
-            // screen_layer4Label
-            // 
-            this.screen_layer4Label.AutoSize = true;
-            this.screen_layer4Label.Location = new System.Drawing.Point(80, 269);
-            this.screen_layer4Label.Name = "screen_layer4Label";
-            this.screen_layer4Label.Size = new System.Drawing.Size(13, 13);
-            this.screen_layer4Label.TabIndex = 17;
-            this.screen_layer4Label.Text = "4";
-            // 
-            // screen_layer3Label
-            // 
-            this.screen_layer3Label.AutoSize = true;
-            this.screen_layer3Label.Location = new System.Drawing.Point(60, 269);
-            this.screen_layer3Label.Name = "screen_layer3Label";
-            this.screen_layer3Label.Size = new System.Drawing.Size(13, 13);
-            this.screen_layer3Label.TabIndex = 16;
-            this.screen_layer3Label.Text = "3";
-            // 
-            // screen_layer2Label
-            // 
-            this.screen_layer2Label.AutoSize = true;
-            this.screen_layer2Label.Location = new System.Drawing.Point(40, 269);
-            this.screen_layer2Label.Name = "screen_layer2Label";
-            this.screen_layer2Label.Size = new System.Drawing.Size(13, 13);
-            this.screen_layer2Label.TabIndex = 15;
-            this.screen_layer2Label.Text = "2";
-            // 
-            // screen_layer1Label
-            // 
-            this.screen_layer1Label.AutoSize = true;
-            this.screen_layer1Label.Location = new System.Drawing.Point(20, 269);
-            this.screen_layer1Label.Name = "screen_layer1Label";
-            this.screen_layer1Label.Size = new System.Drawing.Size(13, 13);
-            this.screen_layer1Label.TabIndex = 14;
-            this.screen_layer1Label.Text = "1";
-            // 
-            // screen_layer0Label
-            // 
-            this.screen_layer0Label.AutoSize = true;
-            this.screen_layer0Label.Location = new System.Drawing.Point(0, 269);
-            this.screen_layer0Label.Name = "screen_layer0Label";
-            this.screen_layer0Label.Size = new System.Drawing.Size(13, 13);
-            this.screen_layer0Label.TabIndex = 13;
-            this.screen_layer0Label.Text = "0";
-            // 
-            // screen_layer7
-            // 
-            this.screen_layer7.AutoSize = true;
-            this.screen_layer7.Location = new System.Drawing.Point(140, 253);
-            this.screen_layer7.Name = "screen_layer7";
-            this.screen_layer7.Size = new System.Drawing.Size(14, 13);
-            this.screen_layer7.TabIndex = 12;
-            this.screen_layer7.Tag = "";
-            this.screen_layer7.UseVisualStyleBackColor = true;
-            // 
-            // screen_layer6
-            // 
-            this.screen_layer6.AutoSize = true;
-            this.screen_layer6.Location = new System.Drawing.Point(120, 253);
-            this.screen_layer6.Name = "screen_layer6";
-            this.screen_layer6.Size = new System.Drawing.Size(14, 13);
-            this.screen_layer6.TabIndex = 11;
-            this.screen_layer6.Tag = "";
-            this.screen_layer6.UseVisualStyleBackColor = true;
-            // 
-            // screen_layer5
-            // 
-            this.screen_layer5.AutoSize = true;
-            this.screen_layer5.Location = new System.Drawing.Point(100, 253);
-            this.screen_layer5.Name = "screen_layer5";
-            this.screen_layer5.Size = new System.Drawing.Size(14, 13);
-            this.screen_layer5.TabIndex = 10;
-            this.screen_layer5.Tag = "";
-            this.screen_layer5.UseVisualStyleBackColor = true;
-            // 
-            // screen_layer4
-            // 
-            this.screen_layer4.AutoSize = true;
-            this.screen_layer4.Location = new System.Drawing.Point(80, 253);
-            this.screen_layer4.Name = "screen_layer4";
-            this.screen_layer4.Size = new System.Drawing.Size(14, 13);
-            this.screen_layer4.TabIndex = 9;
-            this.screen_layer4.Tag = "";
-            this.screen_layer4.UseVisualStyleBackColor = true;
-            // 
-            // screen_layer3
-            // 
-            this.screen_layer3.AutoSize = true;
-            this.screen_layer3.Checked = true;
-            this.screen_layer3.Location = new System.Drawing.Point(60, 253);
-            this.screen_layer3.Name = "screen_layer3";
-            this.screen_layer3.Size = new System.Drawing.Size(14, 13);
-            this.screen_layer3.TabIndex = 8;
-            this.screen_layer3.TabStop = true;
-            this.screen_layer3.Tag = "";
-            this.screen_layer3.UseVisualStyleBackColor = true;
-            // 
-            // screen_layer2
-            // 
-            this.screen_layer2.AutoSize = true;
-            this.screen_layer2.Location = new System.Drawing.Point(40, 253);
-            this.screen_layer2.Name = "screen_layer2";
-            this.screen_layer2.Size = new System.Drawing.Size(14, 13);
-            this.screen_layer2.TabIndex = 7;
-            this.screen_layer2.Tag = "";
-            this.screen_layer2.UseVisualStyleBackColor = true;
-            // 
-            // screen_layer1
-            // 
-            this.screen_layer1.AutoSize = true;
-            this.screen_layer1.Location = new System.Drawing.Point(20, 253);
-            this.screen_layer1.Name = "screen_layer1";
-            this.screen_layer1.Size = new System.Drawing.Size(14, 13);
-            this.screen_layer1.TabIndex = 6;
-            this.screen_layer1.Tag = "";
-            this.screen_layer1.UseVisualStyleBackColor = true;
-            // 
-            // screen_layer0
-            // 
-            this.screen_layer0.AutoSize = true;
-            this.screen_layer0.Location = new System.Drawing.Point(0, 253);
-            this.screen_layer0.Name = "screen_layer0";
-            this.screen_layer0.Size = new System.Drawing.Size(14, 13);
-            this.screen_layer0.TabIndex = 5;
-            this.screen_layer0.Tag = "";
-            this.screen_layer0.UseVisualStyleBackColor = true;
-            // 
-            // screen_mainView
-            // 
-            this.screen_mainView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.screen_mainView.GetBrushSize = null;
-            this.screen_mainView.GetCanvas = null;
-            this.screen_mainView.GetGradient = null;
-            this.screen_mainView.GetLayer = null;
-            this.screen_mainView.GetObject = null;
-            this.screen_mainView.GetSelection = null;
-            this.screen_mainView.GetTilesetA = null;
-            this.screen_mainView.GetTilesetB = null;
-            this.screen_mainView.GetTilesetIndex = null;
-            this.screen_mainView.GetTool = null;
-            this.screen_mainView.Location = new System.Drawing.Point(0, 2);
-            this.screen_mainView.Name = "screen_mainView";
-            this.screen_mainView.Resizable = false;
-            this.screen_mainView.Size = new System.Drawing.Size(602, 242);
-            this.screen_mainView.TabIndex = 42;
-            this.screen_mainView.TabStop = false;
-            // 
-            // screen_tilesetViewB
-            // 
-            this.screen_tilesetViewB.Active = false;
-            this.screen_tilesetViewB.BackgroundImage = global::Story_Crafter.Properties.Resources.checkers;
-            this.screen_tilesetViewB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.screen_tilesetViewB.Location = new System.Drawing.Point(402, 292);
-            this.screen_tilesetViewB.Name = "screen_tilesetViewB";
-            this.screen_tilesetViewB.Size = new System.Drawing.Size(386, 204);
-            this.screen_tilesetViewB.TabIndex = 41;
-            this.screen_tilesetViewB.TabStop = false;
-            // 
-            // screen_tilesetViewA
-            // 
-            this.screen_tilesetViewA.Active = false;
-            this.screen_tilesetViewA.BackgroundImage = global::Story_Crafter.Properties.Resources.checkers;
-            this.screen_tilesetViewA.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.screen_tilesetViewA.Location = new System.Drawing.Point(0, 292);
-            this.screen_tilesetViewA.Name = "screen_tilesetViewA";
-            this.screen_tilesetViewA.Size = new System.Drawing.Size(386, 204);
-            this.screen_tilesetViewA.TabIndex = 40;
-            this.screen_tilesetViewA.TabStop = false;
-            // 
-            // screen_objectList
-            // 
-            this.screen_objectList.HideSelection = false;
-            this.screen_objectList.Location = new System.Drawing.Point(610, 30);
-            this.screen_objectList.MultiSelect = false;
-            this.screen_objectList.Name = "screen_objectList";
-            this.screen_objectList.Size = new System.Drawing.Size(178, 214);
-            this.screen_objectList.TabIndex = 2;
-            this.screen_objectList.UseCompatibleStateImageBehavior = false;
-            // 
-            // screen_bankList
-            // 
-            this.screen_bankList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.screen_bankList.FormattingEnabled = true;
-            this.screen_bankList.Location = new System.Drawing.Point(610, 2);
-            this.screen_bankList.Name = "screen_bankList";
-            this.screen_bankList.Size = new System.Drawing.Size(178, 21);
-            this.screen_bankList.TabIndex = 1;
             // 
             // tabPageOverview
             // 
@@ -1521,15 +947,6 @@
             this.tabPageOverview.TabIndex = 0;
             this.tabPageOverview.Text = "Overview";
             this.tabPageOverview.UseVisualStyleBackColor = true;
-            // 
-            // overviewTab1
-            // 
-            this.overviewTab1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.overviewTab1.Location = new System.Drawing.Point(3, 3);
-            this.overviewTab1.Margin = new System.Windows.Forms.Padding(0);
-            this.overviewTab1.Name = "overviewTab1";
-            this.overviewTab1.Size = new System.Drawing.Size(770, 524);
-            this.overviewTab1.TabIndex = 0;
             // 
             // tabControl1
             // 
@@ -1548,6 +965,79 @@
             this.tabControl1.Size = new System.Drawing.Size(784, 556);
             this.tabControl1.TabIndex = 0;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
+            // 
+            // overviewTab1
+            // 
+            this.overviewTab1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.overviewTab1.Location = new System.Drawing.Point(3, 3);
+            this.overviewTab1.Margin = new System.Windows.Forms.Padding(0);
+            this.overviewTab1.Name = "overviewTab1";
+            this.overviewTab1.Size = new System.Drawing.Size(770, 524);
+            this.overviewTab1.TabIndex = 0;
+            // 
+            // map_mainView
+            // 
+            this.map_mainView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.map_mainView.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("map_mainView.BackgroundImage")));
+            this.map_mainView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.map_mainView.Image = ((System.Drawing.Image)(resources.GetObject("map_mainView.Image")));
+            this.map_mainView.Location = new System.Drawing.Point(0, 10);
+            this.map_mainView.Name = "map_mainView";
+            this.map_mainView.ShowThumbs = false;
+            this.map_mainView.Size = new System.Drawing.Size(602, 482);
+            this.map_mainView.TabIndex = 5;
+            this.map_mainView.TabStop = false;
+            this.map_mainView.TheStory = null;
+            this.map_mainView.UpdateScreen = null;
+            this.map_mainView.UpdateStatus = null;
+            // 
+            // translucentPanel1
+            // 
+            this.translucentPanel1.BackColor = System.Drawing.Color.White;
+            this.translucentPanel1.Controls.Add(this.panel1);
+            this.translucentPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.translucentPanel1.Location = new System.Drawing.Point(0, 0);
+            this.translucentPanel1.Name = "translucentPanel1";
+            this.translucentPanel1.Size = new System.Drawing.Size(784, 556);
+            this.translucentPanel1.TabIndex = 10;
+            this.translucentPanel1.Visible = false;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.progressBarLabel);
+            this.panel1.Controls.Add(this.progressBar1);
+            this.panel1.Location = new System.Drawing.Point(176, 204);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(433, 105);
+            this.panel1.TabIndex = 0;
+            // 
+            // progressBarLabel
+            // 
+            this.progressBarLabel.AutoSize = true;
+            this.progressBarLabel.Location = new System.Drawing.Point(22, 64);
+            this.progressBarLabel.Name = "progressBarLabel";
+            this.progressBarLabel.Size = new System.Drawing.Size(35, 13);
+            this.progressBarLabel.TabIndex = 1;
+            this.progressBarLabel.Text = "label1";
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(22, 34);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(386, 23);
+            this.progressBar1.TabIndex = 0;
+            // 
+            // screenTab1
+            // 
+            this.screenTab1.CurrentToolIndex = 0;
+            this.screenTab1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.screenTab1.Location = new System.Drawing.Point(0, 0);
+            this.screenTab1.Margin = new System.Windows.Forms.Padding(0);
+            this.screenTab1.Name = "screenTab1";
+            this.screenTab1.Size = new System.Drawing.Size(776, 530);
+            this.screenTab1.TabIndex = 0;
             // 
             // EditorForm
             // 
@@ -1570,9 +1060,6 @@
             this.contextMenuStrip2.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            this.translucentPanel1.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.tabPageWorldINI.ResumeLayout(false);
             this.tabPageWorldINI.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.worldIni_customObject)).EndInit();
@@ -1585,22 +1072,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.tileset_view)).EndInit();
             this.tabPageMap.ResumeLayout(false);
             this.tabPageMap.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.map_mainView)).EndInit();
             this.tabPageScreen.ResumeLayout(false);
-            this.tabPageScreen.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.screen_ambiA)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.screen_ambiB)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.screen_music)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.screen_brushY)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.screen_brushX)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.screen_gradient)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.screen_tilesetB)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.screen_tilesetA)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.screen_mainView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.screen_tilesetViewB)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.screen_tilesetViewA)).EndInit();
             this.tabPageOverview.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.map_mainView)).EndInit();
+            this.translucentPanel1.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1709,48 +1187,9 @@
         private System.Windows.Forms.CheckBox map_showThumbs;
         private MapViewPanel map_mainView;
         private System.Windows.Forms.TabPage tabPageScreen;
-        private System.Windows.Forms.CheckBox screen_checkBoxOverwrite;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button screen_buttonEditPattern;
-        private System.Windows.Forms.ComboBox screen_comboPatterns;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.NumericUpDown screen_ambiA;
-        private System.Windows.Forms.NumericUpDown screen_ambiB;
-        private System.Windows.Forms.NumericUpDown screen_music;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.NumericUpDown screen_brushY;
-        private System.Windows.Forms.NumericUpDown screen_brushX;
-        private System.Windows.Forms.NumericUpDown screen_gradient;
-        private System.Windows.Forms.NumericUpDown screen_tilesetB;
-        private System.Windows.Forms.NumericUpDown screen_tilesetA;
-        private System.Windows.Forms.Label screen_layer7Label;
-        private System.Windows.Forms.Label screen_layer6Label;
-        private System.Windows.Forms.Label screen_layer5Label;
-        private System.Windows.Forms.Label screen_layer4Label;
-        private System.Windows.Forms.Label screen_layer3Label;
-        private System.Windows.Forms.Label screen_layer2Label;
-        private System.Windows.Forms.Label screen_layer1Label;
-        private System.Windows.Forms.Label screen_layer0Label;
-        private System.Windows.Forms.RadioButton screen_layer7;
-        private System.Windows.Forms.RadioButton screen_layer6;
-        private System.Windows.Forms.RadioButton screen_layer5;
-        private System.Windows.Forms.RadioButton screen_layer4;
-        private System.Windows.Forms.RadioButton screen_layer3;
-        private System.Windows.Forms.RadioButton screen_layer2;
-        private System.Windows.Forms.RadioButton screen_layer1;
-        private System.Windows.Forms.RadioButton screen_layer0;
-        private Controls.CanvasPanel screen_mainView;
-        private TilesetViewPanel screen_tilesetViewB;
-        private TilesetViewPanel screen_tilesetViewA;
-        private System.Windows.Forms.ListView screen_objectList;
-        private System.Windows.Forms.ComboBox screen_bankList;
         private System.Windows.Forms.TabPage tabPageOverview;
         private OverviewTab overviewTab1;
         private System.Windows.Forms.TabControl tabControl1;
+        private ScreenTab screenTab1;
     }
 }

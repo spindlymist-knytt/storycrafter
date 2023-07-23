@@ -6,7 +6,7 @@ using System.Text;
 using System.Windows.Forms;
 
 namespace Story_Crafter {
-    partial class OverviewTab : UserControl {
+    partial class OverviewTab {
         private Label overview_screenCount;
         private CheckBox overview_overlayCheck;
         private Panel overview_clothesPreview;

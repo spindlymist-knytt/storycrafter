@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Story_Crafter {
     interface IEditorTab {
-
-        void StoryChanged();
         void TabOpened();
-
+        void StoryChanged();
+        void ScreenChanged();
     }
 }
