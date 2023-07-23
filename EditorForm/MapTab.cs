@@ -22,7 +22,7 @@ namespace Story_Crafter {
 
                 form.map_mainView.TheStory = Program.OpenStory;
                 form.map_mainView.UpdateScreen += delegate (int x, int y) {
-                    parent.screen.ChangeScreen(x, y);
+                    form.ChangeScreen(x, y);
                 };
                 form.map_mainView.UpdateStatus += delegate (int x, int y) {
                     form.toolStripStatusLabel1.Text = "x" + x + ", y" + y;
@@ -44,7 +44,7 @@ namespace Story_Crafter {
                     int activeX = Program.ActiveScreen.X;
                     int activeY = Program.ActiveScreen.Y;
                     form.map_mainView.ConfirmPaste();
-                    form.screen.ChangeScreen(activeX, activeY);
+                    form.ChangeScreen(activeX, activeY);
                     form.map_mainView.DrawMap(); // TODO remove redundant redraw
                     ((Control)sender).Enabled = false;
                     form.button9.Enabled = false;

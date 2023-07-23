@@ -68,6 +68,9 @@ namespace Story_Crafter {
         public void TabOpened() {
         }
 
+        public void ScreenChanged() {
+        }
+
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData) {
             return false;
         }

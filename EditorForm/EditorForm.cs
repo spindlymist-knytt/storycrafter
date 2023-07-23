@@ -16,8 +16,6 @@ namespace Story_Crafter {
     public partial class EditorForm: Form {
         private ICSharpCode.AvalonEdit.TextEditor worldIni_avEdit;
 
-        //OverviewTab overview;
-        ScreenTab screen;
         MapTab map;
         TilesetsTab tilesets;
         GradientsTab gradients;
@@ -30,6 +28,7 @@ namespace Story_Crafter {
 
             tabs = new List<IEditorTab>() {
                 this.overviewTab1,
+                this.screenTab1,
             };
 
             this.translucentPanel1.BackColor = Color.FromArgb(192, 255, 255, 255);
@@ -47,7 +46,6 @@ namespace Story_Crafter {
                 tab.StoryChanged();
             }
 
-            this.screen.StoryChanged();
             this.map.StoryChanged();
             this.tilesets.StoryChanged();
             this.gradients.StoryChanged();
@@ -64,7 +62,6 @@ namespace Story_Crafter {
                 return;
             }
 
-            this.screen = new ScreenTab(this);
             this.map = new MapTab(this);
             this.tilesets = new TilesetsTab(this);
             this.gradients = new GradientsTab(this);
@@ -75,7 +72,7 @@ namespace Story_Crafter {
 
         private void menuItem2_Click(object sender, EventArgs e) {
             if(Program.Preferences.ShowDialog() == DialogResult.OK) {
-                this.screen.ProfileChanged();
+                //this.screen.ProfileChanged();
             }
         }
 
@@ -84,10 +81,10 @@ namespace Story_Crafter {
         }
 
         private void menuTools_Click(object sender, EventArgs e) {
-            MenuItem m = (MenuItem)sender;
-            menuTools.MenuItems[screen.CurrentToolIndex].Checked = false;
-            m.Checked = true;
-            screen.CurrentToolIndex = m.Index;
+            //MenuItem m = (MenuItem)sender;
+            //menuTools.MenuItems[screen.CurrentToolIndex].Checked = false;
+            //m.Checked = true;
+            //screen.CurrentToolIndex = m.Index;
         }
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e) {
@@ -96,7 +93,6 @@ namespace Story_Crafter {
             }
 
             switch(tabControl1.SelectedIndex) {
-                case 1: this.screen.TabOpened(); break;
                 case 2: this.map.TabOpened(); break;
                 case 3: this.tilesets.TabOpened(); break;
                 case 4: this.gradients.TabOpened(); break;
@@ -106,8 +102,6 @@ namespace Story_Crafter {
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData) {
             switch(tabControl1.SelectedIndex) {
-                //case 0: this.overview.ProcessCmdKey(ref msg, keyData); break;
-                case 1: this.screen.ProcessCmdKey(ref msg, keyData); break;
                 case 2: this.map.ProcessCmdKey(ref msg, keyData); break;
                 case 3: this.tilesets.ProcessCmdKey(ref msg, keyData); break;
                 case 4: this.gradients.ProcessCmdKey(ref msg, keyData); break;
@@ -128,6 +122,13 @@ namespace Story_Crafter {
 
         public string GetWorldINIText() {
             return this.worldIni_avEdit.Text;
+        }
+
+        public void ChangeScreen(int x, int y) {
+            Program.OpenStory.ChangeScreen(x, y);
+            foreach (IEditorTab tab in tabs) {
+                tab.ScreenChanged();
+            }
         }
     }
 }
