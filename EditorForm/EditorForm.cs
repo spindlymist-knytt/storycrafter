@@ -16,7 +16,6 @@ namespace Story_Crafter {
     public partial class EditorForm: Form {
         private ICSharpCode.AvalonEdit.TextEditor worldIni_avEdit;
 
-        MapTab map;
         TilesetsTab tilesets;
         GradientsTab gradients;
         WorldIniTab worldIni;
@@ -29,9 +28,8 @@ namespace Story_Crafter {
             tabs = new List<IEditorTab>() {
                 this.overviewTab1,
                 this.screenTab1,
+                this.mapTab1,
             };
-
-            this.translucentPanel1.BackColor = Color.FromArgb(192, 255, 255, 255);
 
             this.worldIni_avEdit = new ICSharpCode.AvalonEdit.TextEditor();
             this.worldIni_avEdit.FontFamily = new System.Windows.Media.FontFamily("Courier New");
@@ -46,7 +44,6 @@ namespace Story_Crafter {
                 tab.StoryChanged();
             }
 
-            this.map.StoryChanged();
             this.tilesets.StoryChanged();
             this.gradients.StoryChanged();
             this.worldIni.StoryChanged();
@@ -62,7 +59,6 @@ namespace Story_Crafter {
                 return;
             }
 
-            this.map = new MapTab(this);
             this.tilesets = new TilesetsTab(this);
             this.gradients = new GradientsTab(this);
             this.worldIni = new WorldIniTab(this);
@@ -93,7 +89,6 @@ namespace Story_Crafter {
             }
 
             switch(tabControl1.SelectedIndex) {
-                case 2: this.map.TabOpened(); break;
                 case 3: this.tilesets.TabOpened(); break;
                 case 4: this.gradients.TabOpened(); break;
                 case 5: this.worldIni.TabOpened(); break;
@@ -102,7 +97,6 @@ namespace Story_Crafter {
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData) {
             switch(tabControl1.SelectedIndex) {
-                case 2: this.map.ProcessCmdKey(ref msg, keyData); break;
                 case 3: this.tilesets.ProcessCmdKey(ref msg, keyData); break;
                 case 4: this.gradients.ProcessCmdKey(ref msg, keyData); break;
                 case 5: this.worldIni.ProcessCmdKey(ref msg, keyData); break;

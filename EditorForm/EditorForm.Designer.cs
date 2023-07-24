@@ -24,7 +24,6 @@
         /// </summary>
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditorForm));
             this.contextMenu2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.replaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -117,20 +116,12 @@
             this.tileset_view = new System.Windows.Forms.PictureBox();
             this.tileset_list = new System.Windows.Forms.ListView();
             this.tabPageMap = new System.Windows.Forms.TabPage();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.map_showThumbs = new System.Windows.Forms.CheckBox();
             this.tabPageScreen = new System.Windows.Forms.TabPage();
             this.tabPageOverview = new System.Windows.Forms.TabPage();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.overviewTab1 = new Story_Crafter.OverviewTab();
-            this.map_mainView = new Story_Crafter.MapViewPanel();
-            this.translucentPanel1 = new Story_Crafter.TranslucentPanel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.progressBarLabel = new System.Windows.Forms.Label();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.screenTab1 = new Story_Crafter.ScreenTab();
+            this.mapTab1 = new Story_Crafter.MapTab();
             this.contextMenu2.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStrip4.SuspendLayout();
@@ -149,9 +140,6 @@
             this.tabPageScreen.SuspendLayout();
             this.tabPageOverview.SuspendLayout();
             this.tabControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.map_mainView)).BeginInit();
-            this.translucentPanel1.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // contextMenu2
@@ -874,57 +862,13 @@
             // 
             // tabPageMap
             // 
-            this.tabPageMap.Controls.Add(this.button9);
-            this.tabPageMap.Controls.Add(this.button8);
-            this.tabPageMap.Controls.Add(this.button7);
-            this.tabPageMap.Controls.Add(this.map_showThumbs);
-            this.tabPageMap.Controls.Add(this.map_mainView);
+            this.tabPageMap.Controls.Add(this.mapTab1);
             this.tabPageMap.Location = new System.Drawing.Point(4, 22);
             this.tabPageMap.Name = "tabPageMap";
             this.tabPageMap.Size = new System.Drawing.Size(776, 530);
             this.tabPageMap.TabIndex = 2;
             this.tabPageMap.Text = "Map";
             this.tabPageMap.UseVisualStyleBackColor = true;
-            // 
-            // button9
-            // 
-            this.button9.Enabled = false;
-            this.button9.Location = new System.Drawing.Point(696, 39);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(82, 23);
-            this.button9.TabIndex = 8;
-            this.button9.Text = "Cancel";
-            this.button9.UseVisualStyleBackColor = true;
-            // 
-            // button8
-            // 
-            this.button8.Enabled = false;
-            this.button8.Location = new System.Drawing.Point(608, 39);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(82, 23);
-            this.button8.TabIndex = 7;
-            this.button8.Text = "Confirm";
-            this.button8.UseVisualStyleBackColor = true;
-            // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(608, 10);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(170, 23);
-            this.button7.TabIndex = 6;
-            this.button7.Text = "Import Screens";
-            this.button7.UseVisualStyleBackColor = true;
-            // 
-            // map_showThumbs
-            // 
-            this.map_showThumbs.AutoSize = true;
-            this.map_showThumbs.BackColor = System.Drawing.Color.Transparent;
-            this.map_showThumbs.Location = new System.Drawing.Point(606, 474);
-            this.map_showThumbs.Name = "map_showThumbs";
-            this.map_showThumbs.Size = new System.Drawing.Size(110, 17);
-            this.map_showThumbs.TabIndex = 4;
-            this.map_showThumbs.Text = "Show Thumbnails";
-            this.map_showThumbs.UseVisualStyleBackColor = false;
             // 
             // tabPageScreen
             // 
@@ -975,60 +919,6 @@
             this.overviewTab1.Size = new System.Drawing.Size(770, 524);
             this.overviewTab1.TabIndex = 0;
             // 
-            // map_mainView
-            // 
-            this.map_mainView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.map_mainView.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("map_mainView.BackgroundImage")));
-            this.map_mainView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.map_mainView.Image = ((System.Drawing.Image)(resources.GetObject("map_mainView.Image")));
-            this.map_mainView.Location = new System.Drawing.Point(0, 10);
-            this.map_mainView.Name = "map_mainView";
-            this.map_mainView.ShowThumbs = false;
-            this.map_mainView.Size = new System.Drawing.Size(602, 482);
-            this.map_mainView.TabIndex = 5;
-            this.map_mainView.TabStop = false;
-            this.map_mainView.TheStory = null;
-            this.map_mainView.UpdateScreen = null;
-            this.map_mainView.UpdateStatus = null;
-            // 
-            // translucentPanel1
-            // 
-            this.translucentPanel1.BackColor = System.Drawing.Color.White;
-            this.translucentPanel1.Controls.Add(this.panel1);
-            this.translucentPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.translucentPanel1.Location = new System.Drawing.Point(0, 0);
-            this.translucentPanel1.Name = "translucentPanel1";
-            this.translucentPanel1.Size = new System.Drawing.Size(784, 556);
-            this.translucentPanel1.TabIndex = 10;
-            this.translucentPanel1.Visible = false;
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.progressBarLabel);
-            this.panel1.Controls.Add(this.progressBar1);
-            this.panel1.Location = new System.Drawing.Point(176, 204);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(433, 105);
-            this.panel1.TabIndex = 0;
-            // 
-            // progressBarLabel
-            // 
-            this.progressBarLabel.AutoSize = true;
-            this.progressBarLabel.Location = new System.Drawing.Point(22, 64);
-            this.progressBarLabel.Name = "progressBarLabel";
-            this.progressBarLabel.Size = new System.Drawing.Size(35, 13);
-            this.progressBarLabel.TabIndex = 1;
-            this.progressBarLabel.Text = "label1";
-            // 
-            // progressBar1
-            // 
-            this.progressBar1.Location = new System.Drawing.Point(22, 34);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(386, 23);
-            this.progressBar1.TabIndex = 0;
-            // 
             // screenTab1
             // 
             this.screenTab1.CurrentToolIndex = 0;
@@ -1039,6 +929,15 @@
             this.screenTab1.Size = new System.Drawing.Size(776, 530);
             this.screenTab1.TabIndex = 0;
             // 
+            // mapTab1
+            // 
+            this.mapTab1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mapTab1.Location = new System.Drawing.Point(0, 0);
+            this.mapTab1.Margin = new System.Windows.Forms.Padding(0);
+            this.mapTab1.Name = "mapTab1";
+            this.mapTab1.Size = new System.Drawing.Size(776, 530);
+            this.mapTab1.TabIndex = 0;
+            // 
             // EditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1046,7 +945,6 @@
             this.ClientSize = new System.Drawing.Size(784, 556);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.translucentPanel1);
             this.MaximumSize = new System.Drawing.Size(9999, 9999);
             this.Menu = this.mainMenu1;
             this.MinimumSize = new System.Drawing.Size(800, 595);
@@ -1071,14 +969,9 @@
             this.tabPageTilesets.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tileset_view)).EndInit();
             this.tabPageMap.ResumeLayout(false);
-            this.tabPageMap.PerformLayout();
             this.tabPageScreen.ResumeLayout(false);
             this.tabPageOverview.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.map_mainView)).EndInit();
-            this.translucentPanel1.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1150,10 +1043,6 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripMenuItem selectAllToolStripMenuItem;
-        private TranslucentPanel translucentPanel1;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label progressBarLabel;
-        private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.MenuItem menuItem29;
         private System.Windows.Forms.TabPage tabPageWorldINI;
         private System.Windows.Forms.Integration.ElementHost elementHost1;
@@ -1181,15 +1070,11 @@
         private System.Windows.Forms.PictureBox tileset_view;
         private System.Windows.Forms.ListView tileset_list;
         private System.Windows.Forms.TabPage tabPageMap;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.CheckBox map_showThumbs;
-        private MapViewPanel map_mainView;
         private System.Windows.Forms.TabPage tabPageScreen;
         private System.Windows.Forms.TabPage tabPageOverview;
         private OverviewTab overviewTab1;
         private System.Windows.Forms.TabControl tabControl1;
         private ScreenTab screenTab1;
+        private MapTab mapTab1;
     }
 }
