@@ -33,16 +33,6 @@
             this.editWithPhotoshopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.convertToCustomObjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.contextMenuStrip4 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.dummyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.selectAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip3 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.chooseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -91,15 +81,6 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tabPageWorldINI = new System.Windows.Forms.TabPage();
-            this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.worldIni_goToCutsceneMusic = new System.Windows.Forms.Button();
-            this.worldIni_goToCurrentScreen = new System.Windows.Forms.Button();
-            this.worldIni_goToWorld = new System.Windows.Forms.Button();
-            this.worldIni_customObject = new System.Windows.Forms.NumericUpDown();
-            this.worldIni_screenY = new System.Windows.Forms.NumericUpDown();
-            this.worldIni_screenX = new System.Windows.Forms.NumericUpDown();
             this.tabPageGradients = new System.Windows.Forms.TabPage();
             this.tabPageTilesets = new System.Windows.Forms.TabPage();
             this.tabPageMap = new System.Windows.Forms.TabPage();
@@ -111,16 +92,13 @@
             this.mapTab1 = new Story_Crafter.MapTab();
             this.tilesetsTab1 = new Story_Crafter.TilesetsTab();
             this.gradientsTab1 = new Story_Crafter.GradientsTab();
+            this.worldIniTab1 = new Story_Crafter.WorldIniTab();
             this.contextMenu2.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
-            this.contextMenuStrip4.SuspendLayout();
             this.contextMenuStrip3.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.tabPageWorldINI.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.worldIni_customObject)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.worldIni_screenY)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.worldIni_screenX)).BeginInit();
             this.tabPageGradients.SuspendLayout();
             this.tabPageTilesets.SuspendLayout();
             this.tabPageMap.SuspendLayout();
@@ -193,73 +171,6 @@
             this.convertToCustomObjectToolStripMenuItem.Name = "convertToCustomObjectToolStripMenuItem";
             this.convertToCustomObjectToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this.convertToCustomObjectToolStripMenuItem.Text = "Selection to custom object";
-            // 
-            // contextMenuStrip4
-            // 
-            this.contextMenuStrip4.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem2,
-            this.toolStripMenuItem1,
-            this.toolStripSeparator4,
-            this.dummyToolStripMenuItem,
-            this.copyToolStripMenuItem,
-            this.toolStripMenuItem3,
-            this.pasteToolStripMenuItem,
-            this.toolStripSeparator5,
-            this.selectAllToolStripMenuItem});
-            this.contextMenuStrip4.Name = "contextMenuStrip4";
-            this.contextMenuStrip4.Size = new System.Drawing.Size(123, 170);
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(122, 22);
-            this.toolStripMenuItem2.Text = "Undo";
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(122, 22);
-            this.toolStripMenuItem1.Text = "Redo";
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(119, 6);
-            // 
-            // dummyToolStripMenuItem
-            // 
-            this.dummyToolStripMenuItem.Name = "dummyToolStripMenuItem";
-            this.dummyToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
-            this.dummyToolStripMenuItem.Text = "Cut";
-            // 
-            // copyToolStripMenuItem
-            // 
-            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
-            this.copyToolStripMenuItem.Text = "Copy";
-            // 
-            // toolStripMenuItem3
-            // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(122, 22);
-            this.toolStripMenuItem3.Text = "Paste";
-            // 
-            // pasteToolStripMenuItem
-            // 
-            this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
-            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
-            this.pasteToolStripMenuItem.Text = "Delete";
-            // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(119, 6);
-            // 
-            // selectAllToolStripMenuItem
-            // 
-            this.selectAllToolStripMenuItem.Name = "selectAllToolStripMenuItem";
-            this.selectAllToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
-            this.selectAllToolStripMenuItem.Text = "Select All";
             // 
             // contextMenuStrip3
             // 
@@ -566,137 +477,31 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 534);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 540);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(784, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(920, 22);
             this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // tabPageWorldINI
             // 
-            this.tabPageWorldINI.Controls.Add(this.elementHost1);
-            this.tabPageWorldINI.Controls.Add(this.label22);
-            this.tabPageWorldINI.Controls.Add(this.label21);
-            this.tabPageWorldINI.Controls.Add(this.worldIni_goToCutsceneMusic);
-            this.tabPageWorldINI.Controls.Add(this.worldIni_goToCurrentScreen);
-            this.tabPageWorldINI.Controls.Add(this.worldIni_goToWorld);
-            this.tabPageWorldINI.Controls.Add(this.worldIni_customObject);
-            this.tabPageWorldINI.Controls.Add(this.worldIni_screenY);
-            this.tabPageWorldINI.Controls.Add(this.worldIni_screenX);
+            this.tabPageWorldINI.Controls.Add(this.worldIniTab1);
             this.tabPageWorldINI.Location = new System.Drawing.Point(4, 22);
+            this.tabPageWorldINI.Margin = new System.Windows.Forms.Padding(0);
             this.tabPageWorldINI.Name = "tabPageWorldINI";
-            this.tabPageWorldINI.Size = new System.Drawing.Size(776, 530);
+            this.tabPageWorldINI.Size = new System.Drawing.Size(794, 536);
             this.tabPageWorldINI.TabIndex = 9;
             this.tabPageWorldINI.Text = "World.ini";
             this.tabPageWorldINI.UseVisualStyleBackColor = true;
-            // 
-            // elementHost1
-            // 
-            this.elementHost1.Location = new System.Drawing.Point(10, 53);
-            this.elementHost1.Name = "elementHost1";
-            this.elementHost1.Size = new System.Drawing.Size(777, 441);
-            this.elementHost1.TabIndex = 25;
-            this.elementHost1.Text = "elementHost1";
-            this.elementHost1.Child = null;
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(712, 9);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(76, 13);
-            this.label22.TabIndex = 24;
-            this.label22.Text = "Custom Object";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(504, 9);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(41, 13);
-            this.label21.TabIndex = 23;
-            this.label21.Text = "Screen";
-            // 
-            // worldIni_goToCutsceneMusic
-            // 
-            this.worldIni_goToCutsceneMusic.Location = new System.Drawing.Point(337, 23);
-            this.worldIni_goToCutsceneMusic.Name = "worldIni_goToCutsceneMusic";
-            this.worldIni_goToCutsceneMusic.Size = new System.Drawing.Size(92, 23);
-            this.worldIni_goToCutsceneMusic.TabIndex = 22;
-            this.worldIni_goToCutsceneMusic.Text = "Cutscene Music";
-            this.worldIni_goToCutsceneMusic.UseVisualStyleBackColor = true;
-            // 
-            // worldIni_goToCurrentScreen
-            // 
-            this.worldIni_goToCurrentScreen.Location = new System.Drawing.Point(166, 23);
-            this.worldIni_goToCurrentScreen.Name = "worldIni_goToCurrentScreen";
-            this.worldIni_goToCurrentScreen.Size = new System.Drawing.Size(92, 23);
-            this.worldIni_goToCurrentScreen.TabIndex = 21;
-            this.worldIni_goToCurrentScreen.Text = "Current Screen";
-            this.worldIni_goToCurrentScreen.UseVisualStyleBackColor = true;
-            // 
-            // worldIni_goToWorld
-            // 
-            this.worldIni_goToWorld.Location = new System.Drawing.Point(9, 23);
-            this.worldIni_goToWorld.Name = "worldIni_goToWorld";
-            this.worldIni_goToWorld.Size = new System.Drawing.Size(92, 23);
-            this.worldIni_goToWorld.TabIndex = 20;
-            this.worldIni_goToWorld.Text = "World";
-            this.worldIni_goToWorld.UseVisualStyleBackColor = true;
-            // 
-            // worldIni_customObject
-            // 
-            this.worldIni_customObject.Location = new System.Drawing.Point(714, 25);
-            this.worldIni_customObject.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.worldIni_customObject.Name = "worldIni_customObject";
-            this.worldIni_customObject.Size = new System.Drawing.Size(73, 20);
-            this.worldIni_customObject.TabIndex = 17;
-            // 
-            // worldIni_screenY
-            // 
-            this.worldIni_screenY.Location = new System.Drawing.Point(564, 25);
-            this.worldIni_screenY.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.worldIni_screenY.Name = "worldIni_screenY";
-            this.worldIni_screenY.Size = new System.Drawing.Size(52, 20);
-            this.worldIni_screenY.TabIndex = 15;
-            this.worldIni_screenY.Value = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            // 
-            // worldIni_screenX
-            // 
-            this.worldIni_screenX.Location = new System.Drawing.Point(506, 25);
-            this.worldIni_screenX.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.worldIni_screenX.Name = "worldIni_screenX";
-            this.worldIni_screenX.Size = new System.Drawing.Size(52, 20);
-            this.worldIni_screenX.TabIndex = 14;
-            this.worldIni_screenX.Value = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
             // 
             // tabPageGradients
             // 
             this.tabPageGradients.Controls.Add(this.gradientsTab1);
             this.tabPageGradients.Location = new System.Drawing.Point(4, 22);
+            this.tabPageGradients.Margin = new System.Windows.Forms.Padding(0);
             this.tabPageGradients.Name = "tabPageGradients";
-            this.tabPageGradients.Size = new System.Drawing.Size(776, 530);
+            this.tabPageGradients.Size = new System.Drawing.Size(912, 536);
             this.tabPageGradients.TabIndex = 5;
             this.tabPageGradients.Text = "Gradients";
             this.tabPageGradients.UseVisualStyleBackColor = true;
@@ -705,8 +510,9 @@
             // 
             this.tabPageTilesets.Controls.Add(this.tilesetsTab1);
             this.tabPageTilesets.Location = new System.Drawing.Point(4, 22);
+            this.tabPageTilesets.Margin = new System.Windows.Forms.Padding(0);
             this.tabPageTilesets.Name = "tabPageTilesets";
-            this.tabPageTilesets.Size = new System.Drawing.Size(776, 530);
+            this.tabPageTilesets.Size = new System.Drawing.Size(794, 536);
             this.tabPageTilesets.TabIndex = 4;
             this.tabPageTilesets.Text = "Tilesets";
             this.tabPageTilesets.UseVisualStyleBackColor = true;
@@ -715,8 +521,9 @@
             // 
             this.tabPageMap.Controls.Add(this.mapTab1);
             this.tabPageMap.Location = new System.Drawing.Point(4, 22);
+            this.tabPageMap.Margin = new System.Windows.Forms.Padding(0);
             this.tabPageMap.Name = "tabPageMap";
-            this.tabPageMap.Size = new System.Drawing.Size(776, 530);
+            this.tabPageMap.Size = new System.Drawing.Size(794, 536);
             this.tabPageMap.TabIndex = 2;
             this.tabPageMap.Text = "Map";
             this.tabPageMap.UseVisualStyleBackColor = true;
@@ -727,7 +534,7 @@
             this.tabPageScreen.Location = new System.Drawing.Point(4, 22);
             this.tabPageScreen.Margin = new System.Windows.Forms.Padding(0);
             this.tabPageScreen.Name = "tabPageScreen";
-            this.tabPageScreen.Size = new System.Drawing.Size(776, 530);
+            this.tabPageScreen.Size = new System.Drawing.Size(912, 536);
             this.tabPageScreen.TabIndex = 1;
             this.tabPageScreen.Text = "Screen";
             this.tabPageScreen.UseVisualStyleBackColor = true;
@@ -736,9 +543,9 @@
             // 
             this.tabPageOverview.Controls.Add(this.overviewTab1);
             this.tabPageOverview.Location = new System.Drawing.Point(4, 22);
+            this.tabPageOverview.Margin = new System.Windows.Forms.Padding(0);
             this.tabPageOverview.Name = "tabPageOverview";
-            this.tabPageOverview.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageOverview.Size = new System.Drawing.Size(776, 530);
+            this.tabPageOverview.Size = new System.Drawing.Size(794, 536);
             this.tabPageOverview.TabIndex = 0;
             this.tabPageOverview.Text = "Overview";
             this.tabPageOverview.UseVisualStyleBackColor = true;
@@ -757,17 +564,17 @@
             this.tabControl1.Multiline = true;
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(784, 556);
+            this.tabControl1.Size = new System.Drawing.Size(920, 562);
             this.tabControl1.TabIndex = 0;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // overviewTab1
             // 
             this.overviewTab1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.overviewTab1.Location = new System.Drawing.Point(3, 3);
+            this.overviewTab1.Location = new System.Drawing.Point(0, 0);
             this.overviewTab1.Margin = new System.Windows.Forms.Padding(0);
             this.overviewTab1.Name = "overviewTab1";
-            this.overviewTab1.Size = new System.Drawing.Size(770, 524);
+            this.overviewTab1.Size = new System.Drawing.Size(794, 536);
             this.overviewTab1.TabIndex = 0;
             // 
             // screenTab1
@@ -777,7 +584,7 @@
             this.screenTab1.Location = new System.Drawing.Point(0, 0);
             this.screenTab1.Margin = new System.Windows.Forms.Padding(0);
             this.screenTab1.Name = "screenTab1";
-            this.screenTab1.Size = new System.Drawing.Size(776, 530);
+            this.screenTab1.Size = new System.Drawing.Size(912, 536);
             this.screenTab1.TabIndex = 0;
             // 
             // mapTab1
@@ -786,7 +593,7 @@
             this.mapTab1.Location = new System.Drawing.Point(0, 0);
             this.mapTab1.Margin = new System.Windows.Forms.Padding(0);
             this.mapTab1.Name = "mapTab1";
-            this.mapTab1.Size = new System.Drawing.Size(776, 530);
+            this.mapTab1.Size = new System.Drawing.Size(794, 536);
             this.mapTab1.TabIndex = 0;
             // 
             // tilesetsTab1
@@ -795,7 +602,7 @@
             this.tilesetsTab1.Location = new System.Drawing.Point(0, 0);
             this.tilesetsTab1.Margin = new System.Windows.Forms.Padding(0);
             this.tilesetsTab1.Name = "tilesetsTab1";
-            this.tilesetsTab1.Size = new System.Drawing.Size(776, 530);
+            this.tilesetsTab1.Size = new System.Drawing.Size(794, 536);
             this.tilesetsTab1.TabIndex = 0;
             // 
             // gradientsTab1
@@ -804,14 +611,23 @@
             this.gradientsTab1.Location = new System.Drawing.Point(0, 0);
             this.gradientsTab1.Margin = new System.Windows.Forms.Padding(0);
             this.gradientsTab1.Name = "gradientsTab1";
-            this.gradientsTab1.Size = new System.Drawing.Size(776, 530);
+            this.gradientsTab1.Size = new System.Drawing.Size(912, 536);
             this.gradientsTab1.TabIndex = 0;
+            // 
+            // worldIniTab1
+            // 
+            this.worldIniTab1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.worldIniTab1.Location = new System.Drawing.Point(0, 0);
+            this.worldIniTab1.Margin = new System.Windows.Forms.Padding(0);
+            this.worldIniTab1.Name = "worldIniTab1";
+            this.worldIniTab1.Size = new System.Drawing.Size(794, 536);
+            this.worldIniTab1.TabIndex = 0;
             // 
             // EditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 556);
+            this.ClientSize = new System.Drawing.Size(920, 562);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.tabControl1);
             this.MaximumSize = new System.Drawing.Size(9999, 9999);
@@ -822,16 +638,11 @@
             this.Load += new System.EventHandler(this.EditorForm_Load);
             this.contextMenu2.ResumeLayout(false);
             this.contextMenuStrip1.ResumeLayout(false);
-            this.contextMenuStrip4.ResumeLayout(false);
             this.contextMenuStrip3.ResumeLayout(false);
             this.contextMenuStrip2.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.tabPageWorldINI.ResumeLayout(false);
-            this.tabPageWorldINI.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.worldIni_customObject)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.worldIni_screenY)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.worldIni_screenX)).EndInit();
             this.tabPageGradients.ResumeLayout(false);
             this.tabPageTilesets.ResumeLayout(false);
             this.tabPageMap.ResumeLayout(false);
@@ -897,29 +708,10 @@
         private System.Windows.Forms.ToolStripMenuItem chooseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem1;
         private System.Windows.Forms.MenuItem menuItem28;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip4;
-        private System.Windows.Forms.ToolStripMenuItem dummyToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem pasteToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
-        private System.Windows.Forms.ToolStripMenuItem selectAllToolStripMenuItem;
         private System.Windows.Forms.MenuItem menuItem29;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.TabPage tabPageWorldINI;
-        private System.Windows.Forms.Integration.ElementHost elementHost1;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Button worldIni_goToCutsceneMusic;
-        private System.Windows.Forms.Button worldIni_goToCurrentScreen;
-        private System.Windows.Forms.Button worldIni_goToWorld;
-        private System.Windows.Forms.NumericUpDown worldIni_customObject;
-        private System.Windows.Forms.NumericUpDown worldIni_screenY;
-        private System.Windows.Forms.NumericUpDown worldIni_screenX;
         private System.Windows.Forms.TabPage tabPageGradients;
         private System.Windows.Forms.TabPage tabPageTilesets;
         private TilesetsTab tilesetsTab1;
@@ -931,5 +723,6 @@
         private OverviewTab overviewTab1;
         private System.Windows.Forms.TabControl tabControl1;
         private GradientsTab gradientsTab1;
+        private WorldIniTab worldIniTab1;
     }
 }
