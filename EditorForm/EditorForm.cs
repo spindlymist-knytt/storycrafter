@@ -16,8 +16,6 @@ namespace Story_Crafter {
     public partial class EditorForm: Form {
         private ICSharpCode.AvalonEdit.TextEditor worldIni_avEdit;
 
-        TilesetsTab tilesets;
-        GradientsTab gradients;
         WorldIniTab worldIni;
 
         List<IEditorTab> tabs;
@@ -29,6 +27,8 @@ namespace Story_Crafter {
                 this.overviewTab1,
                 this.screenTab1,
                 this.mapTab1,
+                this.tilesetsTab1,
+                this.gradientsTab1,
             };
 
             this.worldIni_avEdit = new ICSharpCode.AvalonEdit.TextEditor();
@@ -44,8 +44,6 @@ namespace Story_Crafter {
                 tab.StoryChanged();
             }
 
-            this.tilesets.StoryChanged();
-            this.gradients.StoryChanged();
             this.worldIni.StoryChanged();
 
             GC.Collect();
@@ -59,8 +57,6 @@ namespace Story_Crafter {
                 return;
             }
 
-            this.tilesets = new TilesetsTab(this);
-            this.gradients = new GradientsTab(this);
             this.worldIni = new WorldIniTab(this);
 
             StoryChanged();
@@ -89,16 +85,12 @@ namespace Story_Crafter {
             }
 
             switch(tabControl1.SelectedIndex) {
-                case 3: this.tilesets.TabOpened(); break;
-                case 4: this.gradients.TabOpened(); break;
                 case 5: this.worldIni.TabOpened(); break;
             }
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData) {
             switch(tabControl1.SelectedIndex) {
-                case 3: this.tilesets.ProcessCmdKey(ref msg, keyData); break;
-                case 4: this.gradients.ProcessCmdKey(ref msg, keyData); break;
                 case 5: this.worldIni.ProcessCmdKey(ref msg, keyData); break;
             }
             return base.ProcessCmdKey(ref msg, keyData);
