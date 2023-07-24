@@ -88,8 +88,8 @@
             this.menuItemRandomize = new System.Windows.Forms.MenuItem();
             this.menuItem29 = new System.Windows.Forms.MenuItem();
             this.menuItem6 = new System.Windows.Forms.MenuItem();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tabPageWorldINI = new System.Windows.Forms.TabPage();
             this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
             this.label22 = new System.Windows.Forms.Label();
@@ -101,20 +101,7 @@
             this.worldIni_screenY = new System.Windows.Forms.NumericUpDown();
             this.worldIni_screenX = new System.Windows.Forms.NumericUpDown();
             this.tabPageGradients = new System.Windows.Forms.TabPage();
-            this.gradient_tileCheck = new System.Windows.Forms.CheckBox();
-            this.gradient_label = new System.Windows.Forms.Label();
-            this.gradient_list = new System.Windows.Forms.ListView();
-            this.gradient_delete = new System.Windows.Forms.Button();
-            this.gradient_rename = new System.Windows.Forms.Button();
-            this.gradient_new = new System.Windows.Forms.Button();
-            this.gradient_view = new System.Windows.Forms.PictureBox();
             this.tabPageTilesets = new System.Windows.Forms.TabPage();
-            this.tileset_label = new System.Windows.Forms.Label();
-            this.tileset_delete = new System.Windows.Forms.Button();
-            this.tileset_rename = new System.Windows.Forms.Button();
-            this.tileset_new = new System.Windows.Forms.Button();
-            this.tileset_view = new System.Windows.Forms.PictureBox();
-            this.tileset_list = new System.Windows.Forms.ListView();
             this.tabPageMap = new System.Windows.Forms.TabPage();
             this.tabPageScreen = new System.Windows.Forms.TabPage();
             this.tabPageOverview = new System.Windows.Forms.TabPage();
@@ -122,6 +109,8 @@
             this.overviewTab1 = new Story_Crafter.OverviewTab();
             this.screenTab1 = new Story_Crafter.ScreenTab();
             this.mapTab1 = new Story_Crafter.MapTab();
+            this.tilesetsTab1 = new Story_Crafter.TilesetsTab();
+            this.gradientsTab1 = new Story_Crafter.GradientsTab();
             this.contextMenu2.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStrip4.SuspendLayout();
@@ -133,9 +122,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.worldIni_screenY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.worldIni_screenX)).BeginInit();
             this.tabPageGradients.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gradient_view)).BeginInit();
             this.tabPageTilesets.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tileset_view)).BeginInit();
             this.tabPageMap.SuspendLayout();
             this.tabPageScreen.SuspendLayout();
             this.tabPageOverview.SuspendLayout();
@@ -570,6 +557,11 @@
             this.menuItem6.Index = 4;
             this.menuItem6.Text = "Plugins";
             // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
+            // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -580,11 +572,6 @@
             this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
-            // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
             // 
             // tabPageWorldINI
             // 
@@ -706,13 +693,7 @@
             // 
             // tabPageGradients
             // 
-            this.tabPageGradients.Controls.Add(this.gradient_tileCheck);
-            this.tabPageGradients.Controls.Add(this.gradient_label);
-            this.tabPageGradients.Controls.Add(this.gradient_list);
-            this.tabPageGradients.Controls.Add(this.gradient_delete);
-            this.tabPageGradients.Controls.Add(this.gradient_rename);
-            this.tabPageGradients.Controls.Add(this.gradient_new);
-            this.tabPageGradients.Controls.Add(this.gradient_view);
+            this.tabPageGradients.Controls.Add(this.gradientsTab1);
             this.tabPageGradients.Location = new System.Drawing.Point(4, 22);
             this.tabPageGradients.Name = "tabPageGradients";
             this.tabPageGradients.Size = new System.Drawing.Size(776, 530);
@@ -720,145 +701,15 @@
             this.tabPageGradients.Text = "Gradients";
             this.tabPageGradients.UseVisualStyleBackColor = true;
             // 
-            // gradient_tileCheck
-            // 
-            this.gradient_tileCheck.AutoSize = true;
-            this.gradient_tileCheck.Checked = true;
-            this.gradient_tileCheck.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.gradient_tileCheck.Location = new System.Drawing.Point(172, 374);
-            this.gradient_tileCheck.Name = "gradient_tileCheck";
-            this.gradient_tileCheck.Size = new System.Drawing.Size(43, 17);
-            this.gradient_tileCheck.TabIndex = 12;
-            this.gradient_tileCheck.Text = "Tile";
-            this.gradient_tileCheck.UseVisualStyleBackColor = true;
-            // 
-            // gradient_label
-            // 
-            this.gradient_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gradient_label.Location = new System.Drawing.Point(172, 92);
-            this.gradient_label.Name = "gradient_label";
-            this.gradient_label.Size = new System.Drawing.Size(600, 33);
-            this.gradient_label.TabIndex = 11;
-            this.gradient_label.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // gradient_list
-            // 
-            this.gradient_list.HideSelection = false;
-            this.gradient_list.Location = new System.Drawing.Point(0, 3);
-            this.gradient_list.MultiSelect = false;
-            this.gradient_list.Name = "gradient_list";
-            this.gradient_list.Size = new System.Drawing.Size(154, 465);
-            this.gradient_list.TabIndex = 6;
-            this.gradient_list.UseCompatibleStateImageBehavior = false;
-            // 
-            // gradient_delete
-            // 
-            this.gradient_delete.Location = new System.Drawing.Point(692, 374);
-            this.gradient_delete.Name = "gradient_delete";
-            this.gradient_delete.Size = new System.Drawing.Size(80, 23);
-            this.gradient_delete.TabIndex = 10;
-            this.gradient_delete.Text = "Delete";
-            this.gradient_delete.UseVisualStyleBackColor = true;
-            // 
-            // gradient_rename
-            // 
-            this.gradient_rename.Location = new System.Drawing.Point(606, 374);
-            this.gradient_rename.Name = "gradient_rename";
-            this.gradient_rename.Size = new System.Drawing.Size(80, 23);
-            this.gradient_rename.TabIndex = 9;
-            this.gradient_rename.Text = "Rename";
-            this.gradient_rename.UseVisualStyleBackColor = true;
-            // 
-            // gradient_new
-            // 
-            this.gradient_new.Location = new System.Drawing.Point(3, 474);
-            this.gradient_new.Name = "gradient_new";
-            this.gradient_new.Size = new System.Drawing.Size(151, 23);
-            this.gradient_new.TabIndex = 8;
-            this.gradient_new.Text = "New";
-            this.gradient_new.UseVisualStyleBackColor = true;
-            // 
-            // gradient_view
-            // 
-            this.gradient_view.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.gradient_view.ContextMenuStrip = this.contextMenu2;
-            this.gradient_view.Location = new System.Drawing.Point(172, 128);
-            this.gradient_view.Name = "gradient_view";
-            this.gradient_view.Size = new System.Drawing.Size(600, 240);
-            this.gradient_view.TabIndex = 7;
-            this.gradient_view.TabStop = false;
-            // 
             // tabPageTilesets
             // 
-            this.tabPageTilesets.Controls.Add(this.tileset_label);
-            this.tabPageTilesets.Controls.Add(this.tileset_delete);
-            this.tabPageTilesets.Controls.Add(this.tileset_rename);
-            this.tabPageTilesets.Controls.Add(this.tileset_new);
-            this.tabPageTilesets.Controls.Add(this.tileset_view);
-            this.tabPageTilesets.Controls.Add(this.tileset_list);
+            this.tabPageTilesets.Controls.Add(this.tilesetsTab1);
             this.tabPageTilesets.Location = new System.Drawing.Point(4, 22);
             this.tabPageTilesets.Name = "tabPageTilesets";
             this.tabPageTilesets.Size = new System.Drawing.Size(776, 530);
             this.tabPageTilesets.TabIndex = 4;
             this.tabPageTilesets.Text = "Tilesets";
             this.tabPageTilesets.UseVisualStyleBackColor = true;
-            // 
-            // tileset_label
-            // 
-            this.tileset_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tileset_label.Location = new System.Drawing.Point(335, 104);
-            this.tileset_label.Name = "tileset_label";
-            this.tileset_label.Size = new System.Drawing.Size(386, 33);
-            this.tileset_label.TabIndex = 5;
-            this.tileset_label.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // tileset_delete
-            // 
-            this.tileset_delete.Location = new System.Drawing.Point(641, 350);
-            this.tileset_delete.Name = "tileset_delete";
-            this.tileset_delete.Size = new System.Drawing.Size(80, 23);
-            this.tileset_delete.TabIndex = 4;
-            this.tileset_delete.Text = "Delete";
-            this.tileset_delete.UseVisualStyleBackColor = true;
-            // 
-            // tileset_rename
-            // 
-            this.tileset_rename.Location = new System.Drawing.Point(555, 350);
-            this.tileset_rename.Name = "tileset_rename";
-            this.tileset_rename.Size = new System.Drawing.Size(80, 23);
-            this.tileset_rename.TabIndex = 3;
-            this.tileset_rename.Text = "Rename";
-            this.tileset_rename.UseVisualStyleBackColor = true;
-            // 
-            // tileset_new
-            // 
-            this.tileset_new.Location = new System.Drawing.Point(3, 474);
-            this.tileset_new.Name = "tileset_new";
-            this.tileset_new.Size = new System.Drawing.Size(263, 23);
-            this.tileset_new.TabIndex = 2;
-            this.tileset_new.Text = "New";
-            this.tileset_new.UseVisualStyleBackColor = true;
-            // 
-            // tileset_view
-            // 
-            this.tileset_view.BackgroundImage = global::Story_Crafter.Properties.Resources.checkers;
-            this.tileset_view.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tileset_view.ContextMenuStrip = this.contextMenu2;
-            this.tileset_view.Location = new System.Drawing.Point(335, 140);
-            this.tileset_view.Name = "tileset_view";
-            this.tileset_view.Size = new System.Drawing.Size(386, 204);
-            this.tileset_view.TabIndex = 1;
-            this.tileset_view.TabStop = false;
-            // 
-            // tileset_list
-            // 
-            this.tileset_list.HideSelection = false;
-            this.tileset_list.Location = new System.Drawing.Point(0, 3);
-            this.tileset_list.MultiSelect = false;
-            this.tileset_list.Name = "tileset_list";
-            this.tileset_list.Size = new System.Drawing.Size(266, 465);
-            this.tileset_list.TabIndex = 0;
-            this.tileset_list.UseCompatibleStateImageBehavior = false;
             // 
             // tabPageMap
             // 
@@ -938,6 +789,24 @@
             this.mapTab1.Size = new System.Drawing.Size(776, 530);
             this.mapTab1.TabIndex = 0;
             // 
+            // tilesetsTab1
+            // 
+            this.tilesetsTab1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tilesetsTab1.Location = new System.Drawing.Point(0, 0);
+            this.tilesetsTab1.Margin = new System.Windows.Forms.Padding(0);
+            this.tilesetsTab1.Name = "tilesetsTab1";
+            this.tilesetsTab1.Size = new System.Drawing.Size(776, 530);
+            this.tilesetsTab1.TabIndex = 0;
+            // 
+            // gradientsTab1
+            // 
+            this.gradientsTab1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gradientsTab1.Location = new System.Drawing.Point(0, 0);
+            this.gradientsTab1.Margin = new System.Windows.Forms.Padding(0);
+            this.gradientsTab1.Name = "gradientsTab1";
+            this.gradientsTab1.Size = new System.Drawing.Size(776, 530);
+            this.gradientsTab1.TabIndex = 0;
+            // 
             // EditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -964,10 +833,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.worldIni_screenY)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.worldIni_screenX)).EndInit();
             this.tabPageGradients.ResumeLayout(false);
-            this.tabPageGradients.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gradient_view)).EndInit();
             this.tabPageTilesets.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.tileset_view)).EndInit();
             this.tabPageMap.ResumeLayout(false);
             this.tabPageScreen.ResumeLayout(false);
             this.tabPageOverview.ResumeLayout(false);
@@ -992,8 +858,6 @@
         private System.Windows.Forms.MenuItem menuItem4;
         private System.Windows.Forms.MenuItem menuTools;
         private System.Windows.Forms.MenuItem menuItem6;
-        private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.MenuItem menuItemEdit;
         private System.Windows.Forms.MenuItem menuItemFill;
         private System.Windows.Forms.MenuItem menuItemReplace;
@@ -1044,6 +908,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripMenuItem selectAllToolStripMenuItem;
         private System.Windows.Forms.MenuItem menuItem29;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.TabPage tabPageWorldINI;
         private System.Windows.Forms.Integration.ElementHost elementHost1;
         private System.Windows.Forms.Label label22;
@@ -1055,26 +921,15 @@
         private System.Windows.Forms.NumericUpDown worldIni_screenY;
         private System.Windows.Forms.NumericUpDown worldIni_screenX;
         private System.Windows.Forms.TabPage tabPageGradients;
-        private System.Windows.Forms.CheckBox gradient_tileCheck;
-        private System.Windows.Forms.Label gradient_label;
-        private System.Windows.Forms.ListView gradient_list;
-        private System.Windows.Forms.Button gradient_delete;
-        private System.Windows.Forms.Button gradient_rename;
-        private System.Windows.Forms.Button gradient_new;
-        private System.Windows.Forms.PictureBox gradient_view;
         private System.Windows.Forms.TabPage tabPageTilesets;
-        private System.Windows.Forms.Label tileset_label;
-        private System.Windows.Forms.Button tileset_delete;
-        private System.Windows.Forms.Button tileset_rename;
-        private System.Windows.Forms.Button tileset_new;
-        private System.Windows.Forms.PictureBox tileset_view;
-        private System.Windows.Forms.ListView tileset_list;
+        private TilesetsTab tilesetsTab1;
         private System.Windows.Forms.TabPage tabPageMap;
+        private MapTab mapTab1;
         private System.Windows.Forms.TabPage tabPageScreen;
+        private ScreenTab screenTab1;
         private System.Windows.Forms.TabPage tabPageOverview;
         private OverviewTab overviewTab1;
         private System.Windows.Forms.TabControl tabControl1;
-        private ScreenTab screenTab1;
-        private MapTab mapTab1;
+        private GradientsTab gradientsTab1;
     }
 }
