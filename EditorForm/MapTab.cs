@@ -18,11 +18,9 @@ namespace Story_Crafter {
         public MapTab() {
             InitializeComponent();
 
-            this.form = this.FindForm() as EditorForm;
-
             this.map_mainView.TheStory = Program.OpenStory;
             this.map_mainView.UpdateScreen += delegate (int x, int y) {
-                form.ChangeScreen(x, y);
+                this.form.ChangeScreen(x, y);
             };
             this.map_mainView.UpdateStatus += delegate (int x, int y) {
                 //form.toolStripStatusLabel1.Text = "x" + x + ", y" + y;
@@ -56,6 +54,7 @@ namespace Story_Crafter {
             };
         }
         public void StoryChanged() {
+            this.form = this.FindForm() as EditorForm;
             this.map_mainView.TheStory = Program.OpenStory;
             this.map_mainView.ResetSelection(Program.ActiveScreen.X, Program.ActiveScreen.Y);
         }
