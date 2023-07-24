@@ -58,8 +58,12 @@ namespace Story_Crafter {
             }
         }
 
+        EditorForm form;
+
         public ScreenTab() {
             InitializeComponent();
+
+            form = this.FindForm() as EditorForm;
 
             // These timers are used to create a delay between changing the tileset/gradient and redrawing the screen.
             // Otherwise, the program would freeze up when a user scrolled through the tilesets/gradients.
@@ -188,7 +192,7 @@ namespace Story_Crafter {
                 switch (e.KeyCode) {
                     case Keys.W:
                         if (editingPattern == null && e.Shift) {
-                            //this.ChangeScreen(Program.ActiveScreen.X, Program.ActiveScreen.Y - 1);
+                            form.ChangeScreen(Program.ActiveScreen.X, Program.ActiveScreen.Y - 1);
                         }
                         else {
                             selection.Translate(0, -1);
@@ -198,7 +202,7 @@ namespace Story_Crafter {
                         break;
                     case Keys.A:
                         if (editingPattern == null && e.Shift) {
-                            //this.ChangeScreen(Program.ActiveScreen.X - 1, Program.ActiveScreen.Y);
+                            form.ChangeScreen(Program.ActiveScreen.X - 1, Program.ActiveScreen.Y);
                         }
                         else {
                             selection.Translate(-1, 0);
@@ -208,7 +212,7 @@ namespace Story_Crafter {
                         break;
                     case Keys.S:
                         if (editingPattern == null && e.Shift) {
-                            //this.ChangeScreen(Program.ActiveScreen.X, Program.ActiveScreen.Y + 1);
+                            form.ChangeScreen(Program.ActiveScreen.X, Program.ActiveScreen.Y + 1);
                         }
                         else {
                             selection.Translate(0, 1);
@@ -218,7 +222,7 @@ namespace Story_Crafter {
                         break;
                     case Keys.D:
                         if (editingPattern == null && e.Shift) {
-                            //this.ChangeScreen(Program.ActiveScreen.X + 1, Program.ActiveScreen.Y);
+                            form.ChangeScreen(Program.ActiveScreen.X + 1, Program.ActiveScreen.Y);
                         }
                         else {
                             selection.Translate(1, 0);
