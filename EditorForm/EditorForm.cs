@@ -14,10 +14,6 @@ namespace Story_Crafter {
     // TODO: ambiance tab
     // TODO: custom objects tab
     public partial class EditorForm: Form {
-        private ICSharpCode.AvalonEdit.TextEditor worldIni_avEdit;
-
-        WorldIniTab worldIni;
-
         List<IEditorTab> tabs;
 
         public EditorForm() {
@@ -29,12 +25,8 @@ namespace Story_Crafter {
                 this.mapTab1,
                 this.tilesetsTab1,
                 this.gradientsTab1,
+                this.worldIniTab1,
             };
-
-            this.worldIni_avEdit = new ICSharpCode.AvalonEdit.TextEditor();
-            this.worldIni_avEdit.FontFamily = new System.Windows.Media.FontFamily("Courier New");
-            this.worldIni_avEdit.BorderThickness = new System.Windows.Thickness(1);
-            this.elementHost1.Child = worldIni_avEdit;
         }
         public void StoryChanged() {
             Program.ChangingStory = true;
@@ -43,8 +35,6 @@ namespace Story_Crafter {
             foreach (IEditorTab tab in tabs) {
                 tab.StoryChanged();
             }
-
-            this.worldIni.StoryChanged();
 
             GC.Collect();
             Program.ChangingStory = false;
@@ -56,8 +46,6 @@ namespace Story_Crafter {
                 this.Close();
                 return;
             }
-
-            this.worldIni = new WorldIniTab(this);
 
             StoryChanged();
         }
@@ -83,31 +71,16 @@ namespace Story_Crafter {
             if (tabControl1.SelectedIndex < tabs.Count) {
                 tabs[tabControl1.SelectedIndex].TabOpened();
             }
-
-            switch(tabControl1.SelectedIndex) {
-                case 5: this.worldIni.TabOpened(); break;
-            }
-        }
-
-        protected override bool ProcessCmdKey(ref Message msg, Keys keyData) {
-            switch(tabControl1.SelectedIndex) {
-                case 5: this.worldIni.ProcessCmdKey(ref msg, keyData); break;
-            }
-            return base.ProcessCmdKey(ref msg, keyData);
         }
 
         private void menuItem8_Click(object sender, EventArgs e) {
-            Program.OpenStory.Save(this.worldIni_avEdit.Text);
+            Program.OpenStory.Save();
         }
 
         private void menuItem5_Click(object sender, EventArgs e) {
             if(Program.Start.ShowDialog() == DialogResult.OK) {
                 StoryChanged();
             }
-        }
-
-        public string GetWorldINIText() {
-            return this.worldIni_avEdit.Text;
         }
 
         public void ChangeScreen(int x, int y) {
