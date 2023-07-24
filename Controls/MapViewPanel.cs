@@ -32,7 +32,7 @@ namespace Story_Crafter {
         public delegate void UpdateScreenEvent(int x, int y);
         public delegate void UpdateStatusEvent(int x, int y);
 
-        int startX = 1000, startY = 1000, mapWidth, mapHeight, screenWidth = 25, screenHeight = 10;
+        int startX = 1000, startY = 1000, mapWidth, mapHeight, screenWidth, screenHeight;
         int origStartX, origStartY, mouseDownX, mouseDownY;
         Pen p = new Pen(Color.FromArgb(25, 0, 0, 0));
         Pen p2 = new Pen(Color.FromArgb(25, 255, 255, 255));
@@ -58,7 +58,51 @@ namespace Story_Crafter {
         UpdateScreenEvent updateScreen;
         UpdateStatusEvent updateStatus;
 
+        int _zoomLevel;
+        int ZoomLevel {
+            get { return _zoomLevel; }
+            set {
+                _zoomLevel = Math.Max(1, Math.Min(7, value));
+                switch (_zoomLevel) {
+                    case 1:
+                        screenWidth = 3;
+                        screenHeight = 1;
+                        break;
+                    case 2:
+                        screenWidth = 6;
+                        screenHeight = 3;
+                        break;
+                    case 3:
+                        screenWidth = 13;
+                        screenHeight = 5;
+                        break;
+                    case 4:
+                        screenWidth = 25;
+                        screenHeight = 10;
+                        break;
+                    case 5:
+                        screenWidth = 50;
+                        screenHeight = 20;
+                        break;
+                    case 6:
+                        screenWidth = 100;
+                        screenHeight = 40;
+                        break;
+                    case 7:
+                        screenWidth = 200;
+                        screenHeight = 80;
+                        break;
+                    default:
+                        screenWidth = 25;
+                        screenHeight = 10;
+                        break;
+                }
+            }
+        }
+
         public MapViewPanel() {
+            ZoomLevel = 4;
+
             selection = new Selection(screenWidth, screenHeight, selectionCursor);
             this.BackColor = Color.FromArgb(0, 0, 0, 0);
             this.ResetSelection(startX, startY);
@@ -121,20 +165,7 @@ namespace Story_Crafter {
             };
             this.MouseWheel += delegate (object o, MouseEventArgs mouse) {
                 int d = mouse.Delta / 120;
-                while(d != 0) {
-                    if(d < 0) {
-                        if(screenHeight == 10) break; // Reached minimum zoom level.
-                        screenHeight /= 2;
-                        screenWidth /= 2;
-                        d++;
-                    }
-                    else {
-                        if(screenHeight == 80) break; // Reached maximum zoom level.
-                        screenHeight *= 2;
-                        screenWidth *= 2;
-                        d--;
-                    }
-                }
+                ZoomLevel += d;
 
                 // Find the center screen.
                 int centerX = startX + mapWidth / 2;
@@ -187,7 +218,7 @@ namespace Story_Crafter {
         }
 
         public void DrawMap() {
-            this.BackgroundImage = new Bitmap(600, 480);
+            this.BackgroundImage = new Bitmap(this.Size.Width, this.Size.Height);
             if(story != null) {
                 Graphics g = Graphics.FromImage(this.BackgroundImage);
                 Rectangle src = new Rectangle(0, 0, 200, 80);
@@ -294,7 +325,7 @@ namespace Story_Crafter {
     public delegate void UpdateScreenEvent(int x, int y);
     public delegate void UpdateStatusEvent(int x, int y);
 
-    int startX = 998, startY = 998, mapWidth = 5, mapHeight = 8, screenWidth = 200, screenHeight = 80;
+    int startX = 998, startY = 998, mapWidth = 5, mapHeight = 8, ScreenWidth = 200, ScreenHeight = 80;
     int origStartX, origStartY, mouseDownX, mouseDownY;
     Pen p = new Pen(Color.FromArgb(25, 0, 0, 0));
     Pen p2 = new Pen(Color.FromArgb(25, 255, 255, 255));
@@ -323,7 +354,7 @@ namespace Story_Crafter {
           panning = true;
         }
         else if(mouse.Button == MouseButtons.Left) {
-          selectionStart = new Point(mouse.X / screenWidth + startX, mouse.Y / screenHeight + startY);
+          selectionStart = new Point(mouse.X / ScreenWidth + startX, mouse.Y / ScreenHeight + startY);
           selection = new Rectangle(selectionStart.X, selectionStart.Y, 1, 1);
           selectionInProgress = true;
           this.Refresh();
@@ -332,7 +363,7 @@ namespace Story_Crafter {
       this.MouseUp += delegate { panning = false; selectionInProgress = false; };
       this.DoubleClick += delegate (object o, EventArgs e) {
         if(updateScreen == null) return;
-        updateScreen(mouseDownX / screenWidth + startX, mouseDownY / screenHeight + startY);
+        updateScreen(mouseDownX / ScreenWidth + startX, mouseDownY / ScreenHeight + startY);
         DrawMap();
       };
       this.MouseMove += delegate (object o, MouseEventArgs mouse) {
@@ -340,36 +371,36 @@ namespace Story_Crafter {
         if(panning) {
           int deltaX = mouse.X - mouseDownX;
           int deltaY = mouse.Y - mouseDownY;
-          startX = origStartX - deltaX / screenWidth;
-          startY = origStartY - deltaY / screenHeight;
+          startX = origStartX - deltaX / ScreenWidth;
+          startY = origStartY - deltaY / ScreenHeight;
           DrawMap();
         }
         else if(selectionInProgress) {
-          int x = (int)(mouse.X / screenWidth) + startX;
-          int y = (int)(mouse.Y / screenHeight) + startY;
+          int x = (int)(mouse.X / ScreenWidth) + startX;
+          int y = (int)(mouse.Y / ScreenHeight) + startY;
           selection.X = Math.Min(x, selectionStart.X);
           selection.Y = Math.Min(y, selectionStart.Y);
           selection.Width = Math.Abs(x - selectionStart.X) + 1;
           selection.Height = Math.Abs(y - selectionStart.Y) + 1;
           this.Refresh();
         }
-        int hoverX = startX + mouse.X / screenWidth;
-        int hoverY = startY + mouse.Y / screenHeight;
+        int hoverX = startX + mouse.X / ScreenWidth;
+        int hoverY = startY + mouse.Y / ScreenHeight;
         updateStatus?.Invoke(hoverX, hoverY);
       };
       this.MouseWheel += delegate (object o, MouseEventArgs mouse) {
         int d = mouse.Delta / 120;
         while(d != 0) {
           if(d < 0) {
-            if(screenHeight == 10) break; // Reached minimum zoom level.
-            screenHeight /= 2;
-            screenWidth /= 2;
+            if(ScreenHeight == 10) break; // Reached minimum zoom level.
+            ScreenHeight /= 2;
+            ScreenWidth /= 2;
             d++;
           }
           else {
-            if(screenHeight == 80) break; // Reached maximum zoom level.
-            screenHeight *= 2;
-            screenWidth *= 2;
+            if(ScreenHeight == 80) break; // Reached maximum zoom level.
+            ScreenHeight *= 2;
+            ScreenWidth *= 2;
             d--;
           }
         }
@@ -378,8 +409,8 @@ namespace Story_Crafter {
         startX += mapWidth / 2;
         startY += mapHeight / 2;
 
-        mapWidth = this.Width / screenWidth;
-        mapHeight = this.Height / screenHeight;
+        mapWidth = this.Width / ScreenWidth;
+        mapHeight = this.Height / ScreenHeight;
 
         // Center the screen we found above.
         startX -= mapWidth / 2;
@@ -390,8 +421,8 @@ namespace Story_Crafter {
       };
       this.Paint += delegate (object sender, PaintEventArgs e) {
         if(story == null) return;
-        e.Graphics.DrawRectangle(new Pen(Color.Orange), new Rectangle((selection.X - startX) * screenWidth, (selection.Y - startY) * screenHeight, selection.Width * screenWidth - 1, selection.Height * screenHeight - 1));
-        e.Graphics.DrawRectangle(activeScreenOutline, new Rectangle((story.ActiveScreen.X - startX) * screenWidth, (story.ActiveScreen.Y - startY) * screenHeight, screenWidth - 1, screenHeight - 1));
+        e.Graphics.DrawRectangle(new Pen(Color.Orange), new Rectangle((selection.X - startX) * ScreenWidth, (selection.Y - startY) * ScreenHeight, selection.Width * ScreenWidth - 1, selection.Height * ScreenHeight - 1));
+        e.Graphics.DrawRectangle(activeScreenOutline, new Rectangle((story.ActiveScreen.X - startX) * ScreenWidth, (story.ActiveScreen.Y - startY) * ScreenHeight, ScreenWidth - 1, ScreenHeight - 1));
       };
 
       DrawGridLines();
@@ -402,12 +433,12 @@ namespace Story_Crafter {
       this.Image = new Bitmap(600, 480);
       Graphics g = Graphics.FromImage(this.Image);
       for(int x = 1; x < mapWidth; x++) {
-        g.DrawLine(p2, x * screenWidth - 1, 0, x * screenWidth - 1, this.Height);
-        g.DrawLine(p, x * screenWidth, 0, x * screenWidth, this.Height);
+        g.DrawLine(p2, x * ScreenWidth - 1, 0, x * ScreenWidth - 1, this.Height);
+        g.DrawLine(p, x * ScreenWidth, 0, x * ScreenWidth, this.Height);
       }
       for(int y = 1; y < mapHeight; y++) {
-        g.DrawLine(p2, 0, y * screenHeight - 1, this.Width, y * screenHeight - 1);
-        g.DrawLine(p, 0, y * screenHeight, this.Width, y * screenHeight);
+        g.DrawLine(p2, 0, y * ScreenHeight - 1, this.Width, y * ScreenHeight - 1);
+        g.DrawLine(p, 0, y * ScreenHeight, this.Width, y * ScreenHeight);
       }
       this.Refresh();
     }
@@ -421,7 +452,7 @@ namespace Story_Crafter {
         int offX = s.X - startX;
         int offY = s.Y - startY;
         if(offX >= 0 && offX < mapWidth && offY >= 0 && offY < mapHeight) {
-          Rectangle area = new Rectangle(offX * screenWidth, offY * screenHeight, screenWidth, screenHeight);
+          Rectangle area = new Rectangle(offX * ScreenWidth, offY * ScreenHeight, ScreenWidth, ScreenHeight);
           if(this.showThumbs) {
             g.DrawImage(s.Thumbnail, area, src, GraphicsUnit.Pixel);
           }

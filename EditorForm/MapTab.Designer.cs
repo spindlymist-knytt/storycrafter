@@ -13,45 +13,49 @@ namespace Story_Crafter {
             this.button8 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.map_showThumbs = new System.Windows.Forms.CheckBox();
-            this.map_mainView = new Story_Crafter.MapViewPanel();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.translucentPanel1 = new Story_Crafter.TranslucentPanel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.progressBarLabel = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            ((System.ComponentModel.ISupportInitialize)(this.map_mainView)).BeginInit();
-            this.panel1.SuspendLayout();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.map_mainView = new Story_Crafter.MapViewPanel();
             this.tableLayoutPanel1.SuspendLayout();
             this.translucentPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.map_mainView)).BeginInit();
             this.SuspendLayout();
             // 
             // button9
             // 
+            this.button9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.button9.Enabled = false;
-            this.button9.Location = new System.Drawing.Point(696, 29);
+            this.button9.Location = new System.Drawing.Point(3, 61);
             this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(82, 23);
+            this.button9.Size = new System.Drawing.Size(110, 23);
             this.button9.TabIndex = 13;
             this.button9.Text = "Cancel";
             this.button9.UseVisualStyleBackColor = true;
             // 
             // button8
             // 
+            this.button8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.button8.Enabled = false;
-            this.button8.Location = new System.Drawing.Point(608, 29);
+            this.button8.Location = new System.Drawing.Point(3, 32);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(82, 23);
+            this.button8.Size = new System.Drawing.Size(110, 23);
             this.button8.TabIndex = 12;
             this.button8.Text = "Confirm";
             this.button8.UseVisualStyleBackColor = true;
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(608, 0);
+            this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button7.Location = new System.Drawing.Point(3, 3);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(170, 23);
+            this.button7.Size = new System.Drawing.Size(110, 23);
             this.button7.TabIndex = 11;
             this.button7.Text = "Import Screens";
             this.button7.UseVisualStyleBackColor = true;
@@ -60,49 +64,20 @@ namespace Story_Crafter {
             // 
             this.map_showThumbs.AutoSize = true;
             this.map_showThumbs.BackColor = System.Drawing.Color.Transparent;
-            this.map_showThumbs.Location = new System.Drawing.Point(606, 464);
+            this.map_showThumbs.Location = new System.Drawing.Point(3, 90);
             this.map_showThumbs.Name = "map_showThumbs";
             this.map_showThumbs.Size = new System.Drawing.Size(110, 17);
             this.map_showThumbs.TabIndex = 9;
             this.map_showThumbs.Text = "Show Thumbnails";
             this.map_showThumbs.UseVisualStyleBackColor = false;
             // 
-            // map_mainView
-            // 
-            this.map_mainView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.map_mainView.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("map_mainView.BackgroundImage")));
-            this.map_mainView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.map_mainView.Image = ((System.Drawing.Image)(resources.GetObject("map_mainView.Image")));
-            this.map_mainView.Location = new System.Drawing.Point(0, 0);
-            this.map_mainView.Name = "map_mainView";
-            this.map_mainView.ShowThumbs = false;
-            this.map_mainView.Size = new System.Drawing.Size(602, 482);
-            this.map_mainView.TabIndex = 10;
-            this.map_mainView.TabStop = false;
-            this.map_mainView.TheStory = null;
-            this.map_mainView.UpdateScreen = null;
-            this.map_mainView.UpdateStatus = null;
-            // 
-            // panel1
-            // 
-            this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panel1.AutoSize = true;
-            this.panel1.Controls.Add(this.map_mainView);
-            this.panel1.Controls.Add(this.map_showThumbs);
-            this.panel1.Controls.Add(this.button9);
-            this.panel1.Controls.Add(this.button7);
-            this.panel1.Controls.Add(this.button8);
-            this.panel1.Location = new System.Drawing.Point(193, 166);
-            this.panel1.Margin = new System.Windows.Forms.Padding(0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(781, 485);
-            this.panel1.TabIndex = 14;
-            // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 1;
+            this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 0);
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 281F));
+            this.tableLayoutPanel1.Controls.Add(this.map_mainView, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
@@ -151,20 +126,52 @@ namespace Story_Crafter {
             this.progressBar1.Size = new System.Drawing.Size(386, 23);
             this.progressBar1.TabIndex = 0;
             // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.flowLayoutPanel1.AutoSize = true;
+            this.flowLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.flowLayoutPanel1.Controls.Add(this.button7);
+            this.flowLayoutPanel1.Controls.Add(this.button8);
+            this.flowLayoutPanel1.Controls.Add(this.button9);
+            this.flowLayoutPanel1.Controls.Add(this.map_showThumbs);
+            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(968, 353);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(116, 110);
+            this.flowLayoutPanel1.TabIndex = 15;
+            // 
+            // map_mainView
+            // 
+            this.map_mainView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.map_mainView.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("map_mainView.BackgroundImage")));
+            this.map_mainView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.map_mainView.Image = ((System.Drawing.Image)(resources.GetObject("map_mainView.Image")));
+            this.map_mainView.Location = new System.Drawing.Point(0, 0);
+            this.map_mainView.Margin = new System.Windows.Forms.Padding(0);
+            this.map_mainView.Name = "map_mainView";
+            this.map_mainView.ShowThumbs = false;
+            this.map_mainView.Size = new System.Drawing.Size(886, 817);
+            this.map_mainView.TabIndex = 16;
+            this.map_mainView.TabStop = false;
+            this.map_mainView.TheStory = null;
+            this.map_mainView.UpdateScreen = null;
+            this.map_mainView.UpdateStatus = null;
+            // 
             // MapTab
             // 
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.translucentPanel1);
             this.Name = "MapTab";
             this.Size = new System.Drawing.Size(1167, 817);
-            ((System.ComponentModel.ISupportInitialize)(this.map_mainView)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.translucentPanel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.map_mainView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -173,12 +180,12 @@ namespace Story_Crafter {
         private Button button8;
         private Button button7;
         private CheckBox map_showThumbs;
-        private MapViewPanel map_mainView;
-        private Panel panel1;
         private TableLayoutPanel tableLayoutPanel1;
         private TranslucentPanel translucentPanel1;
         private Panel panel2;
         private Label progressBarLabel;
         private ProgressBar progressBar1;
+        private MapViewPanel map_mainView;
+        private FlowLayoutPanel flowLayoutPanel1;
     }
 }
