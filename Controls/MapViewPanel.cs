@@ -171,8 +171,8 @@ namespace Story_Crafter {
                 int centerX = startX + mapWidth / 2;
                 int centerY = startY + mapHeight / 2;
 
-                mapWidth = this.Width / screenWidth;
-                mapHeight = this.Height / screenHeight;
+                mapWidth = this.Width / screenWidth + 1;
+                mapHeight = this.Height / screenHeight + 1;
 
                 this.CenterScreen(centerX, centerY);
                 selection.ChangeCellSize(screenWidth, screenHeight);
@@ -197,8 +197,8 @@ namespace Story_Crafter {
         protected override void OnResize(EventArgs e) {
             base.OnResize(e);
 
-            this.mapWidth = this.Width / screenWidth;
-            this.mapHeight = this.Height / screenHeight;
+            this.mapWidth = this.Width / screenWidth + 1;
+            this.mapHeight = this.Height / screenHeight + 1;
             DrawGridLines();
             DrawMap();
         }

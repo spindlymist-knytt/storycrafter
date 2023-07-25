@@ -4,3 +4,7 @@
 .vs/
 bin/
 obj/
+
+# Ignore NuGet Packages
+*.nupkg
+**/packages/*

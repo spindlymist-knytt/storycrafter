@@ -26,6 +26,7 @@ namespace Story_Crafter {
                 this.tilesetsTab1,
                 this.gradientsTab1,
                 this.worldIniTab1,
+                this.newScreenTab1,
             };
         }
         public void StoryChanged() {
