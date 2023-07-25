@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Story_Crafter</RootNamespace>
     <AssemblyName>Story Crafter</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -29,9 +29,11 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -39,6 +41,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -48,6 +51,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ICSharpCode.AvalonEdit, Version=5.0.3.0, Culture=neutral, PublicKeyToken=9cc39be672370310, processorArchitecture=MSIL">
@@ -59,7 +63,30 @@
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="SharpDX, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\SharpDX.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.Direct3D11, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\SharpDX.Direct3D11.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.Direct3D9, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\SharpDX.Direct3D9.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.DXGI, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\SharpDX.DXGI.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.Mathematics, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>packages\SharpDX.Mathematics.4.0.1\lib\net45\SharpDX.Mathematics.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.MediaFoundation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>packages\SharpDX.MediaFoundation.4.0.1\lib\net45\SharpDX.MediaFoundation.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Deployment" />
@@ -68,19 +95,84 @@
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
     <Reference Include="UIAutomationProvider" />
+    <Reference Include="WeifenLuo.WinFormsUI.Docking, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5cded1a1a0a7b481, processorArchitecture=MSIL">
+      <HintPath>packages\DockPanelSuite.3.1.0\lib\net40\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
+    </Reference>
+    <Reference Include="WeifenLuo.WinFormsUI.Docking.ThemeVS2015, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5cded1a1a0a7b481, processorArchitecture=MSIL">
+      <HintPath>packages\DockPanelSuite.ThemeVS2015.3.1.0\lib\net40\WeifenLuo.WinFormsUI.Docking.ThemeVS2015.dll</HintPath>
+    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\DXCanvas.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="EditorForm\GradientsTab.Designer.cs">
+      <DependentUpon>GradientsTab.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditorForm\IEditorTab.cs" />
+    <Compile Include="EditorForm\MapTab.Designer.cs">
+      <DependentUpon>MapTab.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditorForm\NewScreenTab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="EditorForm\NewScreenTab.Designer.cs">
+      <DependentUpon>NewScreenTab.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditorForm\OverviewTab.Designer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditorForm\ScreenTab.Designer.cs">
+      <DependentUpon>ScreenTab.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditorForm\TilesetsTab.Designer.cs">
+      <DependentUpon>TilesetsTab.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditorForm\WorldIniTab.Designer.cs">
+      <DependentUpon>WorldIniTab.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\AssetsPane.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Panes\AssetsPane.Designer.cs">
+      <DependentUpon>AssetsPane.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\IEditorPane.cs" />
+    <Compile Include="Panes\MapPane.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Panes\MapPane.Designer.cs">
+      <DependentUpon>MapPane.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\ObjectsPane.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Panes\ObjectsPane.Designer.cs">
+      <DependentUpon>ObjectsPane.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\ScreenPane.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Panes\ScreenPane.Designer.cs">
+      <DependentUpon>ScreenPane.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\TilesetsPane.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Panes\TilesetsPane.Designer.cs">
+      <DependentUpon>TilesetsPane.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\ToolsPane.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Panes\ToolsPane.Designer.cs">
+      <DependentUpon>ToolsPane.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pattern.cs" />
     <Compile Include="Controls\CanvasPanel.cs">
       <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="EditorForm\AmbianceTab.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="EditorForm\CutscenesTab.cs">
-      <SubType>Form</SubType>
     </Compile>
     <Compile Include="FillTool.cs" />
     <Compile Include="PatternTool.cs" />
@@ -101,7 +193,7 @@
       <DependentUpon>EditorForm.cs</DependentUpon>
     </Compile>
     <Compile Include="EditorForm\GradientsTab.cs">
-      <SubType>Form</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="EditorForm\ImportScreensForm.cs">
       <SubType>Form</SubType>
@@ -116,22 +208,16 @@
     <Compile Include="Layer.cs" />
     <Compile Include="Utility\ListViewItemComparer.cs" />
     <Compile Include="EditorForm\MapTab.cs">
-      <SubType>Form</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\MapViewPanel.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Utility\MemoryStream.cs" />
-    <Compile Include="EditorForm\MusicTab.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="ObjectBank.cs" />
     <Compile Include="ObjectBankList.cs" />
-    <Compile Include="EditorForm\ObjectsTab.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="EditorForm\OverviewTab.cs">
-      <SubType>Form</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="PreferencesForm\PreferencesForm.cs">
       <SubType>Form</SubType>
@@ -144,7 +230,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Screen.cs" />
     <Compile Include="EditorForm\ScreenTab.cs">
-      <SubType>Form</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\DragDropListView.cs">
       <SubType>Component</SubType>
@@ -160,7 +246,7 @@
     <Compile Include="TileSelection.cs" />
     <Compile Include="Tileset.cs" />
     <Compile Include="EditorForm\TilesetsTab.cs">
-      <SubType>Form</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\TilesetViewPanel.cs">
       <SubType>Component</SubType>
@@ -173,8 +259,47 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="EditorForm\WorldIniTab.cs">
-      <SubType>Form</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
+    <EmbeddedResource Include="EditorForm\GradientsTab.resx">
+      <DependentUpon>GradientsTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditorForm\MapTab.resx">
+      <DependentUpon>MapTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditorForm\NewScreenTab.resx">
+      <DependentUpon>NewScreenTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditorForm\OverviewTab.Designer.resx">
+      <DependentUpon>OverviewTab.Designer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditorForm\ScreenTab.resx">
+      <DependentUpon>ScreenTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditorForm\TilesetsTab.resx">
+      <DependentUpon>TilesetsTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditorForm\WorldIniTab.resx">
+      <DependentUpon>WorldIniTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panes\AssetsPane.resx">
+      <DependentUpon>AssetsPane.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panes\MapPane.resx">
+      <DependentUpon>MapPane.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panes\ObjectsPane.resx">
+      <DependentUpon>ObjectsPane.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panes\ScreenPane.resx">
+      <DependentUpon>ScreenPane.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panes\TilesetsPane.resx">
+      <DependentUpon>TilesetsPane.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panes\ToolsPane.resx">
+      <DependentUpon>ToolsPane.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Utility\DebugLog.resx">
       <DependentUpon>DebugLog.cs</DependentUpon>
     </EmbeddedResource>
@@ -200,8 +325,10 @@
     <EmbeddedResource Include="StartForm\StartForm.resx">
       <DependentUpon>StartForm.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="app.config" />
     <None Include="Config\app.config" />
     <None Include="Config\packages.config" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

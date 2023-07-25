@@ -81,18 +81,20 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tabPageWorldINI = new System.Windows.Forms.TabPage();
-            this.tabPageGradients = new System.Windows.Forms.TabPage();
-            this.tabPageTilesets = new System.Windows.Forms.TabPage();
-            this.tabPageMap = new System.Windows.Forms.TabPage();
-            this.tabPageScreen = new System.Windows.Forms.TabPage();
-            this.tabPageOverview = new System.Windows.Forms.TabPage();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.overviewTab1 = new Story_Crafter.OverviewTab();
-            this.screenTab1 = new Story_Crafter.ScreenTab();
-            this.mapTab1 = new Story_Crafter.MapTab();
-            this.tilesetsTab1 = new Story_Crafter.TilesetsTab();
-            this.gradientsTab1 = new Story_Crafter.GradientsTab();
             this.worldIniTab1 = new Story_Crafter.WorldIniTab();
+            this.tabPageGradients = new System.Windows.Forms.TabPage();
+            this.gradientsTab1 = new Story_Crafter.GradientsTab();
+            this.tabPageTilesets = new System.Windows.Forms.TabPage();
+            this.tilesetsTab1 = new Story_Crafter.TilesetsTab();
+            this.tabPageMap = new System.Windows.Forms.TabPage();
+            this.mapTab1 = new Story_Crafter.MapTab();
+            this.tabPageScreen = new System.Windows.Forms.TabPage();
+            this.screenTab1 = new Story_Crafter.ScreenTab();
+            this.tabPageOverview = new System.Windows.Forms.TabPage();
+            this.overviewTab1 = new Story_Crafter.OverviewTab();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPageNewScreen = new System.Windows.Forms.TabPage();
+            this.newScreenTab1 = new Story_Crafter.NewScreenTab();
             this.contextMenu2.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStrip3.SuspendLayout();
@@ -105,6 +107,7 @@
             this.tabPageScreen.SuspendLayout();
             this.tabPageOverview.SuspendLayout();
             this.tabControl1.SuspendLayout();
+            this.tabPageNewScreen.SuspendLayout();
             this.SuspendLayout();
             // 
             // contextMenu2
@@ -477,7 +480,7 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 540);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 534);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(920, 22);
             this.statusStrip1.SizingGrip = false;
@@ -490,10 +493,19 @@
             this.tabPageWorldINI.Location = new System.Drawing.Point(4, 22);
             this.tabPageWorldINI.Margin = new System.Windows.Forms.Padding(0);
             this.tabPageWorldINI.Name = "tabPageWorldINI";
-            this.tabPageWorldINI.Size = new System.Drawing.Size(794, 536);
+            this.tabPageWorldINI.Size = new System.Drawing.Size(912, 508);
             this.tabPageWorldINI.TabIndex = 9;
             this.tabPageWorldINI.Text = "World.ini";
             this.tabPageWorldINI.UseVisualStyleBackColor = true;
+            // 
+            // worldIniTab1
+            // 
+            this.worldIniTab1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.worldIniTab1.Location = new System.Drawing.Point(0, 0);
+            this.worldIniTab1.Margin = new System.Windows.Forms.Padding(0);
+            this.worldIniTab1.Name = "worldIniTab1";
+            this.worldIniTab1.Size = new System.Drawing.Size(912, 508);
+            this.worldIniTab1.TabIndex = 0;
             // 
             // tabPageGradients
             // 
@@ -501,10 +513,19 @@
             this.tabPageGradients.Location = new System.Drawing.Point(4, 22);
             this.tabPageGradients.Margin = new System.Windows.Forms.Padding(0);
             this.tabPageGradients.Name = "tabPageGradients";
-            this.tabPageGradients.Size = new System.Drawing.Size(912, 536);
+            this.tabPageGradients.Size = new System.Drawing.Size(912, 508);
             this.tabPageGradients.TabIndex = 5;
             this.tabPageGradients.Text = "Gradients";
             this.tabPageGradients.UseVisualStyleBackColor = true;
+            // 
+            // gradientsTab1
+            // 
+            this.gradientsTab1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gradientsTab1.Location = new System.Drawing.Point(0, 0);
+            this.gradientsTab1.Margin = new System.Windows.Forms.Padding(0);
+            this.gradientsTab1.Name = "gradientsTab1";
+            this.gradientsTab1.Size = new System.Drawing.Size(912, 508);
+            this.gradientsTab1.TabIndex = 0;
             // 
             // tabPageTilesets
             // 
@@ -512,10 +533,19 @@
             this.tabPageTilesets.Location = new System.Drawing.Point(4, 22);
             this.tabPageTilesets.Margin = new System.Windows.Forms.Padding(0);
             this.tabPageTilesets.Name = "tabPageTilesets";
-            this.tabPageTilesets.Size = new System.Drawing.Size(794, 536);
+            this.tabPageTilesets.Size = new System.Drawing.Size(912, 508);
             this.tabPageTilesets.TabIndex = 4;
             this.tabPageTilesets.Text = "Tilesets";
             this.tabPageTilesets.UseVisualStyleBackColor = true;
+            // 
+            // tilesetsTab1
+            // 
+            this.tilesetsTab1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tilesetsTab1.Location = new System.Drawing.Point(0, 0);
+            this.tilesetsTab1.Margin = new System.Windows.Forms.Padding(0);
+            this.tilesetsTab1.Name = "tilesetsTab1";
+            this.tilesetsTab1.Size = new System.Drawing.Size(912, 508);
+            this.tilesetsTab1.TabIndex = 0;
             // 
             // tabPageMap
             // 
@@ -523,10 +553,19 @@
             this.tabPageMap.Location = new System.Drawing.Point(4, 22);
             this.tabPageMap.Margin = new System.Windows.Forms.Padding(0);
             this.tabPageMap.Name = "tabPageMap";
-            this.tabPageMap.Size = new System.Drawing.Size(794, 536);
+            this.tabPageMap.Size = new System.Drawing.Size(912, 508);
             this.tabPageMap.TabIndex = 2;
             this.tabPageMap.Text = "Map";
             this.tabPageMap.UseVisualStyleBackColor = true;
+            // 
+            // mapTab1
+            // 
+            this.mapTab1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mapTab1.Location = new System.Drawing.Point(0, 0);
+            this.mapTab1.Margin = new System.Windows.Forms.Padding(0);
+            this.mapTab1.Name = "mapTab1";
+            this.mapTab1.Size = new System.Drawing.Size(912, 508);
+            this.mapTab1.TabIndex = 0;
             // 
             // tabPageScreen
             // 
@@ -534,10 +573,20 @@
             this.tabPageScreen.Location = new System.Drawing.Point(4, 22);
             this.tabPageScreen.Margin = new System.Windows.Forms.Padding(0);
             this.tabPageScreen.Name = "tabPageScreen";
-            this.tabPageScreen.Size = new System.Drawing.Size(912, 536);
+            this.tabPageScreen.Size = new System.Drawing.Size(912, 508);
             this.tabPageScreen.TabIndex = 1;
             this.tabPageScreen.Text = "Screen";
             this.tabPageScreen.UseVisualStyleBackColor = true;
+            // 
+            // screenTab1
+            // 
+            this.screenTab1.CurrentToolIndex = 0;
+            this.screenTab1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.screenTab1.Location = new System.Drawing.Point(0, 0);
+            this.screenTab1.Margin = new System.Windows.Forms.Padding(0);
+            this.screenTab1.Name = "screenTab1";
+            this.screenTab1.Size = new System.Drawing.Size(912, 508);
+            this.screenTab1.TabIndex = 0;
             // 
             // tabPageOverview
             // 
@@ -545,10 +594,19 @@
             this.tabPageOverview.Location = new System.Drawing.Point(4, 22);
             this.tabPageOverview.Margin = new System.Windows.Forms.Padding(0);
             this.tabPageOverview.Name = "tabPageOverview";
-            this.tabPageOverview.Size = new System.Drawing.Size(794, 536);
+            this.tabPageOverview.Size = new System.Drawing.Size(912, 508);
             this.tabPageOverview.TabIndex = 0;
             this.tabPageOverview.Text = "Overview";
             this.tabPageOverview.UseVisualStyleBackColor = true;
+            // 
+            // overviewTab1
+            // 
+            this.overviewTab1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.overviewTab1.Location = new System.Drawing.Point(0, 0);
+            this.overviewTab1.Margin = new System.Windows.Forms.Padding(0);
+            this.overviewTab1.Name = "overviewTab1";
+            this.overviewTab1.Size = new System.Drawing.Size(912, 508);
+            this.overviewTab1.TabIndex = 0;
             // 
             // tabControl1
             // 
@@ -558,78 +616,44 @@
             this.tabControl1.Controls.Add(this.tabPageTilesets);
             this.tabControl1.Controls.Add(this.tabPageGradients);
             this.tabControl1.Controls.Add(this.tabPageWorldINI);
+            this.tabControl1.Controls.Add(this.tabPageNewScreen);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(0);
             this.tabControl1.Multiline = true;
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(920, 562);
+            this.tabControl1.Size = new System.Drawing.Size(920, 534);
             this.tabControl1.TabIndex = 0;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
-            // overviewTab1
+            // tabPageNewScreen
             // 
-            this.overviewTab1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.overviewTab1.Location = new System.Drawing.Point(0, 0);
-            this.overviewTab1.Margin = new System.Windows.Forms.Padding(0);
-            this.overviewTab1.Name = "overviewTab1";
-            this.overviewTab1.Size = new System.Drawing.Size(794, 536);
-            this.overviewTab1.TabIndex = 0;
+            this.tabPageNewScreen.Controls.Add(this.newScreenTab1);
+            this.tabPageNewScreen.Location = new System.Drawing.Point(4, 22);
+            this.tabPageNewScreen.Name = "tabPageNewScreen";
+            this.tabPageNewScreen.Size = new System.Drawing.Size(912, 508);
+            this.tabPageNewScreen.TabIndex = 10;
+            this.tabPageNewScreen.Text = "Screen";
+            this.tabPageNewScreen.UseVisualStyleBackColor = true;
             // 
-            // screenTab1
+            // newScreenTab1
             // 
-            this.screenTab1.CurrentToolIndex = 0;
-            this.screenTab1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.screenTab1.Location = new System.Drawing.Point(0, 0);
-            this.screenTab1.Margin = new System.Windows.Forms.Padding(0);
-            this.screenTab1.Name = "screenTab1";
-            this.screenTab1.Size = new System.Drawing.Size(912, 536);
-            this.screenTab1.TabIndex = 0;
-            // 
-            // mapTab1
-            // 
-            this.mapTab1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mapTab1.Location = new System.Drawing.Point(0, 0);
-            this.mapTab1.Margin = new System.Windows.Forms.Padding(0);
-            this.mapTab1.Name = "mapTab1";
-            this.mapTab1.Size = new System.Drawing.Size(794, 536);
-            this.mapTab1.TabIndex = 0;
-            // 
-            // tilesetsTab1
-            // 
-            this.tilesetsTab1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tilesetsTab1.Location = new System.Drawing.Point(0, 0);
-            this.tilesetsTab1.Margin = new System.Windows.Forms.Padding(0);
-            this.tilesetsTab1.Name = "tilesetsTab1";
-            this.tilesetsTab1.Size = new System.Drawing.Size(794, 536);
-            this.tilesetsTab1.TabIndex = 0;
-            // 
-            // gradientsTab1
-            // 
-            this.gradientsTab1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gradientsTab1.Location = new System.Drawing.Point(0, 0);
-            this.gradientsTab1.Margin = new System.Windows.Forms.Padding(0);
-            this.gradientsTab1.Name = "gradientsTab1";
-            this.gradientsTab1.Size = new System.Drawing.Size(912, 536);
-            this.gradientsTab1.TabIndex = 0;
-            // 
-            // worldIniTab1
-            // 
-            this.worldIniTab1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.worldIniTab1.Location = new System.Drawing.Point(0, 0);
-            this.worldIniTab1.Margin = new System.Windows.Forms.Padding(0);
-            this.worldIniTab1.Name = "worldIniTab1";
-            this.worldIniTab1.Size = new System.Drawing.Size(794, 536);
-            this.worldIniTab1.TabIndex = 0;
+            this.newScreenTab1.BackColor = System.Drawing.Color.Transparent;
+            this.newScreenTab1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.newScreenTab1.Location = new System.Drawing.Point(0, 0);
+            this.newScreenTab1.Margin = new System.Windows.Forms.Padding(0);
+            this.newScreenTab1.Name = "newScreenTab1";
+            this.newScreenTab1.Size = new System.Drawing.Size(912, 508);
+            this.newScreenTab1.TabIndex = 0;
             // 
             // EditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(920, 562);
-            this.Controls.Add(this.statusStrip1);
+            this.ClientSize = new System.Drawing.Size(920, 556);
             this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.statusStrip1);
             this.MaximumSize = new System.Drawing.Size(9999, 9999);
             this.Menu = this.mainMenu1;
             this.MinimumSize = new System.Drawing.Size(800, 595);
@@ -649,6 +673,7 @@
             this.tabPageScreen.ResumeLayout(false);
             this.tabPageOverview.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
+            this.tabPageNewScreen.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -724,5 +749,7 @@
         private System.Windows.Forms.TabControl tabControl1;
         private GradientsTab gradientsTab1;
         private WorldIniTab worldIniTab1;
+        private System.Windows.Forms.TabPage tabPageNewScreen;
+        private NewScreenTab newScreenTab1;
     }
 }

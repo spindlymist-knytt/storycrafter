@@ -143,6 +143,7 @@ namespace Story_Crafter.Controls {
         }
 
         protected override void OnPaint(PaintEventArgs e) {
+            e.Graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
             base.OnPaint(e);
 
             if(hover && this.Cursor != Cursors.SizeNWSE) {
