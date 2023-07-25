@@ -7,47 +7,28 @@ using System.Windows.Forms;
 
 namespace Story_Crafter.Forms.EditorForm {
     partial class OverviewTab {
-        private Label overview_screenCount;
-        private CheckBox overview_overlayCheck;
-        private Panel overview_clothesPreview;
-        private Panel overview_skinPreview;
-        private PictureBox overview_juni;
-        private Label label20;
-        private Label label19;
-        private Label label18;
-        private Button overview_publish;
-        private ComboBox overview_size;
-        private ComboBox overview_diffC;
-        private ComboBox overview_diffB;
-        private ComboBox overview_diffA;
-        private ComboBox overview_catB;
-        private ComboBox overview_catA;
-        private PictureBox overview_info;
-        private Panel overview_cardBorder;
-        private Panel overview_cardBackground;
-        private TextBox overview_description;
-        private Label label17;
-        private Label label16;
-        private TextBox overview_author;
-        private TextBox overview_title;
-        private PictureBox overview_icon;
-        private Label overview_clothesLabel;
-        private ColorDialog overview_colorDialog;
-        private ContextMenuStrip contextMenu1;
-        private System.ComponentModel.IContainer components;
-        private ToolStripMenuItem compressToolStripMenuItem;
-        private ToolStripMenuItem compressAndUploadToKnyttlevelscomToolStripMenuItem;
-        private FlowLayoutPanel flowLayoutPanel1;
-        private FlowLayoutPanel flowLayoutPanel2;
-        private FlowLayoutPanel flowLayoutPanel4;
-        private FlowLayoutPanel flowLayoutPanel5;
-        private FlowLayoutPanel flowLayoutPanel6;
-        private FlowLayoutPanel flowLayoutPanel3;
-        private TableLayoutPanel tableLayoutPanel1;
-        private Panel panel1;
-        private TableLayoutPanel tableLayoutPanel2;
-        private Label overview_skinLabel;
+        /// <summary> 
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
 
+        /// <summary> 
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing) {
+            if (disposing && (components != null)) {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Component Designer generated code
+
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
+        /// the contents of this method with the code editor.
+        /// </summary>
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OverviewTab));
@@ -557,5 +538,47 @@ namespace Story_Crafter.Forms.EditorForm {
             this.ResumeLayout(false);
 
         }
+
+        #endregion
+
+        private Label overview_screenCount;
+        private CheckBox overview_overlayCheck;
+        private Panel overview_clothesPreview;
+        private Panel overview_skinPreview;
+        private PictureBox overview_juni;
+        private Label label20;
+        private Label label19;
+        private Label label18;
+        private Button overview_publish;
+        private ComboBox overview_size;
+        private ComboBox overview_diffC;
+        private ComboBox overview_diffB;
+        private ComboBox overview_diffA;
+        private ComboBox overview_catB;
+        private ComboBox overview_catA;
+        private PictureBox overview_info;
+        private Panel overview_cardBorder;
+        private Panel overview_cardBackground;
+        private TextBox overview_description;
+        private Label label17;
+        private Label label16;
+        private TextBox overview_author;
+        private TextBox overview_title;
+        private PictureBox overview_icon;
+        private Label overview_clothesLabel;
+        private ColorDialog overview_colorDialog;
+        private ContextMenuStrip contextMenu1;
+        private ToolStripMenuItem compressToolStripMenuItem;
+        private ToolStripMenuItem compressAndUploadToKnyttlevelscomToolStripMenuItem;
+        private FlowLayoutPanel flowLayoutPanel1;
+        private FlowLayoutPanel flowLayoutPanel2;
+        private FlowLayoutPanel flowLayoutPanel4;
+        private FlowLayoutPanel flowLayoutPanel5;
+        private FlowLayoutPanel flowLayoutPanel6;
+        private FlowLayoutPanel flowLayoutPanel3;
+        private TableLayoutPanel tableLayoutPanel1;
+        private Panel panel1;
+        private TableLayoutPanel tableLayoutPanel2;
+        private Label overview_skinLabel;
     }
 }

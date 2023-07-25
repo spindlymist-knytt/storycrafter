@@ -122,10 +122,16 @@
       <DependentUpon>NewScreenTab.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\EditorForm\OverviewTab.Designer.cs">
-      <SubType>Form</SubType>
+      <DependentUpon>OverviewTab.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\EditorForm\ScreenTab.Designer.cs">
       <DependentUpon>ScreenTab.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EditorForm\Test.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\EditorForm\Test.Designer.cs">
+      <DependentUpon>Test.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\EditorForm\TilesetsTab.Designer.cs">
       <DependentUpon>TilesetsTab.cs</DependentUpon>
@@ -270,11 +276,14 @@
     <EmbeddedResource Include="Forms\EditorForm\NewScreenTab.resx">
       <DependentUpon>NewScreenTab.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\EditorForm\OverviewTab.Designer.resx">
-      <DependentUpon>OverviewTab.Designer.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\EditorForm\OverviewTab.resx">
+      <DependentUpon>OverviewTab.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\EditorForm\ScreenTab.resx">
       <DependentUpon>ScreenTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EditorForm\Test.resx">
+      <DependentUpon>Test.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\EditorForm\TilesetsTab.resx">
       <DependentUpon>TilesetsTab.cs</DependentUpon>
