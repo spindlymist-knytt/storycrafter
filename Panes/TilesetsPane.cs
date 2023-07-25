@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
+using Screen = Story_Crafter.Knytt.Screen;
 
 namespace Story_Crafter.Panes {
     public partial class TilesetsPane : DockContent, IEditorPane {

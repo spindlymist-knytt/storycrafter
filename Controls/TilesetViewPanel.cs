@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using System.Drawing;
 using System.Collections.Generic;
 using System.Drawing.Drawing2D;
+using Story_Crafter.Editing;
 
 namespace Story_Crafter {
 

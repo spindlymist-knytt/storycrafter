@@ -108,29 +108,29 @@
     <Compile Include="Controls\DXCanvas.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="EditorForm\GradientsTab.Designer.cs">
+    <Compile Include="Forms\EditorForm\GradientsTab.Designer.cs">
       <DependentUpon>GradientsTab.cs</DependentUpon>
     </Compile>
-    <Compile Include="EditorForm\IEditorTab.cs" />
-    <Compile Include="EditorForm\MapTab.Designer.cs">
+    <Compile Include="Forms\EditorForm\IEditorTab.cs" />
+    <Compile Include="Forms\EditorForm\MapTab.Designer.cs">
       <DependentUpon>MapTab.cs</DependentUpon>
     </Compile>
-    <Compile Include="EditorForm\NewScreenTab.cs">
+    <Compile Include="Forms\EditorForm\NewScreenTab.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="EditorForm\NewScreenTab.Designer.cs">
+    <Compile Include="Forms\EditorForm\NewScreenTab.Designer.cs">
       <DependentUpon>NewScreenTab.cs</DependentUpon>
     </Compile>
-    <Compile Include="EditorForm\OverviewTab.Designer.cs">
+    <Compile Include="Forms\EditorForm\OverviewTab.Designer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EditorForm\ScreenTab.Designer.cs">
+    <Compile Include="Forms\EditorForm\ScreenTab.Designer.cs">
       <DependentUpon>ScreenTab.cs</DependentUpon>
     </Compile>
-    <Compile Include="EditorForm\TilesetsTab.Designer.cs">
+    <Compile Include="Forms\EditorForm\TilesetsTab.Designer.cs">
       <DependentUpon>TilesetsTab.cs</DependentUpon>
     </Compile>
-    <Compile Include="EditorForm\WorldIniTab.Designer.cs">
+    <Compile Include="Forms\EditorForm\WorldIniTab.Designer.cs">
       <DependentUpon>WorldIniTab.cs</DependentUpon>
     </Compile>
     <Compile Include="Panes\AssetsPane.cs">
@@ -170,116 +170,116 @@
     <Compile Include="Panes\ToolsPane.Designer.cs">
       <DependentUpon>ToolsPane.cs</DependentUpon>
     </Compile>
-    <Compile Include="Pattern.cs" />
+    <Compile Include="Editing\Pattern.cs" />
     <Compile Include="Controls\CanvasPanel.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="FillTool.cs" />
-    <Compile Include="PatternTool.cs" />
-    <Compile Include="ICanvas.cs" />
-    <Compile Include="PaintTool.cs" />
-    <Compile Include="RandomizeTool.cs" />
-    <Compile Include="ReplaceTool.cs" />
-    <Compile Include="Utility\DebugLog.cs">
+    <Compile Include="Editing\Tools\FillTool.cs" />
+    <Compile Include="Editing\Tools\PatternTool.cs" />
+    <Compile Include="Editing\ICanvas.cs" />
+    <Compile Include="Editing\Tools\PaintTool.cs" />
+    <Compile Include="Editing\Tools\RandomizeTool.cs" />
+    <Compile Include="Editing\Tools\ReplaceTool.cs" />
+    <Compile Include="Forms\LogsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Utility\DebugLog.Designer.cs">
-      <DependentUpon>DebugLog.cs</DependentUpon>
+    <Compile Include="Forms\LogsForm.Designer.cs">
+      <DependentUpon>LogsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="EditorForm\EditorForm.cs">
+    <Compile Include="Forms\EditorForm\EditorForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EditorForm\EditorForm.Designer.cs">
+    <Compile Include="Forms\EditorForm\EditorForm.Designer.cs">
       <DependentUpon>EditorForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="EditorForm\GradientsTab.cs">
+    <Compile Include="Forms\EditorForm\GradientsTab.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="EditorForm\ImportScreensForm.cs">
+    <Compile Include="Forms\ImportScreensForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EditorForm\ImportScreensForm.Designer.cs">
+    <Compile Include="Forms\ImportScreensForm.Designer.cs">
       <DependentUpon>ImportScreensForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\INIEditor.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Utility\IniFile.cs" />
-    <Compile Include="Layer.cs" />
+    <Compile Include="Knytt\Layer.cs" />
     <Compile Include="Utility\ListViewItemComparer.cs" />
-    <Compile Include="EditorForm\MapTab.cs">
+    <Compile Include="Forms\EditorForm\MapTab.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\MapViewPanel.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Utility\MemoryStream.cs" />
-    <Compile Include="ObjectBank.cs" />
-    <Compile Include="ObjectBankList.cs" />
-    <Compile Include="EditorForm\OverviewTab.cs">
+    <Compile Include="Knytt\ObjectBank.cs" />
+    <Compile Include="Knytt\ObjectBankList.cs" />
+    <Compile Include="Forms\EditorForm\OverviewTab.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PreferencesForm\PreferencesForm.cs">
+    <Compile Include="Forms\PreferencesForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PreferencesForm\PreferencesForm.Designer.cs">
+    <Compile Include="Forms\PreferencesForm.Designer.cs">
       <DependentUpon>PreferencesForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Profile.cs" />
+    <Compile Include="Knytt\Profile.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Screen.cs" />
-    <Compile Include="EditorForm\ScreenTab.cs">
+    <Compile Include="Knytt\Screen.cs" />
+    <Compile Include="Forms\EditorForm\ScreenTab.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\DragDropListView.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Selection.cs" />
-    <Compile Include="StartForm\StartForm.cs">
+    <Compile Include="Editing\Selection.cs" />
+    <Compile Include="Forms\StartForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="StartForm\StartForm.Designer.cs">
+    <Compile Include="Forms\StartForm.Designer.cs">
       <DependentUpon>StartForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Story.cs" />
-    <Compile Include="TileSelection.cs" />
-    <Compile Include="Tileset.cs" />
-    <Compile Include="EditorForm\TilesetsTab.cs">
+    <Compile Include="Knytt\Story.cs" />
+    <Compile Include="Editing\TileSelection.cs" />
+    <Compile Include="Rendering\Tileset.cs" />
+    <Compile Include="Forms\EditorForm\TilesetsTab.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\TilesetViewPanel.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="EditingTool.cs" />
+    <Compile Include="Editing\Tools\EditingTool.cs" />
     <Compile Include="Controls\TranslucentPanel.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\TransparentPanel.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="EditorForm\WorldIniTab.cs">
+    <Compile Include="Forms\EditorForm\WorldIniTab.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <EmbeddedResource Include="EditorForm\GradientsTab.resx">
+    <EmbeddedResource Include="Forms\EditorForm\GradientsTab.resx">
       <DependentUpon>GradientsTab.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EditorForm\MapTab.resx">
+    <EmbeddedResource Include="Forms\EditorForm\MapTab.resx">
       <DependentUpon>MapTab.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EditorForm\NewScreenTab.resx">
+    <EmbeddedResource Include="Forms\EditorForm\NewScreenTab.resx">
       <DependentUpon>NewScreenTab.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EditorForm\OverviewTab.Designer.resx">
+    <EmbeddedResource Include="Forms\EditorForm\OverviewTab.Designer.resx">
       <DependentUpon>OverviewTab.Designer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EditorForm\ScreenTab.resx">
+    <EmbeddedResource Include="Forms\EditorForm\ScreenTab.resx">
       <DependentUpon>ScreenTab.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EditorForm\TilesetsTab.resx">
+    <EmbeddedResource Include="Forms\EditorForm\TilesetsTab.resx">
       <DependentUpon>TilesetsTab.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EditorForm\WorldIniTab.resx">
+    <EmbeddedResource Include="Forms\EditorForm\WorldIniTab.resx">
       <DependentUpon>WorldIniTab.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Panes\AssetsPane.resx">
@@ -300,16 +300,16 @@
     <EmbeddedResource Include="Panes\ToolsPane.resx">
       <DependentUpon>ToolsPane.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Utility\DebugLog.resx">
-      <DependentUpon>DebugLog.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\LogsForm.resx">
+      <DependentUpon>LogsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EditorForm\EditorForm.resx">
+    <EmbeddedResource Include="Forms\EditorForm\EditorForm.resx">
       <DependentUpon>EditorForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EditorForm\ImportScreensForm.resx">
+    <EmbeddedResource Include="Forms\ImportScreensForm.resx">
       <DependentUpon>ImportScreensForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PreferencesForm\PreferencesForm.resx">
+    <EmbeddedResource Include="Forms\PreferencesForm.resx">
       <DependentUpon>PreferencesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -322,7 +322,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="StartForm\StartForm.resx">
+    <EmbeddedResource Include="Forms\StartForm.resx">
       <DependentUpon>StartForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
