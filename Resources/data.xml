@@ -53,10 +53,14 @@
 
 <profile id="ksego" name="Knytt Stories Ego" base="ks" active="false">
   <banks>
-    <bank index="0"	name="System"			objects="1-35 248-255" />
-    <bank index="15"	name="Objects &amp; Areas"	objects="1-36"         />
-    <bank index="16"	name="Invisible"		objects="1-18"         />
+    <bank index="0"	name="System"			objects="1-49 247-255" />
+    <bank index="1"	name="Liquids"			objects="1-27"  />
+    <bank index="6"	name="Traps"			objects="1-17"  />
+    <bank index="7"	name="Nature FX"		objects="1-17"  />
+    <bank index="15"	name="Objects &amp; Areas"	objects="1-38"         />
+    <bank index="16"	name="Invisible"		objects="1-30"         />
     <bank index="19"	name="Collectables"		objects="1-199"        />
+    <bank index="254"	name="Custom Objects B"		objects="1-255" />
   </banks>
 </profile>
 
