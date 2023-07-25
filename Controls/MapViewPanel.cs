@@ -3,6 +3,9 @@ using System.Windows.Forms;
 using System.Drawing;
 using System.Collections.Generic;
 using System.Drawing.Drawing2D;
+using Story_Crafter.Editing;
+using Story_Crafter.Knytt;
+using Screen = Story_Crafter.Knytt.Screen;
 
 namespace Story_Crafter {
 

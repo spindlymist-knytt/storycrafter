@@ -6,12 +6,16 @@ using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.Xml;
 using System.IO;
+using Story_Crafter.Knytt;
+using Screen = Story_Crafter.Knytt.Screen;
+using Story_Crafter.Forms;
+using Story_Crafter.Forms.EditorForm;
 
 namespace Story_Crafter {
     static class Program {
         public static EditorForm Editor;
         public static StartForm Start;
-        public static DebugLog Debug;
+        public static LogsForm Debug;
         public static PreferencesForm Preferences;
         public static ImportScreensForm ImportScreens;
 
@@ -141,7 +145,7 @@ namespace Story_Crafter {
             if(!Program.LoadGlobalData()) return;
             Program.Editor = new EditorForm();
             Program.Start = new StartForm();
-            Program.Debug = new DebugLog();
+            Program.Debug = new LogsForm();
             Program.Preferences = new PreferencesForm();
             Program.ImportScreens = new ImportScreensForm();
             Application.Run(Editor);

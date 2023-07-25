@@ -16,7 +16,6 @@ namespace Story_Crafter.Controls {
 
         bool isDesignEnvironment;
 
-        Buffer buffer;
         Device device;
         SwapChain swapChain;
         Texture2D target;

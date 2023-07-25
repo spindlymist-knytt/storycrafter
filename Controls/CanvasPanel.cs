@@ -7,6 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
+using Story_Crafter.Editing;
+using Story_Crafter.Editing.Tools;
+using Story_Crafter.Knytt;
+using Story_Crafter.Rendering;
 
 namespace Story_Crafter.Controls {
     class CanvasPanel: PictureBox {
