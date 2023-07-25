@@ -18,8 +18,6 @@ namespace Story_Crafter.Forms.EditorForm {
             InitializeComponent();
 
             this.overlay = this.overview_info.Image;
-            this.overview_overlayCheck.CheckedChanged += this.overlayCheck_CheckedChanged;
-            this.overview_publish.MouseClick += this.publish_MouseClick;
 
             this.overview_author.TextChanged += delegate (object sender, EventArgs e) { Program.OpenStory.Author = ((TextBox)sender).Text; };
             this.overview_title.TextChanged += delegate (object sender, EventArgs e) {
@@ -75,15 +73,6 @@ namespace Story_Crafter.Forms.EditorForm {
             return false;
         }
 
-        public void overlayCheck_CheckedChanged(object sender, EventArgs e) {
-            if(this.overview_overlayCheck.Checked) {
-                this.overview_info.Image = overlay;
-            }
-            else {
-                this.overview_info.Image = null;
-            }
-        }
-
         public void skinPreview_Click(object sender, EventArgs e) {
             this.overview_colorDialog.Color = Program.OpenStory.Skin;
             this.overview_colorDialog.ShowDialog();
@@ -116,8 +105,15 @@ namespace Story_Crafter.Forms.EditorForm {
             }
         }
 
-        public void publish_MouseClick(object sender, MouseEventArgs e) {
-            this.contextMenu1.Show(this.overview_publish, e.Location);
+        private void menuItem_toggleOverlay_Click(object sender, EventArgs e) {
+            ToolStripMenuItem menuItem = sender as ToolStripMenuItem;
+
+            if (menuItem.Checked) {
+                this.overview_info.Image = overlay;
+            }
+            else {
+                this.overview_info.Image = null;
+            }
         }
     }
 }
