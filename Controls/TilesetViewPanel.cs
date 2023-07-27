@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Collections.Generic;
 using System.Drawing.Drawing2D;
 using Story_Crafter.Editing;
+using Story_Crafter.Knytt;
 
 namespace Story_Crafter {
 
@@ -31,7 +32,7 @@ namespace Story_Crafter {
         bool active = false;
 
         public TilesetViewPanel() {
-            selection = new TileSelection(24, 24, 0, 0, Program.TilesetWidth, Program.TilesetHeight, tileCursor);
+            selection = new TileSelection(Metrics.TileSize, Metrics.TileSize, 0, 0, Metrics.TilesetWidth, Metrics.TilesetHeight, tileCursor);
             selection.Add(new Rectangle(0, 0, 1, 1));
         }
 
@@ -42,8 +43,8 @@ namespace Story_Crafter {
                 if(!active) firstSelection = true;
                 active = true;
                 selectionInProgress = true;
-                selectionStart.X = (int)(e.X / 24f);
-                selectionStart.Y = (int)(e.Y / 24f);
+                selectionStart.X = (int)(e.X / Metrics.TileSizef);
+                selectionStart.Y = (int)(e.Y / Metrics.TileSizef);
                 lastSelection.X = selectionStart.X;
                 lastSelection.Y = selectionStart.Y;
                 lastSelection.Width = 1;

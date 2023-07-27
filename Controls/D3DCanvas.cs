@@ -24,6 +24,7 @@ namespace Story_Crafter.Controls {
             }
         }
         Screen screen;
+        Story story;
 
         bool isDesignEnvironment;
         Brush designBrush;
@@ -43,6 +44,7 @@ namespace Story_Crafter.Controls {
         }
 
         public void UpdateStory(Story story) {
+            this.story = story;
             renderer.InstallAssets(story);
         }
 
@@ -54,7 +56,7 @@ namespace Story_Crafter.Controls {
             }
 
             if (this.screen != null) {
-                renderer.Render(this.screen);
+                renderer.Render(this.story, this.screen);
             }
         }
     }

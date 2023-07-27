@@ -50,7 +50,7 @@ namespace Story_Crafter.Knytt {
         }
 
         private void DrawGradient(Graphics g, Bitmap gradient) {
-            for(int x = 0; x < Program.PxScreenWidth; x += gradient.Width) {
+            for(int x = 0; x < Metrics.ScreenWidthPx; x += gradient.Width) {
                 g.DrawImage(gradient, x, 0, gradient.Width, gradient.Height);
             }
         }

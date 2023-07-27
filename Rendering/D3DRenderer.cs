@@ -64,10 +64,10 @@ namespace Story_Crafter.Rendering {
                 var pixelShader = new PixelShader(device, pixelShaderResult.Bytecode);
 
                 // Set up vertex buffers
-                var vertexPositions = new Vector4[Program.ScreenWidth * Program.ScreenHeight * 6];
+                var vertexPositions = new Vector4[Metrics.ScreenWidth * Metrics.ScreenHeight * 6];
                 int i = 0;
-                for (int screenY = 0; screenY < Program.ScreenHeight; screenY++) {
-                    for (int screenX = 0; screenX < Program.ScreenWidth; screenX++) {
+                for (int screenY = 0; screenY < Metrics.ScreenHeight; screenY++) {
+                    for (int screenX = 0; screenX < Metrics.ScreenWidth; screenX++) {
                         float top = (240.0f / 2.0f) - (screenY * 24.0f);
                         float bottom = top - 24.0f;
                         float left = -(600.0f / 2.0f) + (screenX * 24.0f);
@@ -137,8 +137,8 @@ namespace Story_Crafter.Rendering {
             Texture2D tilesetsArray = new Texture2D(
                 device,
                 new Texture2DDescription() {
-                    Width = 384,
-                    Height = 192,
+                    Width = Metrics.TilesetWidthPx,
+                    Height = Metrics.TilesetHeightPx,
                     ArraySize = 256,
                     BindFlags = BindFlags.ShaderResource,
                     Usage = ResourceUsage.Default,
@@ -149,8 +149,8 @@ namespace Story_Crafter.Rendering {
                     SampleDescription = new SampleDescription(1, 0),
                 });
 
-            int stride = 384 * 4;
-            var buffer = new DataStream(stride * 192, true, true);
+            int stride = Metrics.TilesetWidthPx * 4;
+            var buffer = new DataStream(stride * Metrics.TilesetHeightPx, true, true);
 
             for (int i = 0; i < 256; i++) {
                 BitmapSource tileset = LoadBitmap(factory, story.Tileset(i));
@@ -167,9 +167,9 @@ namespace Story_Crafter.Rendering {
             context.PixelShader.SetShaderResources(0, resourceView);
         }
 
-        public void Render(Screen screen) {
+        public void Render(Story story, Screen screen) {
             // Upload gradient (temporary)
-            var gradient = Program.LoadBitmap(Program.OpenStory.Gradient(screen.Gradient));
+            var gradient = Program.LoadBitmap(story.Gradient(screen.Gradient));
             var textureGrad = createTextureFromBitmap(gradient);
             var rcViewGrad = new ShaderResourceView(device, textureGrad);
             context.PixelShader.SetShaderResources(1, rcViewGrad);
@@ -189,7 +189,7 @@ namespace Story_Crafter.Rendering {
 
             // Draw and present
             context.ClearRenderTargetView(targetView, Color.Black);
-            context.Draw(Program.ScreenWidth * Program.ScreenHeight * 6, 0);
+            context.Draw(Metrics.ScreenWidth * Metrics.ScreenHeight * 6, 0);
             swapChain.Present(0, PresentFlags.None);
 
             //watch.Stop();

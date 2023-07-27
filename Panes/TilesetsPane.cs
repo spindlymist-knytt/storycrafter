@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Story_Crafter.Knytt;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,14 +12,20 @@ using WeifenLuo.WinFormsUI.Docking;
 using Screen = Story_Crafter.Knytt.Screen;
 
 namespace Story_Crafter.Panes {
-    public partial class TilesetsPane : DockContent, IEditorPane {
+    partial class TilesetsPane : DockContent, IEditorPane {
+        Story story;
+
         public TilesetsPane() {
             InitializeComponent();
         }
 
-        void IEditorPane.ChangeScreen(Screen screen) {
-            this.screen_tilesetViewA.Image = Program.OpenStory.CreateTileset(screen.TilesetA).Full;
-            this.screen_tilesetViewB.Image = Program.OpenStory.CreateTileset(screen.TilesetB).Full;
+        public void ScreenChanged(Screen screen) {
+            this.screen_tilesetViewA.Image = story.CreateTileset(screen.TilesetA).Full;
+            this.screen_tilesetViewB.Image = story.CreateTileset(screen.TilesetB).Full;
+        }
+
+        public void StoryChanged(Story story) {
+            this.story = story;
         }
     }
 }

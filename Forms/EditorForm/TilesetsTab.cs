@@ -1,32 +1,37 @@
-﻿using System;
+﻿using Story_Crafter.Knytt;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 
 using System.Text;
 using System.Windows.Forms;
+using Screen = Story_Crafter.Knytt.Screen;
 
 namespace Story_Crafter.Forms.EditorForm {
     partial class TilesetsTab : UserControl, IEditorTab {
         ListViewItemComparer lvItemComparer = new ListViewItemComparer();
+        Story story;
 
         public TilesetsTab() {
             this.InitializeComponent();
 
             this.tileset_list.SelectedIndexChanged += delegate {
                 if(this.tileset_list.SelectedItems.Count > 0) {
-                    Bitmap b = Program.LoadBitmap(Program.OpenStory.Path + @"\Tilesets\" + this.tileset_list.SelectedItems[0].Text);
+                    Bitmap b = Program.LoadBitmap(this.story.Path + @"\Tilesets\" + this.tileset_list.SelectedItems[0].Text);
                     b.MakeTransparent(Color.Magenta);
                     this.tileset_view.Image = b;
-                    this.tileset_view.Tag = Program.OpenStory.Path + @"\Tilesets\" + this.tileset_list.SelectedItems[0].Text;
+                    this.tileset_view.Tag = this.story.Path + @"\Tilesets\" + this.tileset_list.SelectedItems[0].Text;
                     this.tileset_label.Text = this.tileset_list.SelectedItems[0].Text;
                 }
             };
         }
 
-        public void StoryChanged() {
+        public void StoryChanged(Story story) {
+            this.story = story;
+
             this.tileset_list.Clear();
-            DirectoryInfo dirInfo = new DirectoryInfo(Program.OpenStory.Path + @"\Tilesets");
+            DirectoryInfo dirInfo = new DirectoryInfo(this.story.Path + @"\Tilesets");
             if(!dirInfo.Exists) {
                 this.tileset_label.Text = "";
                 this.tileset_view.Image = null;
@@ -59,7 +64,7 @@ namespace Story_Crafter.Forms.EditorForm {
             return false;
         }
 
-        public void ScreenChanged() {
+        public void ScreenChanged(Screen screen) {
         }
     }
 }

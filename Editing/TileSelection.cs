@@ -17,8 +17,8 @@ namespace Story_Crafter.Editing {
             foreach(SelectionNode n in nodes) {
                 int x = paintX + n.X;
                 int y = paintY + n.Y;
-                if(x < 0 || x > Program.ScreenWidth - 1 || y < 0 || y > Program.ScreenHeight - 1) continue;
-                l.Tiles[Program.ScreenPointToIndex(x, y)].Set(tileset, n.TileIndex);
+                if(x < 0 || x > Metrics.ScreenWidth - 1 || y < 0 || y > Metrics.ScreenHeight - 1) continue;
+                l.Tiles[Metrics.ScreenPointToIndex(x, y)].Set(tileset, n.TileIndex);
             }
         }
 

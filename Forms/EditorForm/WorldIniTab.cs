@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Story_Crafter.Knytt;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -6,6 +7,7 @@ using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using Screen = Story_Crafter.Knytt.Screen;
 
 namespace Story_Crafter.Forms.EditorForm {
     // TODO: finish migration to AvEdit
@@ -255,8 +257,8 @@ namespace Story_Crafter.Forms.EditorForm {
 
             //this.scintilla1.Folding.IsEnabled = true;
         }
-        public void StoryChanged() {
-            this.worldIni_avEdit.Text = File.ReadAllText(Program.OpenStory.WorldIni.Path);
+        public void StoryChanged(Story story) {
+            this.worldIni_avEdit.Text = File.ReadAllText(story.WorldIni.Path);
         }
         public void TabOpened() {
         }
@@ -298,7 +300,7 @@ namespace Story_Crafter.Forms.EditorForm {
             //}
         }
 
-        public void ScreenChanged() {
+        public void ScreenChanged(Screen screen) {
         }
     }
 }

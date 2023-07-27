@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Story_Crafter.Knytt;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,8 +14,9 @@ namespace Story_Crafter.Forms.EditorForm {
     // TODO: music tab
     // TODO: ambiance tab
     // TODO: custom objects tab
-    public partial class EditorForm: Form {
+    partial class EditorForm: Form {
         List<IEditorTab> tabs;
+        Story story;
 
         public EditorForm() {
             InitializeComponent();
@@ -30,12 +32,15 @@ namespace Story_Crafter.Forms.EditorForm {
                 this.testTab1,
             };
         }
-        public void StoryChanged() {
+        public void StoryChanged(Story story) {
+            this.story = story;
+
             Program.ChangingStory = true;
-            this.Text = Program.OpenStory.Title + " - Story Crafter";
+            this.Text = story.Title + " - Story Crafter";
 
             foreach (IEditorTab tab in tabs) {
-                tab.StoryChanged();
+                tab.StoryChanged(story);
+                tab.ScreenChanged(story.ActiveScreen);
             }
 
             GC.Collect();
@@ -48,8 +53,7 @@ namespace Story_Crafter.Forms.EditorForm {
                 this.Close();
                 return;
             }
-
-            StoryChanged();
+            StoryChanged(Program.Start.SelectedStory);
         }
 
         private void menuItem2_Click(object sender, EventArgs e) {
@@ -76,19 +80,19 @@ namespace Story_Crafter.Forms.EditorForm {
         }
 
         private void menuItem8_Click(object sender, EventArgs e) {
-            Program.OpenStory.Save();
+            story.Save();
         }
 
         private void menuItem5_Click(object sender, EventArgs e) {
             if(Program.Start.ShowDialog() == DialogResult.OK) {
-                StoryChanged();
+                StoryChanged(Program.Start.SelectedStory);
             }
         }
 
         public void ChangeScreen(int x, int y) {
-            Program.OpenStory.ChangeScreen(x, y);
+            story.ChangeScreen(x, y);
             foreach (IEditorTab tab in tabs) {
-                tab.ScreenChanged();
+                tab.ScreenChanged(story.ActiveScreen);
             }
         }
     }

@@ -1,14 +1,17 @@
-﻿using System;
+﻿using Story_Crafter.Knytt;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 
 using System.Text;
 using System.Windows.Forms;
+using Screen = Story_Crafter.Knytt.Screen;
 
 namespace Story_Crafter.Forms.EditorForm {
     partial class GradientsTab : UserControl, IEditorTab {
         ListViewItemComparer lvItemComparer = new ListViewItemComparer();
+        Story story;
 
         public GradientsTab() {
             this.InitializeComponent();
@@ -16,8 +19,8 @@ namespace Story_Crafter.Forms.EditorForm {
             this.gradient_list.ListViewItemSorter = lvItemComparer;
             this.gradient_list.SelectedIndexChanged += delegate {
                 if(this.gradient_list.SelectedItems.Count > 0) {
-                    this.gradient_view.BackgroundImage = Program.LoadBitmap(Program.OpenStory.Path + @"\Gradients\" + this.gradient_list.SelectedItems[0].Text);
-                    this.gradient_view.Tag = Program.OpenStory.Path + @"\Gradients\" + this.gradient_list.SelectedItems[0].Text;
+                    this.gradient_view.BackgroundImage = Program.LoadBitmap(this.story.Path + @"\Gradients\" + this.gradient_list.SelectedItems[0].Text);
+                    this.gradient_view.Tag = this.story.Path + @"\Gradients\" + this.gradient_list.SelectedItems[0].Text;
                     this.gradient_label.Text = this.gradient_list.SelectedItems[0].Text;
                 }
             };
@@ -27,9 +30,11 @@ namespace Story_Crafter.Forms.EditorForm {
             };
         }
 
-        public void StoryChanged() {
+        public void StoryChanged(Story story) {
+            this.story = story;
+
             this.gradient_list.Clear();
-            DirectoryInfo dirInfo = new DirectoryInfo(Program.OpenStory.Path + @"\Gradients");
+            DirectoryInfo dirInfo = new DirectoryInfo(this.story.Path + @"\Gradients");
             if(!dirInfo.Exists) {
                 this.gradient_label.Text = "";
                 this.gradient_view.Image = null;
@@ -43,7 +48,7 @@ namespace Story_Crafter.Forms.EditorForm {
                 foreach(FileInfo f in files) {
                     Bitmap gradient = Program.LoadBitmap(f.FullName);
                     gradient.MakeTransparent(Color.Magenta);
-                    Bitmap thumbnail = new Bitmap(Program.PxScreenWidth, Program.PxScreenHeight);
+                    Bitmap thumbnail = new Bitmap(Metrics.ScreenWidthPx, Metrics.ScreenHeightPx);
                     Graphics g = Graphics.FromImage(thumbnail);
                     for(int x = 0; x < thumbnail.Width; x += gradient.Width) {
                         g.DrawImage(gradient, x, 0);
@@ -67,7 +72,7 @@ namespace Story_Crafter.Forms.EditorForm {
             return false;
         }
 
-        public void ScreenChanged() {
+        public void ScreenChanged(Screen screen) {
         }
     }
 }

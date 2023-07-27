@@ -10,8 +10,10 @@ using System.Windows.Forms;
 using Story_Crafter.Knytt;
 
 namespace Story_Crafter.Forms {
-    public partial class StartForm: Form {
+    partial class StartForm: Form {
         ListViewItemComparer lvItemComparer = new ListViewItemComparer();
+
+        public Story SelectedStory { get; private set; }
 
         public StartForm() {
             InitializeComponent();
@@ -30,20 +32,7 @@ namespace Story_Crafter.Forms {
         private void loadStory_Click(object sender, EventArgs e) {
             if(this.storyList.SelectedItems.Count < 1) return;
             try {
-                /*BackgroundWorker bgWorker = new BackgroundWorker();
-                bgWorker.WorkerReportsProgress = true;
-                bgWorker.DoWork += this.DoLoadStory;
-                bgWorker.ProgressChanged += delegate (object from, ProgressChangedEventArgs ev) {
-                  if((string)ev.UserState == "set max") this.progressBar1.Maximum = ev.ProgressPercentage;
-                  else {
-                    this.progressBar1.Value = ev.ProgressPercentage;
-                    this.loadingStatus.Text = (string)ev.UserState;
-                  }
-                };
-                bgWorker.RunWorkerCompleted += delegate { this.translucentPanel1.Visible = false; this.DialogResult = DialogResult.OK; };
-                this.translucentPanel1.Visible = true;
-                bgWorker.RunWorkerAsync(this.storyList.SelectedItems[0].SubItems[2].Text);*/
-                Program.OpenStory = new Story((string)this.storyList.SelectedItems[0].SubItems[2].Text);
+                SelectedStory = new Story((string)this.storyList.SelectedItems[0].SubItems[2].Text);
                 this.DialogResult = DialogResult.OK;
             }
             catch(Exception ex) {
@@ -58,7 +47,7 @@ namespace Story_Crafter.Forms {
                 MessageBox.Show("That story already exists.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            Program.OpenStory = new Story(storyAuthor.Text, storyTitle.Text);
+            SelectedStory = new Story(storyAuthor.Text, storyTitle.Text);
             this.DialogResult = DialogResult.OK;
         }
 

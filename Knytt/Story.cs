@@ -83,8 +83,8 @@ namespace Story_Crafter.Knytt {
             this.DifficultyB = "";
             this.DifficultyC = "";
 
-            this.Clothes = Program.Clothes;
-            this.Skin = Program.Skin;
+            this.Clothes = Metrics.DefaultClothes;
+            this.Skin = Metrics.DefaultSkin;
 
             this.DefaultSave = new SaveInfo();
             this.DefaultSave.MapX = 1000;
@@ -123,14 +123,14 @@ namespace Story_Crafter.Knytt {
                 this.Clothes = Color.FromArgb(clothes & 0xFF, (clothes & 0xFF00) / 256, clothes / 65536); // Bit operations... best just move along.
             }
             catch(Exception) {
-                this.Clothes = Program.Clothes;
+                this.Clothes = Metrics.DefaultClothes;
             }
             try {
                 int skin = int.Parse(this.WorldIni.Read("World", "Skin"));
                 this.Skin = Color.FromArgb(skin & 0xFF, (skin & 0xFF00) / 256, skin / 65536);
             }
             catch(Exception) {
-                this.Skin = Program.Skin;
+                this.Skin = Metrics.DefaultSkin;
             }
 
             // Extract DefaultSavegame.ini info.
