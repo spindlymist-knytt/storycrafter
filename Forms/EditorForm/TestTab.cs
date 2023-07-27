@@ -10,6 +10,9 @@ using System.Windows.Forms;
 
 namespace Story_Crafter.Forms.EditorForm {
     public partial class TestTab : UserControl, IEditorTab {
+
+        Random rng = new Random();
+
         public TestTab() {
             InitializeComponent();
         }
@@ -18,10 +21,18 @@ namespace Story_Crafter.Forms.EditorForm {
         }
 
         public void StoryChanged() {
-            this.dxCanvas1.UpdateStory(Program.OpenStory);
+            this.d3dCanvas1.UpdateStory(Program.OpenStory);
         }
 
         public void TabOpened() {
+        }
+
+        private void button1_Click(object sender, EventArgs e) {
+            this.d3dCanvas1.Screen = Program.OpenStory.Screens[rng.Next(Program.OpenStory.Screens.Count)];
+        }
+
+        private void button2_Click(object sender, EventArgs e) {
+            this.d3dCanvas1.Screen = Program.ActiveScreen;
         }
     }
 }

@@ -213,7 +213,9 @@
     <Compile Include="Controls\INIEditor.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Rendering\AssetManager.cs" />
     <Compile Include="Rendering\D3DRenderer.cs" />
+    <Compile Include="Rendering\GDIRenderer.cs" />
     <Compile Include="Utility\IniFile.cs" />
     <Compile Include="Knytt\Layer.cs" />
     <Compile Include="Utility\ListViewItemComparer.cs" />

@@ -81,15 +81,15 @@ namespace Story_Crafter.Knytt {
     class TileLayer: Layer {
         public TileLayer(int index, bool active = true) : base(index, active) { }
         public TileLayer(int index, byte[] data, int offset = 0) : base(index) {
-            for(int i = 0; i < 250; i++) {
-                this.Tiles[i] = new Tile();
-                if(data[i] < 128) {
-                    this.Tiles[i].Tileset = 0;
-                    this.Tiles[i].Index = data[i + offset];
+            for(int srcI = offset, destI = 0; destI < 250; srcI++, destI++) {
+                this.Tiles[destI] = new Tile();
+                if(data[srcI] < 128) {
+                    this.Tiles[destI].Tileset = 0;
+                    this.Tiles[destI].Index = data[srcI];
                 }
                 else {
-                    this.Tiles[i].Tileset = 1;
-                    this.Tiles[i].Index = data[i + offset] - 128;
+                    this.Tiles[destI].Tileset = 1;
+                    this.Tiles[destI].Index = data[srcI] - 128;
                 }
             }
         }
@@ -119,12 +119,10 @@ namespace Story_Crafter.Knytt {
 
         public ObjectLayer(int index, bool active = true) : base(index, active) { }
         public ObjectLayer(int index, byte[] data, int offset = 0) : base(index) {
-            for(int i = 0; i < 250; i++) {
-                this.Tiles[i] = new Tile();
-                this.Tiles[i].Index = data[i + offset];
-            }
-            for(int i = 0; i < 250; i++) {
-                this.Tiles[i].Bank = data[i + offset + 250];
+            for (int srcI = offset, destI = 0; destI < 250; srcI++, destI++) {
+                this.Tiles[destI] = new Tile();
+                this.Tiles[destI].Index = data[srcI];
+                this.Tiles[destI].Bank = data[srcI + 250];
             }
         }
         public override void Draw(Graphics g) {
