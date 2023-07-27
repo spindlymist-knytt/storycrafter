@@ -8,10 +8,22 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using Story_Crafter.Rendering;
 using Story_Crafter.Knytt;
+using Screen = Story_Crafter.Knytt.Screen;
 
 namespace Story_Crafter.Controls {
 
-    class D3DCanvas : System.Windows.Forms.Control {
+    class D3DCanvas : Control {
+
+        public Screen Screen {
+            get {
+                return screen;
+            }
+            set {
+                screen = value;
+                this.Invalidate();
+            }
+        }
+        Screen screen;
 
         bool isDesignEnvironment;
         Brush designBrush;
@@ -41,7 +53,9 @@ namespace Story_Crafter.Controls {
                 return;
             }
 
-            renderer.Render(Program.ActiveScreen);
+            if (this.screen != null) {
+                renderer.Render(this.screen);
+            }
         }
     }
 }

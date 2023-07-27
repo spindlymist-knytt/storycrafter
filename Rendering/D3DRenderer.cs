@@ -174,6 +174,8 @@ namespace Story_Crafter.Rendering {
             var rcViewGrad = new ShaderResourceView(device, textureGrad);
             context.PixelShader.SetShaderResources(1, rcViewGrad);
 
+            //var watch = System.Diagnostics.Stopwatch.StartNew();
+
             // Upload tile data
             DataBox result = context.MapSubresource(tileIndexBuffer, 0, MapMode.WriteDiscard, MapFlags.None);
             using (DataStream stream = new DataStream(result.DataPointer, tileIndexBuffer.Description.SizeInBytes, false, true)) {
@@ -189,6 +191,9 @@ namespace Story_Crafter.Rendering {
             context.ClearRenderTargetView(targetView, Color.Black);
             context.Draw(Program.ScreenWidth * Program.ScreenHeight * 6, 0);
             swapChain.Present(0, PresentFlags.None);
+
+            //watch.Stop();
+            //Program.Debug.Log("Rendered in ", watch.ElapsedTicks, " ticks (", watch.ElapsedMilliseconds, "ms)");
         }
 
         BitmapSource LoadBitmap(ImagingFactory factory, string path) {
