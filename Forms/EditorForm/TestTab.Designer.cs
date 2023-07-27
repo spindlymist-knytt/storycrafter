@@ -1,5 +1,5 @@
 ﻿namespace Story_Crafter.Forms.EditorForm {
-    partial class Test {
+    partial class TestTab {
         /// <summary> 
         /// Required designer variable.
         /// </summary>
@@ -23,30 +23,30 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.button1 = new System.Windows.Forms.Button();
+            this.dxCanvas1 = new Story_Crafter.Controls.D3DCanvas();
             this.SuspendLayout();
             // 
-            // button1
+            // dxCanvas1
             // 
-            this.button1.Location = new System.Drawing.Point(55, 60);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.dxCanvas1.Location = new System.Drawing.Point(0, 0);
+            this.dxCanvas1.Name = "dxCanvas1";
+            this.dxCanvas1.Size = new System.Drawing.Size(600, 240);
+            this.dxCanvas1.TabIndex = 0;
+            this.dxCanvas1.Text = "d3dCanvas1";
             // 
-            // Test
+            // TestTab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.button1);
-            this.Name = "Test";
+            this.Controls.Add(this.dxCanvas1);
+            this.Name = "TestTab";
+            this.Size = new System.Drawing.Size(1534, 871);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private Controls.D3DCanvas dxCanvas1;
     }
 }

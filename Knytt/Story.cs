@@ -284,11 +284,16 @@ namespace Story_Crafter.Knytt {
                 }
 
                 // Now begin reading actual tile data.
-                for(int i = 0; i < 4; i++) { // Tile layers.
-                    s.Layers[i] = new TileLayer(i, data.Read(250));
+                s.RawData = new byte[250 * 4 + 500 * 4];
+                data.Read(s.RawData, 0, s.RawData.Length);
+                int offset = 0;
+                for (int i = 0; i < 4; i++) { // Tile layers.
+                    s.Layers[i] = new TileLayer(i, s.RawData, offset);
+                    offset += 250;
                 }
                 for(int i = 4; i < 8; i++) { // Object layers.
-                    s.Layers[i] = new ObjectLayer(i, data.Read(500));
+                    s.Layers[i] = new ObjectLayer(i, s.RawData, offset);
+                    offset += 500;
                 }
 
                 // Read which assets the screen uses.

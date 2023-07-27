@@ -9,9 +9,19 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Story_Crafter.Forms.EditorForm {
-    public partial class Test : UserControl {
-        public Test() {
+    public partial class TestTab : UserControl, IEditorTab {
+        public TestTab() {
             InitializeComponent();
+        }
+
+        public void ScreenChanged() {
+        }
+
+        public void StoryChanged() {
+            this.dxCanvas1.UpdateStory(Program.OpenStory);
+        }
+
+        public void TabOpened() {
         }
     }
 }
