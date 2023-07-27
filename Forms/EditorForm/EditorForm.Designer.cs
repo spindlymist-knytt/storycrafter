@@ -77,7 +77,6 @@
             this.menuItemReplace = new System.Windows.Forms.MenuItem();
             this.menuItemRandomize = new System.Windows.Forms.MenuItem();
             this.menuItem29 = new System.Windows.Forms.MenuItem();
-            this.menuItem6 = new System.Windows.Forms.MenuItem();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tabPageWorldINI = new System.Windows.Forms.TabPage();
@@ -95,6 +94,8 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageNewScreen = new System.Windows.Forms.TabPage();
             this.newScreenTab1 = new Story_Crafter.Forms.EditorForm.NewScreenTab();
+            this.tabPageTest = new System.Windows.Forms.TabPage();
+            this.testTab1 = new Story_Crafter.Forms.EditorForm.TestTab();
             this.contextMenu2.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStrip3.SuspendLayout();
@@ -108,6 +109,7 @@
             this.tabPageOverview.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageNewScreen.SuspendLayout();
+            this.tabPageTest.SuspendLayout();
             this.SuspendLayout();
             // 
             // contextMenu2
@@ -248,8 +250,7 @@
             this.menuItem1,
             this.menuItem3,
             this.menuItem4,
-            this.menuTools,
-            this.menuItem6});
+            this.menuTools});
             // 
             // menuItem1
             // 
@@ -466,11 +467,6 @@
             this.menuItem29.Text = "Pattern";
             this.menuItem29.Click += new System.EventHandler(this.menuTools_Click);
             // 
-            // menuItem6
-            // 
-            this.menuItem6.Index = 4;
-            this.menuItem6.Text = "Plugins";
-            // 
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
@@ -617,6 +613,7 @@
             this.tabControl1.Controls.Add(this.tabPageGradients);
             this.tabControl1.Controls.Add(this.tabPageWorldINI);
             this.tabControl1.Controls.Add(this.tabPageNewScreen);
+            this.tabControl1.Controls.Add(this.tabPageTest);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(0);
@@ -647,6 +644,26 @@
             this.newScreenTab1.Size = new System.Drawing.Size(912, 508);
             this.newScreenTab1.TabIndex = 0;
             // 
+            // tabPageTest
+            // 
+            this.tabPageTest.Controls.Add(this.testTab1);
+            this.tabPageTest.Location = new System.Drawing.Point(4, 22);
+            this.tabPageTest.Margin = new System.Windows.Forms.Padding(0);
+            this.tabPageTest.Name = "tabPageTest";
+            this.tabPageTest.Size = new System.Drawing.Size(912, 508);
+            this.tabPageTest.TabIndex = 11;
+            this.tabPageTest.Text = "Test";
+            this.tabPageTest.UseVisualStyleBackColor = true;
+            // 
+            // testTab1
+            // 
+            this.testTab1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.testTab1.Location = new System.Drawing.Point(0, 0);
+            this.testTab1.Margin = new System.Windows.Forms.Padding(0);
+            this.testTab1.Name = "testTab1";
+            this.testTab1.Size = new System.Drawing.Size(912, 508);
+            this.testTab1.TabIndex = 0;
+            // 
             // EditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -674,6 +691,7 @@
             this.tabPageOverview.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabPageNewScreen.ResumeLayout(false);
+            this.tabPageTest.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -693,7 +711,6 @@
         private System.Windows.Forms.MenuItem menuItem3;
         private System.Windows.Forms.MenuItem menuItem4;
         private System.Windows.Forms.MenuItem menuTools;
-        private System.Windows.Forms.MenuItem menuItem6;
         private System.Windows.Forms.MenuItem menuItemEdit;
         private System.Windows.Forms.MenuItem menuItemFill;
         private System.Windows.Forms.MenuItem menuItemReplace;
@@ -751,5 +768,7 @@
         private WorldIniTab worldIniTab1;
         private System.Windows.Forms.TabPage tabPageNewScreen;
         private NewScreenTab newScreenTab1;
+        private System.Windows.Forms.TabPage tabPageTest;
+        private TestTab testTab1;
     }
 }

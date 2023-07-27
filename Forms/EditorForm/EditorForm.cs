@@ -27,6 +27,7 @@ namespace Story_Crafter.Forms.EditorForm {
                 this.gradientsTab1,
                 this.worldIniTab1,
                 this.newScreenTab1,
+                this.testTab1,
             };
         }
         public void StoryChanged() {

@@ -15,6 +15,8 @@ namespace Story_Crafter.Knytt {
         [NonSerialized] public Bitmap Thumbnail;
         [NonSerialized] public bool Conflict = false;
 
+        public byte[] RawData;
+
         public Screen() {
             this.Layers = new Layer[8];
         }

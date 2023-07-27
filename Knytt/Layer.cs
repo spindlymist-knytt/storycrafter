@@ -80,16 +80,16 @@ namespace Story_Crafter.Knytt {
     [Serializable]
     class TileLayer: Layer {
         public TileLayer(int index, bool active = true) : base(index, active) { }
-        public TileLayer(int index, byte[] data) : base(index) {
+        public TileLayer(int index, byte[] data, int offset = 0) : base(index) {
             for(int i = 0; i < 250; i++) {
                 this.Tiles[i] = new Tile();
                 if(data[i] < 128) {
                     this.Tiles[i].Tileset = 0;
-                    this.Tiles[i].Index = data[i];
+                    this.Tiles[i].Index = data[i + offset];
                 }
                 else {
                     this.Tiles[i].Tileset = 1;
-                    this.Tiles[i].Index = data[i] - 128;
+                    this.Tiles[i].Index = data[i + offset] - 128;
                 }
             }
         }
@@ -118,13 +118,13 @@ namespace Story_Crafter.Knytt {
         private static HatchBrush missingObjectBrush = new HatchBrush(HatchStyle.WideUpwardDiagonal, Color.Red, Color.Transparent);
 
         public ObjectLayer(int index, bool active = true) : base(index, active) { }
-        public ObjectLayer(int index, byte[] data) : base(index) {
+        public ObjectLayer(int index, byte[] data, int offset = 0) : base(index) {
             for(int i = 0; i < 250; i++) {
                 this.Tiles[i] = new Tile();
-                this.Tiles[i].Index = data[i];
+                this.Tiles[i].Index = data[i + offset];
             }
             for(int i = 0; i < 250; i++) {
-                this.Tiles[i].Bank = data[i + 250];
+                this.Tiles[i].Bank = data[i + offset + 250];
             }
         }
         public override void Draw(Graphics g) {

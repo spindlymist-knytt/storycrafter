@@ -143,9 +143,9 @@ namespace Story_Crafter {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             if(!Program.LoadGlobalData()) return;
-            Program.Editor = new EditorForm();
-            Program.Start = new StartForm();
             Program.Debug = new LogsForm();
+            Program.Start = new StartForm();
+            Program.Editor = new EditorForm();
             Program.Preferences = new PreferencesForm();
             Program.ImportScreens = new ImportScreensForm();
             Application.Run(Editor);
