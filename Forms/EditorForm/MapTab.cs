@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Story_Crafter.Knytt;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -15,11 +16,12 @@ namespace Story_Crafter.Forms.EditorForm {
     partial class MapTab : UserControl, IEditorTab {
         int overwrite;
         EditorForm form;
+        Story story;
+        Screen screen;
 
         public MapTab() {
             InitializeComponent();
 
-            this.map_mainView.TheStory = Program.OpenStory;
             this.map_mainView.UpdateScreen += delegate (int x, int y) {
                 this.form.ChangeScreen(x, y);
             };
@@ -40,8 +42,8 @@ namespace Story_Crafter.Forms.EditorForm {
                         return;
                     }
                 }
-                int activeX = Program.ActiveScreen.X;
-                int activeY = Program.ActiveScreen.Y;
+                int activeX = screen.X;
+                int activeY = screen.Y;
                 this.map_mainView.ConfirmPaste();
                 form.ChangeScreen(activeX, activeY);
                 this.map_mainView.DrawMap(); // TODO remove redundant redraw
@@ -54,10 +56,10 @@ namespace Story_Crafter.Forms.EditorForm {
                 this.button8.Enabled = false;
             };
         }
-        public void StoryChanged() {
+        public void StoryChanged(Story story) {
+            this.story = story;
             this.form = this.FindForm() as EditorForm;
-            this.map_mainView.TheStory = Program.OpenStory;
-            this.map_mainView.ResetSelection(Program.ActiveScreen.X, Program.ActiveScreen.Y);
+            this.map_mainView.TheStory = story;
         }
 
         public void TabOpened() {
@@ -77,7 +79,7 @@ namespace Story_Crafter.Forms.EditorForm {
         }
 
         public void map_showThumbs_CheckChanged(object sender, EventArgs e) {
-            if(!Program.OpenStory.ThumbnailsCached) {
+            if(!story.ThumbnailsCached) {
                 if(MessageBox.Show("Enabling thumbnails may require a large amount of memory and take a while to draw. Do you wish to continue?", "Warning", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.Cancel) {
                     this.map_showThumbs.CheckedChanged -= map_showThumbs_CheckChanged;
                     this.map_showThumbs.Checked = false;
@@ -87,7 +89,7 @@ namespace Story_Crafter.Forms.EditorForm {
                 BackgroundWorker bgWorker = new BackgroundWorker();
                 bgWorker.WorkerReportsProgress = true;
                 bgWorker.DoWork += delegate (object bgwsender, DoWorkEventArgs bgwe) {
-                    Program.OpenStory.CacheThumbnails((BackgroundWorker)bgwsender);
+                    story.CacheThumbnails((BackgroundWorker)bgwsender);
                 };
                 bgWorker.ProgressChanged += delegate (object from, ProgressChangedEventArgs ev) {
                     this.progressBar1.Value = ev.ProgressPercentage;
@@ -97,7 +99,7 @@ namespace Story_Crafter.Forms.EditorForm {
                     this.map_mainView.ShowThumbs = this.map_showThumbs.Checked;
                 };
                 this.progressBarLabel.Text = "Caching thumbnails...";
-                this.progressBar1.Maximum = Program.OpenStory.Screens.Count;
+                this.progressBar1.Maximum = story.Screens.Count;
                 this.translucentPanel1.BringToFront();
                 this.translucentPanel1.Visible = true;
                 bgWorker.RunWorkerAsync();
@@ -106,7 +108,9 @@ namespace Story_Crafter.Forms.EditorForm {
             this.map_mainView.ShowThumbs = this.map_showThumbs.Checked;
         }
 
-        public void ScreenChanged() {
+        public void ScreenChanged(Screen screen) {
+            this.screen = screen;
+            this.map_mainView.ResetSelection(screen.X, screen.Y);
         }
     }
 }

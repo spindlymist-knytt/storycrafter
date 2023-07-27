@@ -13,15 +13,15 @@ namespace Story_Crafter.Editing.Tools {
         Pen cursor = new Pen(Color.Orchid);
 
         public override void Paint(ICanvas canvas, TileLayer layer, TileSelection selection, Point paintLocation, int brushSizeX, int brushSizeY, int tileset) {
-            Tile target = layer.Tiles[Program.ScreenPointToIndex(paintLocation)].Clone();
+            Tile target = layer.Tiles[Metrics.ScreenPointToIndex(paintLocation)].Clone();
             Tile replacement = new Tile();
             replacement.Tileset = tileset;
-            replacement.Index = Program.TilesetPointToIndex(selection.MinX, selection.MinY);
+            replacement.Index = Metrics.TilesetPointToIndex(selection.MinX, selection.MinY);
             Fill(layer, target, replacement, paintLocation);
         }
 
         public override void Paint(ICanvas canvas, ObjectLayer layer, Point paintLocation, int brushSizeX, int brushSizeY, int bank, int idx) {
-            Tile target = layer.Tiles[Program.ScreenPointToIndex(paintLocation)].Clone();
+            Tile target = layer.Tiles[Metrics.ScreenPointToIndex(paintLocation)].Clone();
             Tile replacement = new Tile();
             replacement.Bank = bank;
             replacement.Index = idx;
@@ -38,13 +38,13 @@ namespace Story_Crafter.Editing.Tools {
             nodes.Push(start);
             while(nodes.Count > 0) {
                 Point p = nodes.Pop();
-                Tile t = layer.Tiles[Program.ScreenPointToIndex(p)];
+                Tile t = layer.Tiles[Metrics.ScreenPointToIndex(p)];
                 if(t.Equals(target)) {
                     t.Set(replacement);
                     if(p.X > 0) nodes.Push(new Point(p.X - 1, p.Y));
-                    if(p.X < Program.ScreenWidth - 1) nodes.Push(new Point(p.X + 1, p.Y));
+                    if(p.X < Metrics.ScreenWidth - 1) nodes.Push(new Point(p.X + 1, p.Y));
                     if(p.Y > 0) nodes.Push(new Point(p.X, p.Y - 1));
-                    if(p.Y < Program.ScreenHeight - 1) nodes.Push(new Point(p.X, p.Y + 1));
+                    if(p.Y < Metrics.ScreenHeight - 1) nodes.Push(new Point(p.X, p.Y + 1));
                 }
             }
         }

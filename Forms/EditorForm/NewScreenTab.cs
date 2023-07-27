@@ -1,4 +1,5 @@
-﻿using Story_Crafter.Panes;
+﻿using Story_Crafter.Knytt;
+using Story_Crafter.Panes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,10 +10,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
+using Screen = Story_Crafter.Knytt.Screen;
 
 namespace Story_Crafter.Forms.EditorForm {
-    public partial class NewScreenTab : UserControl, IEditorTab {
+    partial class NewScreenTab : UserControl, IEditorTab {
 
+        Story story;
         ScreenPane screenPane = new ScreenPane();
         TilesetsPane tilesetsPane = new TilesetsPane();
         ObjectsPane objectsPane = new ObjectsPane();
@@ -38,7 +41,8 @@ namespace Story_Crafter.Forms.EditorForm {
             mapPane.UpdateScreen = delegate (int x, int y) {
                 ScreenPane pane = new ScreenPane();
                 pane.Show(screenPane.Pane, null);
-                (pane as IEditorPane).ChangeScreen(Program.OpenStory.GetScreen(x, y));
+                (pane as IEditorPane).StoryChanged(story);
+                (pane as IEditorPane).ScreenChanged(story.GetScreen(x, y));
             };
 
             screenPane.Activate();
@@ -53,14 +57,17 @@ namespace Story_Crafter.Forms.EditorForm {
             };
         }
 
-        public void ScreenChanged() {
+        public void ScreenChanged(Screen screen) {
             foreach (IEditorPane pane in panes) {
-                pane.ChangeScreen(Program.ActiveScreen);
+                pane.ScreenChanged(screen);
             }
         }
 
-        public void StoryChanged() {
-            ScreenChanged();
+        public void StoryChanged(Story story) {
+            this.story = story;
+            foreach (IEditorPane pane in panes) {
+                pane.StoryChanged(story);
+            }
         }
 
         public void TabOpened() {

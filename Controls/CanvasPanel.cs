@@ -86,20 +86,20 @@ namespace Story_Crafter.Controls {
         protected override void OnMouseMove(MouseEventArgs e) {
             base.OnMouseMove(e);
 
-            hoverPosition.X = (int)(e.X / 24f);
-            hoverPosition.Y = (int)(e.Y / 24f);
+            hoverPosition.X = (int)(e.X / Metrics.TileSizef);
+            hoverPosition.Y = (int)(e.Y / Metrics.TileSizef);
 
             if(resizing) {
                 if(hoverPosition.X < 0)
                     hoverPosition.X = 0;
-                else if(hoverPosition.X >= Program.ScreenWidth)
-                    hoverPosition.X = Program.ScreenWidth - 1;
+                else if(hoverPosition.X >= Metrics.ScreenWidth)
+                    hoverPosition.X = Metrics.ScreenWidth - 1;
                 if(hoverPosition.Y < 0)
                     hoverPosition.Y = 0;
-                else if(hoverPosition.Y >= Program.ScreenHeight)
-                    hoverPosition.Y = Program.ScreenHeight - 1;
-                this.Width = (hoverPosition.X + 1) * 24 + 2;
-                this.Height = (hoverPosition.Y + 1) * 24 + 2;
+                else if(hoverPosition.Y >= Metrics.ScreenHeight)
+                    hoverPosition.Y = Metrics.ScreenHeight - 1;
+                this.Width = (hoverPosition.X + 1) * Metrics.TileSize + 2;
+                this.Height = (hoverPosition.Y + 1) * Metrics.TileSize + 2;
                 Refresh();
                 return;
             }
@@ -169,7 +169,7 @@ namespace Story_Crafter.Controls {
         }
 
         public void Draw() {
-            Image updatedScreen = new Bitmap(Program.PxScreenWidth, Program.PxScreenHeight);
+            Image updatedScreen = new Bitmap(Metrics.ScreenWidthPx, Metrics.ScreenHeightPx);
             GetCanvas().Draw(Graphics.FromImage(updatedScreen), GetTilesetA(), GetTilesetB(), GetGradient());
             this.Image = updatedScreen;
         }

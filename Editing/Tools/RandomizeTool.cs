@@ -17,8 +17,8 @@ namespace Story_Crafter.Editing.Tools {
                 for(int brushY = 0; brushY < brushSizeY; brushY++) {
                     int x = paintLocation.X + brushX;
                     int y = paintLocation.Y + brushY;
-                    if(x < 0 || x >= Program.ScreenWidth || y < 0 || y >= Program.ScreenHeight) continue;
-                    int i = y * Program.ScreenWidth + x;
+                    if(x < 0 || x >= Metrics.ScreenWidth || y < 0 || y >= Metrics.ScreenHeight) continue;
+                    int i = y * Metrics.ScreenWidth + x;
                     layer.Tiles[i].Set(tileset, selection.RandomNode());
                 }
             }
@@ -30,8 +30,8 @@ namespace Story_Crafter.Editing.Tools {
                 for(int brushY = 0; brushY < brushSizeY; brushY++) {
                     int x = paintLocation.X + brushX;
                     int y = paintLocation.Y + brushY;
-                    if(x < 0 || x >= Program.ScreenWidth || y < 0 || y >= Program.ScreenHeight) continue;
-                    int i = Program.ScreenPointToIndex(x, y);
+                    if(x < 0 || x >= Metrics.ScreenWidth || y < 0 || y >= Metrics.ScreenHeight) continue;
+                    int i = Metrics.ScreenPointToIndex(x, y);
                     layer.Tiles[i].Bank = bank;
                     layer.Tiles[i].Index = idx;
                 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Story_Crafter.Knytt;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using Screen = Story_Crafter.Knytt.Screen;
@@ -17,14 +18,14 @@ namespace Story_Crafter.Rendering {
             Bitmap gradient = assetManager.LoadGradient(screen.Gradient);
 
             // Render background
-            for (int x = 0; x < Program.PxScreenWidth; x += gradient.Width) {
+            for (int x = 0; x < Metrics.ScreenWidthPx; x += gradient.Width) {
                 g.DrawImage(gradient, x, 0, gradient.Width, gradient.Height);
             }
 
             // Render tiles
             int i = 0;
-            for (int y = 0; y < Program.PxScreenHeight; y += 24) {
-                for (int x = 0; x < Program.PxScreenWidth; x += 24) {
+            for (int y = 0; y < Metrics.ScreenHeightPx; y += Metrics.TileSize) {
+                for (int x = 0; x < Metrics.ScreenWidthPx; x += Metrics.TileSize) {
                     for (int offset = 0; offset < 1000; offset += 250) {
                         byte tileIndex = screen.RawData[offset + i];
                         if (tileIndex > 0) {

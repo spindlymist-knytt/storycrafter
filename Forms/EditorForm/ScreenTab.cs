@@ -9,6 +9,7 @@ using Story_Crafter.Editing;
 using Story_Crafter.Editing.Tools;
 using Story_Crafter.Knytt;
 using Story_Crafter.Rendering;
+using Screen = Story_Crafter.Knytt.Screen;
 
 namespace Story_Crafter.Forms.EditorForm {
         
@@ -62,6 +63,8 @@ namespace Story_Crafter.Forms.EditorForm {
         }
 
         EditorForm form;
+        Story story;
+        Screen screen;
 
         public ScreenTab() {
             InitializeComponent();
@@ -102,10 +105,10 @@ namespace Story_Crafter.Forms.EditorForm {
             }
 
             this.screen_mainView.GetCanvas += delegate () {
-                return editingPattern == null ? (ICanvas)Program.ActiveScreen : (ICanvas)editingPattern;
+                return editingPattern == null ? (ICanvas)this.screen : (ICanvas)editingPattern;
             };
             this.screen_mainView.GetLayer += delegate () {
-                return editingPattern == null ? Program.ActiveScreen.Layers[GetActiveLayer()] : editingPattern.Layers[GetActiveLayer()];
+                return editingPattern == null ? this.screen.Layers[GetActiveLayer()] : editingPattern.Layers[GetActiveLayer()];
             };
             this.screen_mainView.GetTool += delegate () {
                 return currentTool;
@@ -136,10 +139,11 @@ namespace Story_Crafter.Forms.EditorForm {
             this.screen_mainView.MouseUp += delegate (Object sender, MouseEventArgs e) {
                 if(e.Button == MouseButtons.Right) {
                     int layer = GetActiveLayer();
-                    int x = (int)(e.X / 24f);
-                    int y = (int)(e.Y / 24f);
-                    Tile t = editingPattern == null ? Program.ActiveScreen.Layers[layer].Tiles[y * Program.ScreenWidth + x] :
-                                                            editingPattern.Layers[layer].Tiles[y * Program.ScreenWidth + x];
+                    int x = (int)(e.X / Metrics.TileSizef);
+                    int y = (int)(e.Y / Metrics.TileSizef);
+                    Tile t = editingPattern == null
+                        ? this.screen.Layers[layer].Tiles[y * Metrics.ScreenWidth + x]
+                        : editingPattern.Layers[layer].Tiles[y * Metrics.ScreenWidth + x];
                     if(layer < 4) {
                         activeTileset = t.Tileset;
                         if(activeTileset == 0) {
@@ -153,7 +157,7 @@ namespace Story_Crafter.Forms.EditorForm {
                             selection = this.screen_tilesetViewB.Selection;
                         }
                         selection.Clear();
-                        Point p = Program.TilesetIndexToPoint(t.Index);
+                        Point p = Metrics.TilesetIndexToPoint(t.Index);
                         selection.Add(new Rectangle(p.X, p.Y, 1, 1));
                         this.screen_tilesetViewA.Refresh();
                         this.screen_tilesetViewB.Refresh();
@@ -194,44 +198,24 @@ namespace Story_Crafter.Forms.EditorForm {
             this.KeyUp += delegate (object sender, KeyEventArgs e) {
                 switch (e.KeyCode) {
                     case Keys.W:
-                        if (editingPattern == null && e.Shift) {
-                            form.ChangeScreen(Program.ActiveScreen.X, Program.ActiveScreen.Y - 1);
-                        }
-                        else {
-                            selection.Translate(0, -1);
-                            this.screen_tilesetViewA.Refresh();
-                            this.screen_tilesetViewB.Refresh();
-                        }
+                        selection.Translate(0, -1);
+                        this.screen_tilesetViewA.Refresh();
+                        this.screen_tilesetViewB.Refresh();
                         break;
                     case Keys.A:
-                        if (editingPattern == null && e.Shift) {
-                            form.ChangeScreen(Program.ActiveScreen.X - 1, Program.ActiveScreen.Y);
-                        }
-                        else {
-                            selection.Translate(-1, 0);
-                            this.screen_tilesetViewA.Refresh();
-                            this.screen_tilesetViewB.Refresh();
-                        }
+                        selection.Translate(-1, 0);
+                        this.screen_tilesetViewA.Refresh();
+                        this.screen_tilesetViewB.Refresh();
                         break;
                     case Keys.S:
-                        if (editingPattern == null && e.Shift) {
-                            form.ChangeScreen(Program.ActiveScreen.X, Program.ActiveScreen.Y + 1);
-                        }
-                        else {
-                            selection.Translate(0, 1);
-                            this.screen_tilesetViewA.Refresh();
-                            this.screen_tilesetViewB.Refresh();
-                        }
+                        selection.Translate(0, 1);
+                        this.screen_tilesetViewA.Refresh();
+                        this.screen_tilesetViewB.Refresh();
                         break;
                     case Keys.D:
-                        if (editingPattern == null && e.Shift) {
-                            form.ChangeScreen(Program.ActiveScreen.X + 1, Program.ActiveScreen.Y);
-                        }
-                        else {
-                            selection.Translate(1, 0);
-                            this.screen_tilesetViewA.Refresh();
-                            this.screen_tilesetViewB.Refresh();
-                        }
+                        selection.Translate(1, 0);
+                        this.screen_tilesetViewA.Refresh();
+                        this.screen_tilesetViewB.Refresh();
                         break;
                     case Keys.D0:
                         this.screen_layer0.Checked = true;
@@ -282,7 +266,7 @@ namespace Story_Crafter.Forms.EditorForm {
                         }
                     }
                     else {
-                        editingPattern = Program.OpenStory.Patterns[this.screen_comboPatterns.SelectedIndex - 1];
+                        editingPattern = this.story.Patterns[this.screen_comboPatterns.SelectedIndex - 1];
                         this.screen_mainView.Size = new Size(editingPattern.Width * 24 + 2, editingPattern.Height * 24 + 2);
                         for(int i = 0; i < 8; i++) {
                             layerSelectors[i].Item2.Enabled = editingPattern.Layers[i].Active;
@@ -300,12 +284,12 @@ namespace Story_Crafter.Forms.EditorForm {
                     if(this.screen_comboPatterns.Text != "") {
                         editingPattern.Name = this.screen_comboPatterns.Text;
                         if(newPattern) {
-                            Program.OpenStory.Patterns.Add(editingPattern);
+                            this.story.Patterns.Add(editingPattern);
                             this.screen_comboPatterns.Items.Add(editingPattern.Name);
                             this.screen_comboPatterns.SelectedIndex = this.screen_comboPatterns.Items.Count - 1;
                         }
                         else {
-                            this.screen_comboPatterns.Items[Program.OpenStory.Patterns.IndexOf(editingPattern) + 1] = editingPattern.Name;
+                            this.screen_comboPatterns.Items[this.story.Patterns.IndexOf(editingPattern) + 1] = editingPattern.Name;
                             this.screen_buttonEditPattern.Text = "Edit";
                         }
                         ((PatternTool)tools[4]).Source = editingPattern;
@@ -322,9 +306,9 @@ namespace Story_Crafter.Forms.EditorForm {
                     this.screen_ambiB.Enabled = true;
                     this.screen_comboPatterns.DropDownStyle = ComboBoxStyle.DropDown;
                     this.screen_mainView.Resizable = false;
-                    this.screen_mainView.Size = new Size(Program.PxScreenWidth + 2, Program.PxScreenHeight + 2);
+                    this.screen_mainView.Size = new Size(Metrics.ScreenWidthPx + 2, Metrics.ScreenHeightPx + 2);
                     for(int i = 0; i < 8; i++) {
-                        layerSelectors[i].Item2.Enabled = Program.ActiveScreen.Layers[i].Active;
+                        layerSelectors[i].Item2.Enabled = this.screen.Layers[i].Active;
                     }
                     this.screen_checkBoxOverwrite.Visible = false;
                     editingPattern = null;
@@ -338,7 +322,7 @@ namespace Story_Crafter.Forms.EditorForm {
                 }
                 else if(editingPattern == null) {
                     this.screen_buttonEditPattern.Text = "Edit";
-                    ((PatternTool)tools[4]).Source = Program.OpenStory.Patterns[this.screen_comboPatterns.SelectedIndex - 1];
+                    ((PatternTool)tools[4]).Source = this.story.Patterns[this.screen_comboPatterns.SelectedIndex - 1];
                 }
             };
             this.screen_checkBoxOverwrite.CheckedChanged += delegate {
@@ -356,30 +340,32 @@ namespace Story_Crafter.Forms.EditorForm {
             tools.Add(new PatternTool());
             currentTool = tools[0];
         }
-        public void StoryChanged() {
+        public void StoryChanged(Story story) {
+            this.story = story;
+
             this.screen_bankList.SelectedIndex = 0;
             this.screen_comboPatterns.Items.Clear();
             this.screen_comboPatterns.Items.Add("");
             this.screen_comboPatterns.SelectedIndex = 0;
             // TODO exit pattern mode
-            foreach(Pattern p in Program.OpenStory.Patterns) {
+            foreach(Pattern p in this.story.Patterns) {
                 this.screen_comboPatterns.Items.Add(p.Name);
             }
-
-            this.ScreenChanged();
         }
-        public void ScreenChanged() {
-            this.changingScreen = true;
-            this.screen_tilesetA.Value = Program.ActiveScreen.TilesetA;
-            this.screen_tilesetB.Value = Program.ActiveScreen.TilesetB;
-            this.screen_gradient.Value = Program.ActiveScreen.Gradient;
-            this.screen_ambiA.Value = Program.ActiveScreen.AmbianceA;
-            this.screen_ambiB.Value = Program.ActiveScreen.AmbianceB;
-            this.screen_music.Value = Program.ActiveScreen.Music;
+        public void ScreenChanged(Screen screen) {
+            this.screen = screen;
 
-            TilesetA = Program.OpenStory.CreateTileset(Program.ActiveScreen.TilesetA);
-            TilesetB = Program.OpenStory.CreateTileset(Program.ActiveScreen.TilesetB);
-            Gradient = Program.LoadBitmap(Program.OpenStory.Gradient(Program.ActiveScreen.Gradient));
+            this.changingScreen = true;
+            this.screen_tilesetA.Value = this.screen.TilesetA;
+            this.screen_tilesetB.Value = this.screen.TilesetB;
+            this.screen_gradient.Value = this.screen.Gradient;
+            this.screen_ambiA.Value = this.screen.AmbianceA;
+            this.screen_ambiB.Value = this.screen.AmbianceB;
+            this.screen_music.Value = this.screen.Music;
+
+            TilesetA = this.story.CreateTileset(this.screen.TilesetA);
+            TilesetB = this.story.CreateTileset(this.screen.TilesetB);
+            Gradient = Program.LoadBitmap(this.story.Gradient(this.screen.Gradient));
             this.screen_tilesetViewA.Image = (Image)TilesetA.Full.Clone();
             this.screen_tilesetViewB.Image = (Image)TilesetB.Full.Clone();
 
@@ -413,8 +399,8 @@ namespace Story_Crafter.Forms.EditorForm {
             TimerA.Start();
         }
         private void ChangeTilesetA(object sender, System.Timers.ElapsedEventArgs e) {
-            Program.ActiveScreen.TilesetA = (int)this.screen_tilesetA.Value;
-            TilesetA = Program.OpenStory.CreateTileset((int)this.screen_tilesetA.Value);
+            this.screen.TilesetA = (int)this.screen_tilesetA.Value;
+            TilesetA = this.story.CreateTileset((int)this.screen_tilesetA.Value);
             this.screen_tilesetViewA.Image = (Image)TilesetA.Full.Clone();
             this.screen_mainView.Draw();
         }
@@ -425,8 +411,8 @@ namespace Story_Crafter.Forms.EditorForm {
             TimerB.Start();
         }
         private void ChangeTilesetB(object sender, System.Timers.ElapsedEventArgs e) {
-            Program.ActiveScreen.TilesetB = (int)this.screen_tilesetB.Value;
-            TilesetB = Program.OpenStory.CreateTileset((int)this.screen_tilesetB.Value);
+            this.screen.TilesetB = (int)this.screen_tilesetB.Value;
+            TilesetB = this.story.CreateTileset((int)this.screen_tilesetB.Value);
             this.screen_tilesetViewB.Image = (Image)TilesetB.Full.Clone();
             this.screen_mainView.Draw();
         }
@@ -438,8 +424,8 @@ namespace Story_Crafter.Forms.EditorForm {
         }
 
         private void ChangeGradient(object sender, System.Timers.ElapsedEventArgs e) {
-            Program.ActiveScreen.Gradient = (int)this.screen_gradient.Value;
-            Gradient = Program.LoadBitmap(Program.OpenStory.Gradient((int)this.screen_gradient.Value));
+            this.screen.Gradient = (int)this.screen_gradient.Value;
+            Gradient = Program.LoadBitmap(this.story.Gradient((int)this.screen_gradient.Value));
             this.screen_mainView.Draw();
         }
 
@@ -465,7 +451,7 @@ namespace Story_Crafter.Forms.EditorForm {
                 int i = (int)((RadioButton)sender).Tag;
                 layerSelectors[i].Item2.Enabled = !layerSelectors[i].Item2.Enabled;
                 if(editingPattern == null) {
-                    Program.ActiveScreen.Layers[i].Active = layerSelectors[i].Item2.Enabled;
+                    this.screen.Layers[i].Active = layerSelectors[i].Item2.Enabled;
                 }
                 else {
                     editingPattern.Layers[i].Active = layerSelectors[i].Item2.Enabled;

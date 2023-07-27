@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Story_Crafter.Knytt;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -45,22 +46,22 @@ namespace Story_Crafter.Rendering {
             tilesetCache.TryGetValue(index, out tiles);
 
             if (tiles == null) {
-                tiles = new Bitmap[Program.TilesetWidth * Program.TilesetHeight];
-                Bitmap tileset = Program.LoadBitmap(GetTilesetPath(index));
-                Rectangle source = new Rectangle(0, 0, 24, 24);
-                Rectangle dest = new Rectangle(0, 0, 24, 24);
+                tiles = new Bitmap[Metrics.TilesetWidth * Metrics.TilesetHeight];
+                Bitmap tileset = new Bitmap(GetTilesetPath(index));
+                Rectangle source = new Rectangle(0, 0, Metrics.TileSize, Metrics.TileSize);
+                Rectangle dest = new Rectangle(0, 0, Metrics.TileSize, Metrics.TileSize);
 
                 int i = 0;
-                for (int y = 0; y < Program.TilesetHeight; y++) {
-                    for (int x = 0; x < Program.TilesetWidth; x++) {
-                        Bitmap tile = new Bitmap(24, 24);
+                for (int y = 0; y < Metrics.TilesetHeight; y++) {
+                    for (int x = 0; x < Metrics.TilesetWidth; x++) {
+                        Bitmap tile = new Bitmap(Metrics.TileSize, Metrics.TileSize);
                         Graphics.FromImage(tile).DrawImage(tileset, dest, source, GraphicsUnit.Pixel);
                         tile.MakeTransparent(Color.Magenta);
                         tiles[i++] = tile;
-                        source.X += 24;
+                        source.X += Metrics.TileSize;
                     }
                     source.X = 0;
-                    source.Y += 24;
+                    source.Y += Metrics.TileSize;
                 }
 
                 tilesetCache.Add(index, tiles);
@@ -74,7 +75,7 @@ namespace Story_Crafter.Rendering {
             gradientCache.TryGetValue(index, out gradient);
 
             if (gradient == null) {
-                gradient = Program.LoadBitmap(GetGradientPath(index));
+                gradient = new Bitmap(GetGradientPath(index));
                 gradientCache.Add(index, gradient);
             }
 

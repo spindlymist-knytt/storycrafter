@@ -142,6 +142,7 @@
     <Compile Include="Forms\EditorForm\WorldIniTab.Designer.cs">
       <DependentUpon>WorldIniTab.cs</DependentUpon>
     </Compile>
+    <Compile Include="Knytt\Metrics.cs" />
     <Compile Include="Panes\AssetsPane.cs">
       <SubType>Form</SubType>
     </Compile>

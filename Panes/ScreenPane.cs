@@ -12,20 +12,22 @@ using Story_Crafter.Editing;
 using Story_Crafter.Editing.Tools;
 using Story_Crafter.Rendering;
 using Screen = Story_Crafter.Knytt.Screen;
+using Story_Crafter.Knytt;
 
 namespace Story_Crafter.Panes {
-    public partial class ScreenPane : DockContent, IEditorPane {
+    partial class ScreenPane : DockContent, IEditorPane {
         Tileset tilesetA;
         Tileset tilesetB;
         Bitmap gradient;
         TileSelection selection;
+        Story story;
         Screen screen;
         int scale = 1;
 
         public ScreenPane() {
             InitializeComponent();
 
-            selection = new TileSelection(24, 24, 0, 0, Program.TilesetWidth, Program.TilesetHeight, new Pen(Color.Orange));
+            selection = new TileSelection(Metrics.TileSize, Metrics.TileSize, 0, 0, Metrics.TilesetWidth, Metrics.TilesetHeight, new Pen(Color.Orange));
             selection.Add(new Rectangle(0, 0, 1, 1));
 
             this.canvasPanel1.GetCanvas += delegate () {
@@ -60,15 +62,19 @@ namespace Story_Crafter.Panes {
             };
         }
 
-        void IEditorPane.ChangeScreen(Screen screen) {
+        public void ScreenChanged(Screen screen) {
             if (this.screen == null) {
                 this.screen = screen;
                 this.Text = "x" + screen.X + "y" + screen.Y;
-                tilesetA = Program.OpenStory.CreateTileset(screen.TilesetA);
-                tilesetB = Program.OpenStory.CreateTileset(screen.TilesetB);
-                gradient = Program.LoadBitmap(Program.OpenStory.Gradient(screen.Gradient));
+                tilesetA = story.CreateTileset(screen.TilesetA);
+                tilesetB = story.CreateTileset(screen.TilesetB);
+                gradient = Program.LoadBitmap(story.Gradient(screen.Gradient));
                 this.canvasPanel1.Draw();
             }
+        }
+
+        public void StoryChanged(Story story) {
+            this.story = story;
         }
 
         private void menuItem_setZoom100_Click(object sender, EventArgs e) {

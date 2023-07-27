@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Story_Crafter.Knytt;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,7 +12,7 @@ using WeifenLuo.WinFormsUI.Docking;
 using Screen = Story_Crafter.Knytt.Screen;
 
 namespace Story_Crafter.Panes {
-    public partial class MapPane : DockContent, IEditorPane {
+    partial class MapPane : DockContent, IEditorPane {
         public delegate void UpdateScreenEvent(int x, int y);
 
         public UpdateScreenEvent UpdateScreen {
@@ -26,8 +27,11 @@ namespace Story_Crafter.Panes {
             InitializeComponent();
         }
 
-        void IEditorPane.ChangeScreen(Screen screen) {
-            this.map_mainView.TheStory = Program.OpenStory;
+        public void ScreenChanged(Screen screen) {
+        }
+
+        public void StoryChanged(Story story) {
+            this.map_mainView.TheStory = story;
         }
     }
 }

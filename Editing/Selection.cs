@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Story_Crafter.Knytt;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -13,14 +14,14 @@ namespace Story_Crafter.Editing {
                 get { return x; }
                 set {
                     x = value;
-                    TileIndex = Program.TilesetPointToIndex(x, y);
+                    TileIndex = Metrics.TilesetPointToIndex(x, y);
                 }
             }
             public int Y {
                 get { return y; }
                 set {
                     y = value;
-                    TileIndex = Program.TilesetPointToIndex(x, y);
+                    TileIndex = Metrics.TilesetPointToIndex(x, y);
                 }
             }
             public int TileIndex;
@@ -31,7 +32,7 @@ namespace Story_Crafter.Editing {
                 North = East = South = West = null;
                 x = _x;
                 y = _y;
-                TileIndex = Program.TilesetPointToIndex(x, y);
+                TileIndex = Metrics.TilesetPointToIndex(x, y);
             }
         }
 

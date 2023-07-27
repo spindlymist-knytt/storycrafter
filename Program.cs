@@ -7,7 +7,6 @@ using System.Windows.Forms;
 using System.Xml;
 using System.IO;
 using Story_Crafter.Knytt;
-using Screen = Story_Crafter.Knytt.Screen;
 using Story_Crafter.Forms;
 using Story_Crafter.Forms.EditorForm;
 
@@ -20,13 +19,6 @@ namespace Story_Crafter {
         public static ImportScreensForm ImportScreens;
 
         public static Profile ActiveProfile;
-        public static Story OpenStory = null;
-        public static Screen ActiveScreen {
-            get { return Program.OpenStory.ActiveScreen; }
-        }
-        public static Layer[] Layers {
-            get { return Program.OpenStory.ActiveScreen.Layers; }
-        }
         public static bool ChangingStory = false;
         public static string Path;
         public static string ObjectsPath;
@@ -35,19 +27,10 @@ namespace Story_Crafter {
         public static XmlDocument Data = new XmlDocument();
         public static ObjectBankList Banks = new ObjectBankList();
         public static byte[] Signature = new byte[5] { 0x00, 0xBE, 0x0B, 0x00, 0x00 }; // These five bytes appear after screen coordinates in every Map.bin file.
-        public static Color Clothes = Color.FromArgb(235, 235, 235);                   // Default clothes color
-        public static Color Skin = Color.FromArgb(216, 192, 166);                      // Default skin color
-        public const int ScreenWidth = 25;
-        public const int ScreenHeight = 10;
-        public const int PxScreenWidth = Program.ScreenWidth * 24;
-        public const int PxScreenHeight = Program.ScreenHeight * 24;
-        public const int TilesetWidth = 16;
-        public const int TilesetHeight = 8;
 
         public static Random Rand = new Random();
 
         public static Bitmap LoadBitmap(string path) {
-            //return new Bitmap(new Bitmap(path)); Not sure why I wrote this, but leaving it in case it's useful.
             Bitmap b;
             try {
                 b = new Bitmap(path);
@@ -62,35 +45,6 @@ namespace Story_Crafter {
             int i;
             if(!int.TryParse(s, out i)) i = onFail;
             return i;
-        }
-        public static int ScreenPointToIndex(Point p) {
-            return ScreenPointToIndex(p.X, p.Y);
-        }
-        public static int ScreenPointToIndex(int x, int y) {
-            return PointToIndex(x, y, Program.ScreenWidth);
-        }
-        public static Point ScreenIndexToPoint(int i) {
-            return IndexToPoint(i, Program.ScreenWidth);
-        }
-        public static int TilesetPointToIndex(Point p) {
-            return TilesetPointToIndex(p.X, p.Y);
-        }
-        public static int TilesetPointToIndex(int x, int y) {
-            return PointToIndex(x, y, Program.TilesetWidth);
-        }
-        public static Point TilesetIndexToPoint(int i) {
-            return IndexToPoint(i, Program.TilesetWidth);
-        }
-
-        private static int PointToIndex(Point p, int width) {
-            return PointToIndex(p.X, p.Y, width);
-        }
-        private static int PointToIndex(int x, int y, int width) {
-            return y * width + x;
-        }
-        private static Point IndexToPoint(int i, int width) {
-            int y = i / width;
-            return new Point(i - y * width, y);
         }
 
         public static void ChangeProfile(Profile p) {

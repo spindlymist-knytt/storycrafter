@@ -19,7 +19,7 @@ namespace Story_Crafter.Editing {
 
         public Layer[] Layers;
 
-        public Pattern(int layer, int width = Program.ScreenWidth, int height = Program.ScreenHeight, bool overwrite = false) {
+        public Pattern(int layer, int width = Metrics.ScreenWidth, int height = Metrics.ScreenHeight, bool overwrite = false) {
             Width = width;
             Height = height;
             Overwrite = overwrite;
@@ -40,7 +40,7 @@ namespace Story_Crafter.Editing {
         }
 
         private void DrawGradient(Graphics g, Bitmap gradient) {
-            for(int x = 0; x < Program.PxScreenWidth; x += gradient.Width) {
+            for(int x = 0; x < Metrics.ScreenWidthPx; x += gradient.Width) {
                 g.DrawImage(gradient, x, 0, gradient.Width, gradient.Height);
             }
         }
