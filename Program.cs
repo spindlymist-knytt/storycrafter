@@ -41,12 +41,6 @@ namespace Story_Crafter {
             return b;
         }
 
-        public static int ParseInt(string s, int onFail) {
-            int i;
-            if(!int.TryParse(s, out i)) i = onFail;
-            return i;
-        }
-
         public static void ChangeProfile(Profile p) {
             Program.Banks = p.Load();
             Program.ActiveProfile = p;
