@@ -43,7 +43,7 @@
             this.mapViewPanel1.Size = new System.Drawing.Size(602, 482);
             this.mapViewPanel1.TabIndex = 0;
             this.mapViewPanel1.TabStop = false;
-            this.mapViewPanel1.TheStory = null;
+            this.mapViewPanel1.Story = null;
             this.mapViewPanel1.UpdateScreen = null;
             this.mapViewPanel1.UpdateStatus = null;
             // 

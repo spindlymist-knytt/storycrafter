@@ -176,7 +176,7 @@ namespace Story_Crafter.Forms.EditorForm {
             this.map_mainView.Size = new System.Drawing.Size(886, 817);
             this.map_mainView.TabIndex = 16;
             this.map_mainView.TabStop = false;
-            this.map_mainView.TheStory = null;
+            this.map_mainView.Story = null;
             this.map_mainView.UpdateScreen = null;
             this.map_mainView.UpdateStatus = null;
             // 

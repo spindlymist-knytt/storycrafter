@@ -41,7 +41,7 @@ namespace Story_Crafter.Forms {
                 this.story = new Story((string)this.storyList.SelectedItems[0].SubItems[2].Text);
                 this.Text = "Import Screens: " + this.story.Title;
                 this.mapViewPanel1.BringToFront();
-                this.mapViewPanel1.TheStory = story;
+                this.mapViewPanel1.Story = story;
                 mapViewPanel1.ResetSelection(story.DefaultSave.MapX, story.DefaultSave.MapY);
             }
             catch(Exception ex) {
@@ -60,7 +60,7 @@ namespace Story_Crafter.Forms {
             if(e.KeyCode == Keys.C && e.Modifiers == Keys.Control) {
                 List<Screen> screens = new List<Screen>();
                 foreach(Selection.SelectionNode n in this.mapViewPanel1.GetSelection().nodes) {
-                    Screen s = this.mapViewPanel1.TheStory.GetScreen(n.X, n.Y);
+                    Screen s = this.mapViewPanel1.Story.GetScreen(n.X, n.Y);
                     if(s == null) continue;
                     if(s != null) screens.Add(s);
                 }
@@ -81,7 +81,7 @@ namespace Story_Crafter.Forms {
                 this.Hide();
                 this.Text = "Import Screens";
                 this.mapViewPanel1.SendToBack();
-                this.mapViewPanel1.TheStory = null;
+                this.mapViewPanel1.Story = null;
                 GC.Collect();
             }
         }

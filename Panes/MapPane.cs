@@ -31,7 +31,7 @@ namespace Story_Crafter.Panes {
         }
 
         public void StoryChanged(Story story) {
-            this.map_mainView.TheStory = story;
+            this.map_mainView.Story = story;
         }
     }
 }

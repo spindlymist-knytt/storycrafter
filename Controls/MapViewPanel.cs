@@ -9,18 +9,23 @@ using Screen = Story_Crafter.Knytt.Screen;
 
 namespace Story_Crafter {
 
-    class MapViewPanel: PictureBox {
+    class MapViewPanel : PictureBox {
 
         public bool ShowThumbs {
             get { return this.showThumbs; }
-            set { this.showThumbs = value; DrawMap(); }
+            set {
+                this.showThumbs = value;
+                DrawMap();
+            }
         }
-        public Story TheStory {
+        public Story Story {
             get { return this.story; }
             set {
                 this.story = value;
-                if(this.story != null) CenterScreen(this.story.DefaultSave.MapX, this.story.DefaultSave.MapY);
-                else DrawMap();
+                if (this.story != null) {
+                    CenterScreen(this.story.DefaultSave.MapX, this.story.DefaultSave.MapY);
+                }
+                DrawMap();
             }
         }
         public UpdateScreenEvent UpdateScreen {
@@ -105,96 +110,127 @@ namespace Story_Crafter {
 
         public MapViewPanel() {
             ZoomLevel = 4;
-
             selection = new Selection(screenWidth, screenHeight, selectionCursor);
             this.BackColor = Color.FromArgb(0, 0, 0, 0);
             this.ResetSelection(startX, startY);
+        }
 
-            this.MouseDown += delegate (object o, MouseEventArgs mouse) {
-                mouseDownX = mouse.X;
-                mouseDownY = mouse.Y;
-                if(mouse.Button == MouseButtons.Right || mouse.Button == MouseButtons.Middle) {
-                    origStartX = startX;
-                    origStartY = startY;
-                    panning = true;
+        protected override void OnMouseDown(MouseEventArgs e) {
+            base.OnMouseUp(e);
+
+            mouseDownX = e.X;
+            mouseDownY = e.Y;
+            if (e.Button == MouseButtons.Right || e.Button == MouseButtons.Middle) {
+                origStartX = startX;
+                origStartY = startY;
+                panning = true;
+            }
+            else if (e.Button == MouseButtons.Left) {
+                selectionInProgress = true;
+                selectionStart = new Point(e.X / screenWidth + startX, e.Y / screenHeight + startY);
+                lastSelection = new Rectangle(selectionStart.X, selectionStart.Y, 1, 1);
+                this.Refresh();
+            }
+        }
+
+        protected override void OnMouseUp(MouseEventArgs e) {
+            base.OnMouseUp(e);
+
+            panning = false;
+            if (selectionInProgress) {
+                if (ModifierKeys == Keys.Control) {
+                    selection.Remove(lastSelection);
                 }
-                else if(mouse.Button == MouseButtons.Left) {
-                    selectionInProgress = true;
-                    selectionStart = new Point(mouse.X / screenWidth + startX, mouse.Y / screenHeight + startY);
-                    lastSelection = new Rectangle(selectionStart.X, selectionStart.Y, 1, 1);
-                    this.Refresh();
+                else {
+                    if (ModifierKeys != Keys.Shift) selection.Clear();
+                    selection.Add(lastSelection);
                 }
-            };
-            this.MouseUp += delegate {
-                panning = false;
-                if(selectionInProgress) {
-                    if(ModifierKeys == Keys.Control) {
-                        selection.Remove(lastSelection);
-                    }
-                    else {
-                        if(ModifierKeys != Keys.Shift) selection.Clear();
-                        selection.Add(lastSelection);
-                    }
-                    selectionInProgress = false;
-                    this.Refresh();
-                }
-            };
-            this.DoubleClick += delegate (object o, EventArgs e) {
-                if(updateScreen == null) return;
-                updateScreen(mouseDownX / screenWidth + startX, mouseDownY / screenHeight + startY);
+                selectionInProgress = false;
+                this.Refresh();
+            }
+        }
+
+        protected override void OnDoubleClick(EventArgs e) {
+            base.OnDoubleClick(e);
+
+            if (updateScreen == null) return;
+            updateScreen(mouseDownX / screenWidth + startX, mouseDownY / screenHeight + startY);
+            DrawMap();
+        }
+
+        protected override void OnMouseMove(MouseEventArgs e) {
+            base.OnMouseMove(e);
+
+            if (panning) {
+                int deltaX = e.X - mouseDownX;
+                int deltaY = e.Y - mouseDownY;
+                startX = origStartX - deltaX / screenWidth;
+                startY = origStartY - deltaY / screenHeight;
                 DrawMap();
-            };
-            this.MouseMove += delegate (object o, MouseEventArgs mouse) {
-                //this.Focus();
-                if(panning) {
-                    int deltaX = mouse.X - mouseDownX;
-                    int deltaY = mouse.Y - mouseDownY;
-                    startX = origStartX - deltaX / screenWidth;
-                    startY = origStartY - deltaY / screenHeight;
-                    DrawMap();
-                }
-                else if(selectionInProgress) {
-                    int x = (int)(mouse.X / screenWidth) + startX;
-                    int y = (int)(mouse.Y / screenHeight) + startY;
-                    lastSelection.X = Math.Min(x, selectionStart.X);
-                    lastSelection.Y = Math.Min(y, selectionStart.Y);
-                    lastSelection.Width = Math.Abs(x - selectionStart.X) + 1;
-                    lastSelection.Height = Math.Abs(y - selectionStart.Y) + 1;
-                    this.Refresh();
-                }
-                int hoverX = startX + mouse.X / screenWidth;
-                int hoverY = startY + mouse.Y / screenHeight;
-                updateStatus?.Invoke(hoverX, hoverY);
-            };
-            this.MouseWheel += delegate (object o, MouseEventArgs mouse) {
-                int d = mouse.Delta / 120;
-                ZoomLevel += d;
+            }
+            else if (selectionInProgress) {
+                int x = (int)(e.X / screenWidth) + startX;
+                int y = (int)(e.Y / screenHeight) + startY;
+                lastSelection.X = Math.Min(x, selectionStart.X);
+                lastSelection.Y = Math.Min(y, selectionStart.Y);
+                lastSelection.Width = Math.Abs(x - selectionStart.X) + 1;
+                lastSelection.Height = Math.Abs(y - selectionStart.Y) + 1;
+                this.Refresh();
+            }
+            int hoverX = startX + e.X / screenWidth;
+            int hoverY = startY + e.Y / screenHeight;
+            updateStatus?.Invoke(hoverX, hoverY);
+        }
 
-                // Find the center screen.
-                int centerX = startX + mapWidth / 2;
-                int centerY = startY + mapHeight / 2;
+        protected override void OnMouseWheel(MouseEventArgs e) {
+            base.OnMouseWheel(e);
 
-                mapWidth = this.Width / screenWidth + 1;
-                mapHeight = this.Height / screenHeight + 1;
+            int d = e.Delta / 120;
+            ZoomLevel += d;
 
-                this.CenterScreen(centerX, centerY);
-                selection.ChangeCellSize(screenWidth, screenHeight);
-                DrawGridLines();
-            };
-            this.Paint += delegate (object sender, PaintEventArgs e) {
-                if(story == null) return;
-                e.Graphics.DrawImage(selection.Borders,
-                  new Rectangle(
+            // Find the center screen.
+            int centerX = startX + mapWidth / 2;
+            int centerY = startY + mapHeight / 2;
+
+            mapWidth = this.Width / screenWidth + 1;
+            mapHeight = this.Height / screenHeight + 1;
+
+            this.CenterScreen(centerX, centerY);
+            selection.ChangeCellSize(screenWidth, screenHeight);
+            DrawGridLines();
+        }
+
+        protected override void OnPaint(PaintEventArgs pe) {
+            base.OnPaint(pe);
+
+            if (story == null) return;
+
+            pe.Graphics.DrawImage(
+                selection.Borders,
+                new Rectangle(
                     (selection.MinX - startX) * screenWidth,
                     (selection.MinY - startY) * screenHeight,
                     selection.Borders.Width,
                     selection.Borders.Height
-                  ),
-                  new Rectangle(0, 0, selection.Borders.Width, selection.Borders.Height),
-                  GraphicsUnit.Pixel);
-                e.Graphics.DrawRectangle(activeScreenOutline, new Rectangle((story.ActiveScreen.X - startX) * screenWidth, (story.ActiveScreen.Y - startY) * screenHeight, screenWidth - 1, screenHeight - 1));
-                if(selectionInProgress) e.Graphics.DrawRectangle(newSelectionCursor, (lastSelection.X - startX) * screenWidth, (lastSelection.Y - startY) * screenHeight, lastSelection.Width * screenWidth - 1, lastSelection.Height * screenHeight - 1);
-            };
+                ),
+                new Rectangle(0, 0, selection.Borders.Width, selection.Borders.Height),
+                GraphicsUnit.Pixel);
+
+            pe.Graphics.DrawRectangle(
+                activeScreenOutline,
+                new Rectangle((story.ActiveScreen.X - startX) * screenWidth,
+                (story.ActiveScreen.Y - startY) * screenHeight,
+                screenWidth - 1,
+                screenHeight - 1));
+
+            if (selectionInProgress) {
+                pe.Graphics.DrawRectangle(
+                    newSelectionCursor,
+                    (lastSelection.X - startX) * screenWidth,
+                    (lastSelection.Y - startY) * screenHeight,
+                    lastSelection.Width * screenWidth - 1,
+                    lastSelection.Height * screenHeight - 1);
+            }
         }
 
         protected override void OnResize(EventArgs e) {
@@ -274,7 +310,7 @@ namespace Story_Crafter {
             foreach(Screen s in screens) {
                 s.X += selection.MinX;
                 s.Y += selection.MinY;
-                if(TheStory.GetScreen(s.X, s.Y) != null) {
+                if(Story.GetScreen(s.X, s.Y) != null) {
                     s.Conflict = true;
                     overwrite++;
                 }
@@ -285,7 +321,7 @@ namespace Story_Crafter {
         }
 
         public void ConfirmPaste() {
-            TheStory.AddScreens(paste);
+            Story.AddScreens(paste);
             paste = null;
             DrawMap();
         }
@@ -298,176 +334,3 @@ namespace Story_Crafter {
     }
 
 }
-
-/*
-using System;
-using System.Windows.Forms;
-using System.Drawing;
-
-namespace Story_Crafter {
-
-  class MapViewPanel: PictureBox {
-
-    public bool ShowThumbs {
-      get { return this.showThumbs; }
-      set { this.showThumbs = value; DrawMap(); }
-    }
-    public Story TheStory {
-      get { return this.story; }
-      set { this.story = value; DrawMap(); }
-    }
-    public UpdateScreenEvent UpdateScreen {
-      get { return this.updateScreen; }
-      set { this.updateScreen = value; }
-    }
-    public UpdateStatusEvent UpdateStatus {
-      get { return this.updateStatus; }
-      set { this.updateStatus = value; }
-    }
-
-    public delegate void UpdateScreenEvent(int x, int y);
-    public delegate void UpdateStatusEvent(int x, int y);
-
-    int startX = 998, startY = 998, mapWidth = 5, mapHeight = 8, ScreenWidth = 200, ScreenHeight = 80;
-    int origStartX, origStartY, mouseDownX, mouseDownY;
-    Pen p = new Pen(Color.FromArgb(25, 0, 0, 0));
-    Pen p2 = new Pen(Color.FromArgb(25, 255, 255, 255));
-    Pen activeScreenOutline = new Pen(Color.Orchid);
-    Brush screenFill = new SolidBrush(Color.FromArgb(58, 102, 135));
-    Brush activeScreenFill = new SolidBrush(Color.FromArgb(171, 199, 243));
-    bool panning = false;
-
-    bool selectionInProgress = false;
-    Point selectionStart;
-    Rectangle selection;
-
-    Story story;
-    bool showThumbs = false;
-    UpdateScreenEvent updateScreen;
-    UpdateStatusEvent updateStatus;
-
-    public MapViewPanel() {
-      this.BackColor = Color.FromArgb(0, 0, 0, 0);
-      this.MouseDown += delegate (object o, MouseEventArgs mouse) {
-        mouseDownX = mouse.X;
-        mouseDownY = mouse.Y;
-        if(mouse.Button == MouseButtons.Right || mouse.Button == MouseButtons.Middle) {
-          origStartX = startX;
-          origStartY = startY;
-          panning = true;
-        }
-        else if(mouse.Button == MouseButtons.Left) {
-          selectionStart = new Point(mouse.X / ScreenWidth + startX, mouse.Y / ScreenHeight + startY);
-          selection = new Rectangle(selectionStart.X, selectionStart.Y, 1, 1);
-          selectionInProgress = true;
-          this.Refresh();
-        }
-      };
-      this.MouseUp += delegate { panning = false; selectionInProgress = false; };
-      this.DoubleClick += delegate (object o, EventArgs e) {
-        if(updateScreen == null) return;
-        updateScreen(mouseDownX / ScreenWidth + startX, mouseDownY / ScreenHeight + startY);
-        DrawMap();
-      };
-      this.MouseMove += delegate (object o, MouseEventArgs mouse) {
-        this.Focus();
-        if(panning) {
-          int deltaX = mouse.X - mouseDownX;
-          int deltaY = mouse.Y - mouseDownY;
-          startX = origStartX - deltaX / ScreenWidth;
-          startY = origStartY - deltaY / ScreenHeight;
-          DrawMap();
-        }
-        else if(selectionInProgress) {
-          int x = (int)(mouse.X / ScreenWidth) + startX;
-          int y = (int)(mouse.Y / ScreenHeight) + startY;
-          selection.X = Math.Min(x, selectionStart.X);
-          selection.Y = Math.Min(y, selectionStart.Y);
-          selection.Width = Math.Abs(x - selectionStart.X) + 1;
-          selection.Height = Math.Abs(y - selectionStart.Y) + 1;
-          this.Refresh();
-        }
-        int hoverX = startX + mouse.X / ScreenWidth;
-        int hoverY = startY + mouse.Y / ScreenHeight;
-        updateStatus?.Invoke(hoverX, hoverY);
-      };
-      this.MouseWheel += delegate (object o, MouseEventArgs mouse) {
-        int d = mouse.Delta / 120;
-        while(d != 0) {
-          if(d < 0) {
-            if(ScreenHeight == 10) break; // Reached minimum zoom level.
-            ScreenHeight /= 2;
-            ScreenWidth /= 2;
-            d++;
-          }
-          else {
-            if(ScreenHeight == 80) break; // Reached maximum zoom level.
-            ScreenHeight *= 2;
-            ScreenWidth *= 2;
-            d--;
-          }
-        }
-
-        // Find the center screen.
-        startX += mapWidth / 2;
-        startY += mapHeight / 2;
-
-        mapWidth = this.Width / ScreenWidth;
-        mapHeight = this.Height / ScreenHeight;
-
-        // Center the screen we found above.
-        startX -= mapWidth / 2;
-        startY -= mapHeight / 2;
-
-        DrawGridLines();
-        DrawMap();
-      };
-      this.Paint += delegate (object sender, PaintEventArgs e) {
-        if(story == null) return;
-        e.Graphics.DrawRectangle(new Pen(Color.Orange), new Rectangle((selection.X - startX) * ScreenWidth, (selection.Y - startY) * ScreenHeight, selection.Width * ScreenWidth - 1, selection.Height * ScreenHeight - 1));
-        e.Graphics.DrawRectangle(activeScreenOutline, new Rectangle((story.ActiveScreen.X - startX) * ScreenWidth, (story.ActiveScreen.Y - startY) * ScreenHeight, ScreenWidth - 1, ScreenHeight - 1));
-      };
-
-      DrawGridLines();
-      DrawMap();
-    }
-
-    private void DrawGridLines() {
-      this.Image = new Bitmap(600, 480);
-      Graphics g = Graphics.FromImage(this.Image);
-      for(int x = 1; x < mapWidth; x++) {
-        g.DrawLine(p2, x * ScreenWidth - 1, 0, x * ScreenWidth - 1, this.Height);
-        g.DrawLine(p, x * ScreenWidth, 0, x * ScreenWidth, this.Height);
-      }
-      for(int y = 1; y < mapHeight; y++) {
-        g.DrawLine(p2, 0, y * ScreenHeight - 1, this.Width, y * ScreenHeight - 1);
-        g.DrawLine(p, 0, y * ScreenHeight, this.Width, y * ScreenHeight);
-      }
-      this.Refresh();
-    }
-
-    private void DrawMap() {
-      if(story == null) return;
-      this.BackgroundImage = new Bitmap(600, 480);
-      Graphics g = Graphics.FromImage(this.BackgroundImage);
-      Rectangle src = new Rectangle(0, 0, 200, 80);
-      foreach(Screen s in story.Screens) {
-        int offX = s.X - startX;
-        int offY = s.Y - startY;
-        if(offX >= 0 && offX < mapWidth && offY >= 0 && offY < mapHeight) {
-          Rectangle area = new Rectangle(offX * ScreenWidth, offY * ScreenHeight, ScreenWidth, ScreenHeight);
-          if(this.showThumbs) {
-            g.DrawImage(s.Thumbnail, area, src, GraphicsUnit.Pixel);
-          }
-          else {
-            g.FillRectangle(s == story.ActiveScreen ? activeScreenFill : screenFill, area);
-          }
-        }
-      }
-      this.Refresh();
-    }
-
-  }
-
-}
-*/

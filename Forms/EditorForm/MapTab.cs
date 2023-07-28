@@ -59,7 +59,7 @@ namespace Story_Crafter.Forms.EditorForm {
         public void StoryChanged(Story story) {
             this.story = story;
             this.form = this.FindForm() as EditorForm;
-            this.map_mainView.TheStory = story;
+            this.map_mainView.Story = story;
         }
 
         public void TabOpened() {

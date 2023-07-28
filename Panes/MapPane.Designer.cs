@@ -41,7 +41,7 @@
             this.map_mainView.Size = new System.Drawing.Size(891, 570);
             this.map_mainView.TabIndex = 17;
             this.map_mainView.TabStop = false;
-            this.map_mainView.TheStory = null;
+            this.map_mainView.Story = null;
             this.map_mainView.UpdateScreen = null;
             this.map_mainView.UpdateStatus = null;
             // 
