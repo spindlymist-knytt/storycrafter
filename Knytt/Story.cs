@@ -136,10 +136,10 @@ namespace Story_Crafter.Knytt {
             // Extract DefaultSavegame.ini info.
             IniFile saveIni = new IniFile(this.Path + @"\DefaultSavegame.ini");
             this.DefaultSave = new SaveInfo();
-            this.DefaultSave.MapX = Program.ParseInt(saveIni.Read("Positions", "X Map"), 1000);
-            this.DefaultSave.MapY = Program.ParseInt(saveIni.Read("Positions", "Y Map"), 1000);
-            this.DefaultSave.ScreenX = Program.ParseInt(saveIni.Read("Positions", "X Pos"), 0);
-            this.DefaultSave.ScreenY = Program.ParseInt(saveIni.Read("Positions", "Y Pos"), 0);
+            if (!int.TryParse(saveIni.Read("Positions", "X Map"), out this.DefaultSave.MapX)) this.DefaultSave.MapX = 1000;
+            if (!int.TryParse(saveIni.Read("Positions", "Y Map"), out this.DefaultSave.MapY)) this.DefaultSave.MapY = 1000;
+            if (!int.TryParse(saveIni.Read("Positions", "X Pos"), out this.DefaultSave.ScreenX)) this.DefaultSave.ScreenX = 0;
+            if (!int.TryParse(saveIni.Read("Positions", "Y Pos"), out this.DefaultSave.ScreenY)) this.DefaultSave.ScreenY = 0;
             this.DefaultSave.Powers = new bool[12];
             for(int i = 0; i < 12; i++)
                 this.DefaultSave.Powers[i] = saveIni.Read("Powers", "Power" + i) == "1";
