@@ -6,13 +6,13 @@ using System.Text;
 using Story_Crafter.Knytt;
 
 namespace Story_Crafter.Editing.Tools {
-    class PaintTool: EditingTool {
+    class PaintTool : IEditingTool {
 
-        public override string Name { get { return "Paint"; } }
+        public string Name { get { return "Paint"; } }
 
         Pen objectCursor = new Pen(Color.Gold);
 
-        public override void Paint(ICanvas canvas, TileLayer layer, TileSelection selection, Point paintLocation, int brushSizeX, int brushSizeY, int tileset) {
+        public void Paint(ICanvas canvas, TileLayer layer, TileSelection selection, Point paintLocation, int brushSizeX, int brushSizeY, int tileset) {
             for(int brushX = 0; brushX < brushSizeX; brushX++) {
                 for(int brushY = 0; brushY < brushSizeY; brushY++) {
                     selection.Paint(layer, tileset, paintLocation.X + brushX * selection.Width, paintLocation.Y + brushY * selection.Height);
@@ -20,7 +20,7 @@ namespace Story_Crafter.Editing.Tools {
             }
         }
 
-        public override void Paint(ICanvas canvas, ObjectLayer layer, Point paintLocation, int brushSizeX, int brushSizeY, int bank, int idx) {
+        public void Paint(ICanvas canvas, ObjectLayer layer, Point paintLocation, int brushSizeX, int brushSizeY, int bank, int idx) {
             for(int brushX = 0; brushX < brushSizeX; brushX++) {
                 for(int brushY = 0; brushY < brushSizeY; brushY++) {
                     int x = paintLocation.X + brushX;
@@ -33,7 +33,7 @@ namespace Story_Crafter.Editing.Tools {
             }
         }
 
-        public override void DrawCursor(Graphics g, Point position, Selection selection, int brushSizeX, int brushSizeY, int layer) {
+        public void DrawCursor(Graphics g, Point position, Selection selection, int brushSizeX, int brushSizeY, int layer) {
             if(layer < 4) {
                 for(int x = position.X; x < position.X + brushSizeX * selection.Width; x += selection.Width) {
                     for(int y = position.Y; y < position.Y + brushSizeY * selection.Height; y += selection.Height) {

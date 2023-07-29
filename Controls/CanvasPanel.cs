@@ -17,7 +17,7 @@ namespace Story_Crafter.Controls {
 
         public delegate ICanvas GetCanvasCallback();
         public delegate Layer GetLayerCallback();
-        public delegate EditingTool GetToolCallback();
+        public delegate IEditingTool GetToolCallback();
         public delegate Selection GetSelectionCallback();
         public delegate Size GetBrushSizeCallback();
         public delegate int GetTilesetIndexCallback();

@@ -45,8 +45,8 @@ namespace Story_Crafter.Forms.EditorForm {
         TileSelection selection;
         int activeTileset; // 0 = A, 1 = B
 
-        List<EditingTool> tools;
-        EditingTool currentTool;
+        List<IEditingTool> tools;
+        IEditingTool currentTool;
         int currentToolIdx = 0;
 
         Pattern editingPattern = null;
@@ -332,7 +332,7 @@ namespace Story_Crafter.Forms.EditorForm {
             this.selection = this.screen_tilesetViewA.Selection;
             this.screen_tilesetViewA.Active = true;
 
-            tools = new List<EditingTool>(5);
+            tools = new List<IEditingTool>(5);
             tools.Add(new PaintTool());
             tools.Add(new FillTool());
             tools.Add(new ReplaceTool());

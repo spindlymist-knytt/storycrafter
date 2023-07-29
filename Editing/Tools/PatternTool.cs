@@ -6,15 +6,15 @@ using System.Text;
 using Story_Crafter.Knytt;
 
 namespace Story_Crafter.Editing.Tools {
-    class PatternTool: EditingTool {
+    class PatternTool : IEditingTool {
         
-        public override string Name { get { return "Pattern"; } }
+        public string Name { get { return "Pattern"; } }
 
         public Pattern Source { get; set; } = null;
 
         static Pen cursor = new Pen(Color.Orchid);
 
-        public override void DrawCursor(Graphics g, Point position, Selection selection, int brushSizeX, int brushSizeY, int layer) {
+        public void DrawCursor(Graphics g, Point position, Selection selection, int brushSizeX, int brushSizeY, int layer) {
             if(Source == null) return;
             for(int x = position.X; x < position.X + brushSizeX * Source.Width; x += Source.Width) {
                 for(int y = position.Y; y < position.Y + brushSizeY * Source.Height; y += Source.Height) {
@@ -23,12 +23,12 @@ namespace Story_Crafter.Editing.Tools {
             }
         }
 
-        public override void Paint(ICanvas canvas, TileLayer layer, TileSelection selection, Point paintLocation, int brushSizeX, int brushSizeY, int tileset) {
+        public void Paint(ICanvas canvas, TileLayer layer, TileSelection selection, Point paintLocation, int brushSizeX, int brushSizeY, int tileset) {
             if(Source == null) return;
             Source.Paint(canvas, layer, paintLocation, brushSizeX, brushSizeY);
         }
 
-        public override void Paint(ICanvas canvas, ObjectLayer layer, Point paintLocation, int brushSizeX, int brushSizeY, int bank, int idx) {
+        public void Paint(ICanvas canvas, ObjectLayer layer, Point paintLocation, int brushSizeX, int brushSizeY, int bank, int idx) {
             if(Source == null) return;
             Source.Paint(canvas, layer, paintLocation, brushSizeX, brushSizeY);
         }

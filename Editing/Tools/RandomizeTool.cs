@@ -6,13 +6,13 @@ using System.Text;
 using Story_Crafter.Knytt;
 
 namespace Story_Crafter.Editing.Tools {
-    class RandomizeTool: EditingTool {
+    class RandomizeTool : IEditingTool {
 
-        public override string Name { get { return "Randomize"; } }
+        public string Name { get { return "Randomize"; } }
 
         Pen cursor = new Pen(Color.Orchid);
 
-        public override void Paint(ICanvas canvas, TileLayer layer, TileSelection selection, Point paintLocation, int brushSizeX, int brushSizeY, int tileset) {
+        public void Paint(ICanvas canvas, TileLayer layer, TileSelection selection, Point paintLocation, int brushSizeX, int brushSizeY, int tileset) {
             for(int brushX = 0; brushX < brushSizeX; brushX++) {
                 for(int brushY = 0; brushY < brushSizeY; brushY++) {
                     int x = paintLocation.X + brushX;
@@ -24,7 +24,7 @@ namespace Story_Crafter.Editing.Tools {
             }
         }
 
-        public override void Paint(ICanvas canvas, ObjectLayer layer, Point paintLocation, int brushSizeX, int brushSizeY, int bank, int idx) {
+        public void Paint(ICanvas canvas, ObjectLayer layer, Point paintLocation, int brushSizeX, int brushSizeY, int bank, int idx) {
             // Duplicates PaintTool.Paint(ObjectLayer...) behavior
             for(int brushX = 0; brushX < brushSizeX; brushX++) {
                 for(int brushY = 0; brushY < brushSizeY; brushY++) {
@@ -38,7 +38,7 @@ namespace Story_Crafter.Editing.Tools {
             }
         }
 
-        public override void DrawCursor(Graphics g, Point position, Selection selection, int brushSizeX, int brushSizeY, int layer) {
+        public void DrawCursor(Graphics g, Point position, Selection selection, int brushSizeX, int brushSizeY, int layer) {
             g.DrawRectangle(cursor, position.X * 24, position.Y * 24, 24 * brushSizeX - 1, 24 * brushSizeY - 1);
         }
 
