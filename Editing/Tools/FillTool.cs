@@ -6,13 +6,13 @@ using System.Text;
 using Story_Crafter.Knytt;
 
 namespace Story_Crafter.Editing.Tools {
-    class FillTool: EditingTool {
+    class FillTool : IEditingTool {
 
-        public override string Name { get { return "Fill"; } }
+        public string Name { get { return "Fill"; } }
 
         Pen cursor = new Pen(Color.Orchid);
 
-        public override void Paint(ICanvas canvas, TileLayer layer, TileSelection selection, Point paintLocation, int brushSizeX, int brushSizeY, int tileset) {
+        public void Paint(ICanvas canvas, TileLayer layer, TileSelection selection, Point paintLocation, int brushSizeX, int brushSizeY, int tileset) {
             Tile target = layer.Tiles[Metrics.ScreenPointToIndex(paintLocation)].Clone();
             Tile replacement = new Tile();
             replacement.Tileset = tileset;
@@ -20,7 +20,7 @@ namespace Story_Crafter.Editing.Tools {
             Fill(layer, target, replacement, paintLocation);
         }
 
-        public override void Paint(ICanvas canvas, ObjectLayer layer, Point paintLocation, int brushSizeX, int brushSizeY, int bank, int idx) {
+        public void Paint(ICanvas canvas, ObjectLayer layer, Point paintLocation, int brushSizeX, int brushSizeY, int bank, int idx) {
             Tile target = layer.Tiles[Metrics.ScreenPointToIndex(paintLocation)].Clone();
             Tile replacement = new Tile();
             replacement.Bank = bank;
@@ -28,7 +28,7 @@ namespace Story_Crafter.Editing.Tools {
             Fill(layer, target, replacement, paintLocation);
         }
 
-        public override void DrawCursor(Graphics g, Point position, Selection selection, int brushSizeX, int brushSizeY, int layer) {
+        public void DrawCursor(Graphics g, Point position, Selection selection, int brushSizeX, int brushSizeY, int layer) {
             g.DrawRectangle(cursor, position.X * 24, position.Y * 24, 23, 23);
         }
 
