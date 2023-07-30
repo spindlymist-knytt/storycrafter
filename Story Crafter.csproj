@@ -111,6 +111,7 @@
     <Compile Include="Controls\D3DCanvas.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Editing\Tools\IEditingTool.cs" />
     <Compile Include="Forms\EditorForm\GradientsTab.Designer.cs">
       <DependentUpon>GradientsTab.cs</DependentUpon>
     </Compile>
@@ -149,7 +150,7 @@
     <Compile Include="Panes\AssetsPane.Designer.cs">
       <DependentUpon>AssetsPane.cs</DependentUpon>
     </Compile>
-    <Compile Include="Panes\IEditorPane.cs" />
+    <Compile Include="Panes\EditingContext.cs" />
     <Compile Include="Panes\MapPane.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -162,6 +163,7 @@
     <Compile Include="Panes\ObjectsPane.Designer.cs">
       <DependentUpon>ObjectsPane.cs</DependentUpon>
     </Compile>
+    <Compile Include="Panes\PaneManager.cs" />
     <Compile Include="Panes\ScreenPane.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -217,6 +219,7 @@
     <Compile Include="Rendering\AssetManager.cs" />
     <Compile Include="Rendering\D3DRenderer.cs" />
     <Compile Include="Rendering\GDIRenderer.cs" />
+    <Compile Include="Rendering\IRenderer.cs" />
     <Compile Include="Utility\IniFile.cs" />
     <Compile Include="Knytt\Layer.cs" />
     <Compile Include="Utility\ListViewItemComparer.cs" />
@@ -264,7 +267,6 @@
     <Compile Include="Controls\TilesetViewPanel.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Editing\Tools\EditingTool.cs" />
     <Compile Include="Controls\TranslucentPanel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -427,9 +429,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Config\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,4 +1,5 @@
-﻿using Story_Crafter.Knytt;
+﻿using Story_Crafter.Editing.Tools;
+using Story_Crafter.Knytt;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,15 +13,15 @@ using WeifenLuo.WinFormsUI.Docking;
 using Screen = Story_Crafter.Knytt.Screen;
 
 namespace Story_Crafter.Panes {
-    partial class ToolsPane : DockContent, IEditorPane {
-        public ToolsPane() {
+    partial class ToolsPane : DockContent {
+        EditingContext context;
+
+        public ToolsPane(EditingContext context) {
+            this.context = context;
+
             InitializeComponent();
-        }
 
-        public void ScreenChanged(Screen screen) {
-        }
-
-        public void StoryChanged(Story story) {
+            this.context.Tool = new PaintTool();
         }
     }
 }

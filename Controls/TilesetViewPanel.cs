@@ -8,11 +8,14 @@ using Story_Crafter.Knytt;
 
 namespace Story_Crafter {
 
-    class TilesetViewPanel: PictureBox {
+    class TilesetViewPanel : PictureBox {
+        public delegate void SelectionChangedDelegate(TileSelection selection);
 
         public TileSelection Selection {
             get { return selection; }
         }
+        public event SelectionChangedDelegate SelectionChanged;
+
         TileSelection selection;
         Rectangle lastSelection;
         Point selectionStart = new Point();
@@ -78,6 +81,7 @@ namespace Story_Crafter {
                     selection.Add(lastSelection);
                 }
                 selectionInProgress = false;
+                this.SelectionChanged?.Invoke(this.selection);
                 Refresh();
             }
         }
