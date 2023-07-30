@@ -12,15 +12,9 @@ using WeifenLuo.WinFormsUI.Docking;
 using Screen = Story_Crafter.Knytt.Screen;
 
 namespace Story_Crafter.Panes {
-    partial class ObjectsPane : DockContent, IEditorPane {
-        public ObjectsPane() {
+    partial class ObjectsPane : DockContent {
+        public ObjectsPane(EditingContext context) {
             InitializeComponent();
-        }
-
-        public void ScreenChanged(Screen screen) {
-        }
-
-        public void StoryChanged(Story story) {
         }
     }
 }

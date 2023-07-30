@@ -1,4 +1,5 @@
-﻿using Story_Crafter.Knytt;
+﻿using Story_Crafter.Editing.Tools;
+using Story_Crafter.Knytt;
 using Story_Crafter.Panes;
 using System;
 using System.Collections.Generic;
@@ -14,60 +15,21 @@ using Screen = Story_Crafter.Knytt.Screen;
 
 namespace Story_Crafter.Forms.EditorForm {
     partial class NewScreenTab : UserControl, IEditorTab {
-
-        Story story;
-        ScreenPane screenPane = new ScreenPane();
-        TilesetsPane tilesetsPane = new TilesetsPane();
-        ObjectsPane objectsPane = new ObjectsPane();
-        ToolsPane toolsPane = new ToolsPane();
-        AssetsPane assetsPane = new AssetsPane();
-        MapPane mapPane = new MapPane();
-        List<IEditorPane> panes;
+        EditingContext context = new EditingContext();
+        PaneManager paneManager;
 
         public NewScreenTab() {
             InitializeComponent();
 
-            this.dockPanel1.Theme = new VS2015LightTheme();
-
-            screenPane.Show(this.dockPanel1);
-
-            tilesetsPane.Show(screenPane.Pane, DockAlignment.Bottom, 0.25);
-            objectsPane.Show(tilesetsPane.Pane, null);
-            tilesetsPane.Activate();
-
-            toolsPane.Show(screenPane.Pane, DockAlignment.Left, 0.15);
-            assetsPane.Show(tilesetsPane.Pane, DockAlignment.Left, 0.15);
-            mapPane.Show(tilesetsPane.Pane, DockAlignment.Right, 0.33);
-            mapPane.UpdateScreen = delegate (int x, int y) {
-                ScreenPane pane = new ScreenPane();
-                pane.Show(screenPane.Pane, null);
-                (pane as IEditorPane).StoryChanged(story);
-                (pane as IEditorPane).ScreenChanged(story.GetScreen(x, y));
-            };
-
-            screenPane.Activate();
-
-            panes = new List<IEditorPane>() {
-                screenPane,
-                tilesetsPane,
-                objectsPane,
-                toolsPane,
-                assetsPane,
-                mapPane,
-            };
+            paneManager = new PaneManager(this.dockPanel1, this.context);
         }
 
         public void ScreenChanged(Screen screen) {
-            foreach (IEditorPane pane in panes) {
-                pane.ScreenChanged(screen);
-            }
         }
 
         public void StoryChanged(Story story) {
-            this.story = story;
-            foreach (IEditorPane pane in panes) {
-                pane.StoryChanged(story);
-            }
+            this.context.Story = story;
+            this.context.ActiveScreen = story.ActiveScreen;
         }
 
         public void TabOpened() {

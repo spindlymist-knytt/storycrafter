@@ -15,38 +15,38 @@ using Screen = Story_Crafter.Knytt.Screen;
 using Story_Crafter.Knytt;
 
 namespace Story_Crafter.Panes {
-    partial class ScreenPane : DockContent, IEditorPane {
+    partial class ScreenPane : DockContent {
+        EditingContext context;
         Tileset tilesetA;
         Tileset tilesetB;
         Bitmap gradient;
-        TileSelection selection;
-        Story story;
         Screen screen;
         int scale = 1;
 
-        public ScreenPane() {
+        public ScreenPane(EditingContext context, Screen screen) {
+            this.context = context;
+            this.screen = screen;
+
             InitializeComponent();
 
-            selection = new TileSelection(Metrics.TileSize, Metrics.TileSize, 0, 0, Metrics.TilesetWidth, Metrics.TilesetHeight, new Pen(Color.Orange));
-            selection.Add(new Rectangle(0, 0, 1, 1));
-
+            this.context.ActiveScreenChanged += OnActiveScreenChanged;
             this.canvasPanel1.GetCanvas += delegate () {
                 return this.screen;
             };
             this.canvasPanel1.GetLayer += delegate () {
-                return this.screen.GetLayer(3);
+                return this.screen?.GetLayer(3);
             };
             this.canvasPanel1.GetTool += delegate () {
-                return new PaintTool();
+                return this.context.Tool;
             };
             this.canvasPanel1.GetSelection += delegate () {
-                return selection;
+                return this.context.TilesetSelection?.Item2;
             };
             this.canvasPanel1.GetBrushSize += delegate () {
                 return new Size(1, 1);
             };
             this.canvasPanel1.GetTilesetIndex += delegate () {
-                return 0;
+                return this.context.TilesetSelection?.Item1 ?? 0;
             };
             this.canvasPanel1.GetObject += delegate () {
                 return new Tuple<int, int>(0, 0);
@@ -60,21 +60,33 @@ namespace Story_Crafter.Panes {
             this.canvasPanel1.GetGradient += delegate () {
                 return gradient;
             };
-        }
 
-        public void ScreenChanged(Screen screen) {
-            if (this.screen == null) {
-                this.screen = screen;
+            if (screen != null) {
                 this.Text = "x" + screen.X + "y" + screen.Y;
-                tilesetA = story.CreateTileset(screen.TilesetA);
-                tilesetB = story.CreateTileset(screen.TilesetB);
-                gradient = Program.LoadBitmap(story.Gradient(screen.Gradient));
+                tilesetA = this.context.Story.CreateTileset(screen.TilesetA);
+                tilesetB = this.context.Story.CreateTileset(screen.TilesetB);
+                gradient = Program.LoadBitmap(this.context.Story.Gradient(screen.Gradient));
                 this.canvasPanel1.Draw();
             }
         }
 
-        public void StoryChanged(Story story) {
-            this.story = story;
+        protected override void OnGotFocus(EventArgs e) {
+            base.OnGotFocus(e);
+
+            if (this.screen != null) {
+                this.context.ActiveScreen = this.screen;
+            }
+        }
+
+        void OnActiveScreenChanged(ActiveScreenChangedArgs e) {
+            if (this.screen == null) {
+                this.screen = e.screen;
+                this.Text = "x" + screen.X + "y" + screen.Y;
+                tilesetA = this.context.Story.CreateTileset(screen.TilesetA);
+                tilesetB = this.context.Story.CreateTileset(screen.TilesetB);
+                gradient = Program.LoadBitmap(this.context.Story.Gradient(screen.Gradient));
+                this.canvasPanel1.Draw();
+            }
         }
 
         private void menuItem_setZoom100_Click(object sender, EventArgs e) {

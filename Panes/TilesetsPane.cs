@@ -1,4 +1,5 @@
-﻿using Story_Crafter.Knytt;
+﻿using Story_Crafter.Editing;
+using Story_Crafter.Knytt;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,20 +13,28 @@ using WeifenLuo.WinFormsUI.Docking;
 using Screen = Story_Crafter.Knytt.Screen;
 
 namespace Story_Crafter.Panes {
-    partial class TilesetsPane : DockContent, IEditorPane {
-        Story story;
+    partial class TilesetsPane : DockContent {
+        EditingContext context;
 
-        public TilesetsPane() {
+        public TilesetsPane(EditingContext context) {
+            this.context = context;
+
             InitializeComponent();
+
+            context.ActiveScreenChanged += OnActiveScreenChanged;
+            this.screen_tilesetViewA.SelectionChanged += delegate (TileSelection selection) {
+                this.context.TilesetSelection = Tuple.Create(0, selection as Selection);
+            };
+            this.screen_tilesetViewB.SelectionChanged += delegate (TileSelection selection) {
+                this.context.TilesetSelection = Tuple.Create(1, selection as Selection);
+            };
+
+            this.context.TilesetSelection = Tuple.Create(0, this.screen_tilesetViewA.Selection as Selection);
         }
 
-        public void ScreenChanged(Screen screen) {
-            this.screen_tilesetViewA.Image = story.CreateTileset(screen.TilesetA).Full;
-            this.screen_tilesetViewB.Image = story.CreateTileset(screen.TilesetB).Full;
-        }
-
-        public void StoryChanged(Story story) {
-            this.story = story;
+        public void OnActiveScreenChanged(ActiveScreenChangedArgs e) {
+            this.screen_tilesetViewA.Image = context.Story.CreateTileset(e.screen.TilesetA).Full;
+            this.screen_tilesetViewB.Image = context.Story.CreateTileset(e.screen.TilesetB).Full;
         }
     }
 }

@@ -12,26 +12,23 @@ using WeifenLuo.WinFormsUI.Docking;
 using Screen = Story_Crafter.Knytt.Screen;
 
 namespace Story_Crafter.Panes {
-    partial class MapPane : DockContent, IEditorPane {
-        public delegate void UpdateScreenEvent(int x, int y);
+    partial class MapPane : DockContent {
+        EditingContext context;
+        PaneManager paneManager;
 
-        public UpdateScreenEvent UpdateScreen {
-            set {
-                this.map_mainView.UpdateScreen = delegate (int x, int y) {
-                    value(x, y);
-                };
-            }
-        }
+        public MapPane(PaneManager paneManager, EditingContext context) {
+            this.context = context;
 
-        public MapPane() {
             InitializeComponent();
+
+            this.context.StoryChanged += OnStoryChanged;
+            this.map_mainView.UpdateScreen += delegate (int x, int y) {
+                paneManager.AddScreenPane(this.context.Story.GetScreen(x, y));
+            };
         }
 
-        public void ScreenChanged(Screen screen) {
-        }
-
-        public void StoryChanged(Story story) {
-            this.map_mainView.Story = story;
+        void OnStoryChanged(StoryChangedArgs e) {
+            this.map_mainView.Story = e.story;
         }
     }
 }
