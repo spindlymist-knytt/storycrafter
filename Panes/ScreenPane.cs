@@ -13,95 +13,69 @@ using Story_Crafter.Editing.Tools;
 using Story_Crafter.Rendering;
 using Screen = Story_Crafter.Knytt.Screen;
 using Story_Crafter.Knytt;
+using Story_Crafter.Controls;
 
-namespace Story_Crafter.Panes {
+namespace Story_Crafter.Panes
+{
     partial class ScreenPane : DockContent {
-        EditingContext context;
-        Tileset tilesetA;
-        Tileset tilesetB;
-        Bitmap gradient;
+        EditingContext editContext;
+        RenderingContext renderContext;
         Screen screen;
-        int scale = 1;
+        DrawTest drawTest1;
 
-        public ScreenPane(EditingContext context, Screen screen) {
-            this.context = context;
+        public ScreenPane(Screen screen, EditingContext editContext, RenderingContext renderContext) {
             this.screen = screen;
+            this.editContext = editContext;
+            this.renderContext = renderContext;
 
             InitializeComponent();
 
-            this.context.ActiveScreenChanged += OnActiveScreenChanged;
-            this.canvasPanel1.GetCanvas += delegate () {
-                return this.screen;
-            };
-            this.canvasPanel1.GetLayer += delegate () {
-                return this.screen?.GetLayer(3);
-            };
-            this.canvasPanel1.GetTool += delegate () {
-                return this.context.Tool;
-            };
-            this.canvasPanel1.GetSelection += delegate () {
-                return this.context.TilesetSelection?.Item2;
-            };
-            this.canvasPanel1.GetBrushSize += delegate () {
-                return new Size(1, 1);
-            };
-            this.canvasPanel1.GetTilesetIndex += delegate () {
-                return this.context.TilesetSelection?.Item1 ?? 0;
-            };
-            this.canvasPanel1.GetObject += delegate () {
-                return new Tuple<int, int>(0, 0);
-            };
-            this.canvasPanel1.GetTilesetA += delegate () {
-                return tilesetA;
-            };
-            this.canvasPanel1.GetTilesetB += delegate () {
-                return tilesetB;
-            };
-            this.canvasPanel1.GetGradient += delegate () {
-                return gradient;
-            };
+            this.editContext.ActiveScreenChanged += OnActiveScreenChanged;
+            this.editContext.ToolChanged += OnToolChanged;
+            this.editContext.StoryChanged += OnStoryChanged;
+            //this.tileCanvas1.EventsHandler = this.context.Tool?.EventsHandler;
+
+            this.drawTest1 = new DrawTest(renderContext);
+            this.drawTest1.Dock = DockStyle.Fill;
+            this.Controls.Add(this.drawTest1);
 
             if (screen != null) {
                 this.Text = "x" + screen.X + "y" + screen.Y;
-                tilesetA = this.context.Story.CreateTileset(screen.TilesetA);
-                tilesetB = this.context.Story.CreateTileset(screen.TilesetB);
-                gradient = Program.LoadBitmap(this.context.Story.Gradient(screen.Gradient));
-                this.canvasPanel1.Draw();
+                this.drawTest1.Screen = screen;
             }
         }
 
         protected override void OnGotFocus(EventArgs e) {
             base.OnGotFocus(e);
+            if (this.screen == null) return;
 
-            if (this.screen != null) {
-                this.context.ActiveScreen = this.screen;
-            }
+            this.editContext.ActiveScreen = this.screen;
+        }
+
+        void OnStoryChanged(StoryChangedArgs e) {
         }
 
         void OnActiveScreenChanged(ActiveScreenChangedArgs e) {
-            if (this.screen == null) {
-                this.screen = e.screen;
-                this.Text = "x" + screen.X + "y" + screen.Y;
-                tilesetA = this.context.Story.CreateTileset(screen.TilesetA);
-                tilesetB = this.context.Story.CreateTileset(screen.TilesetB);
-                gradient = Program.LoadBitmap(this.context.Story.Gradient(screen.Gradient));
-                this.canvasPanel1.Draw();
-            }
+            if (e.screen == null) return;
+            if (this.screen != null) return;
+
+            this.screen = e.screen;
+            this.Text = "x" + screen.X + "y" + screen.Y;
+            this.drawTest1.Screen = screen;
         }
 
-        private void menuItem_setZoom100_Click(object sender, EventArgs e) {
-            scale = 1;
-            this.canvasPanel1.Size = new Size(600 * scale, 240 * scale);
+        void OnToolChanged(ToolChangedArgs e) {
+            //this.tileCanvas1.EventsHandler = e.tool.EventsHandler;
         }
 
-        private void menuItem_setZoom200_Click(object sender, EventArgs e) {
-            scale = 2;
-            this.canvasPanel1.Size = new Size(600 * scale, 240 * scale);
+        protected override void OnFormClosed(FormClosedEventArgs e) {
+            base.OnFormClosed(e);
+            this.drawTest1.Dispose();
         }
 
-        private void menuItem_setZoom300_Click(object sender, EventArgs e) {
-            scale = 3;
-            this.canvasPanel1.Size = new Size(600 * scale, 240 * scale);
+        protected override void OnClick(EventArgs e) {
+            base.OnClick(e);
+            this.drawTest1.Screen = this.screen;
         }
     }
 }

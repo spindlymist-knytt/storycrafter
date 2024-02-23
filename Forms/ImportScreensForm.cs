@@ -26,19 +26,35 @@ namespace Story_Crafter.Forms {
 
         private void ImportScreensForm_Shown(object sender, EventArgs e) {
             // TODO make reusable
-            DirectoryInfo worldsDir = new DirectoryInfo(Program.Path + @"\Worlds");
-            IniFile ini = new IniFile();
             this.storyList.Items.Clear();
+            DirectoryInfo worldsDir = new DirectoryInfo(Program.Path + @"\Worlds");
+
             foreach(DirectoryInfo dir in worldsDir.EnumerateDirectories()) {
-                if(!File.Exists(dir.FullName + @"\Map.bin") || !File.Exists(dir.FullName + @"\World.ini")) continue;
-                ini.Path = dir.FullName + @"\World.ini";
-                this.storyList.Items.Add(ini.Read("World", "Author")).SubItems.AddRange(new string[2] { ini.Read("World", "Name"), dir.FullName });
+                string worldIniPath = Path.Combine(dir.FullName, "World.ini");
+                string mapBinPath = Path.Combine(dir.FullName, "World.ini");
+
+                if (
+                    !File.Exists(dir.FullName + @"\Map.bin")
+                    || !File.Exists(dir.FullName + @"\World.ini")
+                ) {
+                    continue;
+                }
+
+                var props = Story.Properties.Parser.Parse(worldIniPath);
+                this.storyList.Items
+                    .Add(props.Author)
+                    .SubItems.AddRange(new string[2] {
+                        props.Name,
+                        dir.FullName,
+                    });
             }
         }
+
         private void loadStory_Click(object sender, EventArgs e) {
             if(this.storyList.SelectedItems.Count < 1) return;
             try {
-                this.story = new Story((string)this.storyList.SelectedItems[0].SubItems[2].Text);
+                string path = Path.Combine(Program.WorldsPath, this.storyList.SelectedItems[0].SubItems[2].Text);
+                this.story = Story.Parser.FromDirectory(path);
                 this.Text = "Import Screens: " + this.story.Title;
                 this.mapViewPanel1.BringToFront();
                 this.mapViewPanel1.Story = story;
@@ -48,6 +64,7 @@ namespace Story_Crafter.Forms {
                 MessageBox.Show(ex.ToString(), "Failed to load story", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         private void storyList_ColumnClick(object sender, ColumnClickEventArgs e) {
             if(this.lvItemComparer.Column == e.Column) {
                 this.lvItemComparer.Order = this.lvItemComparer.Order == SortOrder.Ascending ? SortOrder.Descending : SortOrder.Ascending;

@@ -8,7 +8,7 @@ using Story_Crafter.Rendering;
 
 namespace Story_Crafter.Editing {
     [Serializable]
-    class Pattern: ICanvas {
+    public class Pattern: ICanvas {
         
         private enum PatternType { SingleTileLayer, SingleObjectLayer, Multilayer, Empty };
 

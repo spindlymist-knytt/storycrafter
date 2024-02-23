@@ -6,7 +6,7 @@ using System.Text;
 using Story_Crafter.Knytt;
 
 namespace Story_Crafter.Editing {
-    class TileSelection: Selection {
+    public class TileSelection: Selection {
 
         public TileSelection(int cellWidth, int cellHeight, int containerMinX, int containerMinY, int containerMaxX, int containerMaxY, Pen cursor)
             : base(cellWidth, cellHeight, containerMinX, containerMinY, containerMaxX, containerMaxY, cursor) { }

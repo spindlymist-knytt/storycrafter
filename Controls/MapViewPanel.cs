@@ -9,7 +9,7 @@ using Screen = Story_Crafter.Knytt.Screen;
 
 namespace Story_Crafter {
 
-    class MapViewPanel : PictureBox {
+    public class MapViewPanel : PictureBox {
 
         public bool ShowThumbs {
             get { return this.showThumbs; }
@@ -216,12 +216,12 @@ namespace Story_Crafter {
                 new Rectangle(0, 0, selection.Borders.Width, selection.Borders.Height),
                 GraphicsUnit.Pixel);
 
-            pe.Graphics.DrawRectangle(
-                activeScreenOutline,
-                new Rectangle((story.ActiveScreen.X - startX) * screenWidth,
-                (story.ActiveScreen.Y - startY) * screenHeight,
-                screenWidth - 1,
-                screenHeight - 1));
+            //pe.Graphics.DrawRectangle(
+            //    activeScreenOutline,
+            //    new Rectangle((story.ActiveScreen.X - startX) * screenWidth,
+            //    (story.ActiveScreen.Y - startY) * screenHeight,
+            //    screenWidth - 1,
+            //    screenHeight - 1));
 
             if (selectionInProgress) {
                 pe.Graphics.DrawRectangle(
@@ -261,7 +261,7 @@ namespace Story_Crafter {
             if(story != null) {
                 Graphics g = Graphics.FromImage(this.BackgroundImage);
                 Rectangle src = new Rectangle(0, 0, 200, 80);
-                foreach(Screen s in story.Screens) {
+                foreach(Screen s in story.Screens.Values) {
                     int offX = s.X - startX;
                     int offY = s.Y - startY;
                     if(offX >= 0 && offX < mapWidth && offY >= 0 && offY < mapHeight) {
@@ -270,7 +270,8 @@ namespace Story_Crafter {
                             g.DrawImage(s.Thumbnail, area, src, GraphicsUnit.Pixel);
                         }
                         else {
-                            g.FillRectangle(s == story.ActiveScreen ? activeScreenFill : screenFill, area);
+                            //g.FillRectangle(s == story.ActiveScreen ? activeScreenFill : screenFill, area);
+                            g.FillRectangle(screenFill, area);
                         }
                     }
                 }

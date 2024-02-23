@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using Story_Crafter.Controls;
 using Story_Crafter.Knytt;
 
 namespace Story_Crafter.Editing.Tools {
-    class ReplaceTool : IEditingTool {
+    class ReplaceTool : BaseEventsHandler, IEditingTool {
 
         public string Name { get { return "Replace"; } }
+        public ITileCanvasEvents EventsHandler { get { return this; } }
 
         Pen cursor = new Pen(Color.Orchid);
 

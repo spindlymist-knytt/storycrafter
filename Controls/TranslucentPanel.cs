@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Story_Crafter {
     // A simple control that allows for a semitransparent background.
-    class TranslucentPanel: Panel {
+    public class TranslucentPanel: Panel {
         private SolidBrush fill;
         public override Color BackColor {
             get {

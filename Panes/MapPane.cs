@@ -14,7 +14,6 @@ using Screen = Story_Crafter.Knytt.Screen;
 namespace Story_Crafter.Panes {
     partial class MapPane : DockContent {
         EditingContext context;
-        PaneManager paneManager;
 
         public MapPane(PaneManager paneManager, EditingContext context) {
             this.context = context;
@@ -23,7 +22,7 @@ namespace Story_Crafter.Panes {
 
             this.context.StoryChanged += OnStoryChanged;
             this.map_mainView.UpdateScreen += delegate (int x, int y) {
-                paneManager.AddScreenPane(this.context.Story.GetScreen(x, y));
+                paneManager.CreateScreenPane(this.context.Story.GetScreen(x, y));
             };
         }
 

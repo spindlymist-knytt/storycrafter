@@ -33,8 +33,8 @@ namespace Story_Crafter.Panes {
         }
 
         public void OnActiveScreenChanged(ActiveScreenChangedArgs e) {
-            this.screen_tilesetViewA.Image = context.Story.CreateTileset(e.screen.TilesetA).Full;
-            this.screen_tilesetViewB.Image = context.Story.CreateTileset(e.screen.TilesetB).Full;
+            //this.screen_tilesetViewA.Image = context.Story.CreateTileset(e.screen.TilesetA).Full;
+            //this.screen_tilesetViewB.Image = context.Story.CreateTileset(e.screen.TilesetB).Full;
         }
     }
 }

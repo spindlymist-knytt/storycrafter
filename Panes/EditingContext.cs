@@ -4,10 +4,8 @@ using Story_Crafter.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Story_Crafter.Knytt;
-using SharpDX.Direct3D9;
+using Story_Crafter.Assets;
 
 namespace Story_Crafter.Panes {
     class EditingContext {
@@ -63,10 +61,17 @@ namespace Story_Crafter.Panes {
             get { return story; }
             set {
                 story = value;
+                assetSource = new AssetSourceChain(
+                    new GlobalAssetSource(Program.Path),
+                    new StoryAssetSource(story)
+                );
                 StoryChanged?.Invoke(new StoryChangedArgs {
                     story = value,
                 });
             }
+        }
+        public IAssetSource Assets {
+            get { return assetSource; }
         }
 
         IEditingTool tool;
@@ -74,6 +79,7 @@ namespace Story_Crafter.Panes {
         Tuple<int, int> objectSelection;
         Screen activeScreen;
         Story story;
+        IAssetSource assetSource;
 
         public EditingContext() {
         }

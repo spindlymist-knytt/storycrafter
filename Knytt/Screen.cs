@@ -8,7 +8,7 @@ using Story_Crafter.Rendering;
 
 namespace Story_Crafter.Knytt {
     [Serializable]
-    class Screen: ICanvas {
+    public partial class Screen: ICanvas {
         public int X, Y;
         public int TilesetA, TilesetB, Gradient, Music, AmbianceA, AmbianceB;
         public Layer[] Layers;

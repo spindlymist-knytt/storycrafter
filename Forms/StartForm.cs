@@ -20,19 +20,35 @@ namespace Story_Crafter.Forms {
             storyList.ListViewItemSorter = lvItemComparer;
         }
         private void StartForm_Shown(object sender, EventArgs e) {
-            DirectoryInfo worldsDir = new DirectoryInfo(Program.Path + @"\Worlds");
-            IniFile ini = new IniFile();
             this.storyList.Items.Clear();
-            foreach(DirectoryInfo dir in worldsDir.EnumerateDirectories()) {
-                if(!File.Exists(dir.FullName + @"\Map.bin") || !File.Exists(dir.FullName + @"\World.ini")) continue;
-                ini.Path = dir.FullName + @"\World.ini";
-                this.storyList.Items.Add(ini.Read("World", "Author")).SubItems.AddRange(new string[2] { ini.Read("World", "Name"), dir.FullName });
+            DirectoryInfo worldsDir = new DirectoryInfo(Program.Path + @"\Worlds");
+
+            foreach (DirectoryInfo dir in worldsDir.EnumerateDirectories()) {
+                string worldIniPath = Path.Combine(dir.FullName, "World.ini");
+                string mapBinPath = Path.Combine(dir.FullName, "Map.bin");
+
+                if (
+                    !File.Exists(worldIniPath)
+                    || !File.Exists(mapBinPath)
+                ) {
+                    continue;
+                }
+
+                var props = Story.Properties.Parser.Parse(worldIniPath);
+                this.storyList.Items
+                    .Add(props.Author)
+                    .SubItems.AddRange(new string[2] {
+                        props.Name,
+                        dir.FullName,
+                    });
             }
         }
+
         private void loadStory_Click(object sender, EventArgs e) {
             if(this.storyList.SelectedItems.Count < 1) return;
             try {
-                SelectedStory = new Story((string)this.storyList.SelectedItems[0].SubItems[2].Text);
+                string path = Path.Combine(Program.WorldsPath, this.storyList.SelectedItems[0].SubItems[2].Text);
+                SelectedStory = Story.Parser.FromDirectory(path);
                 this.DialogResult = DialogResult.OK;
             }
             catch(Exception ex) {
@@ -42,13 +58,13 @@ namespace Story_Crafter.Forms {
 
         private void createStory_Click(object sender, EventArgs e) {
             // TODO verify legal directory name
-            if(storyAuthor.Text == "" || storyTitle.Text == "") return;
-            if(Directory.Exists(Program.WorldsPath + "\\" + storyAuthor.Text + " - " + storyTitle.Text)) {
-                MessageBox.Show("That story already exists.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            SelectedStory = new Story(storyAuthor.Text, storyTitle.Text);
-            this.DialogResult = DialogResult.OK;
+            //if(storyAuthor.Text == "" || storyTitle.Text == "") return;
+            //if(Directory.Exists(Program.WorldsPath + "\\" + storyAuthor.Text + " - " + storyTitle.Text)) {
+            //    MessageBox.Show("That story already exists.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    return;
+            //}
+            //SelectedStory = new Story(storyAuthor.Text, storyTitle.Text);
+            //this.DialogResult = DialogResult.OK;
         }
 
         /*private void DoLoadStory(object sender, DoWorkEventArgs e)
@@ -60,6 +76,7 @@ namespace Story_Crafter.Forms {
           Program.OpenStory.CacheThumbnails((BackgroundWorker)sender);
           GC.Collect();
         }*/
+
         private void storyList_ColumnClick(object sender, ColumnClickEventArgs e) {
             if(this.lvItemComparer.Column == e.Column) {
                 this.lvItemComparer.Order = this.lvItemComparer.Order == SortOrder.Ascending ? SortOrder.Descending : SortOrder.Ascending;

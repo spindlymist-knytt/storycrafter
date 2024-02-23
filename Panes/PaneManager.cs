@@ -1,31 +1,40 @@
 ﻿using Story_Crafter.Knytt;
+using Story_Crafter.Rendering;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Runtime.Remoting.Contexts;
-using System.Text;
-using System.Threading.Tasks;
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace Story_Crafter.Panes {
     class PaneManager {
+        public EditingContext EditingContext {
+            get { return editContext; }
+            set { editContext = value; }
+        }
+        EditingContext editContext;
+
+        public RenderingContext RenderingContext {
+            get { return renderContext; }
+            set { renderContext = value; }
+        }
+        RenderingContext renderContext;
+
         DockPanel dockPanel;
-        EditingContext context;
         IList<ScreenPane> screenPanes = new List<ScreenPane>();
         ScreenPane lastScreenPane;
 
-        public PaneManager(DockPanel dockPanel, EditingContext context) {
-            this.context = context;
+        public PaneManager(DockPanel dockPanel) {
             this.dockPanel = dockPanel;
             this.dockPanel.Theme = new VS2015LightTheme();
+        }
 
-            ScreenPane screenPane = AddScreenPane(null);
-            TilesetsPane tilesetsPane = new TilesetsPane(context);
-            ObjectsPane objectsPane = new ObjectsPane(context);
-            ToolsPane toolsPane = new ToolsPane(context);
-            AssetsPane assetsPane = new AssetsPane(context);
-            MapPane mapPane = new MapPane(this, context);
+        public void CreateDefaultPanes() {
+            ScreenPane screenPane = CreateScreenPane(null);
+            TilesetsPane tilesetsPane = new TilesetsPane(editContext);
+            ObjectsPane objectsPane = new ObjectsPane(editContext);
+            ToolsPane toolsPane = new ToolsPane(editContext);
+            AssetsPane assetsPane = new AssetsPane(editContext);
+            MapPane mapPane = new MapPane(this, editContext);
 
             screenPane.Show(this.dockPanel);
 
@@ -40,11 +49,11 @@ namespace Story_Crafter.Panes {
             screenPane.Activate();
         }
 
-        public ScreenPane AddScreenPane(Screen screen) {
-            ScreenPane pane = new ScreenPane(context, screen);
+        public ScreenPane CreateScreenPane(Screen screen) {
+            ScreenPane pane = new ScreenPane(screen, editContext, renderContext);
 
             pane.FormClosed += OnScreenPaneClosed;
-            pane.GotFocus += OnScreenPaneFocused;
+            pane.Enter += OnScreenPaneFocused;
 
             // Priority:
             // 1. Dock to same pane as the last active screen

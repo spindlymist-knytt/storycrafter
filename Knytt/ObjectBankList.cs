@@ -1,10 +1,9 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Story_Crafter.Knytt {
-    class ObjectBankList: System.Collections.IEnumerable {
+    class ObjectBankList: IEnumerable<ObjectBank> {
         private List<ObjectBank> banks = new List<ObjectBank>();
         public int Count {
             get { return banks.Count; }
@@ -51,8 +50,12 @@ namespace Story_Crafter.Knytt {
           }
         }*/
 
-        public System.Collections.IEnumerator GetEnumerator() {
-            return (System.Collections.IEnumerator)banks.GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator() {
+            return banks.GetEnumerator();
+        }
+
+        public IEnumerator<ObjectBank> GetEnumerator() {
+            return banks.GetEnumerator();
         }
     }
 }

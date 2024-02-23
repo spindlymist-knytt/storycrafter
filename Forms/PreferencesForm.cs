@@ -44,22 +44,22 @@ namespace Story_Crafter.Forms {
 
             // TODO: make editor definitions customizable
             // TODO: grab icons from shell
-            this.objectListView1.SmallImageList = new ImageList();
-            this.objectListView1.SmallImageList.Images.Add("GIMP", Properties.Resources.gimp);
-            this.objectListView1.SmallImageList.Images.Add("Paint", Properties.Resources.paint);
-            this.objectListView1.SmallImageList.Images.Add("Paint.NET", Properties.Resources.paint_net);
-            this.objectListView1.SmallImageList.Images.Add("Photoshop", Properties.Resources.photoshop);
-            this.objectListView1.ColumnsInDisplayOrder[0].ImageGetter += delegate (object row) {
-                return ((EditorDefinition)row).Name;
-            };
-            EditorDefinition gimp = new EditorDefinition("GIMP", @"D:\Program Files (x86)\GIMP\bin\gimp-2.6.exe", "\"%filename%\""),
-                           paint = new EditorDefinition("Paint", @"C:\WINDOWS\system32\pbrush.exe", "\"%filename%\""),
-                     paintNet = new EditorDefinition("Paint.NET", @"D:\Program Files (x86)\Paint.NET\paintnet.exe", "\"%filename%\""),
-                     photoshop = new EditorDefinition("Photoshop", @"D:\Program Files (x86)\Adobe\Photoshop CS5\ps.exe", "\"%filename%\"");
-            this.objectListView1.AddObject(gimp);
-            this.objectListView1.AddObject(paint);
-            this.objectListView1.AddObject(paintNet);
-            this.objectListView1.AddObject(photoshop);
+            //this.objectListView1.SmallImageList = new ImageList();
+            //this.objectListView1.SmallImageList.Images.Add("GIMP", Properties.Resources.gimp);
+            //this.objectListView1.SmallImageList.Images.Add("Paint", Properties.Resources.paint);
+            //this.objectListView1.SmallImageList.Images.Add("Paint.NET", Properties.Resources.paint_net);
+            //this.objectListView1.SmallImageList.Images.Add("Photoshop", Properties.Resources.photoshop);
+            //this.objectListView1.ColumnsInDisplayOrder[0].ImageGetter += delegate (object row) {
+            //    return ((EditorDefinition)row).Name;
+            //};
+            //EditorDefinition gimp = new EditorDefinition("GIMP", @"D:\Program Files (x86)\GIMP\bin\gimp-2.6.exe", "\"%filename%\""),
+            //               paint = new EditorDefinition("Paint", @"C:\WINDOWS\system32\pbrush.exe", "\"%filename%\""),
+            //         paintNet = new EditorDefinition("Paint.NET", @"D:\Program Files (x86)\Paint.NET\paintnet.exe", "\"%filename%\""),
+            //         photoshop = new EditorDefinition("Photoshop", @"D:\Program Files (x86)\Adobe\Photoshop CS5\ps.exe", "\"%filename%\"");
+            //this.objectListView1.AddObject(gimp);
+            //this.objectListView1.AddObject(paint);
+            //this.objectListView1.AddObject(paintNet);
+            //this.objectListView1.AddObject(photoshop);
 
             this.button2.Click += delegate (object sender, EventArgs e) {
                 FolderBrowserDialog browserDlg = new FolderBrowserDialog();
@@ -78,7 +78,7 @@ namespace Story_Crafter.Forms {
                 // TODO create paths class
                 Program.Path = this.textBox1.Text;
                 Program.Data.GetElementsByTagName("path")[0].InnerText = Program.Path;
-                FileStream fout = File.Open("data.xml", FileMode.Truncate, FileAccess.Write);
+                FileStream fout = File.Open("Resources/Data/data.xml", FileMode.Truncate, FileAccess.Write);
                 XmlWriter writer = XmlWriter.Create(fout);
                 Program.Data.WriteContentTo(writer);
                 writer.Close();
@@ -89,7 +89,7 @@ namespace Story_Crafter.Forms {
                 this.profile = this.comboBox1.SelectedIndex;
                 Program.ChangeProfile(Profile.Profiles[this.comboBox1.SelectedIndex]);
                 Program.Data.GetElementsByTagName("active")[0].InnerText = Program.ActiveProfile.ID;
-                FileStream fout = File.Open("data.xml", FileMode.Truncate, FileAccess.Write);
+                FileStream fout = File.Open("Resources/Data/data.xml", FileMode.Truncate, FileAccess.Write);
                 XmlWriter writer = XmlWriter.Create(fout);
                 Program.Data.WriteContentTo(writer);
                 writer.Close();

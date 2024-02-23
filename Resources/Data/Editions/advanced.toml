@@ -1,0 +1,128 @@
+﻿key = "advanced"
+name = "Knytt Stories Advanced"
+
+[banks.0]
+name = "System"
+ranges = [
+    [1, 31],
+]
+
+[banks.1]
+name = "Liquids"
+ranges = [
+    [1, 24],
+]
+
+[banks.2]
+name = "Flyers"
+ranges = [
+    [1, 32],
+]
+
+[banks.3]
+name = "Knytt & Fluff"
+ranges = [
+    [1, 44],
+]
+
+[banks.4]
+name = "Meanies"
+ranges = [
+    [1, 22],
+]
+
+[banks.5]
+name = "Shadow People"
+ranges = [
+    [1, 3],
+]
+
+[banks.6]
+name = "Traps"
+ranges = [
+    [1, 13],
+]
+
+[banks.7]
+name = "Nature FX"
+ranges = [
+    [1, 16],
+]
+
+[banks.8]
+name = "Decoration"
+ranges = [
+    [1, 17],
+]
+
+[banks.9]
+name = "Flowers"
+ranges = [
+    [1, 5],
+]
+
+[banks.10]
+name = "Bouncers"
+ranges = [
+    [1, 13],
+]
+
+[banks.11]
+name = "Disks"
+ranges = [
+    [1, 11],
+]
+
+[banks.12]
+name = "Ghosts"
+ranges = [
+    [1, 21],
+]
+
+[banks.13]
+name = "Robots"
+ranges = [
+    [1, 14],
+]
+
+[banks.14]
+name = "Earth Beings"
+ranges = [
+    [1, 24],
+]
+
+[banks.15]
+name = "Objects & Areas"
+ranges = [
+    [1, 30],
+]
+
+[banks.16]
+name = "Invisible"
+ranges = [
+    [1, 16],
+]
+
+[banks.17]
+name = "Creepy"
+ranges = [
+    [1, 12],
+]
+
+[banks.18]
+name = "Water Creatures"
+ranges = [
+    [1, 6],
+]
+
+[banks.254]
+name = "KSA Objects"
+ranges = [
+    [1, 22],
+]
+
+[banks.255]
+name = "Custom Objects"
+ranges = [
+    [1, 255],
+]

@@ -13,7 +13,7 @@ using Story_Crafter.Knytt;
 using Story_Crafter.Rendering;
 
 namespace Story_Crafter.Controls {
-    class CanvasPanel: PictureBox {
+    public class CanvasPanel: PictureBox {
 
         public delegate ICanvas GetCanvasCallback();
         public delegate Layer GetLayerCallback();
@@ -152,7 +152,7 @@ namespace Story_Crafter.Controls {
 
             if(hover && this.Cursor != Cursors.SizeNWSE) {
                 Size brushSize = GetBrushSize();
-                GetTool().DrawCursor(e.Graphics, hoverPosition, GetSelection(), brushSize.Width, brushSize.Height, GetLayer().Index);
+                //GetTool().DrawCursor(e.Graphics, hoverPosition, GetSelection(), brushSize.Width, brushSize.Height, GetLayer().Index);
             }
         }
 
@@ -160,17 +160,17 @@ namespace Story_Crafter.Controls {
             Layer layer = GetLayer();
             Size brushSize = GetBrushSize();
             if(layer.Index < 4) {
-                GetTool().Paint(GetCanvas(), (TileLayer)layer, (TileSelection)GetSelection(), hoverPosition, brushSize.Width, brushSize.Height, GetTilesetIndex());
+                //GetTool().Paint(GetCanvas(), (TileLayer)layer, (TileSelection)GetSelection(), hoverPosition, brushSize.Width, brushSize.Height, GetTilesetIndex());
             }
             else {
                 Tuple<int, int> obj = GetObject();
-                GetTool().Paint(GetCanvas(), (ObjectLayer)layer, hoverPosition, brushSize.Width, brushSize.Height, obj.Item1, obj.Item2);
+                //GetTool().Paint(GetCanvas(), (ObjectLayer)layer, hoverPosition, brushSize.Width, brushSize.Height, obj.Item1, obj.Item2);
             }
         }
 
         public void Draw() {
             Image updatedScreen = new Bitmap(Metrics.ScreenWidthPx, Metrics.ScreenHeightPx);
-            GetCanvas().Draw(Graphics.FromImage(updatedScreen), GetTilesetA(), GetTilesetB(), GetGradient());
+            //GetCanvas().Draw(Graphics.FromImage(updatedScreen), GetTilesetA(), GetTilesetB(), GetGradient());
             this.Image = updatedScreen;
         }
 

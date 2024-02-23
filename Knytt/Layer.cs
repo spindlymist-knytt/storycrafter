@@ -7,7 +7,7 @@ using Story_Crafter.Rendering;
 
 namespace Story_Crafter.Knytt {
     [Serializable]
-    class Tile {
+    public class Tile {
         public int Collection, Index;
         public int Tileset { // For tileset terminology.
             get { return Collection; }
@@ -42,8 +42,9 @@ namespace Story_Crafter.Knytt {
             Index = t.Index;
         }
     }
+
     [Serializable]
-    class Layer {
+    public class Layer {
         public Size Size;
         public Tile[] Tiles;
         public bool Active;
@@ -78,7 +79,7 @@ namespace Story_Crafter.Knytt {
         }
     }
     [Serializable]
-    class TileLayer: Layer {
+    public class TileLayer: Layer {
         public TileLayer(int index, bool active = true) : base(index, active) { }
         public TileLayer(int index, byte[] data, int offset = 0) : base(index) {
             for(int srcI = offset, destI = 0; destI < 250; srcI++, destI++) {
@@ -113,8 +114,9 @@ namespace Story_Crafter.Knytt {
             }
         }
     }
+
     [Serializable]
-    class ObjectLayer: Layer {
+    public class ObjectLayer: Layer {
         private static HatchBrush missingObjectBrush = new HatchBrush(HatchStyle.WideUpwardDiagonal, Color.Red, Color.Transparent);
 
         public ObjectLayer(int index, bool active = true) : base(index, active) { }

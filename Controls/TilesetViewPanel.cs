@@ -8,7 +8,7 @@ using Story_Crafter.Knytt;
 
 namespace Story_Crafter {
 
-    class TilesetViewPanel : PictureBox {
+    public class TilesetViewPanel : PictureBox {
         public delegate void SelectionChangedDelegate(TileSelection selection);
 
         public TileSelection Selection {

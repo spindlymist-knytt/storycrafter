@@ -44,7 +44,7 @@
             // screen_tilesetViewA
             // 
             this.screen_tilesetViewA.Active = false;
-            this.screen_tilesetViewA.BackgroundImage = global::Story_Crafter.Properties.Resources.checkers;
+            this.screen_tilesetViewA.BackgroundImage = global::Story_Crafter.Resources.checkers;
             this.screen_tilesetViewA.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.screen_tilesetViewA.Location = new System.Drawing.Point(3, 3);
             this.screen_tilesetViewA.Name = "screen_tilesetViewA";
@@ -55,7 +55,7 @@
             // screen_tilesetViewB
             // 
             this.screen_tilesetViewB.Active = false;
-            this.screen_tilesetViewB.BackgroundImage = global::Story_Crafter.Properties.Resources.checkers;
+            this.screen_tilesetViewB.BackgroundImage = global::Story_Crafter.Resources.checkers;
             this.screen_tilesetViewB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.screen_tilesetViewB.Location = new System.Drawing.Point(395, 3);
             this.screen_tilesetViewB.Name = "screen_tilesetViewB";

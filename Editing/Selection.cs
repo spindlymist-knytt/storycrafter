@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Story_Crafter.Editing {
 
-    class Selection {
+    public class Selection {
         public class SelectionNode {
             public SelectionNode North, East, South, West;
             public int X {

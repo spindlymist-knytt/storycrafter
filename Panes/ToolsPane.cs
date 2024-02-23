@@ -21,7 +21,7 @@ namespace Story_Crafter.Panes {
 
             InitializeComponent();
 
-            this.context.Tool = new PaintTool();
+            this.context.Tool = new PaintTool(context);
         }
     }
 }

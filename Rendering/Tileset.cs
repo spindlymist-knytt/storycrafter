@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Text;
 
 namespace Story_Crafter.Rendering {
-    class Tileset {
+    public class Tileset {
         public Bitmap[] Tiles;
         public Bitmap Full;
 

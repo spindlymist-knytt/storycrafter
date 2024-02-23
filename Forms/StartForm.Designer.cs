@@ -138,7 +138,7 @@
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.BackColor = System.Drawing.Color.White;
-      this.BackgroundImage = global::Story_Crafter.Properties.Resources.background;
+      this.BackgroundImage = global::Story_Crafter.Resources.background;
       this.ClientSize = new System.Drawing.Size(594, 376);
       this.Controls.Add(this.label4);
       this.Controls.Add(this.createStory);

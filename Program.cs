@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.Xml;
 using System.IO;
+
+using Story_Crafter.Config;
 using Story_Crafter.Knytt;
 using Story_Crafter.Forms;
-using Story_Crafter.Forms.EditorForm;
+using Story_Crafter.Forms.Editor;
 
 namespace Story_Crafter {
     static class Program {
@@ -26,19 +27,18 @@ namespace Story_Crafter {
 
         public static XmlDocument Data = new XmlDocument();
         public static ObjectBankList Banks = new ObjectBankList();
-        public static byte[] Signature = new byte[5] { 0x00, 0xBE, 0x0B, 0x00, 0x00 }; // These five bytes appear after screen coordinates in every Map.bin file.
 
         public static Random Rand = new Random();
 
         public static Bitmap LoadBitmap(string path) {
-            Bitmap b;
             try {
-                b = new Bitmap(path);
+                using (var temp = new Bitmap(path)) {
+                    return new Bitmap(temp);
+                }
             }
             catch(FileNotFoundException) {
                 return null;
             }
-            return b;
         }
 
         public static void ChangeProfile(Profile p) {
@@ -48,7 +48,7 @@ namespace Story_Crafter {
         }
 
         private static bool LoadGlobalData() {
-            Program.Data.Load("data.xml");
+            Program.Data.Load("Resources/Data/data.xml");
 
             FolderBrowserDialog browserDlg = new FolderBrowserDialog();
             browserDlg.Description = "Please select the folder that contains Knytt Stories.exe.";
@@ -61,7 +61,7 @@ namespace Story_Crafter {
                     return false;
                 }
                 Program.Data.GetElementsByTagName("path")[0].InnerText = Program.Path;
-                FileStream fout = File.Open("data.xml", FileMode.Truncate, FileAccess.Write);
+                FileStream fout = File.Open("Resources/Data/data.xml", FileMode.Truncate, FileAccess.Write);
                 XmlWriter writer = XmlWriter.Create(fout);
                 Program.Data.WriteContentTo(writer);
                 writer.Close();
@@ -90,12 +90,18 @@ namespace Story_Crafter {
         static void Main() {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            StoryCrafterConfiguration config = new("Resources/Data");
+            config.Load();
+
             if(!Program.LoadGlobalData()) return;
+
             Program.Debug = new LogsForm();
             Program.Start = new StartForm();
             Program.Editor = new EditorForm();
             Program.Preferences = new PreferencesForm();
             Program.ImportScreens = new ImportScreensForm();
+
             Application.Run(Editor);
         }
     }

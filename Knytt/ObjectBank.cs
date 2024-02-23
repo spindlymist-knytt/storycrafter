@@ -1,11 +1,10 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 
 namespace Story_Crafter.Knytt {
-    class ObjectBank: System.Collections.IEnumerable {
+    class ObjectBank: IEnumerable<Tuple<int, Bitmap>> {
         public int Index, AbsoluteIndex;
         public string Name;
         private List<Tuple<int, Bitmap>> Objects;
@@ -43,14 +42,12 @@ namespace Story_Crafter.Knytt {
             objects.Sort(ObjectBank.doSort);
             objects.Insert(0, ObjectBank.ObjectZero);
         }
-        public System.Collections.IEnumerator GetEnumerator() {
-            return (System.Collections.IEnumerator)this.Objects.GetEnumerator();
+        public IEnumerator<Tuple<int, Bitmap>> GetEnumerator() {
+            return this.Objects.GetEnumerator();
         }
 
-        /*public void Merge(ObjectBank other) {
-          for(int i = 0; i < other.Objects.Count; i++) {
-
-          }
-        }*/
+        IEnumerator IEnumerable.GetEnumerator() {
+            return this.Objects.GetEnumerator();
+        }
     }
 }

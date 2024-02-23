@@ -24,11 +24,6 @@
         /// </summary>
         private void InitializeComponent() {
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.objectListView1 = new BrightIdeasSoftware.ObjectListView();
-            this.olvColumn2 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvColumn3 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvColumn4 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvColumn1 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -53,7 +48,6 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.objectListView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -61,7 +55,6 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.objectListView1);
             this.groupBox2.Controls.Add(this.button1);
             this.groupBox2.Location = new System.Drawing.Point(12, 179);
             this.groupBox2.Name = "groupBox2";
@@ -69,55 +62,6 @@
             this.groupBox2.TabIndex = 24;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Image Editors";
-            // 
-            // objectListView1
-            // 
-            this.objectListView1.AllColumns.Add(this.olvColumn2);
-            this.objectListView1.AllColumns.Add(this.olvColumn3);
-            this.objectListView1.AllColumns.Add(this.olvColumn4);
-            this.objectListView1.AllColumns.Add(this.olvColumn1);
-            this.objectListView1.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.DoubleClick;
-            this.objectListView1.CellEditUseWholeCell = false;
-            this.objectListView1.CheckedAspectName = "";
-            this.objectListView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.olvColumn2,
-            this.olvColumn3,
-            this.olvColumn4,
-            this.olvColumn1});
-            this.objectListView1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.objectListView1.FullRowSelect = true;
-            this.objectListView1.GridLines = true;
-            this.objectListView1.Location = new System.Drawing.Point(19, 27);
-            this.objectListView1.Name = "objectListView1";
-            this.objectListView1.ShowGroups = false;
-            this.objectListView1.Size = new System.Drawing.Size(538, 126);
-            this.objectListView1.TabIndex = 2;
-            this.objectListView1.UseCompatibleStateImageBehavior = false;
-            this.objectListView1.View = System.Windows.Forms.View.Details;
-            // 
-            // olvColumn2
-            // 
-            this.olvColumn2.IsEditable = false;
-            this.olvColumn2.Text = "Icon";
-            this.olvColumn2.Width = 33;
-            // 
-            // olvColumn3
-            // 
-            this.olvColumn3.AspectName = "Name";
-            this.olvColumn3.Text = "Name";
-            this.olvColumn3.Width = 108;
-            // 
-            // olvColumn4
-            // 
-            this.olvColumn4.AspectName = "Path";
-            this.olvColumn4.Text = "Path";
-            this.olvColumn4.Width = 279;
-            // 
-            // olvColumn1
-            // 
-            this.olvColumn1.AspectName = "CmdString";
-            this.olvColumn1.Text = "Command String";
-            this.olvColumn1.Width = 91;
             // 
             // button1
             // 
@@ -372,7 +316,6 @@
             this.Text = "Preferences";
             this.Shown += new System.EventHandler(this.PreferencesForm_Shown);
             this.groupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.objectListView1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -385,11 +328,6 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox2;
-        private BrightIdeasSoftware.ObjectListView objectListView1;
-        private BrightIdeasSoftware.OLVColumn olvColumn2;
-        private BrightIdeasSoftware.OLVColumn olvColumn3;
-        private BrightIdeasSoftware.OLVColumn olvColumn4;
-        private BrightIdeasSoftware.OLVColumn olvColumn1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox textBox1;

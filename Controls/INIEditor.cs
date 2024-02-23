@@ -8,7 +8,7 @@ using System.Windows.Forms;
 namespace Story_Crafter {
     // This is just a fancy textbox that highlights itself.
     // Some black magic going on here; beware ye who meddle here.
-    class INIEditor: RichTextBox {
+    public class INIEditor: RichTextBox {
         bool paint = true;
         public enum StopAt { EndOfLine, EndOfFile, Length };
 
