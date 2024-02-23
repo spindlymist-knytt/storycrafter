@@ -1,66 +1,89 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
 
-using System.Text;
-using Story_Crafter.Editing;
-using Story_Crafter.Rendering;
+using Story_Crafter.Knytt.Primitives;
 
 namespace Story_Crafter.Knytt {
-    [Serializable]
-    class Screen: ICanvas {
-        public int X, Y;
-        public int TilesetA, TilesetB, Gradient, Music, AmbianceA, AmbianceB;
-        public Layer[] Layers;
-        [NonSerialized] public Bitmap Thumbnail;
-        [NonSerialized] public bool Conflict = false;
+    public partial class Screen {
+        Int2 position;
+        byte[] data;
 
-        public byte[] RawData;
+        const uint DATA_LENGTH = 3006;
+        const uint TILESET_A_OFFSET  = (DATA_LENGTH - 1) - 5;
+        const uint TILESET_B_OFFSET  = (DATA_LENGTH - 1) - 4;
+        const uint MUSIC_OFFSET      = (DATA_LENGTH - 1) - 3;
+        const uint AMBIANCE_A_OFFSET = (DATA_LENGTH - 1) - 2;
+        const uint AMBIANCE_B_OFFSET = (DATA_LENGTH - 1) - 1;
+        const uint GRADIENT_OFFSET   = (DATA_LENGTH - 1) - 0;
+
+        public Int2 Position {
+            get { return position; }
+            set { position = value; }
+        }
+
+        public byte[] Data {
+            get { return data; }
+            set {
+                if (value != null && value.Length == DATA_LENGTH) {
+                    data = value;
+                }
+            }
+        }
+
+        public int X {
+            get { return position.X; }
+            set { position.X = value; }
+        }
+
+        public int Y {
+            get { return position.Y; }
+            set { position.Y = value; }
+        }
+
+        public byte TilesetA {
+            get { return Data[TILESET_A_OFFSET]; }
+            set { Data[TILESET_A_OFFSET] = value; }
+        }
+
+        public byte TilesetB {
+            get { return Data[TILESET_B_OFFSET]; }
+            set { Data[TILESET_B_OFFSET] = value; }
+        }
+
+        public byte Music {
+            get { return Data[MUSIC_OFFSET]; }
+            set { Data[MUSIC_OFFSET] = value; }
+        }
+
+        public byte AmbianceA {
+            get { return Data[AMBIANCE_A_OFFSET]; }
+            set { Data[AMBIANCE_A_OFFSET] = value; }
+        }
+
+        public byte AmbianceB {
+            get { return Data[AMBIANCE_B_OFFSET]; }
+            set { Data[AMBIANCE_B_OFFSET] = value; }
+        }
+
+        public byte Gradient {
+            get { return Data[GRADIENT_OFFSET]; }
+            set { Data[GRADIENT_OFFSET] = value; }
+        }
 
         public Screen() {
-            this.Layers = new Layer[8];
+            Position = Int2.Zero;
+            Data = new byte[3006];
         }
 
-        public Screen(int x, int y) {
-            this.Layers = new Layer[8];
-            Byte[] blankData = new Byte[500];
-            for(int i = 0; i < 500; i++) blankData[i] = 0;
+        public Screen(int x, int y) : this(new Int2(x, y)) { }
 
-            this.X = x;
-            this.Y = y;
-            this.TilesetA = 0;
-            this.TilesetB = 0;
-            this.Gradient = 0;
-            this.AmbianceA = 0;
-            this.AmbianceB = 0;
-            this.Music = 0;
-            for(int i = 0; i < 4; i++) {
-                this.Layers[i] = new TileLayer(i, blankData);
-            }
-            for(int i = 4; i < 8; i++) {
-                this.Layers[i] = new ObjectLayer(i, blankData);
-            }
+        public Screen(Int2 position) {
+            Position = position;
+            Data = new byte[3006];
         }
 
-        public void Draw(Graphics g, Tileset a, Tileset b, Bitmap gradient) {
-            this.DrawGradient(g, gradient);
-            foreach(Layer l in this.Layers) {
-                if(l.Active) l.Draw(g, a, b);
-            }
+        public Screen(Int2 position, byte[] data) {
+            Position = position;
+            Data = data;
         }
-
-        private void DrawGradient(Graphics g, Bitmap gradient) {
-            for(int x = 0; x < Metrics.ScreenWidthPx; x += gradient.Width) {
-                g.DrawImage(gradient, x, 0, gradient.Width, gradient.Height);
-            }
-        }
-
-        public void Resize(int width, int height) {
-        }
-
-        public Layer GetLayer(int idx) {
-            return Layers[idx];
-        }
-
     }
 }

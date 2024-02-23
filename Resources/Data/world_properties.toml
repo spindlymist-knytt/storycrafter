@@ -1,0 +1,53 @@
+﻿################################################################################
+# Categories
+################################################################################
+
+[categories.Challenge]
+description = "Make sure your skills are sharp!"
+
+[categories.Puzzle]
+description = "You will need some serious thinking."
+
+[categories.Maze]
+description = "Can you find where you're going?"
+
+[categories.Environmental]
+description = "No puzzles, no monsters, no challenge, just beautiful landscape."
+
+[categories.Playground]
+description = "A level without an ending or a goal - a good place to practice."
+
+[categories.Misc]
+description = "A level that doesn't fit into any of the other categories."
+
+################################################################################
+# Difficulties
+################################################################################
+
+[difficulties.Easy]
+description = "An easy level."
+
+[difficulties.Normal]
+description = "A normal level."
+
+[difficulties.Hard]
+description = "A hard level."
+
+[difficulties."Very Hard"]
+description = "Be prepared for a challenge!"
+
+[difficulties.Lunatic]
+description = "A ridiculously hard level."
+
+################################################################################
+# Sizes
+################################################################################
+
+[sizes.Small]
+description = "A small level."
+
+[sizes.Medium]
+description = "A medium level."
+
+[sizes.Large]
+description = "A large level."

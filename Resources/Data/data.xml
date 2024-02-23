@@ -1,0 +1,86 @@
+<xml>
+
+<path></path>
+<active>ks</active>
+    
+<categories>
+  <category name="Tutorial" description="A level that teaches you to play Knytt Stories and contains tips and tricks." />
+  <category name="Challenge" description="Make sure your skills are sharp!" />
+  <category name="Puzzle" description="You will need some serious thinking." />
+  <category name="Maze" description="Can you find where you're going?" />
+  <category name="Environmental" description="No puzzles, no monsters, no challenge, just beautiful landscape." />
+  <category name="Playground" description="A level without an ending or a goal - a good place to practice." />
+  <category name="Misc" description="A level that doesn't fit into any of the other categories." />
+</categories>
+
+<difficulties>
+  <difficulty name="Easy" description="An easy level." />
+  <difficulty name="Normal" description="A normal level." />
+  <difficulty name="Hard" description="A hard level." />
+  <difficulty name="Very Hard" description="Be prepared for a challenge!" />
+  <difficulty name="Lunatic" description="A ridiculously hard level." />
+</difficulties>
+
+<sizes>
+  <size name="Small" description="A small level." />
+  <size name="Medium" description="A medium level." />
+  <size name="Large" description="A large level." />
+</sizes>
+
+<profile id="ks" name="Knytt Stories">
+  <banks>
+    <bank index="0"	name="System"			objects="1-31"  />
+    <bank index="1"	name="Liquids"			objects="1-24"  />
+    <bank index="2"	name="Flyers"			objects="1-32"  />
+    <bank index="3"	name="Knytt &amp; Fluff"	objects="1-44"  />
+    <bank index="4"	name="Meanies"			objects="1-22"  />
+    <bank index="5"	name="Shadow People"		objects="1-3"   />
+    <bank index="6"	name="Traps"			objects="1-13"  />
+    <bank index="7"	name="Nature FX"		objects="1-16"  />
+    <bank index="8"	name="Decoration"		objects="1-17"  />
+    <bank index="9"	name="Flowers"			objects="1-5"   />
+    <bank index="10"	name="Bouncers"			objects="1-13"  />
+    <bank index="11"	name="Disks"			objects="1-11"  />
+    <bank index="12"	name="Ghosts"			objects="1-21"  />
+    <bank index="13"	name="Robots"			objects="1-14"  />
+    <bank index="14"	name="Earth Beings"		objects="1-24"  />
+    <bank index="15"	name="Objects &amp; Areas"	objects="1-30"  />
+    <bank index="16"	name="Invisible"		objects="1-16"  />
+    <bank index="17"	name="Creepy"			objects="1-12"  />
+    <bank index="18"	name="Water Creatures"		objects="1-6"   />
+    <bank index="255"	name="Custom Objects"		objects="1-255" />
+  </banks>
+</profile>
+
+<profile id="ksego" name="Knytt Stories Ego" base="ks">
+  <banks>
+    <bank index="0"	name="System"			objects="1-49 247-255" />
+    <bank index="1"	name="Liquids"			objects="1-27"  />
+    <bank index="6"	name="Traps"			objects="1-17"  />
+    <bank index="7"	name="Nature FX"		objects="1-17"  />
+    <bank index="15"	name="Objects &amp; Areas"	objects="1-38"         />
+    <bank index="16"	name="Invisible"		objects="1-30"         />
+    <bank index="19"	name="Collectables"		objects="1-199"        />
+    <bank index="254"	name="Custom Objects B"		objects="1-255" />
+  </banks>
+</profile>
+
+<profile id="ksex" name="Knytt Stories Ex" base="ks">
+  <banks>
+    <bank index="0"	name="System">
+      <src path="%ks%/Data/Objects/Bank0"		objects="1-31"  />
+      <src path="%ks%/Data/Objects Ex/Bank0"		objects="32-32" />
+    </bank>
+    <bank index="254"	name="Object Templates">
+      <src path="%ks%/Data/Objects Ex/Bank254"		objects="1-255" />
+    </bank>
+  </banks>
+</profile>
+
+<profile id="ksa" name="Knytt Stories Advanced" base="ks">
+  <banks>
+    <bank index="254" name="KSA Objects"		objects="1-22" />
+  </banks>
+</profile>
+
+</xml>

@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 using System.Drawing;
 
 namespace Story_Crafter {
-    class DragDropListView: ListView {
+    public class DragDropListView: ListView {
         #region Scroll
         // Windows messages
         private const int WM_PAINT = 0x000F;

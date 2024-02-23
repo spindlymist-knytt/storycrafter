@@ -16,8 +16,11 @@ namespace Story_Crafter.Forms {
 
         ListViewItemComparer lvItemComparer = new ListViewItemComparer();
         Story story;
+        string worldsPath;
 
-        public ImportScreensForm() {
+        public ImportScreensForm(string worldsPath) {
+            this.worldsPath = worldsPath;
+
             InitializeComponent();
 
             this.storyList.ListViewItemSorter = lvItemComparer;
@@ -25,29 +28,44 @@ namespace Story_Crafter.Forms {
         }
 
         private void ImportScreensForm_Shown(object sender, EventArgs e) {
-            // TODO make reusable
-            DirectoryInfo worldsDir = new DirectoryInfo(Program.Path + @"\Worlds");
-            IniFile ini = new IniFile();
-            this.storyList.Items.Clear();
-            foreach(DirectoryInfo dir in worldsDir.EnumerateDirectories()) {
-                if(!File.Exists(dir.FullName + @"\Map.bin") || !File.Exists(dir.FullName + @"\World.ini")) continue;
-                ini.Path = dir.FullName + @"\World.ini";
-                this.storyList.Items.Add(ini.Read("World", "Author")).SubItems.AddRange(new string[2] { ini.Read("World", "Name"), dir.FullName });
+            DirectoryInfo worldsDir = new DirectoryInfo(worldsPath);
+
+            foreach (DirectoryInfo dir in worldsDir.EnumerateDirectories()) {
+                string worldIniPath = Path.Combine(dir.FullName, "World.ini");
+                string mapBinPath = Path.Combine(dir.FullName, "Map.bin");
+
+                if (
+                    !File.Exists(worldIniPath)
+                    || !File.Exists(mapBinPath)
+                ) {
+                    continue;
+                }
+
+                var props = Story.Properties.Parser.Parse(worldIniPath);
+                this.storyList.Items
+                    .Add(props.Author)
+                    .SubItems.AddRange(new string[2] {
+                        props.Name,
+                        dir.FullName,
+                    });
             }
         }
+
         private void loadStory_Click(object sender, EventArgs e) {
             if(this.storyList.SelectedItems.Count < 1) return;
             try {
-                this.story = new Story((string)this.storyList.SelectedItems[0].SubItems[2].Text);
+                string path = Path.Combine(worldsPath, this.storyList.SelectedItems[0].SubItems[2].Text);
+                this.story = Story.Parser.FromDirectory(path);
                 this.Text = "Import Screens: " + this.story.Title;
                 this.mapViewPanel1.BringToFront();
                 this.mapViewPanel1.Story = story;
-                mapViewPanel1.ResetSelection(story.DefaultSave.MapX, story.DefaultSave.MapY);
+                mapViewPanel1.ResetSelection(story.DefaultSave.Screen.X, story.DefaultSave.Screen.Y);
             }
             catch(Exception ex) {
                 MessageBox.Show(ex.ToString(), "Failed to load story", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         private void storyList_ColumnClick(object sender, ColumnClickEventArgs e) {
             if(this.lvItemComparer.Column == e.Column) {
                 this.lvItemComparer.Order = this.lvItemComparer.Order == SortOrder.Ascending ? SortOrder.Descending : SortOrder.Ascending;
@@ -60,7 +78,7 @@ namespace Story_Crafter.Forms {
             if(e.KeyCode == Keys.C && e.Modifiers == Keys.Control) {
                 List<Screen> screens = new List<Screen>();
                 foreach(Selection.SelectionNode n in this.mapViewPanel1.GetSelection().nodes) {
-                    Screen s = this.mapViewPanel1.Story.GetScreen(n.X, n.Y);
+                    Screen s = this.mapViewPanel1.Story[n.X, n.Y];
                     if(s == null) continue;
                     if(s != null) screens.Add(s);
                 }

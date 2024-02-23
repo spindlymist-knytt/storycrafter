@@ -9,7 +9,7 @@ using Screen = Story_Crafter.Knytt.Screen;
 
 namespace Story_Crafter {
 
-    class MapViewPanel : PictureBox {
+    public class MapViewPanel : PictureBox {
 
         public bool ShowThumbs {
             get { return this.showThumbs; }
@@ -23,7 +23,7 @@ namespace Story_Crafter {
             set {
                 this.story = value;
                 if (this.story != null) {
-                    CenterScreen(this.story.DefaultSave.MapX, this.story.DefaultSave.MapY);
+                    CenterScreen(this.story.DefaultSave.Screen.X, this.story.DefaultSave.Screen.Y);
                 }
                 DrawMap();
             }
@@ -216,12 +216,12 @@ namespace Story_Crafter {
                 new Rectangle(0, 0, selection.Borders.Width, selection.Borders.Height),
                 GraphicsUnit.Pixel);
 
-            pe.Graphics.DrawRectangle(
-                activeScreenOutline,
-                new Rectangle((story.ActiveScreen.X - startX) * screenWidth,
-                (story.ActiveScreen.Y - startY) * screenHeight,
-                screenWidth - 1,
-                screenHeight - 1));
+            //pe.Graphics.DrawRectangle(
+            //    activeScreenOutline,
+            //    new Rectangle((story.ActiveScreen.X - startX) * screenWidth,
+            //    (story.ActiveScreen.Y - startY) * screenHeight,
+            //    screenWidth - 1,
+            //    screenHeight - 1));
 
             if (selectionInProgress) {
                 pe.Graphics.DrawRectangle(
@@ -243,9 +243,16 @@ namespace Story_Crafter {
         }
 
         private void DrawGridLines() {
-            this.Image = new Bitmap(this.Width, this.Height);
+            if (this.Image.Size != this.Size) {
+                this.Image.Dispose();
+                this.Image = null;
+            }
+            this.Image ??= new Bitmap(Math.Max(1, this.Size.Width), Math.Max(1, this.Size.Height));
+
             Graphics g = Graphics.FromImage(this.Image);
-            for(int x = 1; x < mapWidth; x++) {
+            g.Clear(Color.Transparent);
+
+            for (int x = 1; x < mapWidth; x++) {
                 g.DrawLine(p2, x * screenWidth - 1, 0, x * screenWidth - 1, this.Height);
                 g.DrawLine(p, x * screenWidth, 0, x * screenWidth, this.Height);
             }
@@ -253,25 +260,28 @@ namespace Story_Crafter {
                 g.DrawLine(p2, 0, y * screenHeight - 1, this.Width, y * screenHeight - 1);
                 g.DrawLine(p, 0, y * screenHeight, this.Width, y * screenHeight);
             }
+
             this.Refresh();
         }
 
         public void DrawMap() {
-            this.BackgroundImage = new Bitmap(this.Size.Width, this.Size.Height);
+            if (this.BackgroundImage.Size != this.Size) {
+                this.BackgroundImage.Dispose();
+                this.BackgroundImage = null;
+            }
+            this.BackgroundImage ??= new Bitmap(Math.Max(1, this.Size.Width), Math.Max(1, this.Size.Height));
+
             if(story != null) {
                 Graphics g = Graphics.FromImage(this.BackgroundImage);
+                g.Clear(Color.Transparent);
+
                 Rectangle src = new Rectangle(0, 0, 200, 80);
-                foreach(Screen s in story.Screens) {
+                foreach(Screen s in story.Screens.Values) {
                     int offX = s.X - startX;
                     int offY = s.Y - startY;
                     if(offX >= 0 && offX < mapWidth && offY >= 0 && offY < mapHeight) {
                         Rectangle area = new Rectangle(offX * screenWidth, offY * screenHeight, screenWidth, screenHeight);
-                        if(this.showThumbs && s.Thumbnail != null) {
-                            g.DrawImage(s.Thumbnail, area, src, GraphicsUnit.Pixel);
-                        }
-                        else {
-                            g.FillRectangle(s == story.ActiveScreen ? activeScreenFill : screenFill, area);
-                        }
+                        g.FillRectangle(screenFill, area);
                     }
                 }
                 if(paste != null) {
@@ -280,11 +290,13 @@ namespace Story_Crafter {
                         int offY = s.Y - startY;
                         if(offX >= 0 && offX < mapWidth && offY >= 0 && offY < mapHeight) {
                             Rectangle area = new Rectangle(offX * screenWidth, offY * screenHeight, screenWidth, screenHeight);
-                            g.FillRectangle(s.Conflict ? conflictFill : pasteFill, area);
+                            //g.FillRectangle(s.Conflict ? conflictFill : pasteFill, area);
+                            g.FillRectangle(pasteFill, area);
                         }
                     }
                 }
             }
+
             this.Refresh();
         }
 
@@ -310,8 +322,8 @@ namespace Story_Crafter {
             foreach(Screen s in screens) {
                 s.X += selection.MinX;
                 s.Y += selection.MinY;
-                if(Story.GetScreen(s.X, s.Y) != null) {
-                    s.Conflict = true;
+                if(Story[s.Position] != null) {
+                    //s.Conflict = true;
                     overwrite++;
                 }
             }

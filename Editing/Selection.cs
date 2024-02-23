@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Story_Crafter.Editing {
 
-    class Selection {
+    public class Selection {
         public class SelectionNode {
             public SelectionNode North, East, South, West;
             public int X {
@@ -127,7 +127,7 @@ namespace Story_Crafter.Editing {
             DrawBorders();
         }
         public int RandomNode() {
-            return nodes[Program.Rand.Next(0, nodes.Count)].TileIndex;
+            return nodes[Program.Rng.Next(0, nodes.Count)].TileIndex;
         }
         protected void FindNeighbors() {
             // TODO optimize

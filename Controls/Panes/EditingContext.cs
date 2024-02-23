@@ -1,0 +1,92 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+
+using Story_Crafter.Knytt;
+using Story_Crafter.Assets;
+using Story_Crafter.Editing.Tools;
+using Story_Crafter.Editing;
+using Story_Crafter.Utility.Observables;
+
+namespace Story_Crafter.Controls.Panes {
+    class EditingContext {
+        public delegate void ToolChangedDelegate(ToolChangedArgs args);
+        public delegate void TilesetSelectionChangedDelegate(TilesetSelectionChangedArgs args);
+        public delegate void ObjectSelectionChangedDelegate(ObjectSelectionChangedArgs args);
+        public delegate void ActiveScreenChangedDelegate(ActiveScreenChangedArgs args);
+
+        public event ToolChangedDelegate ToolChanged;
+        public event TilesetSelectionChangedDelegate TilesetSelectionChanged;
+        public event ObjectSelectionChangedDelegate ObjectSelectionChanged;
+        public event ActiveScreenChangedDelegate ActiveScreenChanged;
+
+        public IEditingTool Tool {
+            get { return tool; }
+            set {
+                tool = value;
+                ToolChanged?.Invoke(new ToolChangedArgs {
+                    tool = value,
+                });
+            }
+        }
+
+        public Tuple<int, Selection> TilesetSelection {
+            get { return tilesetSelection; }
+            set {
+                tilesetSelection = value;
+                TilesetSelectionChanged?.Invoke(new TilesetSelectionChangedArgs {
+                    selection = value,
+                });
+            }
+        }
+
+        public Tuple<int, int> ObjectSelection {
+            get { return objectSelection; }
+            set {
+                objectSelection = value;
+                ObjectSelectionChanged?.Invoke(new ObjectSelectionChangedArgs {
+                    selection = value,
+                });
+            }
+        }
+
+        public Screen ActiveScreen {
+            get { return activeScreen; }
+            set {
+                activeScreen = value;
+                ActiveScreenChanged?.Invoke(new ActiveScreenChangedArgs {
+                    screen = value,
+                });
+            }
+        }
+
+        public Story Story { get; private set; }
+        public IAssetSource Assets { get; private set; }
+
+        IEditingTool tool;
+        Tuple<int, Selection> tilesetSelection;
+        Tuple<int, int> objectSelection;
+        Screen activeScreen;
+
+        public EditingContext(IReadable<Story> story, IAssetSource assets) {
+            this.Story = story.Value;
+            this.Assets = assets;
+        }
+    }
+
+    struct ToolChangedArgs {
+        public IEditingTool tool;
+    }
+
+    struct TilesetSelectionChangedArgs {
+        public Tuple<int, Selection> selection;
+    }
+
+    struct ObjectSelectionChangedArgs {
+        public Tuple<int, int> selection;
+    }
+
+    struct ActiveScreenChangedArgs {
+        public Screen screen;
+    }
+}
