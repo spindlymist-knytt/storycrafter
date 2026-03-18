@@ -4,8 +4,7 @@ using System.IO;
 using Story_Crafter.Editing;
 using Story_Crafter.Utility;
 
-namespace Story_Crafter.Controls.Panes
-{
+namespace Story_Crafter.Controls.Panes {
     partial class TilesetsPane : BasePane {
         EditingContext context;
 
@@ -26,6 +25,10 @@ namespace Story_Crafter.Controls.Panes
         }
 
         public void OnActiveScreenChanged(ActiveScreenChangedArgs e) {
+            this.screen_tilesetA.Value = e.screen.TilesetA;
+            this.screen_tilesetB.Value = e.screen.TilesetB;
+            this.screen_gradient.Value = e.screen.Gradient;
+
             using Bitmap tilesetA = new(context.Assets.TilesetPath(e.screen.TilesetA));
             using Bitmap tilesetB = new(context.Assets.TilesetPath(e.screen.TilesetB));
 

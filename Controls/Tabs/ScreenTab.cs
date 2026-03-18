@@ -20,7 +20,9 @@ namespace Story_Crafter.Controls.Tabs {
         public ScreenTab(Editor editor) : base(editor) {
             InitializeComponent();
 
-            this.dockPanel.Theme = new VS2015LightTheme();
+            var theme = new VS2015LightTheme();
+            theme.ColorPalette.MainWindowActive.Background = System.Drawing.SystemColors.Window;
+            this.dockPanel.Theme = theme;
 
             this.editContext = new EditingContext(Editor.Story, Editor.Assets);
             this.editContext.ActiveScreen =
@@ -36,11 +38,11 @@ namespace Story_Crafter.Controls.Tabs {
             TilesetsPane tilesetsPane = new(editContext);
             ObjectsPane objectsPane = new(editContext);
             ToolsPane toolsPane = new(editContext);
-            AssetsPane assetsPane = new(editContext);
+            AudioPane audioPane = new(editContext);
+            TestingPane testingPane = new(editContext);
             MapPane mapPane = new(editContext);
             mapPane.ScreenSelected += delegate (object _, Int2 position) {
-                Screen screen;
-                if (Editor.Story.Value.Screens.TryGetValue(position, out screen)) {
+                if (Editor.Story.Value.Screens.TryGetValue(position, out Screen screen)) {
                     CreateScreenPane(screen);
                 }
             };
@@ -52,7 +54,11 @@ namespace Story_Crafter.Controls.Tabs {
             tilesetsPane.Activate();
 
             toolsPane.Show(screenPane.Pane, DockAlignment.Left, 0.15);
-            assetsPane.Show(tilesetsPane.Pane, DockAlignment.Left, 0.15);
+
+            audioPane.Show(tilesetsPane.Pane, DockAlignment.Left, 0.15);
+            testingPane.Show(audioPane.Pane, null);
+            audioPane.Activate();
+
             mapPane.Show(tilesetsPane.Pane, DockAlignment.Right, 0.33);
 
             screenPane.Activate();

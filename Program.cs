@@ -3,7 +3,6 @@ using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 using Story_Crafter.Forms;
-using Story_Crafter.Controls.Tabs;
 
 namespace Story_Crafter {
     static class Program {

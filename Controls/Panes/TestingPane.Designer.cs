@@ -1,5 +1,5 @@
-﻿namespace Story_Crafter.Controls.Tabs {
-    partial class ScreenTab {
+﻿namespace Story_Crafter.Controls.Panes {
+    partial class TestingPane {
         /// <summary> 
         /// Required designer variable.
         /// </summary>
@@ -23,33 +23,18 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            dockPanel = new WeifenLuo.WinFormsUI.Docking.DockPanel();
             SuspendLayout();
             // 
-            // dockPanel
-            // 
-            dockPanel.BackColor = System.Drawing.SystemColors.Window;
-            dockPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            dockPanel.Location = new System.Drawing.Point(0, 0);
-            dockPanel.Margin = new System.Windows.Forms.Padding(0);
-            dockPanel.Name = "dockPanel";
-            dockPanel.Size = new System.Drawing.Size(947, 657);
-            dockPanel.TabIndex = 0;
-            // 
-            // ScreenTab
+            // TestingPane
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            BackColor = System.Drawing.SystemColors.Window;
-            Controls.Add(dockPanel);
-            Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            Name = "ScreenTab";
-            Size = new System.Drawing.Size(947, 657);
+            ClientSize = new System.Drawing.Size(284, 261);
+            Name = "TestingPane";
+            Text = "Test";
             ResumeLayout(false);
         }
 
         #endregion
-
-        private WeifenLuo.WinFormsUI.Docking.DockPanel dockPanel;
     }
 }
